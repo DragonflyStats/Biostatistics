@@ -1,3 +1,4 @@
+%-------------------------------------------------------------------------%
 Question 1
 A case-control study of esophageal cancer was performed. Daily alcohol consumption was ascertained (H = high, L = low). The data was stratified by 2 age groups.
 
@@ -23,6 +24,8 @@ Question Explanation
 
 We use the Mantel Haensel test. The R code is as follows.
 
+\begin{framed}
+\begin{verbatim}
 dat <- array(c(8, 52, 5, 164, 25, 29, 21, 128), c(2, 2, 2))
 dat
 , , 1
@@ -48,6 +51,9 @@ alternative hypothesis: true common odds ratio is not equal to 1
 sample estimates:
 common odds ratio 
             5.197 
+\end{verbatim}
+\end{framed}
+%-------------------------------------------------------------------------%
 Question 2
 The Biostatistics and Epidemilogy departments are running a 10K road race. There are three pairs of runners. In each case, a runner from Biostat was matched to a runner from Epi of the same age, gender and degree of running experience. The difference in each pairs times was taken and a signed rank test performed.
 
@@ -70,7 +76,7 @@ table(apply(winners, 2, function(x) sum(x * ranks)))/8
     0     1     2     3     4     5     6 
 0.125 0.125 0.125 0.250 0.125 0.125 0.125 
 The smallest value would occur with either 6 or 0 as the statistic, each occuring with probability 0.125. Twice that would be 0.25.
-
+%-------------------------------------------------------------------------%
 Question 3
 Two computer based methods for diagnostic imaging are being studied. Ten images were processed with both methods, resulting in a + or − diagnosis for each method and image. The data are as follows
 
@@ -79,22 +85,27 @@ Two computer based methods for diagnostic imaging are being studied. Ten images 
 -	12	20
 Where Method A is represeted with the two columns and Method B is represented on the rows. What is the P-value for a of the hypothesis that the marginal probability of a positive diagnosis is the same for the two methods? (Use the large sample version.)
 
-Your Answer		Score	Explanation
-The P-value is non-significant, suggesting that the marginal probabilities do not differ.			
-The P-value is highly significant, suggesting that the marginal probabilities do not differ.	Inorrect	0.00	
-The P-value is highly significant, suggesting that the marginal probabilities do differ.			
-The P-value is non-significant, suggesting that the marginal probabilities do differ.			
-Total		0.00 / 1.00	
-Question Explanation
+\begin{itemize}
+\item The P-value is non-significant, suggesting that the marginal probabilities do not differ.			
+\item The P-value is highly significant, suggesting that the marginal probabilities do not differ.	Inorrect	0.00	
+\item The P-value is highly significant, suggesting that the marginal probabilities do differ.			
+\item The P-value is non-significant, suggesting that the marginal probabilities do differ.			
+\end{itemize}
+%Total		0.00 / 1.00	
+%Question Explanation
 
 We use the large sample version of McNemar's test
-
+\begin{framed}
+\begin{verbatim}
 mcnemar.test(matrix(c(55, 12, 41, 20), 2), correct = FALSE)
 
     McNemar's Chi-squared test
 
 data:  matrix(c(55, 12, 41, 20), 2) 
 McNemar's chi-squared = 15.87, df = 1, p-value = 6.792e-05
+\end{verbatim}
+\end{framed}
+%-------------------------------------------------------------------------%
 Question 4
 Two computer based methods for diagnostic imaging are being studied. Ten images were processed with both methods, resulting in a + or − diagnosis for each method and image. The data are as follows
 
@@ -110,7 +121,8 @@ The estimated odds of a positive diagnosis for Method B were nearly 3 times that
 The estimated odds of a positive diagnosis for Method B were about the same as that of Method A.			
 Total		1.00 / 1.00	
 Question Explanation
-
+\begin{framed}
+\begin{verbatim}
 dat <- matrix(c(55, 12, 41, 20), 2)
 n <- sum(dat)
 pA <- sum(dat[, 1])/n
@@ -120,6 +132,9 @@ oB <- pB/(1 - pB)
 or <- oB/oA
 or
 [1] 2.731
+\end{verbatim}
+\end{framed}
+%-------------------------------------------------------------------------%
 Question 5
 A matched case control study was executed to study an airborn environmental toxicant's effect on lung cancer.The data are
 
@@ -137,7 +152,8 @@ Around 2.4
 Around 4.2	Inorrect	0.00	
 Total		0.00 / 1.00	
 Question Explanation
-
+\begin{framed}
+\begin{verbatim}
  expCase <- 243 + 189
 unexpCase <- 54 + 153
 expCtrl <- 243 + 54
@@ -146,6 +162,9 @@ unexpCtrl <- 189 + 153
 ## condtional odds ratio
 189/54
 [1] 3.5
+\end{verbatim}
+\end{framed}
+%-------------------------------------------------------------------------%
 Question 6
 A topical rash treatment was applied to a portion of a rash on n patients. A quantitative measure of redness was calculated for the treated and untreated regions of the rash. A sign of + was given when the treated area was less red (more improved) than the untreated area and a − sign when it was not. It is desired to know whether the treatment improves the rash.
 
