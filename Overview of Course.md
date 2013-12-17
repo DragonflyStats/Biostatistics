@@ -1,19 +1,25 @@
 Biostatistics
+
 Section 1: Opens September 24, Due September 30
+
 A. View Video Lectures 1A and 1B.
 Abstract the idea of an experiment
 Develop basic set theory to be used in the development of probability
 Start discussing probability
+<hr>
 B. View Video Lectures 2A, 2B, 2C, and 2D.
-Define probability calculus
-Basic axioms of probability
-Define random variables
-Define density and mass functions
-Define cumulative distribution functions and survivor functions
-Define quantiles, percentiles, medians
+- Define probability calculus
+- Basic axioms of probability
+- Define random variables
+- Define density and mass functions
+- Define cumulative distribution functions and survivor functions
+- Define quantiles, percentiles, medians
+
 C. Complete Optional Assignment No. 1 - Due by 11:59 PM PDT on October 1
 D. Take Quiz No. 1 - Due by 11:59 PM PDT on October 1
-Section 2: Opens October 1, Due October 7
+<hr>
+### Section 2: Opens October 1, Due October 7
+
 A. View Video Lectures 3A, 3B, and 3C.
 Define expected values
 Properties of expected values
@@ -21,22 +27,27 @@ Unbiasedness of the sample mean
 Define variances
 Define the standard deviation
 Calculate Bernoulli variance
+<hr>
 B. View Video Lectures 4A, 4B, and 4C. In these lectures, we will:
-Define random vectors
-Independent events and variables
-IID random variables
-Covariance and correlation
-Standard error of the mean
-Unbiasedness of the sample variance
+- Define random vectors
+- Independent events and variables
+- IID random variables
+- Covariance and correlation
+- Standard error of the mean
+- Unbiasedness of the sample variance
+<hr>
 C. Complete Optional Assignment No. 2 - Opens at 11:59 AM PDT on October 2
 D. Take Quiz No. 2 - Opens at 11:59 AM PDT on October 2
-Section 3: Opens October 8, Due October 14
+
+<hr>
+### Section 3: Opens October 8, Due October 14
 A. View Video Lectures 5A and 5B.
 Define conditional probabilities
 Define conditional mass functions and densities
 Motivate the conditional density
 Baye's rule
 Applications of Baye's rule to diagnostic testing
+
 B. View Video Lecture 6.
 Define likelihood
 Interpretations of likelihoods
@@ -45,6 +56,7 @@ Maximum likelihood
 Likelihood ratio benchmarks
 C. Complete Optional Assignment No. 3
 D. Take Quiz No. 3
+
 Section 4: Opens October 15, Due October 21
 A. View Video Lectures 7A and 7B.
 Define the Bernoulli distribution
