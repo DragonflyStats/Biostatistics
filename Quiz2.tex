@@ -1,3 +1,5 @@
+%==================================================================================%
+
 Question 1
 What is the delta method asymptotic standard error of p^√ where p^ is X/n where X∼Binomial(n,p)?
 
@@ -11,6 +13,9 @@ Question Explanation
 
 f(x)=x½ then f′(x)=x−½/2. Then Var(p^)=p(1−p)/n and thus the asymptotic standard error is
 12p½p(1−p)n−−−−−−−√=(1−p)4n−−−−−−√
+
+%==================================================================================%
+
 Question 2
 You are a bookie taking $1 bets on the NFL Ravens game. The odds you give betters determines their payout. If you give 4 to 1 odds against the Ravens winning, then if a person bets on the Ravens winning and they win, you owe them their original dollar, plus an additional $4 (a total of $5). If a person bets on the Ravens losing and they lose, then you owe them their original dollar back, plus $0.25 (a total of $1.25).
 
@@ -35,6 +40,9 @@ where b/H+b is the payout for those betting on the Ravens losing, plus their ori
 Solving either equation for 0 yeilds H=b/a.
 
 Note, how do you make money as a bookie? You charge a convenience fee for accepting the bet, say of $0.10. This way you are not gambling, only making money on the number of bets made. Note also, even though the odds you set are not a direct measure of probability, odds collected this way tend to have good frequency properties.
+
+%==================================================================================%
+
 Question 3
 In a randomly sampled survey of self-reported stress levels from two occupations, the following data were obtained
 
@@ -64,6 +72,9 @@ alternative hypothesis: two.sided
 sample estimates:
 prop 1 prop 2 
   0.70   0.15 
+  
+ %==================================================================================%
+  
 Question 4
 Consider the following data recording case status relative to an environmental exposure
 
@@ -86,6 +97,9 @@ p1 <- 45/n1
 p2 <- 15/n2
 sqrt((1 - p1)/n1/p1 + (1 - p2)/n2/p2)
 [1] 0.2425
+
+%==================================================================================%
+
 Question 5
 If x1∼Binomial(n1,p1) and x2∼Binomial(n2,p2) and independent Beta(2,2) priors are placed on p1 and p2, what is the posterior mean for p1−p2?
 
@@ -101,6 +115,9 @@ Consider the posterior for p1
 px11(1−p1)n1−x1×p1(1−p1)=px1+2−11(1−p1)n1−x1+2−1
 Thus p1 given the data is Beta(x1+2,n1−x1+2). This has mean x1+2n1+4. Thus
 E[p1−p2|x1,x2]=x1+2n1+4−x2+2n2+4
+
+%==================================================================================%
+
 Question 6
 Researchers conducted a blind taste test of Coke versus Pepsi. Each of four people was asked which of two blinded drinks given in random order that they preferred. The data was such that 3 of the 4 people chose Coke. Assuming that this sample is representative, report a P-value for a test of the hypothesis that Coke is preferred to Pepsi using a **two sided** exact test.
 
