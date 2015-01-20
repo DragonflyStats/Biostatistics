@@ -1,0 +1,26 @@
+\contentsline {chapter}{\numberline {1}Introduction to Method Comparison Studies}{2}
+\contentsline {section}{\numberline {1.1}Introduction}{3}
+\contentsline {section}{\numberline {1.2}Grubbs' FCT Data }{6}
+\contentsline {chapter}{\numberline {2}Bland-Altman Methodology}{7}
+\contentsline {section}{\numberline {2.1}Bland-Altman Plots}{8}
+\contentsline {section}{\numberline {2.2}Limits of Agreement}{9}
+\contentsline {subsection}{\numberline {2.2.1}Prevalence of the Bland-Altman plot}{10}
+\contentsline {section}{\numberline {2.3}Coefficient of Repeatability}{11}
+\contentsline {section}{\numberline {2.4}Bartko's Ellipse}{12}
+\contentsline {chapter}{\numberline {3}Regression Techniques}{14}
+\contentsline {section}{\numberline {3.1}Deming Regression}{14}
+\contentsline {section}{\numberline {3.2}Bradley Blackwood}{14}
+\contentsline {section}{\numberline {3.3}Deming Regression}{15}
+\contentsline {chapter}{\numberline {4}LME Techniques}{16}
+\contentsline {section}{\numberline {4.1}Linear Mixed Effects Models}{17}
+\contentsline {subsection}{\numberline {4.1.1}What are LME Models?}{17}
+\contentsline {subsection}{\numberline {4.1.2}Laird-Ware Notation}{17}
+\contentsline {section}{\numberline {4.2}The Research of Carstensen et al}{18}
+\contentsline {subsection}{\numberline {4.2.1}Using LME Models for Method Comparison}{18}
+\contentsline {subsection}{\numberline {4.2.2}Computing LoAs with LMEs}{18}
+\contentsline {section}{\numberline {4.3}VC Matrix Types}{19}
+\contentsline {subsection}{\numberline {4.3.1}Identity Matrix}{19}
+\contentsline {subsection}{\numberline {4.3.2}Symmetry}{19}
+\contentsline {subsection}{\numberline {4.3.3}Compound Symmetry}{19}
+\contentsline {section}{\numberline {4.4}Roy's Hypothesis Tests}{19}
+\contentsline {section}{\numberline {4.5}Omnibus Test}{19}

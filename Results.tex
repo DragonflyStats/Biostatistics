@@ -1,0 +1,88 @@
+
+
+\documentclass[12pt, a4paper]{report}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\title{Research notes: linear mixed effects models}
+\author{ } \date{ }
+
+
+\begin{document}
+\author{Kevin O'Brien}
+\title{Zewotir's paper}
+
+\addcontentsline{toc}{section}{Bibliography}
+
+%----------------------------------------------------------------------------------------%
+\newpage
+\chapter{Results}
+\section{Results of Procedures}
+
+\section{Demonstration of Roy's method}
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{rrr}
+  \hline
+ & 1 & 2 \\
+  \hline
+1 & 37.41 & 16.06 \\
+  2 & 16.06 & 83.14 \\
+   \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{centering}
+\begin{tabular}{|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+ Data & Carstensen & Roy \\
+  \hline
+  Fat &  0.1352 & 0.1373\\
+  Ox & 6.1686 & 6.1392 \\
+  Blood JS & 20.4314 & 20.3275
+ \\
+  Blood JR & 2.26088 & 2.2528
+ \\
+  Blood RS & 20.2682 & 20.1632
+ \\
+  Hamlett & 0.9031 & 0.8922
+
+ \\
+  \hline
+\end{tabular}
+\end{centering}
+
+\bibliography{DB-txfrbib}
+\end{document} 

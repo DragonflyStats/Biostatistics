@@ -1,0 +1,56 @@
+\documentclass{report}
+
+\usepackage{standalone}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\usepackage{subfiles}
+
+\usepackage[final]{pdfpages}
+
+\begin{document}
+\tableofcontents
+\newpage
+%-------------------------------------------------------------------------------------------%
+% Chapter 1
+\chapter{Introduction to Method Comparison Studies}
+\subfile{./Chap1/introMCS-intro}
+\subfile{./Chap1/introMCS-grubbsdata}
+%-------------------------------------------------------------------------------------------%
+\newpage
+% Chapter 2
+% BLAND ALTMAN METHODOLOGY
+\chapter{Bland-Altman Methodology}
+\subfile{./Chap2/BlandAltman}
+\subfile{./Chap2/BA-prevalence}
+\subfile{./Chap2/coefrepeat}
+\subfile{./Chap2/bartkoellipse}
+%-------------------------------------------------------------------------------------------%
+\newpage
+% Chapter 3
+% REGRESSION TECHNIQUES
+\chapter{Regression Techniques}
+
+\subfile{./Chap3/Deming}
+\subfile{Regression}
+
+%-------------------------------------------------------------------------------------------%
+\newpage
+% Chapter 4
+\chapter{LME Techniques}
+\subfile{./Chap4/introLME}
+\subfile{./Chap4/BXC}
+\subfile{./Chap4/matrixtypes}
+\subfile{Roy}
+%-------------------------------------------------------------------------------------------%
+
+\end{document}
