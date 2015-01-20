@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.26pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Overview of Talk}{3}{0}{1}
+\beamer@sectionintoc {2}{Motivation}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{The Basic Problem That We Studied}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Previous Work}{13}{0}{2}
+\beamer@sectionintoc {3}{Our Results/Contribution}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Main Results}{16}{0}{3}
+\beamer@subsectionintoc {3}{2}{Basic Ideas for Proofs/Implementation}{20}{0}{3}

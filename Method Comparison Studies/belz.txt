@@ -1,0 +1,4 @@
+
+Hotelling (1931)
+
+ARGUES THAt for handling a single normal variate when #meu# is given and #Sigma-sq# is estimated by #sd_sq#obtained from a prelinimary sample of size n

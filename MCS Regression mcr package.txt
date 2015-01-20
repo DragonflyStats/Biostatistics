@@ -1,0 +1,30 @@
+Method Comparison Regression
+
+This package provides regression methods to quantify the relation between two measurement methods. In particular it addresses regression problems with errors in both variables and without repeated measurements. The package provides implementations of Deming regression, weighted Deming regression, and Passing-Bablok regression following the CLSI EP09-A3 recommendations for analytical method comparison and bias estimation using patient samples.
+
+CLSI EP09-A3
+
+http://cran.r-project.org/web/packages/mcr/mcr.pdf
+
+%-----------------------------------------------------------%
+
+
+
+What are LME models?
+Fixed Effects Vs Random Effects
+Key Theoretical Developments
+Specification of LME Models
+Estimation for LME models ( ML vs REML )
+Tools for Model Selection / Likelihood Ratio Tests
+
+Bendix Carstensen et al. proposed the use of LME models to allow for a more statistically rigourous approach to computing Limits of Agreement.  
+The respective papers also discuss several shortcoming for techniques for dealing with replicate measurements, as proposed by Bland-Altman 1999.
+
+Components
+
+Carstensen's LME model
+LoA as computed by Carstensen's LME model
+Papers
+
+Carstensen et Al 2006
+Carstensen et al 2008

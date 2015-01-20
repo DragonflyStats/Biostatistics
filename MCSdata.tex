@@ -1,0 +1,132 @@
+
+
+\documentclass[12pt, a4paper]{report}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\title{Research notes: linear mixed effects models}
+\author{ } \date{ }
+
+
+\begin{document}
+\author{Kevin O'Brien}
+\title{MCS Data sets}
+
+\addcontentsline{toc}{section}{Bibliography}
+
+%----------------------------------------------------------------------------------------%
+\newpage
+\chapter{MCS Data sets}
+
+\section{Linked replicates }
+In the first example provided by \citet{bxc2008}, it was assumed
+that the replicates were exchangeable within each method by item
+stratum. Sometimes, however, replicates are taken in parallel by
+each of the methods, which means that the values are linked by a
+common environment; typically time or sampling occasion.
+
+\section{MCS Datasets}
+
+To properly compare both Carstensen's and Roy's methodologies, we
+will apply both to data sets used by both authors, and to data
+sets that are well known in method comparison studies literature.
+A discussion of each dataset is provided.
+
+\subsection{Data sets}
+
+\subsubsection{Subcutaneous fat (unlinked)} \citet{bxc2008} presents data from
+a comparison of measurements of subcutaneous fat by two observers
+at the Steno Diabetes Center in Copenhagen. Measurements are taken
+on each patient three times by both methods. \textbf{The sequence
+of measurements is not considered to be of importance}, so the
+replicate measurements are exchangeable within patient (item) and
+method.
+
+\subsubsection{Oximetry Example (linked)}
+
+An example of this is the oximetry study, done at the Royal
+Children’s Hospital in Melbourne to examine the agreement between
+pulse oximetry and co-oximetry in small babies.\textbf{ Each
+patient was measured three times by each method; performed at
+three different times for each infant}. There were 61 babies in
+the study, of these, four had only measurements on two occasions,
+and one on only one occasion.
+
+\subsubsection{Blood Data}
+\citet{BA99} presents a set of blood pressure data from a study in
+which simultaneous measurement were made by two experienced
+observers (denoted J and R) using a sphygmomanometer and by a
+semi-automatic BP monitor (denoted S). \textbf{Three readings were
+recorded in quick succession.}
+
+
+\subsection{Comparison of methodologies}
+
+\subsection{datasets}
+
+The two LME approaches are assessed as to whether the respective estimates for the standard deviation of differences accord. Method comparison data sets presented in either of the relevant papers are analyzed using both methods.
+\citet{bxc2008} demonstrates an approach using the ``fat" and ``ox" data sets. \citet{roy} uses the ``Blood" dataset, which featured in \citet{BA99} , a key paper that first addressed method comparison study in the context of replicate measurements. As this dataset features replicate measurements from three methods, three method comparison studies are possible. A third data set ``hamlett" is presented in \citet{Hamlett} a paper that Roy's methodology draws from.
+
+
+\section{Using other data sets}
+
+Two further data sets applied to both methodologies are the``Cardiac" and ``PEFR" , which are both contained on Carstensen's MethComp package.
+Importantly a difference emerges in the estimates provided by both samples.
+
+\subsection{Peak Expiry Flow Rate Data}
+
+The PEFR data describes the comparison of two measurements of peak
+expiratory flow rate (PEFR). One of these measurements uses
+a``Large" meter and the other a ``Mini" meter.
+
+Two measurements were made with a Wright peak flow meter and two
+with a mini Wright meter, in \textbf{random order}.  All
+measurements were taken by the same observer, using the same two
+instruments. (These data were collected to demonstrate the
+statistical method and provide no evidence on the comparability of
+these two instruments.)
+
+\subsection{Cardiac data}
+
+For each subject cardiac output is measured repeatedly (three to
+six times) by impedance cardiography (IC) and radionuclide
+ventriculography (RV).
+
+It is not entirely clear from the source whether the replicates
+are exchangeable within (method,item) or whether they represent
+pairs of measurements.
+
+From the description it looks as if replicates are linked between
+methods, but in the paper they are treated as if they were not.
+Source The dataset is adapted from table 4 in \citet{BA99}.
+\bibliography{DB-txfrbib}
+\end{document}

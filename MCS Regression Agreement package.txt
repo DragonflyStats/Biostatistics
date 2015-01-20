@@ -1,0 +1,108 @@
+Agreement: Statistical Tools for Measuring Agreement
+
+This package computes several statistics for measuring agreement, 
+for example, mean square deviation (MSD), total deviation index (TDI) or 
+concordance correlation coefficient (CCC). It can be used for both continuous data and 
+categorical data for multiple raters and multiple readings cases.
+
+Study of measuring agreement is mainly aimed to answer one question, whether 
+the readings from one instrument/method agree with the those from another 
+instrument/method. In our study, we are going to present a general method 
+to assess agreement for continuous and categorical data with repeated measurements 
+using linear and generalized linear mixed models. 
+
+Likelihood-based approaches are developed to estimate all the within- and 
+between-instrument agreement statistics, and asymptotic properties of 
+these agreement estimates are discussed for different data structures. 
+
+Furthermore, our method has the merit of handling missing values and covariates 
+naturally. And a new set of restricted agreement statistics is proposed in order 
+to capture the true random variations and between-instrument effects rather than 
+the covariate effects. 
+
+Simulations and several case studies, involving method comparison and 
+bioequivalence, are used to show the accuracy and effectiveness of our method.
+
+% http://cran.r-project.org/web/packages/Agreement/Agreement.pdf
+%---------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{The Agreement package}
+
+DCLHb is a treatment solution contain oxygen carrying hemoglobin. The DCLHb level is routinely
+measured by the Sigma method, and the simpler HemoCue method was modi?ed to reproduce the
+DCLHb values of the Sigma method. The DCLHb values of each sample were measured by both
+methods twice.
+
+A data frame with 299 observations on 4 variables, 2 variables for Sigma method and 2 variables
+for HemoCue method.
+
+
+\end{frame}
+%---------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{The Agreement package}
+\begin{framed}
+\begin{verbatim}
+> data(DCLHb);
+> HemocueAve <- apply(DCLHb[,c("HEMOCUE1","HEMOCUE2")],1,mean);
+> SigmaAve <- apply(DCLHb[,c("SIGMA1","SIGMA2")],1,mean);
+> agr=agreement(y=HemocueAve,x=SigmaAve,V_label="Hemacue",H_label="Sigma",min=0,max=2000,by=250,CCC_a=0.9775,CP_a=0.9,TDI_a=150,error="const",target="random",dec=3,alpha=0.05);
+> summary(agr);
+\end{verbatim}
+\end{framed}
+
+\end{frame}
+%---------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{The Agreement package}
+
+
+\begin{verbatim}
+Agreement Statistics
+    CCC Precision Accuracy     TDI     CP RBS
+ 0.9866    0.9867   0.9999 127.487 0.9463   0
+
+95% Confidence Limits
+    CCC Precision Accuracy     TDI     CP RBS
+ 0.9838    0.9839   0.9989 136.388 0.9276   .
+
+Allowance
+    CCC Precision Accuracy TDI  CP RBS
+ 0.9775         .        . 150 0.9   .
+
+\end{verbatim}
+\end{frame}
+%---------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{The Agreement package}
+\begin{framed}
+\begin{verbatim}
+
+
+> data(DCLHb);
+> ua <- unified.agreement(dataset=DCLHb, var=c("HEMOCUE1","HEMOCUE2","SIGMA1","SIGMA2"), 
+   k=2, m=2, CCC_a_intra=0.9943, CCC_a_inter=0.9775, CCC_a_total=0.9775, CP_a=0.9, 
+   tran=1, TDI_a_intra=75, TDI_a_inter=150, TDI_a_total=150, error="const", dec=1, alpha=0.05);
+> summary(ua);
+ Type  Statistics      CCC    Precision Accuracy TDI   CP     RBS   
+ Intra Estimate        0.9986 0.9986    .        41.1  0.9973 .     
+       95% Conf. Limit 0.9983 0.9983    .        46.2  0.9949 .     
+       Allowance       0.9943 0.9943    .        75    0.9    .     
+ Inter Estimate        0.9866 0.9866    1        127.3 0.9474 .     
+       95% Conf. Limit 0.9825 0.9825    0.9987   145.9 0.9228 .     
+       Allowance       0.9775 .         .        150   0.9    .     
+ Total Estimate        0.9859 0.986     1        130.5 0.9412 0.0028
+       95% Conf. Limit 0.9818 0.9818    0.9987   148.9 0.916  .     
+       Allowance       0.9775 .         .        150   0.9    .     
+\end{verbatim}
+\end{framed} 
+\end{verbatim}
+\end{frame}
+%---------------------------------------------------------%
+
+\begin{frame}[fragile]
+\frametitle{The Agreement package}
