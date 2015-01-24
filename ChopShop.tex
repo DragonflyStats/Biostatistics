@@ -58,154 +58,12 @@ and has dimensions $6 \times 6$.
 \end{enumerate}
 
 
-\section{Basic Models Fits}
-Further to \citet{PB}, several simple LME models are constructed
-for the blood pressure data. This data set is the subject of a
-method comparison study in \citet{BA99}.
-
-\subsection{Implementing the Mixed Models Fits}
-They are implemented using the following {\tt{R}} code, utilising the
-`nlme' package. An analysis of variance is used to compare the model fits.
-
-The {\tt{R}} script:
-\begin{verbatim}
-fit1 = lme( BP ~ method, data = dat, random = ~1 | subject )
-fit2 = update(fit1, random = ~1 | subject/method )
-fit3 = update(fit1, random = ~method - 1 | subject )
-#analysis of variance
-anova(fit1,fit2,fit3)
-\end{verbatim}
-
-
-\begin{enumerate}
-
-
-\item Simplest workable model, allows differences between methods
-and incorporates a random intercept for each subject. For subject
-1 we have
-\[
-\boldsymbol{X}_i =
-\left(%
-\begin{array}{cc}
-  1 & 0 \\
-  1 & 0 \\
-  1 & 0 \\
-  1 & 1 \\
-  1 & 1 \\
-  1 & 1 \\
-\end{array}%
-\right),\quad
-\boldsymbol{\beta} =
-\left(%
-\begin{array}{c}
-  \beta_0 \\
-  \beta_1 \\
-\end{array}%
-\right), \quad
-\boldsymbol{Z}_i =
-\left(%
-\begin{array}{c}
-  1 \\
-  1 \\
-  1 \\
-  1 \\
-  1 \\
-  1 \\
-\end{array}%
-\right), \quad \boldsymbol{b}_i = b
-\]
-where $\mathrm{E}(b)=0$ and $\mathrm{var}(b)=\psi.$
-
-\item
-\[
-\boldsymbol{Z}_i =
-\left(%
-\begin{array}{c c}
-  1 & 0 \\
-  1 & 0 \\
-  1 & 0 \\
-  0 & 1 \\
-  0 & 1 \\
-  0 & 1 \\
-\end{array}%
-\right)
-\quad \boldsymbol{b}_i =
-\left(%
-\begin{array}{c c}
-  b_1 & 0  \\
-  0 & b_2  \\
-\end{array}%
-\right)
-\]
-
-where $\mathrm{E}(b_i)=0$ and $\mathrm{var}(\boldsymbol{b})=
-\boldsymbol{\Psi}$.
-
-The variance of error terms is a $6 \times 6$ matrix.
-
-\end{enumerate}
 
 
 
 
 
 
-
-
-
-
-
-
-\newpage
-\subsection{Model Fit 1}
-
-This is a simple model with no interactions. There is a fixed effect for each method and a random effect for each subject.
-\begin{equation*}
-y_{ijk} = \beta_{j}  + b_{i} + \epsilon_{ijk}, \qquad i=1,\dots,2, j=1,\dots,85, k=1,\dots,3
-\end{equation*}
-
-\begin{eqnarray*}
-b_{i} \sim \mathcal{N}(0,\sigma^2_{b}), \qquad \epsilon_{i} \sim \mathcal{N}(0,\sigma^2)
-\end{eqnarray*}
-
-\begin{verbatim}
-Linear mixed-effects model fit by REML
-  Data: dat
-  Log-restricted-likelihood: -2155.853
-  Fixed: BP ~ method
-(Intercept)     methodS
-  127.40784    15.61961
-
-Random effects:
- Formula: ~1 | subject
-        (Intercept) Residual
-StdDev:    29.39085 12.44454
-
-Number of Observations: 510
-Number of Groups: 85
-\end{verbatim}
-
-The following output was obtained.
-\begin{verbatim}
-Linear mixed-effects model fit by REML
-  Data: dat
-  Log-restricted-likelihood: -2047.582
-  Fixed: BP ~ method
-(Intercept)     methodS
-  127.40784    15.61961
-
-Random effects:
- Formula: ~method - 1 | subject
- Structure: General positive-definite, Log-Cholesky parametrization
-         StdDev    Corr
-methodJ  30.455093 methdJ
-methodS  31.477237 0.835
-Residual  7.763666
-
-Number of Observations: 510
-Number of Groups: 85
-
-\end{verbatim}
 
 
 
@@ -224,118 +82,6 @@ In computing limits of agreement, it is first necessary to have an estimate for 
 
 \section{Note on Roy's paper}
 
-\newpage
-\subsection{Model Fit 2}
-
-This is a simple model, this time with an interaction effect.
-There is a fixed effect for each method. This model has random effects at two levels $b_{i}$ for the subject, and
-another, $b_{ij}$, for the respective method within each subject.
-\begin{equation*}
-y_{ijk} = \beta_{j}  + b_{i} + b_{ij} + \epsilon_{ijk}, \qquad i=1,\dots,2, j=1,\dots,85, k=1,\dots,3
-\end{equation*}
-\begin{eqnarray*}
-b_{i} \sim \mathcal{N}(0,\sigma^2_{1}), \qquad b_{ij} \sim \mathcal{N}(0,\sigma^2_{2}), \qquad \epsilon_{i} \sim \mathcal{N}(0,\sigma^2)
-\end{eqnarray*}
-
-In this model, the random interaction terms all have the same variance $\sigma^2_{2}$. These terms are assumed to be independent of each other, even
-within the same subject.
-
-\begin{verbatim}
-Linear mixed-effects model fit by REML
-  Data: dat
-  Log-restricted-likelihood: -2047.714
-  Fixed: BP ~ method
-(Intercept)     methodS
-  127.40784    15.61961
-
-Random effects:
- Formula: ~1 | subject
-        (Intercept)
-StdDev:    28.28452
-
- Formula: ~1 | method %in% subject
-        (Intercept) Residual
-StdDev:    12.61562 7.763666
-
-Number of Observations: 510
-Number of Groups:
-            subject method %in% subject
-                 85                 170
-\end{verbatim}
-\newpage
-\subsection{Model Fit 3}
-
-This model is a more general model, compared to 'model fit 2'. This model treats the random interactions for each subject as a vector and
-allows the variance-covariance matrix for that vector to be estimated from the set of all positive-definite matrices.
-$\boldsymbol{y_{i}}$ is the entire response vector for the $i$th subject.
-$\boldsymbol{X_{i}}$ and $\boldsymbol{Z_{i}}$  are the fixed- and random-effects design matrices respectively.
-\begin{equation*}
-\boldsymbol{y_{i}} = \boldsymbol{X_{i}\beta}  + \boldsymbol{Z_{i}b_{i}} + \boldsymbol{\epsilon_{i}}, \qquad i=1,\dots,85
-\end{equation*}
-\begin{eqnarray*}
-\boldsymbol{Z_{i}} \sim \mathcal{N}(\boldsymbol{0,\Psi}),\qquad
-\boldsymbol{\epsilon_{i}} \sim \mathcal{N}(\boldsymbol{0,\sigma^2\Lambda})
-\end{eqnarray*}
-
-For the first subject the response vector, $\boldsymbol{y_{1}}$, is:
-\begin{table}[ht]
-\begin{center}
-\begin{tabular}{rrllr}
-  \hline
-observation & BP & subject & method & replicate \\
-  \hline
-1 & 100.00 & 1 & J &   1 \\
-  86 & 106.00 & 1 & J &   2 \\
-  171 & 107.00 & 1 & J &   3 \\
-  511 & 122.00 & 1 & S &   1 \\
-  596 & 128.00 & 1 & S &   2 \\
-  681 & 124.00 & 1 & S &   3 \\
-   \hline
-\end{tabular}
-\end{center}
-\end{table}
-\newpage
-The fixed effects design matrix $\boldsymbol{X_{i}}$ is given by:
-\begin{table}[ht]
-\begin{center}
-\begin{tabular}{r|r}
-  \hline
-  (Intercept) & method S \\
-  \hline
- 1 & 0 \\
- 1 & 0 \\
- 1 & 0 \\
- 1 & 1 \\
- 1 & 1 \\
- 1 & 1 \\
-   \hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\newpage
-
-
-
-
-The random effects design matrix $\boldsymbol{Z_{i}}$ is given by:
-\begin{table}[ht]
-\begin{center}
-\begin{tabular}{r|r}
-  \hline
- method J & method S \\
-  \hline
- 1 & 0 \\
- 1 & 0 \\
- 1 & 0 \\
- 0 & 1 \\
- 0 & 1 \\
- 0 & 1 \\
-   \hline
-\end{tabular}
-\end{center}
-\end{table}
-\newpage
 
 
 \section{Classical model for single measurements}
@@ -366,7 +112,7 @@ Importantly, this is independent of the item levels $\mu_i$. As the case-wise di
 
 
 Importantly these variance covariance structures are central to Roy methodology.
-          \right) \]
+%          \right) \]
 
 \citet{Roy} proposes a series of hypothesis tests based on these matrices as part of her methodology. These tests shall be reverted to in due course.
 
@@ -384,75 +130,7 @@ Hence the variance of the difference of two methods, that allows for the calcula
 
 
 
-%----------------------------------------------------------------------------%
-
-
-
-\newpage
-\subsection{Difference Variance further to Carstensen}
-
-\citet{bxc2008} states a model where the variation between items
-for method $m$ is captured by $\tau_m$ (our notation $d^2_m$) and the within-item
-variation by $\sigma_m$.
-
-\emph{The formulation of this model is general and refers to comparison
-of any number of methods — however, if only two methods are
-compared, separate values of $\tau^2_1$ and $\tau^2_2$ cannot be
-estimated, only their average value $\tau$, so in the case of only
-two methods we are forced to assume that $\tau_1 = \tau_2 = \tau$}\citep{bxc2008}.
-
-Another important point is that there is no covariance terms, so
-further to  \citet{bxc2008} the variance covariance matrices for
-between-item and within-item variability are respectively.
-
-\[\boldsymbol{D} = \left(
-            \begin{array}{cc}
-              d^1_2  & 0 \\
-              0 & d^2_2 \\
-            \end{array}
-          \right) \]
-and  $\boldsymbol{\Sigma}$ is constructed as follows:
-\[\boldsymbol{\Sigma} = \left(
-            \begin{array}{cc}
-              \sigma^1_2  & 0 \\
-              0 & \sigma^2_2 \\
-            \end{array}
-          \right) \]
-
-
-Under this model the limits of agreement should be computed based
-on the standard deviation of the difference between a pair of
-measurements by the two methods on a new individual, j, say:
-
-\[ \mbox{var}(y_{1j} - y_{2j}) = 2d^2 + \sigma^2_1 + \sigma^2_2  \]
-
-Further to his model, Carstensen computes the limits of agreement
-as
-
-\[
-\hat{\alpha}_1 - \hat{\alpha}_2 \pm \sqrt{2 \hat{d}^2 +
-\hat{\sigma}^2_1 + \hat{\sigma}^2_2}
-\]
-
-
-\subsection{Relevance of Roy's Methodology}
-
-The relevance of Roy's methodology is that estimates for the
-between-item variances for both methods $\hat{d}^2_m$ are
-computed. Also the VC matrices are constructed with covariance
-terms and, so the difference variance must be formulated
-accordingly.
-
-
-\[
-\hat{\alpha}_1 - \hat{\alpha}_2 \pm \sqrt{ \hat{d}^2_1  +
-\hat{d}^2_1 + \hat{\sigma}^2_1 + \hat{\sigma}^2_2 - 2 \hat{d}_{12}
-- 2 \hat{\sigma}_12}
-\]
-
-\newpage
-
-
 
 \bibliography{DB-txfrbib}
 \end{document}
+
