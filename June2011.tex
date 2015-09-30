@@ -21,23 +21,6 @@
 
 \newpage
 \chapter{LME models for MCS}
-\section{Statement of the LME model}
-
-Further to a paper published by Laird and Ware in $1982$, a linear mixed effects model is a linear mdoel that combined fixed and random effect terms formulated as follows;
-
-  \begin{displaymath}
-      Y_{i} =X_{i}\beta + Z_{i}b_{i} + \epsilon_{i}
-  \end{displaymath}
-\begin{itemize}
-
-\item $Y_{i}$ is the $n \times 1$ response vector \item $X_{i}$ is
-the $n \times p$ Model matrix for fixed effects \item $\beta$ is
-the $p \times 1$ vector of fixed effects coefficients \item
-$Z_{i}$ is the $n \times q$ Model matrix for random effects \item
-$b_{i}$ is the $q \times 1$ vector of random effects coefficients,
-sometimes denoted as $u_{i}$ \item $\epsilon$ is the $n \times 1$
-vector of observation errors
-\end{itemize}
 
 
 
@@ -110,46 +93,6 @@ such cases,an approppriate approach would be the residual
 covariance structure using Kronecker product of the underlying
 within-subject factor specific covariances structure.
 
-\section{LME}
-Consistent with the conventions of mixed models, \citep{pkc}
-formulates the measurement $y_{ij} $from method $i$ on individual
-$j$ as follows;
-\begin{equation}
-y_{ij} =P_{ij}\theta + W_{ij}v_{i} + X_{ij}b_{j} + Z_{ij}u_{j} +
-\epsilon_{ij},     (j=1,2, i=1,2....n)
-\end{equation}
-The design matrix $P_{ij}$ , with its associated column vector
-$\theta$, specifies the fixed effects common to both methods. The
-fixed effect specific to the $j$th method is articulated by the
-design matrix $W_{ij}$ and its column vector $v_{i}$. The random
-effects common to both methods is specified in the design matrix
-$X_{ij}$, with vector $b_{j}$ whereas the random effects specific
-to the $i$th subject by the $j$th method is expressed by $Z_{ij}$,
-and vector $u_{j}$. Noticeably this notation is not consistent
-with that described previously.  The design matrices are specified
-so as to includes a fixed intercept for each method, and a random
-intercept for each individual. Additional assumptions must also be
-specified;
-\begin{equation}
-v_{ij} \sim N(0,\Sigma),
-\end{equation}
-These vectors are assumed to be independent for different $i$s,
-and are also mutually independent. All Covariance matrices are
-positive definite.  In the above model effects can be classed as
-those common to both methods, and those that vary with method.
-When considering differences, the effects common to both
-effectively cancel each other out. The differences of each pair of
-measurements can be specified as following;
-\begin{equation}
-d_{ij} = X_{ij}b_{j} + Z_{ij}u_{j} + \epsilon_{ij},     (j=1,2,
-i=1,2....n)
-\end{equation}
-This formulation has seperate distributional assumption from the
-model stated previously.
-
-This agreement covariate $x$ is the key step in how this
-methodology assesses agreement.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 
 
