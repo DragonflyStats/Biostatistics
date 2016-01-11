@@ -1,0 +1,93 @@
+
+
+\documentclass[12pt, a4paper]{article}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.2}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.5cm}{0cm}{1cm}{1cm}
+
+\pagenumbering{arabic}
+
+
+\begin{document}
+
+\author{Kevin O'Brien}
+\title{Nested Models and LRTs}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\setcounter{tocdepth}{2}
+
+%--------------------------------------------------------------------%
+\newpage
+\section{Nested Models }
+
+\subsection{Definitions of Nested Models}
+An important step in the process of model selection is to determine, for a given pair of models, if there is a ``nesting relationship" between the two.
+
+We define Model A to be ``nested" in Model B if Model A is a special case of Model B, i.e. Model B with a specific constraint applied.
+
+One model is said to be \emph{nested} within another model, i.e. the reference model, if it represents a special case of the reference model \citep{pb}.
+
+%------------------------------------------------------------------- LRTS and nest models-%
+\newpage
+\section{Likelihood Ratio Tests}
+\subsection{Pinheiro Bates}
+A general method for comparing nested models fitted by ML is the \textbf{\emph{likelihood ratio test}} (Cite: Lehmann 1986). Such a test can also be used for models fitted using REML, but only if both models have been fitted by REML, and if the fixed effects specification is the same for both models.
+
+If $k_i$ is the number of parameters to be estimated in model $i$, then the asymptotic, or ``large sample", distribution of the LRT statistic, under the null hypothesis that the restricted model is adequate, is a $\chi^2$ distribution with $k_2-k_1$ degrees of freedom \citep[pg.83]{pb}.
+
+We generally use LRTs to evaluate the significance of terms in the random effects structure, i.e. different nested models are fitted in which the random effects structure is changed.
+
+\subsection{Empirical p-values of LRT tests}
+For both REML and ML estimates, the nominal $p-$values for the LRT statistics under a $\chi^2$ distribution with 2 degrees of freedom are much greater than empirical values. A number of ways of dealing with this issues are discussed \citep[pg.86]{pb}.
+
+One should be aware that these p-values may be conservative. That is, the reported p-value may be greater than the true p-value for the test and, in some cases, it may be much greater.\citep[pg.87]{pb}.
+
+
+\subsection{Other material}
+A general method for comparing nested models fit by maximum likelihood is the \textbf{\emph{likelihood ratio test}}. This test can be used for models fit by REML (restricted maximum liklihood), but only if the fixed terms in the two models are invariant, and both models have been fit by REML. Otherwise, the argument: method=``ML" must be employed (ML = maximum likelihood).
+
+\begin{itemize}
+\item Example of a likelihood ratio test used to compare two models: \newline \texttt{>anova(modelA, modelB)}
+
+\item The output will contain a p-value, and this should be used in conjunction with the AIC scores to judge which model is preferred. Lower AIC scores are better.
+
+\item Generally, likelihood ratio tests should be used to evaluate the significance of terms on the
+random effects portion of two nested models, and should not be used to determine the significance of the fixed effects.
+\item A simple way to more reliably test for the significance of fixed effects in an LME model is to use
+conditional F-tests, as implemented with the simple ``anova" function.
+Example:\newline \texttt{>anova(modelA)}
+
+
+will give the most reliable test of the fixed effects included in model1.
+\end{itemize}
+\subsection{Nested and Reference Models}
+Hypotheses can be formulated in the context of a pair of models that have a nesting relationship [CITE: West et al].
+
+LRTs are a class of tests used to compare the value of likelihood functions for two models defining a hypothesis to be tested (i.e. the nested and reference model).
+
+The significance of the likelihood ratio test can be found by comparing it to the  $\chi^2$ distribution, with the appropriate degrees of freedom.
+
+\subsection{LRTs for covariance parameters}
+[cite: West et al] When testing hypotheses around covariance parameters in an LME model, REML estimation for both models is recommended by West et al. REML estimation can be shown to reduce the bias inherent in ML estimates of covariance parameters [cite: Morrel98]
+
+
+
+
+\addcontentsline{toc}{section}{Bibliography}
+
+\bibliography{transferbib}
+
+\end{document}

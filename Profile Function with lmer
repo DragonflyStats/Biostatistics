@@ -1,0 +1,20 @@
+Profile Function with "lmer"
+
+The profile() function for lmer models is now available in the latest version of lme4, to be installed by typing:
+
+install.packages("lme4",repos="http://r-forge.r-project.org")
+
+also
+
+The mle function from the stats4 package is a wrapper of optim, which makes it quite easy to produce 
+profile likelihood computations. 
+
+See help("profile,mle-method", package = "stats4") for more information.
+
+---------------------------------------------------------------------------------------------
+
+http://people.upei.ca/hstryhn/stryhn208.pdf
+
+The profile likelihood (or likelihood or likelihood ratio) methid is applicable to 
+all likelihood based statstical analysis and is generally less sensitive to the difficulties
+encountered by walkd-Tyoe CIs.
