@@ -1,4 +1,4 @@
-Coursera-Biostatistics
-======================
+CPandTDI
+========
 
-Coursera Biostatistics
+Coverage Probability and TDI
