@@ -1,0 +1,252 @@
+\documentclass[Chap5amain.tex]{subfiles}
+\begin{document}
+
+% http://www.jstor.org/discover/10.2307/1269550?uid=3738232&uid=2&uid=4&sid=21103552726783
+
+ % Abstract for CPJ paper
+ % Mixed linear models arise in many areas of application. 
+ % Standard estimation methods for mixed models are sensitive to bizarre observations. 
+ % Such influential observations can completely distort an analysis and lead to inappropriate actions and conclusions. 
+ % We develop case-deletion diagnostics for detecting influential observations in mixed linear models. 
+ % Diagnostics for both fixed effects and variance components are proposed. 
+ % Computational formulas are given that make the procedures feasible. 
+ % The methods are illustrated using examples.
+ 
+ 
+ 
+ \section{Case Deletion Diagnostics for LME models}
+ 
+ \citet{HaslettDillane} remark that linear mixed effects models
+ didn't experience a corresponding growth in the use of deletion
+ diagnostics, adding that \citet{McCullSearle} makes no mention of
+ diagnostics whatsoever.
+ 
+ \citet{Christensen} describes three propositions that are required
+ for efficient case-deletion in LME models. The first proposition
+ decribes how to efficiently update $V$ when the $i$th element is
+ deleted.
+ \begin{equation}
+ 	V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
+ 		\lambda\prime}{\nu^{}ii}
+ \end{equation}
+ 
+ 
+ The second of christensen's propostions is the following set of
+ equations, which are variants of the Sherman Wood bury updating
+ formula.
+ \begin{eqnarray}
+ 	X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
+ 	\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
+ 	(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
+ 	\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
+ 		(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
+ 	X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
+ 	\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
+ \end{eqnarray}
+ 
+ 
+ \citet{schabenberger} examines the use and implementation of
+ influence measures in LME models.
+ 
+ Influence is understood to be the ability of a single or multiple
+ data points, through their presences or absence in the data, to
+ alter important aspects of the analysis, yield qualitatively
+ different inferences, or violate assumptions of the statistical
+ model \citep{schabenberger}.
+ 
+ Outliers are the most noteworthy data points in an analysis, and
+ an objective of influence analysis is how influential they are,
+ and the manner in which they are influential.
+ 
+ \citet{schabenberger} describes a simple procedure for quantifying
+ influence. Firstly a model should be fitted to the data, and
+ estimates of the parameters should be obtained. The second step is
+ that either single of multiple data points, specifically outliers,
+ should be omitted from the analysis, with the original parameter
+ estimates being updated. This is known as `leave one out \ leave k
+ out' analysis. The final step of the procedure is comparing the
+ sets of estimates computed from the entire and reduced data sets
+ to determine whether the absence of observations changed the
+ analysis.
+ 
+ 
+ 
+ A residual is the difference between an observed quantity and its
+ estimated or predicted value. In LME models, there are two types
+ of residuals, marginal residuals and conditional residuals. A
+ marginal residual is the difference between the observed data and
+ the estimated marginal mean. A conditional residual is the
+ difference between the observed data and the predicted value of
+ the observation. In a model without random effects, both sets of
+ residuals coincide.
+ 
+ \citet{schabenberger} notes that it is not always possible to
+ derive influence statistics necessary for comparing full- and
+ reduced-data parameter estimates. \citet{HaslettDillane} offers an
+ procedure to assess the influences for the variance components
+ within the linear model, complementing the existing methods for
+ the fixed components. The essential problem is that there is no
+ useful updating procedures for $\hat{V}$, or for $\hat{V}^{-1}$.
+ \citet{HaslettDillane} propose an alternative , and
+ computationally inexpensive approach, making use of the
+ `delete=replace' identity.
+ 
+ \citet{Haslett99} considers the effect of `leave k out'
+ calculations on the parameters $\beta$ and $\sigma^{2}$, using
+ several key results from \citet{HaslettHayes} on partioned
+ matrices.
+ 
+ 
+ 
+ 
+ 
+ 
+ In LME models, fitted by either ML or REML, an important overall
+ influence measure is the likelihood distance \citep{cook82}. The
+ procedure requires the calculation of the full data estimates
+ $\hat{\psi}$ and estimates based on the reduced data set
+ $\hat{\psi}_{(U)}$. The likelihood distance is given by
+ determining
+ 
+ 
+ \begin{eqnarray}
+ 	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
+ 	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
+ \end{eqnarray}
+ 
+ 
+
+%------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------%
+\newpage
+\subsection{Case Deletion Diagnostics} %1.6
+
+
+\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+\subsection{Effects on fitted and predicted values}
+\begin{equation}
+\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+\end{equation}
+
+
+
+
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\citet{Christiansen} develops these techniques in the context of REML
+
+\newpage
+
+
+
+
+A general method for comparing nested models fit by maximum liklihood is the liklihood ratio 
+test. This test can be used for models fit by REML (restricted maximum liklihood), but only if the 
+fixed terms in the two models are invariant, and both models have been fit by REML. Otherwise, 
+the argument: method=”ML” must be employed (ML = maximum liklihood). 
+
+Example of a liklihood ratio test used to compare two models: 
+
+!"%;=0%1&=*#(?5"&=*#(B8"
+
+The output will contain a p-value, and this should be used in conjunction with the AIC scores to 
+judge which model is preferred. Lower AIC scores are better. 
+
+Generally, liklihood ratio tests should be used to evaluate the significance of terms on the 
+random effects portion of two nested models, and should not be used to determine the 
+significance of the fixed effects. 
+
+A simple way to more reliably test for the significance of fixed effects in an LME model is to use 
+conditional F-tests, as implemented with the simple “anova” function. 
+
+Example: 
+"
+!"%;=0%1&=*#(?8"
+
+will give the most reliable test of the fixed effects included in model1. 
+
+
+
+
+
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
+
+
+
+
+
+
+\subsection{Matrix Notation for Case Deletion} %1.14
+
+\subsection{Case deletion notation} %1.14.1
+
+For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
+removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
+
+\subsection{Partitioning Matrices} %1.14.2
+Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
+
+%---------------------------------------------------------------------------%
+
+
+\subsection{Case Deletion Diagnostics} %1.6
+
+\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+
+
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\citet{Christiansen} develops these techniques in the context of REML
+
+
+%--------------------------------------------------------------------------%
+\newpage
+\subsection{Terminology for Case Deletion diagnostics} %1.8
+
+\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
+'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
+
+
+\subsection{Case Deletion Diagnostics} %1.6
+
+\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+\subsection{Deletion Diagnostics}
+
+Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
+
+Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
+
+Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
+
+Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
+
+The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
+
+
+\subsection{Terminology for Case Deletion diagnostics} %1.8
+% \citet{preisser}
+Preisser(19XX) describes two type of diagnostics. When the set consists of only one observation, the type is called
+'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
+
+
+
+
+\end{document}

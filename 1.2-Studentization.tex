@@ -1,0 +1,179 @@
+\documentclass[Main.tex]{subfiles}
+\begin{document}
+	
+
+\subsection{Introduction}
+In statistics and optimization, statistical errors and residuals are two closely related and easily confused measures of the deviation of an observed value of an element of a statistical sample from its "theoretical value". The error (or disturbance) of an observed value is the deviation of the observed value from the (unobservable) true function value, while the residual of an observed value is the difference between the observed value and the estimated function value.
+
+The distinction is most important in regression analysis, where it leads to the concept of studentized residuals.
+
+%-------------------------------------------------------------- %
+
+\subsection{Residual}
+Residual (or error) represents unexplained (or residual) variation after fitting a regression model. It is the difference (or left over) between the observed value of the variable and the value suggested by the regression model.
+
+
+%------------------------- %
+
+The difference between the observed value of the dependent variable (y) and the predicted value (ŷ) is called the residual (e). Each data point has one residual.
+
+Residual = Observed value - Predicted value 
+\[e = y - \hat{y} \]
+
+Both the sum and the mean of the residuals are equal to zero. That is, Σ e = 0 and e = 0.
+
+%--------------------------------- %
+
+
+
+
+%----------------------------- %
+\subsection{Residual}
+A residual (or fitting error), on the other hand, is an observable estimate of the unobservable statistical error. Consider the previous example with men's heights and suppose we have a random sample of n people. The sample mean could serve as a good estimator of the population mean. Then we have:
+
+The difference between the height of each man in the sample and the unobservable population mean is a statistical error, whereas
+The difference between the height of each man in the sample and the observable sample mean is a residual.
+Note that the sum of the residuals within a random sample is necessarily zero, and thus the residuals are necessarily not independent. The statistical errors on the other hand are independent, and their sum within the random sample is almost surely not zero.
+
+%------------------------------- %
+
+Other uses of the word "error" in statistics: 
+
+The use of the term "error" as discussed in the sections above is in the sense of a deviation of a value from a hypothetical unobserved value. At least two other uses also occur in statistics, both referring to observable prediction errors:
+
+\begin{itemize}
+	\item Mean square error or mean squared error (abbreviated MSE) and root mean square error (RMSE) refer to the amount by which the values predicted by an estimator differ from the quantities being estimated (typically outside the sample from which the model was estimated).
+	
+	\item 
+	Sum of squared errors, typically abbreviated SSE or SSe, refers to the residual sum of squares (the sum of squared residuals) of a regression; this is the sum of the squares of the deviations of the actual values from the predicted values, within the sample used for estimation. Likewise, the sum of absolute errors (SAE) refers to the sum of the absolute values of the residuals, which is minimized in the least absolute deviations approach to regression.
+	
+\end{itemize}
+
+\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation.
+
+
+
+
+
+	\subsection{Standardization} %1.4.1
+	
+	A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
+	
+	\subsection{Studentization} %1.4.2
+	Instead, you can compute studentized residuals by dividing a residual by an estimate of its standard deviation. 
+	
+	\subsection{Internal and External Studentization} %1.4.3
+	If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+	standard error computation, the residual is said to be \index{internally studentization}internally studentized.
+	
+	Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
+	
+	
+	\subsection{Computation}%1.4.4
+	
+	The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+	
+	\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+	
+	%---------------------------------------------------------------------------%
+	\newpage
+	\subsection{Standardized and studentized residuals} %1.4
+	%--Studentized and Standardized Residuals
+	
+	To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+	
+	
+	\subsection{Internal and External Studentization} %1.4.3
+	If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+	standard error computation, the residual is said to be \index{internally studentization}internally studentized.
+	
+	Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
+	
+	
+	\subsection{Computation}%1.4.4
+	
+	The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+	
+	\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+	
+	\subsection{Pearson Residual}%1.4.5
+	
+	Another possible scaled residual is the \index{Pearson residual} `Pearson residual', whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+	
+	%---------------------------------------------------------------------------%
+
+%---------------------------------------------------------------------------%
+\newpage
+\subsection{Standardized and studentized residuals} %1.4
+
+Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
+
+
+
+
+\subsection{Computation}%1.4.4
+
+
+The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+
+
+\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+
+
+\subsection{Pearson Residual}%1.4.5
+
+Another possible scaled residual is the \index{Pearson residual} `Pearson residual', whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\subsection{Covariance Parameters} %1.5
+The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+% - where is this coming from?
+% - where is it used again?
+% - Has this got anything to do with CovTrace etc?
+
+
+
+
+
+
+
+
+	
+
+
+
+\subsection{Computation}%1.4.4
+
+The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+
+\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+
+%------------------------------- %
+
+\newpage
+
+\subsection{Studentization}
+In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
+
+This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
+
+\section{Covariance Parameters} %1.5
+The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+% - where is this coming from?
+% - where is it used again?
+% - Has this got anything to do with CovTrace etc?
+%---------------------------------------------------------------------------%
+
+\subsection{Pearson Residual}%1.4.5
+
+Another possible scaled residual is the \index{Pearson residual} `Pearson residual', whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+
+\bibliography{DB-txfrbib}
+\end{document}
