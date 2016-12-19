@@ -1,0 +1,198 @@
+\documentclass[00-MASTER.tex]{subfiles}
+\begin{document}
+	
+
+	
+	
+	\subsection{Overall Influence}
+	An overall influence statistic measures the change in the objective function being minimized. For example, in
+	OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+	\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+	
+	
+	\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+	%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+	
+	The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+	
+	
+	\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+	Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+	
+	The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+	interest.
+	
+	
+	
+	\section{Measures of Influence} %1.16
+	
+	The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+	
+	
+	\subsection{DFFITS} %1.16.1
+	DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+	\begin{displaymath} DFFITS = {\widehat{y_i} -
+		\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+	
+	
+	\subsection{PRESS} %1.16.2
+	The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+	\begin{equation}
+	PRESS = \sum(y-y^{(k)})^2
+	\end{equation}
+	
+	
+	\begin{itemize}
+		\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
+		\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
+	\end{itemize}
+	
+	\subsection*{DFBETA} %1.16.3
+	\begin{eqnarray}
+	DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+	&=& B(Y-Y_{\bar{a}}
+	\end{eqnarray}
+	%-------------------------------------------------------------------------------------------------------------------------------------%
+\section{Influence in LME Models}
+	
+	Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models. Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+	
+	
+	\subsection{Influence Statistics for LME models} %1.1.4
+	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+	\begin{itemize}
+		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+		\item influence on precision of estimates: CovRatio and CovTrace
+		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+		\item outlier properties: internally and externally studentized residuals, leverage
+	\end{itemize}
+	%---------------------------------------------------------------------------%
+	
+	Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+	
+	While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+	
+	If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+	
+	\begin{itemize}
+		\item the estimates of fixed effects,
+		\item the estimates of the precision of the fixed effects,
+		\item the estimates of the covariance parameters,
+		\item the estimates of the precision of the covariance parameters,
+		\item fitted and predicted values.
+	\end{itemize}
+	%---------------------------------------------------------------------------%
+	\newpage
+	\section{Influence analysis for LME Models} %1.7
+	
+	Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+	
+	\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+	For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+	
+	
+\subsection{Influence Analysis for LME Models} %1.1.3
+The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+
+Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
+Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+
+Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
+estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
+	
+	%-------------------------------------------------------------------------------------------------------------------------------------%
+	
+	
+%	\newpage
+%	\section{Covariance Parameters} %1.5
+%	The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+	% - where is this coming from?
+	% - where is it used again?
+	% - Has this got anything to do with CovTrace etc?
+	%---------------------------------------------------------------------------%
+	
+	
+	
+	\subsection*{Influence Analysis for LME Models} %1.1.3
+	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. Christensen et al advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+	
+	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence (Zewotir).
+	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+	
+	\subsection*{Influence Statistics for LME models} %1.1.4
+	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+	\begin{itemize}
+		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+		\item influence on precision of estimates: CovRatio and CovTrace
+		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+		\item outlier properties: internally and externally studentized residuals, leverage
+	\end{itemize}
+	
+	\newpage
+\subsection{Influence Analysis for LME Models} %1.1.3
+The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+
+Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
+Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+
+\subsection{Influence Statistics for LME models} %1.1.4
+Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+\begin{itemize}
+	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on precision of estimates: CovRatio and CovTrace
+	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+	\item outlier properties: internally and externally studentized residuals, leverage
+\end{itemize}
+%---------------------------------------------------------------------------%
+
+
+\subsection{What is Influence} %1.1.5
+
+Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
+
+%-------%
+\subsection{Quantifying Influence}  %1.1.6
+
+The basic procedure for quantifying influence is simple as follows:
+
+\begin{itemize}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+\end{itemize}
+
+\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Extension of techniques to LME Models} %1.2
+
+Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+
+Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+
+While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+
+If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+
+\begin{itemize}
+	\item the estimates of fixed effects,
+	\item the estimates of the precision of the fixed effects,
+	\item the estimates of the covariance parameters,
+	\item the estimates of the precision of the covariance parameters,
+	\item fitted and predicted values.
+\end{itemize}
+
+
+
+
+	
+\end{document}

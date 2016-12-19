@@ -208,6 +208,53 @@ and has dimensions $6 \times 6$.
 
 
 
+\subsection{Variance-Covariance Structures}
+
+\subsubsection{Independence}
+
+As though analyzed using between subjects analysis.
+\[
+\left(
+\begin{array}{c c c}
+  \psi^2 & 0 & 0   \\
+  0 & \psi^2 & 0   \\
+  0 & 0 & \psi^2   \\
+\end{array}%
+\right)
+\]
+
+
+\subsubsection{Compound Symmetry}
+
+Assumes that the variance-covariance structure has a single variance (represented by $\psi^2$)
+for all 3 of the time points and a single covariance (represented by $\psi_{ij}$) for each of the pairs of trials.
+
+\[
+\left(%
+\begin{array}{c c c}
+  \psi^2 &  \psi_{12} & \psi_{13}   \\
+  \psi_{21} & \psi^2 & \psi_{23}   \\
+  \psi_{31} & \psi_{32} & \psi^2   \\
+\end{array}%
+\right)
+\]
+
+
+\subsubsection{Unstructured}
+
+Assumes that each variance and covariance is unique.
+Each trial has its own variance (e.g. s12 is the variance of trial 1)
+and each pair of trials has its own covariance (e.g. s21 is the covariance of trial 1 and trial2).
+This structure is illustrated by the half matrix below.
+
+
+\subsubsection{Autoregressive}
+
+Another common covariance structure which is frequently observed
+in repeated measures data is an autoregressive structure,
+which recognizes that observations which are more proximate
+are more correlated than measures that are more distant.
+
 
 \section{Basic Models Fits}
 Further to \citet{PB}, several simple LME models are constructed
@@ -485,14 +532,6 @@ Number of Observations: 510
 Number of Groups: 85
 
 \end{verbatim}
-\newpage
-
-3. BXC Non-constant difference
-3.1. Model
-If it is observed that the assumption of constant difference between methods is violated, i.e. if there is clear slope in the
-Bland–Altman plot, the differences can be regressed on the averages (or sums) and the results used to construct prediction
-intervals of the difference between two future measurements.
-
 \newpage
 \addcontentsline{toc}{section}{Bibliography}
 

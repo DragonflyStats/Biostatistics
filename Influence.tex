@@ -1,0 +1,127 @@
+\documentclass[00-MASTER.tex]{subfiles}
+\begin{document}
+	%---------------------------------------------------------------------------%
+	\newpage
+	\section{Influence analysis} %1.7
+	
+	Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+	
+	\emph{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+	For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+	
+	\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+	Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+	
+	The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+	interest.
+	
+	
+	
+	\subsection{Overall Influence}
+	An overall influence statistic measures the change in the objective function being minimized. For example, in
+	OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+	\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+	
+	
+	\subsection{Influence}
+	
+	\emph{schab} examines the use and implementation of
+	influence measures in LME models.
+	
+	Influence is understood to be the ability of a single or multiple
+	data points, through their presences or absence in the data, to
+	alter important aspects of the analysis, yield qualitatively
+	different inferences, or violate assumptions of the statistical
+	model (\textit{schabenberger}).
+	
+	Outliers are the most noteworthy data points in an analysis, and
+	an objective of influence analysis is how influential they are,
+	and the manner in which they are influential.
+	
+	\emph{schab} describes a simple procedure for quantifying
+	influence. Firstly a model should be fitted to the data, and
+	estimates of the parameters should be obtained. The second step is
+	that either single of multiple data points, specifically outliers,
+	should be omitted from the analysis, with the original parameter
+	estimates being updated. 
+	
+	This is known as `\textit{leave one out \ leave k
+		out}' analysis. The final step of the procedure is comparing the
+	sets of estimates computed from the entire and reduced data sets
+	to determine whether the absence of observations changed the
+	analysis.
+	
+	\textit{schabenberger} notes that it is not always possible to
+	derive influence statistics necessary for comparing full- and
+	reduced-data parameter estimates. 
+	
+	%
+	%\begin{abstract}
+	%	\noindent This paper reviews the use of diagnostic measures for LME models in SAS. This text has been widely cited by texts that don't deal with SAS implementations.
+	%\end{abstract}
+	%
+	
+	%==================================================================================================== %
+	\subsection{Influence}
+	Broadly
+	defined, ``\textit{influence}” is understood as the ability of a single or multiple data points, through their presence
+	or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
+	violate assumptions of the statistical model. 
+	
+	
+	The goal of influence analysis is not primarily to mark data
+	points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
+	result of influence analysis. The goal is rather to determine which cases are influential and the manner in
+	which they are important to the analysis. Outliers, for example, may be the most noteworthy data points in
+	an analysis. They can point to a model breakdown and lead to development of a better model.
+	
+	
+	%==================================================================================================== %
+	
+	In recent years, mixed models have become invaluable tools in the analysis of experimental and observational
+	data. In these models, more than one term can be subject to random variation. Mixed model
+	technology enables you to analyze complex experimental data with hierarchical random processes, temporal,
+	longitudinal, and spatial data, to name just a few important applications. 
+	%
+	%\subsection{Stating the LME Model}
+	%The general linear mixed
+	%model is
+	%\[
+	%Y = X\beta + Zu + \varepsilon\]
+	%where Y is a $(n\times1)$ vector of observed data, X is an $(n\times p)$ fixed-effects design or regressor matrix of rank
+	%k, Z is a $(n \times g)$ random-effects design or regressor matrix, $u$ is a $(g \times 1)$ vector of random effects, and $\varepsilon$ is
+	%an $(n\times1)$ vector of model errors (also random effects). The distributional assumptions made by the MIXED
+	%procedure are as follows: γ is normal with mean 0 and variance G; $\varepsilon$ is normal with mean 0 and variance
+	%R; the random components $u$ and $\varepsilon$ are independent. Parameters of this model are the fixed-effects β and
+	%all unknowns in the variance matrices G and R. The unknown variance elements are referred to as the
+	%covariance parameters and collected in the vector $theta$.
+	%===========================================================================%
+	
+	\emph{schab} remarks that the concept of critiquing the model-data agreement applies in mixed models in the same way as in linear
+	fixed-effects models. In fact, because of the more complex model structure, you can argue that model and
+	data diagnostics are even more important. For example, you are not only concerned with capturing the
+	important variables in the model. You are also concerned with ``distributing” them correctly between the
+	fixed and random components of the model. The mixed model structure presents unique and interesting
+	challenges that prompt us to reexamine the traditional ideas of influence and residual analysis.
+	%==========================================================================%
+	%This paper presents the extension of traditional tools and statistical measures for influence and residual
+	%analysis to the linear mixed model and demonstrates their implementation in the MIXED procedure (experimental
+	%features in SAS 9.1). The remainder of this paper is organized as follows. The “Background” section
+	%briefly discusses some mixed model estimation theory and the challenges to model diagnosis that result
+	%from it.
+	
+	%	 The diagnostics implemented in the MIXED procedure are discussed in the “Residual Diagnostics
+	%	in the MIXED Procedure” section (page 3) and the “Influence Diagnostics in the MIXED Procedure” section
+	%	(page 5). The syntax options and suboptions you use to request the various diagnostics are briefly sketched
+	%	in the “Syntax” section (page 9). The presentation concludes with an example.
+	%	
+	%	
+	%====================================================================================================================%
+	
+	
+	
+	
+	
+	
+	
+\end{document}
