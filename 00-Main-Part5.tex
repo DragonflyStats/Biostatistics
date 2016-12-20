@@ -29,46 +29,6 @@
 
 
 
-
-\subsubsection{The LME model as a general linear model}
-Henderson's equations in (\ref{Henderson:Equations}) can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
-\[
-\delta = \left(\begin{array}{c}\beta \\ b \end{array}\right),
-\ y_{a} = \left(\begin{array}{c}
-y \cr \psi
-\end{array}\right),
-\ T = \left(\begin{array}{cc}
-X & Z  \\
-0 & I
-\end{array}\right),
-\ \textrm{and} \ W = \left(\begin{array}{cc}
-\Sigma & 0  \cr
-0 &  D \end{array}\right),
-\]
-where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
-
-
-%------------------------------------------------------------------------------------%
-\newpage                                                                    % - Section 4
-
-\newpage
-\section{Simplifying GLS (K Hayes)}
-
-\subsection{Introduction}
-
-Hayes and Haslett (1998) present an approach to the problem of \textbf{general least squares} estimation of the general linear model in terms of constrained optimization, which is in turn solved via Lagrange multipliers. The crux of the proposed approach is that one system of equations is sufficiently versatile, and provides for \begin{itemize} \item the estimation of new observations, \item estimation of fixed parameters in regression \item estimation of fixed and random effects in mixed models,\item the diagnostics associated with conditional and marginal residuals \item and of subset deletion. \end{itemize}
-
-\subsection{Overview}
-Hayes and Haslett (1998) have demonstrated how the problem of best linear unbiased estimation can be posed in terms of Lagrange multipliers. Both BLUE and BLUP can be treated as distinct estimation problems from the following equation.
-
-\begin{equation}
-\left(  \begin{array}{cc} V & X \\    X^t & 0 \\
-\end{array}\right)\left(  \begin{array}{c}    \boldsymbol{\lambda}_{z}\\   \boldsymbol{\gamma}_z \\  \end{array}
-\right)=\left(  \begin{array}{c}    \mbox{cov}(Y,Z)\\   A^{t} \\  \end{array}\right)\end{equation}
-
-
-Hence BLUE and BLUP can be considered as the estimation of two different variables from $Y$. This equation has a natural role in the derivation of \emph{leave- k-out} residuals and diagnostic measures, and replaces the traditional approach of using a variety of clumsy updating formulas. Note that this approach may be used to determine the impact of deletion on any quantity computed from $Y$.
-
 \chapter{General Linear model}
 \section{General Linear model} Mixed Effects Models are seen as
 especially robust in the analysis of unbalanced data when compared
@@ -86,71 +46,71 @@ equivalent to an augmented general linear model.
 Youngjo et al show that the linear mixed effects model can be
 shown to be the augmented classical linear model involving fixed
 effects parameters only.
+\section{The LME model as a general linear model}
+Henderson's equations in (\ref{Henderson:Equations}) can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
+\[
+\delta = \left(\begin{array}{c}\beta \\ b \end{array}\right),
+\ y_{a} = \left(\begin{array}{c}
+y \cr \psi
+\end{array}\right),
+\ T = \left(\begin{array}{cc}
+X & Z  \\
+0 & I
+\end{array}\right),
+\ \textrm{and} \ W = \left(\begin{array}{cc}
+\Sigma & 0  \cr
+0 &  D \end{array}\right),
+\]
+where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
 
-\section{Augmented GLMs}
-%Augmented General linear models.
-% Youngjo et al page 154
-\subsection{Augmented linear model}
-The subscript $M$ is a label referring to the mean model.
+
+\section{The LME model as a general linear model} %3.2
+Henderson's equations in %(\ref{Henderson:Equations})
+can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
+\begin{verbatim}
+\[
+\delta = \pmatrix{\beta \cr b},
+\ y_{a} = \pmatrix{
+y \cr \psi
+},
+\ T = \pmatrix{
+X & Z  \cr
+0 & I
+},
+\ \textrm{and} \ W = \pmatrix{
+\Sigma & 0  \cr
+0 &  D },
+\]
+\end{verbatim}
+where \textbf{cite[Lee:Neld:Pawi:2006]} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
+
+
+
+
+
+%---------------------------------------------------------------------------%
+% - 3. Augmented GLMS
+%---------------------------------------------------------------------------%
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+\section{Simplifying GLS (K Hayes)}
+
+\subsection{Introduction}
+
+Hayes and Haslett (1998) present an approach to the problem of \textbf{general least squares} estimation of the general linear model in terms of constrained optimization, which is in turn solved via Lagrange multipliers. The crux of the proposed approach is that one system of equations is sufficiently versatile, and provides for \begin{itemize} \item the estimation of new observations, \item estimation of fixed parameters in regression \item estimation of fixed and random effects in mixed models,\item the diagnostics associated with conditional and marginal residuals \item and of subset deletion. \end{itemize}
+
+\subsection{Overview}
+Hayes and Haslett (1998) have demonstrated how the problem of best linear unbiased estimation can be posed in terms of Lagrange multipliers. Both BLUE and BLUP can be treated as distinct estimation problems from the following equation.
+
 \begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
+\left(  \begin{array}{cc} V & X \\    X^t & 0 \\
+\end{array}\right)\left(  \begin{array}{c}    \boldsymbol{\lambda}_{z}\\   \boldsymbol{\gamma}_z \\  \end{array}
+\right)=\left(  \begin{array}{c}    \mbox{cov}(Y,Z)\\   A^{t} \\  \end{array}\right)\end{equation}
 
 
-
-
-The error term $e^{*}$ is normal with mean zero. The variance
-matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-\begin{equation}
-y_{a} = T \delta + e^{*}
-\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-\newpage
+Hence BLUE and BLUP can be considered as the estimation of two different variables from $Y$. This equation has a natural role in the derivation of \emph{leave- k-out} residuals and diagnostic measures, and replaces the traditional approach of using a variety of clumsy updating formulas. Note that this approach may be used to determine the impact of deletion on any quantity computed from $Y$.
 
 
 
@@ -173,24 +133,14 @@ In these cases ordinary least squares can be statistically inefficient, or even 
 \boldsymbol{y}_i = \boldsymbol{X}_i\boldsymbol{\beta} + \boldsymbol{\epsilon}_i
 \end{equation}
 
-Estimation under this model has been studied extensively in the linear regression model.
 
-%-------------------------------------------------------------------Simplifying GLS by KH -%
-%-------------------------------------------------------------------Simplifying GLS by KH -%
-\newpage
-\section{Generalized Least Squares}
-
-\subsection{Introduction to Generalized Least Squares}
-\begin{equation}
-\boldsymbol{y}_i = \boldsymbol{X}_i\boldsymbol{\beta} + \boldsymbol{\epsilon}_i
-\end{equation}
 
 Estimation under this model has been studied extensively in the linear regression model.
 
 %-------------------------------------------------------------------Simplifying GLS by KH -%
-\newpage
 
-\subsection{Introduction}
+
+\section{Introduction}
 \subsubsection{Robinson's (1991) review}
 \emph{ Robinson's (1991) review of best linear unbiased prediction (BLUP), together with the subsequent discussion, has emphasized the very considerable range of models that may be addressed via the general least squares (GLS) solution to the general linear model $Y = X\beta + \varepsilon$, where $E(\varepsilon) = 0$ and $var(\varepsilon) = V$. These include linear mixed models, geostatistics, time series and multivariate regression.}
 
@@ -380,35 +330,70 @@ Weighted least squares equation
 % Youngjo et al page 154
 
 
-\subsection{The Augmented Model Matrix}  %3.2
+
+\section{Augmented linear model}
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+
+
+The error term $e^{*}$ is normal with mean zero. The variance
+matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
 \begin{equation}
 X = \left(%
 \begin{array}{cc}
-  T & Z \\
-  0 & I \\
+T & Z \\
+0 & I \\
 \end{array}%
 \right)
 \delta = \left(%
 \begin{array}{c}
-  \beta  \\
-  \nu  \\
+\beta  \\
+\nu  \\
 \end{array}%
 \right)
 \end{equation}
 
 
 
-%---------------------------------------------------------------------------%
-% - 3. Augmented GLMS
-%---------------------------------------------------------------------------%
+\begin{equation}
+y_{a} = T \delta + e^{*}
+\end{equation}
 
-% 3.1 Intro to Augmented GLMs
-% 3.2 The LME as a GLM
-% 3.3 Hierarchical likelihood
-% 3.4 IWLS
+Weighted least squares equation
 
 
-Generalized linear models are a generalization of classical linear  models.
+% Youngjo et al page 154
+\newpage
+
+
 
 
 \section{Augmented GLMs} %3.1
@@ -477,7 +462,9 @@ Weighted least squares equation
 
 
 
-\subsection{The Augmented Model Matrix}  %3.1.2
+Generalized linear models are a generalization of classical linear  models.
+
+\section{The Augmented Model Matrix}  %3.1.2
 \begin{equation}
 X = \left(%
 \begin{array}{cc}
@@ -493,40 +480,9 @@ X = \left(%
 \right)
 \end{equation}
 
-%-----------------------------------------------------------------------------------%
-
-
-\section{The LME model as a general linear model} %3.2
-Henderson's equations in %(\ref{Henderson:Equations})
-can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
-\begin{verbatim}
-\[
-\delta = \pmatrix{\beta \cr b},
-\ y_{a} = \pmatrix{
-  y \cr \psi
-  },
-\ T = \pmatrix{
-  X & Z  \cr
-  0 & I
-  },
-\ \textrm{and} \ W = \pmatrix{
-  \Sigma & 0  \cr
-  0 &  D },
-\]
-\end{verbatim}
-where \textbf{cite[Lee:Neld:Pawi:2006]} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
 
 
 
-\newpage
-
-
-%---------------------------------------------------------------------------%
-% - 3. Augmented GLMS
-%---------------------------------------------------------------------------%
-
-
-Generalized linear models are a generalization of classical linear  models.
 
 \section{Augmented GLMs} %3.1
 
@@ -578,31 +534,7 @@ The error term $e^{*}$ is normal with mean zero. The variance matrix of the erro
 Weighted least squares equation
 
 
-% Youngjo et al page 154
 
-
-\subsection{The Augmented Model Matrix}  %3.2
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-\subsection{Importance-Weighted Least-Squares (IWLS)}  %3.3
-
-
-\subsection{H-Likelihood}
 
 
 
@@ -614,14 +546,6 @@ T & Z \\
 % - 2. Grubbs' Data
 % - 3. R implementation
 % - 4. Influence measures using R
-%---------------------------------------------------------------------------%
-
-\section{Application to MCS} %4.1
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$
-based upon the full set of observations, and let
-$\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case
-excluded.
 
 
 \section{Grubbs' Data} %4.2
@@ -638,8 +562,6 @@ Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
 
 When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
 
-
-\newpage
 
 \begin{table}[ht]
 	\begin{center}
@@ -706,7 +628,7 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 
 
 
-\subsection{Influence measures using R} %4.4
+subsection{Influence measures using R} %4.4
 \texttt{R} provides the following influence measures of each observation.
 
 %Influence measures: This suite of functions can be used to compute
@@ -740,8 +662,45 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 \end{table}
 
 
-\newpage
-\chapter{Augmented GLMs} 
+
+
+\section{Influence measures using R} %4.4
+\texttt{R} provides the following influence measures of each observation.
+
+%Influence measures: This suite of functions can be used to compute
+%some of the regression (leave-one-out deletion) diagnostics for
+%linear and generalized linear models discussed in Belsley, Kuh and
+% Welsch (1980), Cook and Weisberg (1982)
+
+
+
+\begin{table}[ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
+			\hline
+			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
+			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
+			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
+			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
+			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
+			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
+			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
+			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
+			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
+			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
+			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
+			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+
+\section{Augmented GLMs} 
 
 
 %---------------------------------------------------------------------------%
@@ -750,8 +709,6 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 
 
 Generalized linear models are a generalization of classical linear  models.
-
-\section{Augmented GLMs} %3.1
 
 With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
 The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
@@ -804,48 +761,7 @@ Weighted least squares equation
 % Youngjo et al page 154
 
 
-\subsection{The Augmented Model Matrix}  %3.2
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
 
-
-
-\subsection{Importance-Weighted Least-Squares (IWLS)}  %3.3
-
-
-\subsection{H-Likelihood}
-
-
-
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 4------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-
-\chapter{Application to Method Comparison Studies} % Chapter 4
-
-
-%---------------------------------------------------------------------------%
-% - 1. Application to MCS
-% - 2. Grubbs' Data
-% - 3. R implementation
-% - 4. Influence measures using R
-%---------------------------------------------------------------------------%
 
 \section{Application to MCS} %4.1
 
@@ -869,8 +785,6 @@ Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
 
 When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
 
-
-\newpage
 
 \begin{table}[ht]
 	\begin{center}
@@ -939,283 +853,8 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 
 
 
-\subsection{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
 
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
 
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-\newpage
-
-\chapter{Augmented GLMs} 
-
-
-%---------------------------------------------------------------------------%
-% - 3. Augmented GLMS
-%---------------------------------------------------------------------------%
-
-
-Generalized linear models are a generalization of classical linear  models.
-
-\section{Augmented GLMs} %3.1
-
-With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-
-
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-%Augmented Generalized linear models.
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-\begin{equation}
-y_{a} = T \delta + e^{*}
-\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-
-
-\subsection{The Augmented Model Matrix}  %3.2
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-\subsection{Importance-Weighted Least-Squares (IWLS)}  %3.3
-
-
-\subsection{H-Likelihood}
-
-
-
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 4------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-
-\chapter{Application to Method Comparison Studies} % Chapter 4
-
-
-%---------------------------------------------------------------------------%
-% - 1. Application to MCS
-% - 2. Grubbs' Data
-% - 3. R implementation
-% - 4. Influence measures using R
-%---------------------------------------------------------------------------%
-
-\section{Application to MCS} %4.1
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$
-based upon the full set of observations, and let
-$\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case
-excluded.
-
-
-\section{Grubbs' Data} %4.2
-
-For the Grubbs data the $\hat{\beta}$ estimated are
-$\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are
-$\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-
-\begin{equation}
-Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
-\end{equation}
-
-When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
-
-
-\newpage
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{rrrrr}
-			\hline
-			& F & C & D & A \\
-			\hline
-			1 & 793.80 & 794.60 & -0.80 & 794.20 \\
-			2 & 793.10 & 793.90 & -0.80 & 793.50 \\
-			3 & 792.40 & 793.20 & -0.80 & 792.80 \\
-			4 & 794.00 & 794.00 & 0.00 & 794.00 \\
-			5 & 791.40 & 792.20 & -0.80 & 791.80 \\
-			6 & 792.40 & 793.10 & -0.70 & 792.75 \\
-			7 & 791.70 & 792.40 & -0.70 & 792.05 \\
-			8 & 792.30 & 792.80 & -0.50 & 792.55 \\
-			9 & 789.60 & 790.20 & -0.60 & 789.90 \\
-			10 & 794.40 & 795.00 & -0.60 & 794.70 \\
-			11 & 790.90 & 791.60 & -0.70 & 791.25 \\
-			12 & 793.50 & 793.80 & -0.30 & 793.65 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-\newpage
-
-\begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-\end{equation}
-
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-
-When considering the regression of case-wise differences and averages, we write
-
-\begin{equation}
-D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-\end{equation}
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let $\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case excluded.
-
-For the Grubbs data the $\hat{\beta}$ estimated are $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are $\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-\begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-\end{equation}
-
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-
-\begin{verbatim}
-Call: lm(formula = D ~ A)
-
-Coefficients: (Intercept)            A
--37.51896      0.04656
-
-\end{verbatim}
-
-
-
-
-When considering the regression of case-wise differences and averages, we write
-
-\begin{equation}
-D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-\end{equation}
-
-
-
-\subsection{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
-
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
-
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-\chapter{Augmented GLMs} 
-
-
-%---------------------------------------------------------------------------%
-% - 3. Augmented GLMS
-%---------------------------------------------------------------------------%
-
-
-Generalized linear models are a generalization of classical linear  models.
 
 \section{Augmented GLMs} %3.1
 
@@ -1268,24 +907,7 @@ Weighted least squares equation
 % Youngjo et al page 154
 
 
-\subsection{The Augmented Model Matrix}  %3.2
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
 
-
-	
 	\section{Application to MCS} %4.1
 	
 	
@@ -1297,159 +919,8 @@ T & Z \\
 	
 	
 	
-	\section{Grubbs' Data} %4.2
-	
-	
-	For the Grubbs data the $\hat{\beta}$ estimated are
-	$\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-	fourth case out, i.e. $k=4$ the corresponding estimates are
-	$\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-	
-	
-	
-	
-	\begin{equation}
-	Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
-	\end{equation}
-	
-	
-	When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
-	
-	
-	
-	
-	\newpage
-	
-	
-	\begin{table}[ht]
-		\begin{center}
-			\begin{tabular}{rrrrr}
-				\hline
-				& F & C & D & A \\
-				\hline
-				1 & 793.80 & 794.60 & -0.80 & 794.20 \\
-				2 & 793.10 & 793.90 & -0.80 & 793.50 \\
-				3 & 792.40 & 793.20 & -0.80 & 792.80 \\
-				4 & 794.00 & 794.00 & 0.00 & 794.00 \\
-				5 & 791.40 & 792.20 & -0.80 & 791.80 \\
-				6 & 792.40 & 793.10 & -0.70 & 792.75 \\
-				7 & 791.70 & 792.40 & -0.70 & 792.05 \\
-				8 & 792.30 & 792.80 & -0.50 & 792.55 \\
-				9 & 789.60 & 790.20 & -0.60 & 789.90 \\
-				10 & 794.40 & 795.00 & -0.60 & 794.70 \\
-				11 & 790.90 & 791.60 & -0.70 & 791.25 \\
-				12 & 793.50 & 793.80 & -0.30 & 793.65 \\
-				\hline
-			\end{tabular}
-		\end{center}
-	\end{table}
-	
-	
-	
-	
-	\newpage
-	
-	
-	\begin{equation}
-	Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-	\end{equation}
-	
-	
-	Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-	
-	
-	When considering the regression of case-wise differences and averages, we write
-	
-	
-	\begin{equation}
-	D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-	\end{equation}
-	Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let $\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case excluded.
-	
-	
-	For the Grubbs data the $\hat{\beta}$ estimated are $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-	fourth case out, i.e. $k=4$ the corresponding estimates are $\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-	
-	
-	\begin{equation}
-	Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-	\end{equation}
-	
-	
-	Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-	
-	\begin{framed}
-		\begin{verbatim}
-		Call: lm(formula = D ~ A)
-		
-		
-		Coefficients: (Intercept)            A
-		-37.51896      0.04656
-		
-		
-		\end{verbatim}
-	\end{framed}
-	
-	
-	
-	
-	
-	
-	
-	When considering the regression of case-wise differences and averages, we write
-	
-	
-	\begin{equation}
-	D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-	\end{equation}
-\subsection{Importance-Weighted Least-Squares (IWLS)}  %3.3
 
 
-\subsection{Hierarchical likelihood} %3.4
-
-Inferential method was developled for the mixed linear model via Lee and Nelder's (1996) hierarchical-likelihood (h-likelihood).
-
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 4------------------------%
-\section{BeNaCoo}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-% Beckman Nachtsheim Cook
-% Diagnostics for Mixed-Model Analysis of Variance
-
-% Abstract:
-% We describe a new method for assessment of model inadequacy in maximum-likelihood mixed-model analysis of variance. 
-% In particular, we discuss its use in diagnosing perturbations from the usual assumption of constant error variance and 
-% from the assumption that each realization of a given random factor has been drawn from the same normal population. 
-% Computer implementation of the procedure is described, and an example is presented, involving the analysis of filter 
-% cartridges used with commercial respirators.
-% --------------------------------------------------------- %
-
-
-% Local Influence Approach
-%--------------------------------------------------------- %
-
-
-
-% --------------------------------------------------------- %
-
-Cook (1986) gave a completely general method for assessing influence of local departures from
-assumptions in statistical models.
-
-\textbf{Local Influence Approach}
-
-We describe a new method for assessment of model inadequacy in maximum-likelihood mixed-model analysis of variance. In particular, we discuss its use in diagnosing perturbations from the usual assumption of constant error variance and from the assumption that each realization of a given random factor has been drawn from the same normal population. Computer implementation of the procedure is described, and an example is presented, involving the analysis of filter cartridges used with commercial respirators.
-
-
-%---------------------------------------------------------- %
-Likelihood Displacement.
-\[  LD(\boldsymbol{\omega}= 2[ L\boldsymbol{\hat{theta}} - \boldsymbol{\hat{theta}_\omega} \]
-
-Large values indicate that $\boldsymbol{\hat{theta}}$ and $\boldsymbol{\hat{theta}_\omega}$ differ considerably.
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 \end{document}
 %-----------------------------------------------------------------------------------%
