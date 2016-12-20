@@ -24,7 +24,7 @@
 
 
 \begin{document}
-
+\tableofcontents
 %\chapter{Model Diagnostics}
 %---------------------------------------------------------------------------%
 %1.1 Introduction to Influence Analysis
@@ -221,9 +221,6 @@ This can only be achieved in general is by omitting observations, then refitting
 %-------------------------------------------------------------------------------------------------------------------------------------%
 %-------------------------------------------------------------------------------------------------------------------------------------%
 
-
-%--------------------------------------------------------------%
-\newpage
 \section{Computation and Notation } %2.3
 with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
 compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
@@ -231,7 +228,7 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 
 \citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
 %--------------------------------------------------------------%
-\newpage
+
 \section{Measures 2} %2.4
 
 \subsection{Cook's Distance} %2.4.1
@@ -241,32 +238,13 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 
 Diagnostic tool for variance components
 \[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-\newpage
-\section{Haslett's Analysis} %2.5
-For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
 
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 3------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 
 
 %-------------------------------------------------------------------------------------------------------%
 \chapter{Appendices} % Chapter 5
-%---------------------------------------------------------------------------------------------------------%
-% Appendices
-% - The Hat Matrix (5.1)
-% - Sherman Morrison Woodbury Formula (5.2)
-% -  Hat Matrix applied to MCS (5.3)
-% - Cross Validation (Updating standard deviation) (5.4)
-% - Updating Estimates (5.5)
-% - Lesaffre's paper (5.6)
-%---------------------------------------------------------------------------------------------------------%
-%------------------------------------------------------------------------%
-\newpage
+
 \section{The Hat Matrix} %5.1
 
 The projection matrix $H$ (also known as the hat matrix), is a

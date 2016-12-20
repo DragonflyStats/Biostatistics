@@ -1,0 +1,2053 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{amsbsy}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.4}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.5cm}{0cm}{1cm}{1cm}
+
+\pagenumbering{arabic}
+
+
+\begin{document}
+	\author{Kevin O'Brien}
+	\title{Mixed Models for Method Comparison Studies}
+	\tableofcontents
+\chapter{Influence}
+	
+	
+	\subsection{Overall Influence}
+	An overall influence statistic measures the change in the objective function being minimized. For example, in
+	OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+	\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+	
+	
+	\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+	%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+	
+	The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+	
+	
+	\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+	Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+	
+	The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+	interest.
+	
+	
+	
+	\section{Measures of Influence} %1.16
+	
+	The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+	
+	
+	\subsection{DFFITS} %1.16.1
+	DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+	\begin{displaymath} DFFITS = {\widehat{y_i} -
+		\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+	
+	
+	\subsection{PRESS} %1.16.2
+	The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+	\begin{equation}
+	PRESS = \sum(y-y^{(k)})^2
+	\end{equation}
+	
+	
+	\begin{itemize}
+		\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
+		\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
+	\end{itemize}
+	
+	\subsection*{DFBETA} %1.16.3
+	\begin{eqnarray}
+	DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+	&=& B(Y-Y_{\bar{a}}
+	\end{eqnarray}
+	%-------------------------------------------------------------------------------------------------------------------------------------%
+	\section{Influence in LME Models}
+	
+	Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models. Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+	
+	
+	\subsection{Influence Statistics for LME models} %1.1.4
+	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+	\begin{itemize}
+		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+		\item influence on precision of estimates: CovRatio and CovTrace
+		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+		\item outlier properties: internally and externally studentized residuals, leverage
+	\end{itemize}
+	%---------------------------------------------------------------------------%
+	
+	Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+	
+	While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+	
+	If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+	
+	\begin{itemize}
+		\item the estimates of fixed effects,
+		\item the estimates of the precision of the fixed effects,
+		\item the estimates of the covariance parameters,
+		\item the estimates of the precision of the covariance parameters,
+		\item fitted and predicted values.
+	\end{itemize}
+	%---------------------------------------------------------------------------%
+	\newpage
+	\section{Influence analysis for LME Models} %1.7
+	
+	Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+	
+	\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+	For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+	
+	
+	\subsection{Influence Analysis for LME Models} %1.1.3
+	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+	
+	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
+	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+	
+	Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
+	estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
+	
+	%-------------------------------------------------------------------------------------------------------------------------------------%
+	
+	
+	%	\newpage
+	%	\section{Covariance Parameters} %1.5
+	%	The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+	% - where is this coming from?
+	% - where is it used again?
+	% - Has this got anything to do with CovTrace etc?
+	%---------------------------------------------------------------------------%
+	
+	
+	
+	\subsection*{Influence Analysis for LME Models} %1.1.3
+	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. Christensen et al advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+	
+	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence (Zewotir).
+	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+	
+	\subsection*{Influence Statistics for LME models} %1.1.4
+	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+	\begin{itemize}
+		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+		\item influence on precision of estimates: CovRatio and CovTrace
+		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+		\item outlier properties: internally and externally studentized residuals, leverage
+	\end{itemize}
+	
+	\newpage
+	\subsection{Influence Analysis for LME Models} %1.1.3
+	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+	
+	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
+	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+	
+	\subsection{Influence Statistics for LME models} %1.1.4
+	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+	\begin{itemize}
+		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+		\item influence on precision of estimates: CovRatio and CovTrace
+		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+		\item outlier properties: internally and externally studentized residuals, leverage
+	\end{itemize}
+	%---------------------------------------------------------------------------%
+	
+	
+	\subsection{What is Influence} %1.1.5
+	
+	Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+	points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
+	
+	%-------%
+	\subsection{Quantifying Influence}  %1.1.6
+	
+	The basic procedure for quantifying influence is simple as follows:
+	
+	\begin{itemize}
+		\item Fit the model to the data and obtain estimates of all parameters.
+		\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+		\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+	\end{itemize}
+	
+	\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+	
+	
+	%---------------------------------------------------------------------------%
+	\newpage
+	\section{Extension of techniques to LME Models} %1.2
+	
+	Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+	
+	Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+	
+	While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+	
+	If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+	
+	\begin{itemize}
+		\item the estimates of fixed effects,
+		\item the estimates of the precision of the fixed effects,
+		\item the estimates of the covariance parameters,
+		\item the estimates of the precision of the covariance parameters,
+		\item fitted and predicted values.
+	\end{itemize}
+	
+	
+	
+\newpage
+\section{Influence analysis} %1.7
+
+Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+
+\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+
+\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+
+The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+interest.
+
+%---------------------------------------------------------------------------%
+
+\subsection{Overall Influence}
+An overall influence statistic measures the change in the objective function being minimized. For example, in
+OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+
+%--------------------------------------------------------------------------%
+\newpage
+\section{Terminology for Case Deletion diagnostics} %1.8
+
+\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
+'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Cook's Distance} %1.9
+
+\subsection{Cook's Distance}%1.19.1 
+Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
+a new regression coefficient each time an observation is deleted.
+
+
+
+
+
+\subsection{Cooks's Distance}%1.9.2
+\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
+
+\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
+
+If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.	
+	
+
+\chapter{Cook's Distance}
+How to extract/compute leverage and Cook's distances for linear mixed effects models
+
+Does anyone know how to compute (or extract) leverage and Cook's distances for a mer class object (obtained through lme4 package)? I'd like to plot these for a residuals analysis.
+
+You should have a look at the R package influence.ME. It allows you to compute measures of influential data for mixed effects models generated by lme4.
+
+An example model:
+
+library(lme4)
+model <- lmer(mpg ~ disp + (1 | cyl), mtcars)
+
+The function influence is the basis for all further steps:
+
+library(influence.ME)
+infl <- influence(model, obs = TRUE)
+
+Calculate Cook's distance:
+
+cooks.distance(infl)
+
+Plot Cook's distance:
+
+plot(infl, which = "cook")
+
+enter image description here
+
+%================================================================================%
+
+%% Stack Overflow  Question
+%% - http://stats.stackexchange.com/questions/54818/how-to-extract-compute-leverage-and-cooks-distances-for-linear-mixed-effects-mo
+
+How to extract/compute leverage and Cook's distances for linear mixed effects models
+
+Does anyone know how to compute (or extract) leverage and Cook's distances for a mer class object (obtained through lme4 package)? I'd like to plot these for a residuals analysis.
+
+You should have a look at the R package influence.ME. It allows you to compute measures of influential data for mixed effects models generated by lme4.
+
+An example model:
+
+\begin{verbatim}
+library(lme4)
+model <- lmer(mpg ~ disp + (1 | cyl), mtcars)
+\end{verbatim}
+
+The function influence is the basis for all further steps:
+
+\begin{verbatim}
+library(influence.ME)
+infl <- influence(model, obs = TRUE)
+Calculate Cook's distance:
+
+cooks.distance(infl)
+Plot Cook's distance:
+
+plot(infl, which = "cook")
+\end{verbatim}
+
+%================================================================================%
+
+\chapter{Zewotir}
+
+% 2.1 Efficient Updating Theorem
+% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
+% 2.3 Computation and Notation 
+% 2.4 Measures 2
+%2.5 Haslett Analysis
+
+\section{Efficient Updating Theorem} %2.1
+\citet{Zewotir} describes the basic theorem of efficient updating.
+\begin{itemize}
+	\item \[ m_i = {1 \over c_{ii}}\]
+	%\item
+	%item
+	%\item
+\end{itemize}
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\section{Zewotir Measures of Influence in LME Models}%2.2
+%Zewotir page 161
+\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
+\begin{itemize}
+	\item Variance components
+	\item Fixed effects parameters
+	\item Prediction of the response variable and of random effects
+	\item likelihood function
+\end{itemize}
+%---------------------------------------------------------------------------%
+\newpage
+
+\chapter{Zewotir's Paper}
+
+
+% 2.1 Efficient Updating Theorem
+% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
+% 2.3 Computation and Notation
+% 2.4 Measures 2
+% 2.5 Haslett Hayes Paper
+% 2.6 Demidenko I Influence
+
+
+\section{Efficient Updating Theorem} %2.1
+\citet{Zewotir} describes the basic theorem of efficient updating.
+\begin{itemize}
+	\item \[ m_i = {1 \over c_{ii}}\]
+	%\item
+	%item
+	%\item
+\end{itemize}
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\section{Zewotir Measures of Influence in LME Models}%2.2
+%Zewotir page 161
+\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
+\begin{itemize}
+	\item Variance components
+	\item Fixed effects parameters
+	\item Prediction of the response variable and of random effects
+	\item likelihood function
+\end{itemize}
+
+\subsection{Cook's Distance}
+\begin{itemize}
+	\item For variance components $\gamma$: $CD(\gamma)_i$,
+	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+\end{itemize}
+
+
+
+\newpage
+\subsubsection{Random Effects}
+
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+
+\subsubsection{linear functions}
+
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+
+
+\subsection{Information Ratio}
+
+
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Computation and Notation } %2.3
+with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+
+
+
+
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+
+
+
+
+\section{Demidenko's I Influence} %2.6
+The concept of I Influence is generalized  to the non linea regression model.
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\chapter{Zewotir's Paper}
+
+% 2.1 Efficient Updating Theorem
+% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
+% 2.3 Computation and Notation 
+% 2.4 Measures 2
+%2.5 Haslett Analysis
+
+\section{Efficient Updating Theorem} %2.1
+\citet{Zewotir} describes the basic theorem of efficient updating.
+\begin{itemize}
+	\item \[ m_i = {1 \over c_{ii}}\]
+	%\item
+	%item
+	%\item
+\end{itemize}
+
+\newpage
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+\subsection{Information Ratio}
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Computation and Notation } %2.3
+with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+
+
+\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+%--------------------------------------------------------------%
+\newpage
+\section{Measures 2} %2.4
+
+\subsection{Cook's Distance} %2.4.1
+\begin{itemize}
+	\item For variance components $\gamma$
+\end{itemize}
+
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+\subsection{Variance Ratio} %2.4.2
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Cook-Weisberg statistic} %2.4.3
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Andrews-Pregibon statistic} %2.4.4
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Haslett's Analysis} %2.5
+For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
+the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
+
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\chapter{Zewotir's Paper}
+
+
+% 2.1 Efficient Updating Theorem
+% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
+% 2.3 Computation and Notation
+% 2.4 Measures 2
+% 2.5 Haslett Hayes Paper
+% 2.6 Demidenko I Influence
+
+
+\section{Efficient Updating Theorem} %2.1
+\citet{Zewotir} describes the basic theorem of efficient updating.
+\begin{itemize}
+	\item \[ m_i = {1 \over c_{ii}}\]
+	%\item
+	%item
+	%\item
+\end{itemize}
+
+
+
+\newpage
+\subsubsection{Random Effects}
+
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+
+\subsubsection{linear functions}
+
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+
+
+\subsection{Information Ratio}
+
+
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Computation and Notation } %2.3
+with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+
+
+
+
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+
+\newpage
+\section{Haslett's Analysis} %2.5
+For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
+the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
+
+
+A general theory is presented for residuals from the general linear model with correlated errors.
+It is demonstrated that there are two fundamental types of residual associated with this model,
+referred to here as the marginal and the conditional residual.
+
+
+These measure respectively the distance to the global aspects of the model as represented by the expected value
+and the local aspects as represented by the conditional expected value.
+
+
+These residuals may be multivariate.
+
+
+\citet{HaslettHayes} developes some important dualities which have simple implications for diagnostics.
+
+
+%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
+
+
+
+\section{Demidenko's I Influence} %2.6
+The concept of I Influence is generalized  to the non linea regression model.
+
+
+
+\bibliography{DB-txfrbib}
+%---------------------------------------------------------------------------%
+%1.1 Introduction to Influence Analysis
+%1.2 Extension of techniques to LME Models
+%1.3 Residual Diagnostics
+%1.4 Standardized and studentized residuals
+%1.5 Covariance Parameters
+%1.6 Case Deletion Diagnostics
+%1.7 Influence Analysis
+%1.8 Terminology for Case Deletion
+%1.9 Cook's Distance (Classical Case)
+%1.10 Cook's Distance (LME Case)
+%1.11 Likelihood Distance
+%1.12 Other Measures
+%1.13 CPJ Paper
+%1.14 Matrix Notation of Case Deletion
+%1.15 CPJ's Three Propositions
+%1.16 Other measures of Influence
+
+
+
+
+
+\newpage
+\subsection{Extension of techniques to LME Models} %1.2
+
+Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models. Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+
+Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+
+While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+
+If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+
+\begin{itemize}
+	\item the estimates of fixed effects,
+	\item the estimates of the precision of the fixed effects,
+	\item the estimates of the covariance parameters,
+	\item the estimates of the precision of the covariance parameters,
+	\item fitted and predicted values.
+\end{itemize}
+
+
+
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\subsection{Influence Statistics for LME models} %1.1.4
+Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+\begin{itemize}
+	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on precision of estimates: CovRatio and CovTrace
+	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+	\item outlier properties: internally and externally studentized residuals, leverage
+\end{itemize}
+%---------------------------------------------------------------------------%
+
+
+
+
+\newpage
+\subsection{Extension of techniques to LME Models} %1.2
+
+
+Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+
+
+Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+
+
+While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+
+
+If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+
+
+\begin{itemize}
+	\item the estimates of fixed effects,
+	\item the estimates of the precision of the fixed effects,
+	\item the estimates of the covariance parameters,
+	\item the estimates of the precision of the covariance parameters,
+	\item fitted and predicted values.
+\end{itemize}
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Standardized and studentized residuals} %1.4
+%--Studentized and Standardized Residuals
+
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+
+
+%--------------------------------------------------%
+\subsection{Residual Analysis for Linear Models, LME models and GLMs}
+
+\textbf{Keywords:}
+
+\begin{itemize}
+	\item Residuals (\emph{Beginners}), 
+	\item Testing the Assumption of Normality (\emph{Beginners})
+	\item Diagnostic Plots with the \texttt{plot} function
+	\item Cook's Distance
+	\item DFFits and DFBeta
+	\item Standardized and Studentized Residuals
+	\item Influence Leverage and Outlierness
+\end{itemize}
+%=================================================================================================== %
+\newpage
+
+%http://www.artifex.org/~meiercl/R_statistics_guide.pdf
+\subsection{Identifying outliers with a LME model object}
+
+The process is slightly different than with standard LME model objects, since the \textbf{\emph{influence}}
+function does not work on lme model objects. Given \textbf{\emph{mod.lme}}, we can use the plot function to
+identify outliers.
+%----------------------%
+\subsection{Diagnostics for Random Effects}
+Empirical best linear unbiased predictors EBLUPS provide the a useful way of diagnosing random effects.
+
+EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller than the estimated effects would be if they were computed by treating a random factor as if it was fixed (West et al )
+
+
+
+
+\newpage
+
+
+\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+
+
+
+
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\citet{Christiansen} develops these techniques in the context of REML
+
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
+%===================================================================================== %
+
+\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+
+The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+interest.
+
+\newpage
+
+\subsection{Cook's Distance}
+\begin{itemize}
+	\item For variance components $\gamma$: $CD(\gamma)_i$,
+	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+\end{itemize}
+
+\newpage
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+\subsection{Information Ratio}
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Computation and Notation } %2.3
+with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+
+
+\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+%--------------------------------------------------------------%
+\section{Cook's Distance for LMEs} %1.10
+
+
+\index{Cook's distance}Cook's Distance is a well known diagnostic technique used in classical linear models, extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
+
+
+
+Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
+Diagnostic methods for variance components are based on `one-step' methods.
+% \citet{cook86} 
+\textit{Cook (1986)} gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
+
+For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
+
+\[
+\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
+\]
+
+For random effect estimates, the \index{Cook's distance} Cook's distance is
+
+\[
+\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
+\]
+Large values for Cook's distance indicate observations for special attention.
+
+\subsection{Change in the precision of estimates}
+
+The effect on the precision of estimates is separate from the effect on the point estimates. Data points that
+have a small \index{Cook's distance}Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
+
+%---------------------------------------------------------------------------%
+
+\subsection{Cook's Distance}
+\begin{itemize}
+	\item For variance components $\gamma$: $CD(\gamma)_i$,
+	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+\end{itemize}
+
+\newpage
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+%	\subsection{Information Ratio}
+%	
+%	\newpage
+%	\section*{Cook's Distance} %1.9
+%	
+%Cook (1977)
+\textit{Cook (1977)} greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
+
+
+Cook (1986) gave a completely general method for assessing influence of local departures from
+assumptions in statistical models.
+
+
+\subsection{Cook's Distance}%1.9.3
+\index{Cook's Distance}
+In classical linear regression, a commonly used meausre of influence is Cook's distance. It is used as a measure of influence on the regression coefficients.
+
+For linear mixed effects models, Cook's distance can be extended to model influence diagnostics by definining.
+
+\[ C_{\beta i} = {(\hat{\beta} - \hat{\beta}_{[i]})^{T}(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}) (\hat{\beta} - \hat{\beta}_{[i]}) \over p}\]
+
+It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
+
+
+
+
+
+
+\subsection*{Cook's Distance}%1.19.1 
+Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $i-$th case is deleted.
+
+Importantly, $D_{(i)}$ can be calculated without fitting a new regression coefficient each time an observation is deleted.
+
+
+
+\subsection{Cooks's Distance}%1.9.2
+\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates.
+%\citep{cook77}.
+
+\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
+
+If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$.
+
+% \citep{cpj92}.
+
+
+
+For LME models, Cook's distance can be extended to model influence diagnostics by definining.
+
+%\[ C_{\beta i} = {(\hat{\beta} - \hat{\beta}_{[i]})^{T}(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}) (\hat{\beta} - \hat{\beta}_{[i]}) \over p}\]
+
+It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
+
+\section{Cook's Distance for LMEs} %1.10
+Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
+Diagnostic methods for variance components are based on `one-step' methods. Cook (1986) gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
+
+For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
+
+\[
+\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
+\]
+
+For random effect estimates, the \index{Cook's distance} Cook's distance is
+
+\[
+\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
+\]
+Large values for Cook's distance indicate observations for special attention.
+
+
+
+\subsection{Cook's Distance}%1.19.1
+Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
+a new regression coefficient each time an observation is deleted.
+
+
+
+
+Cook (1977) greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
+
+
+\index{Cook's distance}Cook's Distance is a well known diagnostic technique used in classical linear models, extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
+
+
+%\subsection{Cooks's Distance}%1.9.2
+\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
+
+
+\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
+
+
+If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.
+
+
+
+
+
+For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
+
+
+\[
+\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
+\]
+
+
+For random effect estimates, the \index{Cook's distance} Cook's distance is
+
+
+\[
+\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
+\]
+Large values for Cook's distance indicate observations for special attention.
+
+\subsection{Change in the precision of estimates}
+
+The effect on the precision of estimates is separate from the effect on the point estimates. Data points that
+have a small \index{Cook's distance}Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
+
+
+
+\subsection{Cook's Distance}%1.19.1 
+Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
+a new regression coefficient each time an observation is deleted.
+
+
+Cook (1977) greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
+
+\index{Cook's distance}Cook's Distance is a well known diagnostic technique used in classical linear models, extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
+
+
+
+
+\subsection{Cooks's Distance}%1.9.2
+\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
+
+\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
+
+If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.
+
+\subsection{Cook's Distance}
+In statistics, Cook's Distance or Cook's D is a commonly used estimate of the influence of a data point when performing least squares regression analysis.[1] In a practical ordinary least squares analysis, Cook's distance can be used in several ways: to indicate data points that are particularly worth checking for validity; to indicate regions of the design space where it would be good to be able to obtain more data points. It is named after the American statistician R. Dennis Cook, who introduced the concept in 1977.
+
+
+\subsubsection{Interpretation}
+Specifically $D_i$ can be interpreted as the distance one's estimates move within the confidence ellipsoid that represents a region of plausible values for the parameters.[clarification needed] This is shown by an alternative but equivalent representation of Cook's distance in terms of changes to the estimates of the regression parameters between the cases where the particular observation is either included or excluded from the regression analysis.
+
+\newpage
+
+
+\subsection{Cook's Distance}
+% Interpretation
+% http://stats.stackexchange.com/questions/22161/how-to-read-cooks-distance-plots %
+Some texts tell you that points for which Cook's distance is higher than 1 are to be considered as influential. Other texts give you a threshold of $4/N$ or $4/(N−k−1)$, where N is the number of observations and k the number of explanatory variables. In your case the latter formula should yield a threshold around 0.1 .
+
+John Fox (1), in his booklet on regression diagnostics is rather cautious when it comes to giving numerical thresholds. He advises the use of graphics and to examine in closer details the points with "values of D that are substantially larger than the rest". According to Fox, thresholds should just be used to enhance graphical displays.
+
+In your case the observations 7 and 16 could be considered as influential. Well, I would at least have a closer look at them. The observation 29 is not substantially different from a couple of other observations.
+
+(1) Fox, John. (1991). Regression Diagnostics: An Introduction. Sage Publications.
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+\subsection{Hat Values for MCS regression}
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Updating Estimates} %5.5
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row. In time series problems, there will be scientific interest in the changing relationship between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric rotation of a plane.
+
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row.
+
+\subsection{Updating Standard deviation}
+A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
+\end{equation}
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or
+delete rows from a model, allowing the analyst the effect of the
+observation associated with that row. In time series problems,
+there will be scientific interest in the changing relationship
+between variables. In cases where there a single row is to be
+added or deleted, the procedure used is equivalent to a geometric
+rotation of a plane.
+
+Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
+is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
+$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+\subsection{Updating Regression Estimates}
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+\subsection{Inference on intercept and slope}
+\begin{equation}
+\hat{\beta_{1}} \pm t_{(\alpha, n-2) }
+\sqrt{\frac{S^2}{(n-1)S^{2}_{x}}}
+\end{equation}
+
+\begin{equation}
+\frac{\hat{\beta_{0}}-\beta_{0}}{SE(\hat{\beta_{0}})}
+\end{equation}
+\begin{equation}
+\frac{\hat{\beta_{1}}-\beta_{1}}{SE(\hat{\beta_{0}})}
+\end{equation}
+
+
+\subsubsection{Inference on correlation coefficient} This test of
+the slope is coincidentally the equivalent of a test of the
+correlation of the $n$ observations of $X$ and $Y$.
+\begin{eqnarray}
+H_{0}: \rho_{XY} = 0 \nonumber \\
+H_{A}: \rho_{XY} \ne 0 \nonumber \\
+\end{eqnarray}
+
+%---------------------------------------------------------%
+\newpage
+
+
+%-------------------------------------------------------------------------------------------------------%
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+
+
+
+\subsection{Hat Values for MCS regression}
+
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+\newpage
+
+
+
+%-------------------------------------------------------------------------------------------------------%
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+
+
+
+\subsection{Hat Values for MCS regression}
+
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+
+
+%-------------------------------------------------------------------------------------------------------%
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+\subsection{Hat Values for MCS regression}
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Updating Estimates} %5.5
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row. In time series problems, there will be scientific interest in the changing relationship between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric rotation of a plane.
+
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row.
+
+\subsection{Updating Standard deviation}
+A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
+\end{equation}
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or
+delete rows from a model, allowing the analyst the effect of the
+observation associated with that row. In time series problems,
+there will be scientific interest in the changing relationship
+between variables. In cases where there a single row is to be
+added or deleted, the procedure used is equivalent to a geometric
+rotation of a plane.
+
+Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
+is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
+$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+\subsection{Updating Regression Estimates}
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+\subsection{Inference on intercept and slope}
+\begin{equation}
+\hat{\beta_{1}} \pm t_{(\alpha, n-2) }
+\sqrt{\frac{S^2}{(n-1)S^{2}_{x}}}
+\end{equation}
+
+\begin{equation}
+\frac{\hat{\beta_{0}}-\beta_{0}}{SE(\hat{\beta_{0}})}
+\end{equation}
+\begin{equation}
+\frac{\hat{\beta_{1}}-\beta_{1}}{SE(\hat{\beta_{0}})}
+\end{equation}
+
+
+\subsubsection{Inference on correlation coefficient} This test of
+the slope is coincidentally the equivalent of a test of the
+correlation of the $n$ observations of $X$ and $Y$.
+\begin{eqnarray}
+H_{0}: \rho_{XY} = 0 \nonumber \\
+H_{A}: \rho_{XY} \ne 0 \nonumber \\
+\end{eqnarray}
+
+%---------------------------------------------------------%
+\newpage
+\section{Lesaffre's paper.} %5.6
+
+Lesaffre considers the case-weight perturbation approach.
+
+
+%\citep{cook86}
+Cook's 86 describes a local approach wherein each case is given a weight $w_{i}$ and the effect on the parameter estimation is measured by perturbing these weights. Choosing weights close to zero or one corresponds to the global case-deletion approach.
+
+Lesaffre  describes the displacement in log-likelihood as a useful metric to evaluate local influence %\citep{cook86}.
+
+
+%\citet{lesaffre}
+Lesaffre describes a framework to detect outlying observations that matter in an LME model. Detection should be carried out by evaluating diagnostics $C_{i}$ , $C_{i}(\alpha)$ and $C_{i}(D,\sigma^2)$.
+
+
+Lesaffre defines the total local influence of individual $i$ as
+\begin{equation}
+C_{i} = 2 | \triangle \prime _{i} L^{-1} \triangle_{i}|.
+\end{equation}
+
+
+The influence function of the MLEs evaluated at the $i$th point $IF_{i}$, given by
+\begin{equation}
+IF_{i} = -L^{-1}\triangle _{i}
+\end{equation}
+can indicate how $\hat{theta}$ changes as the weight of the $i$th
+subject changes.
+
+The manner by which influential observations distort the estimation process can be determined by inspecting the
+interpretable components in the decomposition of the above measures of local influence.
+
+
+Lesaffre comments that there is no clear way of interpreting the information contained in the angles, but that this doesn't mean the information should be ignored.
+
+
+%-------------------------------------------------------------------------------------------------------%
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+\subsection{Hat Values for MCS regression}
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Updating Estimates} %5.5
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row. In time series problems, there will be scientific interest in the changing relationship between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric rotation of a plane.
+
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row.
+
+\subsection{Updating Standard deviation}
+A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
+\end{equation}
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or
+delete rows from a model, allowing the analyst the effect of the
+observation associated with that row. In time series problems,
+there will be scientific interest in the changing relationship
+between variables. In cases where there a single row is to be
+added or deleted, the procedure used is equivalent to a geometric
+rotation of a plane.
+
+Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
+is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
+$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+\subsection{Updating Regression Estimates}
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+\subsection{Inference on intercept and slope}
+\begin{equation}
+\hat{\beta_{1}} \pm t_{(\alpha, n-2) }
+\sqrt{\frac{S^2}{(n-1)S^{2}_{x}}}
+\end{equation}
+
+\begin{equation}
+\frac{\hat{\beta_{0}}-\beta_{0}}{SE(\hat{\beta_{0}})}
+\end{equation}
+\begin{equation}
+\frac{\hat{\beta_{1}}-\beta_{1}}{SE(\hat{\beta_{0}})}
+\end{equation}
+
+
+\subsubsection{Inference on correlation coefficient} This test of
+the slope is coincidentally the equivalent of a test of the
+correlation of the $n$ observations of $X$ and $Y$.
+\begin{eqnarray}
+H_{0}: \rho_{XY} = 0 \nonumber \\
+H_{A}: \rho_{XY} \ne 0 \nonumber \\
+\end{eqnarray}
+
+\bibliography{DB-txfrbib}
+\end{document}
