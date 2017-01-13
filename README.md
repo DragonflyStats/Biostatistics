@@ -1,4 +1,4 @@
-CPandTDI
-========
+CH3a-RoysTest
+=============
 
-Coverage Probability and TDI
+Roy's MCS tests
