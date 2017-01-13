@@ -1,0 +1,36 @@
+http://smm.sagepub.com/content/early/2014/05/14/0962280214534651.full
+
+Choice of agreement indices for assessing and improving measurement reproducibility in a core laboratory setting
+Stat Methods Med Res 0962280214534651, first published on May 14, 2014
+
+<hr>
+Clinical core laboratories, such as Echocardiography core laboratories, are increasingly used in clinical studies with imaging outcomes as primary, secondary, or surrogate endpoints. While many factors contribute to the quality of measurements of imaging variables, an essential step in ensuring the value of imaging data includes formal assessment and control of reproducibility via intra-observer and inter-observer reliability. There are many different agreement/reliability indices in the literature. However, different indices may lead to different conclusions and it is not clear which index is the preferred choice as an overall indication of data quality and a tool for providing guidance on improving quality and reliability in a core lab setting. In this paper, we pre-specify the desirable characteristics of an agreement index for assessing and improving reproducibility in a core lab setting; we compare existing agreement indices in terms of these characteristics to choose a preferred index. We conclude that, among the existing indices reviewed, the coverage probability for assessing agreement is the preferred agreement index on the basis of computational simplicity, its ability for rapid identification of discordant measurements to provide guidance for review and retraining, and its consistent evaluation of data quality across multiple reviewers, populations, and continuous/categorical data.
+
+
+\newpage
+Coverage Probability and Total Deviation Index
+% Barnhart
+
+As elaborated by Lin and colleagues (Lin, 2000; Lin et al., 2002), an intuitive measure of
+agreement is a measure that captures a large proportion of data within a boundary for allowed
+observers’ differences. The proportion and boundary are two quantities that correspond to
+each other. If we set d0 as the predetermined boundary; i.e., the maximum acceptable
+absolute difference between two observers’ readings, we can compute the probability of absolute
+difference between any two observers’ readings less than d0. 
+
+This probability is called
+coverage probability (CP). On the other hand, if we set 0 as the predetermined coverage
+probability, we can find the boundary so that the probability of absolute difference less than
+this boundary is 0. This boundary is called total deviation index (TDI) and is the 1000
+percentile of the absolute difference of paired observations. A satisfactory agreement may
+require a large CP or, equivalently, a small TDI.
+
+For J = 2 observers, let Yi1 and Yi2 be the
+readings of these two observers, the CP and TDI are defined as
+\[
+CPd0 = Prob(|Yi1 − Yi2| < d0), TDI0 = f−1(0)
+\]
+where f−1(0) is the solution of d by setting $f(d) = Prob(|Yi1 − Yi2| < d) = 0$.
+Estimation and inference on CPd0 and TDI0 often requires a normality assumption on
+Di = Yi1 − Yi2.Assume that Di is normally distributed with mean μD and variance 2
+D .
