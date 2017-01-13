@@ -41,6 +41,25 @@
 \title{October 2011 Version A}
 
 \addcontentsline{toc}{section}{Bibliography}
+\chapter{Quiroz J1, Burdick RK.}
+Assessing equivalence of two assays using sensitivity and specificity.
+Quiroz J1, Burdick RK.
+
+% http://www.ncbi.nlm.nih.gov/pubmed/17479392
+%----------------------------------------------------------------------------%
+
+The equivalence of two assays is determined using the sensitivity and specificity relative to a gold standard.
+The equivalence-testing criterion is based on a misclassification rate proposed by Burdick et al. (2005) and
+the intersection-union test (IUT) method proposed by Berger (1982). 
+
+Using a variance components model and IUT methods, we construct bounds for the sensitivity and specificity 
+relative to the gold standard assay based on generalized confidence intervals. We conduct a simulation study 
+to assess whether the bounds maintain the stated test size. 
+
+We present a computational example to demonstrate the method described in the paper.
+
+%----------------------------------------------------------------------------%
+
 \chapter{Model Diagnostics}
 %---------------------------------------------------------------------------%
 % - 1. Introduction
@@ -96,11 +115,24 @@ Influence analysis methodologies have been used extensively in classical linear 
 Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{tewomir}.
 Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
 
+\section{Outline of Thesis}
+Thus the study of method comparison is introduced. The intention of this thesis is to progress the
+study of method comparison studies, using a statistical method known as Linear mixed effects models.
+Chapter two shall describe linear mixed effects models, and how the use of the linear mixed
+effects models have so far extended to method comparison studies. Implementations of important existing work shall be presented, using the \texttt{R} programming language.
+
+Model diagnostics are an integral component of a complete statistical analysis.
+In chapter three model diagnostics shall be described in depth, with particular
+emphasis on linear mixed effects models, further to chapter two.
+
+For the fourth chapter, important linear mixed effects model diagnostic methods shall be extended to method comparison studies, and proposed methods shall be demonstrated on data sets that have become well known in literature on method comparison. The purpose is to both calibrate these methods and to demonstrate applications for them.
+The last chapter shall focus on robust measures of important parameters such as agreement.
+
 %---------------------------------------------------------------------------%
 \newpage
 \section{What is Influence} %1.2
 
-Broadly defined, ``influence� is understood as the ability of a single or multiple data points, through their presence
+Broadly defined, ``influence"is understood as the ability of a single or multiple data points, through their presence
 or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
 violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
 points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
@@ -593,10 +625,32 @@ c_{ii} & \boldsymbol{c}_{i}^{\prime}\\
 \end{itemize}
 All of these terms are a function of a row (or column) of $\boldsymbol{H}$ and $\boldsymbol{H}_{[i]}^{-1}$
 %-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 2	------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
+
+\chapter{Roy2013}
+
+http://business.utsa.edu/wps/MSS/0017MSS-253-2013.pdf
+
+
+Testing the Equality of Mean Vectors for Paired Doubly Multivariate Observations 
+
+
+Example 2. (Mineral Data): This data set is taken from Johnson and Wichern (2007, p. 43).
+An investigator measured the mineral content of bones (radius, humerus and ulna) by photon
+absorptiometry to examine whether dietary supplements would slow bone loss in 25 older women.
+Measurements were recorded for three bones on the dominant and nondominant sides. Thus,
+the data is doubly multivariate and clearly u = 2 and q = 3.
+The bone mineral contents for the ﬁrst 24 women one year after their participation in an
+experimental program is given in Johnson and Wichern (2007, p. 353). 
+
+
+
+Thus, for our analysis
+we take only ﬁrst 24 women in the ﬁrst data set. We test whether there has been a bone loss
+considering the data as doubly multivariate and has BCS structure. We rearrange the variables
+in the data set by grouping together the mineral content of the dominant sides of radius, humerus
+and ulna as the ﬁrst three variables, that is, the variables in the ﬁrst location (u = 1) and then
+the mineral contents for the non-dominant side of the same bones (u = 2)
+
 
 \chapter{Zewotir's Paper}
 
