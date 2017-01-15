@@ -66,7 +66,7 @@
 \item While a substantial body of work has been developed in this area, ther are still area worth exploring. 
 	In particular the development of graphical techniques pertinent to LME models should be looked at.
 \end{itemize}
-\newpage
+
 
 
 \section{Introduction}
@@ -206,10 +206,8 @@ As with fitted models, the assumption of normality of residuals and homogeneity 
 %--------------------------------------%
 
 
-Homoscedascity is the technical term to describe the variance of the
-residuals being constant across the range of predicted values.
-Heteroscedascity is the converse scenario : the variance differs along
-the range of values.
+Homoscedascity is the technical term to describe the variance of the residuals being constant across the range of predicted values.
+Heteroscedascity is the converse scenario : the variance differs along the range of values.
 
 %--Marginal and Conditional Residuals
 
@@ -219,8 +217,7 @@ the range of values.
 
 
 In recent years, mixed models have become invaluable tools in the analysis of experimental and observational
-data. In these models, more than one term can be subject to random variation. Mixed model
-technology enables you to analyze complex experimental data with hierarchical random processes, temporal,
+data. In these models, more than one term can be subject to random variation. Mixed model technology enables you to analyze complex experimental data with hierarchical random processes, temporal,
 longitudinal, and spatial data, to name just a few important applications. 
 
 \subsection{Stating the LME Model}
@@ -324,14 +321,7 @@ Residuals obtained in this manner ave called studentized residuals.
 
 	
 	\section{Case Deletion Diagnostics for LME models}
-	
-	%%% Haslett \& Dillane (19XX) }
-	
-	Haslett \& Dillane (19XX) remark that linear mixed effects models
-	didn't experience a corresponding growth in the use of deletion
-	diagnostics, adding that \citet{McCullSearle} makes no mention of
-	diagnostics whatsoever.
-	
+
 	%%%\citet{christensen}
 	
 	Christensen (19XX)  describes three propositions that are required
@@ -377,79 +367,10 @@ Residuals obtained in this manner ave called studentized residuals.
 	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
 	\end{eqnarray}
 	
-	
-	% Haslett Dillane
-	%==================================================================%
-	Haslett \& Dillane (199X) offers an
-	procedure to assess the influences for the variance components
-	within the linear model, complementing the existing methods for
-	the fixed components. 
-	
-	
-	The essential problem is that there is no
-	useful updating procedures for $\hat{V}$, or for $\hat{V}^{-1}$.
-	Haslett \& Dillane (199X) propose an alternative , and
-	computationally inexpensive approach, making use of the
-	`\texttt{delete=replace}' identity.
-	
-	\citet{Haslett99} considers the effect of `leave k out'
-	calculations on the parameters $\beta$ and $\sigma^{2}$, using
-	several key results from \citet{HaslettHayes} on partioned
-	matrices.
 
 
 
 
-\section{Haslett's Analysis} %2.5
-For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
-
-
-
-A general theory is presented for residuals from the general linear model with correlated errors. 
-It is demonstrated that there are two fundamental types of residual associated with this model, 
-referred to here as the marginal and the conditional residual. 
-
-These measure respectively the distance to the global aspects of the model as represented by the expected value 
-and the local aspects as represented by the conditional expected value. 
-
-These residuals may be multivariate. 
-
-\citet{HaslettHayes} developes some important dualities which have simple implications for diagnostics. 
-
-%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
-%------------------------------------------------------------%
-
-
-\section*{Haslett and Hayes - Residuals}
-Haslett and Hayes (1998) and Haslett (1999) considered the case of an LME model with correlated covariance structure.
-
-\newpage
-\subsection{Residual Diagnostics in LME models}
-\begin{itemize}
-	\item A \textbf{residual} is the difference between the observed quantity and the predicted value. In LME models a distinction is made between marginal residuals and conditional residuals.
-	
-	\item A \textbf{Marginal residual} is the difference between the observed data and the estimated marginal mean (Schabenberger  pg3)
-	The computation of case deletion diagnostics in the classical model is made simple by the fact that important estimates can be computed without refitting the model. 
-	
-	\item Such update formulae are available in the mixed model only if you assume that the covariance parameters are not affect by the removal of the observation in question. Schabenberger remarks that this is not a reasonable assumption.
-	
-\end{itemize}
-
-
-Basic procedure for quantifying influence is simple
-
-\begin{enumerate}
-	\item  	Fit the model to the data
-	\item   	Remove one or more data points from the analysis and compute updated estimates of model parameters
-	\item  	Based on the full and reduced data estimates, contrast quantities of interest to determine how the absence of the observations changed the analysis.
-\end{enumerate}
-The likelihood distance is a global summary measure expressing the joint influence of the observations in the set U on all parameters in $\Psi$ that were subject to updating.
-
-
-
-
-\newpage
 \subsection{Residual Diagnostics in LME models}
 \begin{itemize}
 	\item A \textbf{residual} is the difference between the observed quantity and the predicted value. In LME models a distinction is made between marginal residuals and conditional residuals.
@@ -521,12 +442,8 @@ determining
 LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
 RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
 \end{eqnarray}
-%
-%
-%\addcontentsline{toc}{section}{Bibliography}
-%
-%\bibliography{transferbib}
-%\end{document}
+
+\section{Carstensen}
 Let $y_{mir} $ be the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2,$ $i=1,\ldots,N,$ and $r = 1,\ldots,n_i.$ When the design is balanced and there is no ambiguity we can set $n_i=n.$ The LME model underpinning Roy's approach can be written
 \begin{equation}
 y_{mir} = \beta_{0} + \beta_{m} + b_{mi} + \epsilon_{mir}.
@@ -664,75 +581,14 @@ Carstensen makes some interesting remarks in this regard.
 	The only slightly non-standard (meaning "not often used") feature is the differing residual variances between methods.
 \end{quote}
 
-\section{Cook's Distance}
-\begin{itemize}
-	\item For variance components $\gamma$: $CD(\gamma)_i$,
-	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-\end{itemize}
+
 
 
 
 It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
 
-%=======================================================================%
-\section{Cook's Distance} %1.9
-%
-%\citet{cook77} greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
-%---------------------------------------------------------------------------%
-\citet{cook77} greatly expanded the study of residuals and influence measures. \index{Cook's distance}Cook's Distance , denoted as$D_{(i)}$, is a well known diagnostic technique used in classical linear models, used as an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. Cook's key observation was the effects of deleting each observation in turn could be calculated with little additional computation. That is to say, $D_{(i)}$ can be calculated without fitting a new regression coefficient each time an observation is deleted.  Consequently deletion diagnostics have become an integral part of assessing linear models. 
-
-The focus of this analysis is related to the estimation of point estimates (i.e. regression coefficients). It must be pointed out that the effect on the precision of estimates is separate from the effect on the point estimates. Data points that
-have a small \index{Cook's distance}Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
-
-As well as individual observations, Cook's distance can be used to analyse the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
-%\section{Effects on fitted and predicted values}
-\begin{eqnarray}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
-\delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}
-\end{eqnarray}
-%It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. 
-
-%======================================================= %
-%===================================================================%
-\newpage
-\begin{itemize}
-	\item \textit{
-		The previous Section (Section 4) is a literary review of residual diagnostics and influence procedures
-		for Linear Mixed Effects Models, drawing heavily on Schabenberger and Zewotir.}
-	
-	\item \textit{	Section 4 begins with an introduction to key topics in residual diagnostics, such as influence, leverage, outliers
-		and Cook's distance. Other concepts such as DFFITS and DFBETAs will be introduced briefly, mostly to explain why the are not particularly useful for
-		the Method Comparison context, and therefore are not elaborated upon.}
-	
-	\item \textit{	In brief, Variable Selection is not applicable to Method Comparison Studies, in the 
-		commonly used used context. 
-		Testing a rather simplisticy specificied model against one with more random effects terms is tractable, but this research question is of secondary importance.}
-\end{itemize}
-
-%=============================================== %
-\newpage
 
 
-\section{Cook's Distance} %1.9
-%
-%\citet{cook77} greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
-%---------------------------------------------------------------------------%
-\citet{cook77} greatly expanded the study of residuals and influence measures. \index{Cook's distance}Cook's Distance , denoted as$D_{(i)}$, is a well known diagnostic technique used in classical linear models, used as an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. Cook's key observation was the effects of deleting each observation in turn could be calculated with little additional computation. That is to say, $D_{(i)}$ can be calculated without fitting a new regression coefficient each time an observation is deleted.  Consequently deletion diagnostics have become an integral part of assessing linear models. 
-
-The focus of this analysis is related to the estimation of point estimates (i.e. regression coefficients). It must be pointed out that the effect on the precision of estimates is separate from the effect on the point estimates. Data points that
-have a small \index{Cook's distance}Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
-
-As well as individual observations, Cook's distance can be used to analyse the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
-%\section{Effects on fitted and predicted values}
-\begin{eqnarray}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
-\delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}
-\end{eqnarray}
-%It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. 
-
-%======================================================= %
 %===================================================================%
 
 \begin{itemize}
@@ -768,29 +624,6 @@ removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes 
 
 
 
-\section{Exention of Cook's Distance methodology to LME models}
-\index{Cook's distance} Cook's Distance is extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
-
-Diagnostic methods for variance components are based on `one-step' methods. \citet{cook86} gives a completely general method for assessing the influence of local departures from assumptions in statistical models. For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
-
-\[
-\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
-\]
-
-For random effect estimates, the \index{Cook's distance} Cook's distance is
-
-\[
-\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
-\]
-Large values for Cook's distance indicate observations for special attention.
-
-\index{Cook's distance}Cook's Distance was extended from classical linear models to LME models.  For linear mixed effects models, Cook's distance can be extended to model influence diagnostics by definining.
-
-\[ CD_{\beta i} = {(\hat{\beta} - \hat{\beta}_{[i]})^{T}(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}) (\hat{\beta} - \hat{\beta}_{[i]}) \over p}\]
-
-It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
-
-%================================================================== %
 
 
 
@@ -828,8 +661,6 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 
 \citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
 
-
-\newpage
 
 
 
@@ -938,18 +769,6 @@ The effect on the precision of estimates is separate from the effect on the poin
 have a small \index{Cook's distance} Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
 
 
-\section{Robinson's (1991) review}
-\emph{ Robinson's (1991) review of best linear unbiased prediction (BLUP), together with the subsequent discussion, has emphasized the very considerable range of models that may be addressed via the general least squares (GLS) solution to the general linear model $Y = X\beta + \varepsilon$, where $E(\varepsilon) = 0$ and $var(\varepsilon) = V$. These include linear mixed models, geostatistics, time series and multivariate regression.}
-
-
-\emph{ The texts by Christensen (1996, 1991) and the connections to modern topics of image analysis, quality analysis, Bayesian methods, and splines (all in Robinson and discussion) make it an eminently suitable topic for teaching in any course concerning statistical linear models. }
-
-
-\emph{Nevertheless some of the matrix algebra that results from solving the normal equations for individual specifications of the general linear model will be daunting, and far from intuitive for many students, even those who are at home in linear space. The conventional approach to prediction and estimation from data $Y$ associated with covariates X via the general linear model $Y = X\beta + \varepsilon$ is essentially a two-stage process.}
-
-The first stage is to determine the best,in the GLS sense, estimator $\hat{\beta}$ of $\beta$ and subsequently to determine everything else from this.
-
-The estimator is said to be best if it minimizes the generalization of the sum of squares $\hat{e}^{t}V^{-1}\hat{e}$, where $\hat{e} = Y- X\hat{\beta}$
 
 %---------------------------------------------------%
 
@@ -1043,79 +862,6 @@ It is this feature of system (1) that makes a generic approach to estimation pos
 
 
 
-
-\section{Predictors and Estimators}
-
-\emph{We note that Robinson (1991) stated "A convention has somehow developed that estimators of random effects are called predictors while estimators of fixed effects are called estimators." We agree that this distinction is confusing and indeed unnecessary.} \\ \bigskip
-
-
-
-We seek $\hat{Z}(Y) = \lambda_{z}^{t}Y$, where $ \lambda_{z}^{t}$, is an $n \times 1$ vector of estimation coefficients. It is convenient to specify $E[Z]=A\beta$ for known $A$. In this context $A$ denotes a row vector, but we generalize this in the following. The constraint requiring $\hat{Z}(Y)$ to be unbiased now reduces to $(A -  \lambda_{z}^{t}X) = 0$. A solution is found by minimizing $var(Z -  \lambda_{z}^{t}Y) + \gamma^t_z (X^t\lambda_{z} - A^t)$, where $\gamma_z$ is a $p \times 1$ vector of Lagrange multipliers, where $p$ is the length of the parameter vector $\beta$. Setting to zero the derivatives with respect to $\lambda_{z}$ and $\gamma_z $ yields the system.
-
-
-
-
-\begin{equation}
-\left(
-\begin{array}{cc}
-V & X \\
-X^t & 0 \\
-\end{array}
-\right)\left(
-\begin{array}{c}
-\lambda_{z}\\
-\gamma_z \\
-\end{array}
-\right)=\left(
-\begin{array}{c}
-\mbox{cov}(Y,Z)\\
-A^{t} \\
-\end{array}
-\right)
-\end{equation}
-
-
-If the inverse exists we have that
-\begin{equation}
-\left(
-\begin{array}{c}
-\lambda_{z}\\
-\gamma_z \\
-\end{array}
-\right)=\left(
-\begin{array}{cc}
-V & X \\
-X^t & 0 \\
-\end{array}
-\right) ^{-1}\left(
-\begin{array}{c}
-\mbox{cov}(Y,Z)\\
-A^{t} \\
-\end{array}
-\right)
-\end{equation}
-
-
-
-so that
-\[ \hat{Z}(Y) =
-\left(
-\begin{array}{cc}
-\lambda_{z}^{t}&
-\gamma_z^{t} \\
-\end{array}
-\right)=\left(
-\begin{array}{c}
-Y \\
-0 \\
-\end{array}
-\right) \]
-
-In terms of the estimation problem being considered the square matrix on the left-hand side of (1) concerns "what we have," namely, the data plus constraints.
-
-The matrix does not depend on Z and consequently need only be constructed once before application to a range of problems. The right- hand side contains the term $cov(Z,Y)$ and can be specified for whatever Z is being considered.
-
-It is this feature of system (1) that makes a generic approach to estimation possible.
 
 
 \section{Simplifying GLS}
@@ -1143,61 +889,7 @@ Here $Z$ denotes that scalar which is to be the objective of the estimation. Thi
 %--------------------------------------------------------------------%
 \newpage
 
-\section{Simplifying GLS}
 
-
-It is straightforward to show that $\hat{\beta} = (X^tV^{-l}X)^{-l}X^tV^{-l}Y = BY$ and at the minimum the sum of squares is $Y^{t} (V^{-l}  - V^{-l}(X^tV^{-l}X)^{-l}X^tV^{-l})Y = Y^{t}QY$.\\
-\bigskip
-
-\emph{The purpose of this note is to give emphasis to one derivation, based on Lagrange multipliers, which leads to a system of equations that is very intuitive and lends itself readily to specialization. This approach is in fact standard in the geostatistical treatment of \textbf{kriging} (see Matheron 1962; Journel and Huijbregts 1981; Ripley 1981; Cressie 1993). In the genetics literature it is associated with the name of Henderson (1983); or in the classical statistical literature Hocking (1996, p. 73) is a suitable reference.}
-
-\emph{The approach based on Lagrange multipliers deemphasizes the explicit determination of $\hat{\beta}$ and leads to a clearer understanding of the complementary (but for some confusing) tasks known as best linear unbiased estimation (BLUE) and best linear unbiased prediction (BLUP). Regrettably, Robinson-despite offering four derivations, and having as his main concern the interplay of BLUP and BLUE-gives it little prominence.}
-
-It has recently been discussed by Searle (1997, p; 278) who said that it makes another approach (Searle, Casella, and McCulloch 1992, p. 271) seem "obtuse and unnecessarily complicated." By contrast, our treatment emphasizes the fact that it leads to a single set of equations whose solution sheds simplifying light on very many issues in general least squares.
-
-The American Statistician's Teacher's Corner (e.g., McLean, Sanders, and Stroup 1991; Puntanen and Styan 1989) has already played host to previous attempts to simplify the explanation of such topics. Various authors (CPJ, Haslett Hayes ,Martin ) have visited the more specialized area of diagnostics and have developed \textbf{\emph{down-dating}} (leave-$k$-out) formulas.
-
-The conventional approach here is via tricky identities based on the inverses of partitioned matrices. Here again the Lagrange system of equations leads to a much simplified and-we claim-much more intuitive derivation of these more technical results.
-
-
-\emph{
-	The essence of the approach is to seek that linear combination of the available data Y which is best for the
-	estimation of Z among those linear estimators which are constrained to be unbiased. We adopt therefore a constrained minimization approach, using Lagrange multipliers. By best we mean that combination $\hat{Z}(Y) = \lambda_{z}^{t}Y$ which has least mean square error $E( Z- \lambda_{z}^{t}Y)^2$, and by unbiased we mean $E( Z- \lambda_{z}^{t}Y)) = 0$. }
-Here $Z$ denotes that scalar which is to be the objective of the estimation. This estimator is written as $\hat{Z}(Y)$ to make its dependence on $Y$ explicit. Note that the term "best" is applied in the context of minimizing the prediction variance $var(Z - Z(Y))$. We shall see that Z may be used to denote either a random variable or an unknown parameter, and that it will be sufficient to specify Z via $E[Z]$ and $cov(Z, Y)$. If $Z$ is not a random variable then of course the latter is zero and $E[Z] = Z$. We establish-very simply, as below-a general solution in terms of A and cov(Z, Y) and achieve particular tasks by identification of these. Our presentation is for a scalar Z, but the notation facilitates generalization to vector Z.
-
-
-%--------------------------------------------------------------------%
-
-
-\section{The extended likelihood}
-\begin{verbatim}
-The desire to have an entirely likelihood-based justification for estimates of random effects, in contrast to Henderson's equation, has motivated \citet[page 429]{Pawi:in:2001} to define the \emph{extended likelihood}. He remarks ``In mixed effects modelling the extended likelihood has been called \emph{h-likelihood} (for hierarchical  likelihood) by \cite{Lee:Neld:hier:1996}, while in smoothing literature it is known as the \emph{penalized likelihood} (e.g.\ \citeauthor{Gree:Silv:nonp:1994} \citeyear{Gree:Silv:nonp:1994})." The extended likelihood can be written $L(\beta,\theta,b|y) = p(y|b;\beta,\theta) p(b;\theta)$ and adopting the same distributional assumptions used by \cite{Henderson:1950} yields the log-likelihood function
-
-\begin{eqnarray*}
-	\ell_h(\beta,\theta,b|y)
-	& = \displaystyle -\frac{1}{2} \left\{ \log|\Sigma| + (y - X \beta -Zb)'\Sigma^{-1}( y - X \beta -Zb) \right.\\
-	&  \hspace{0.5in} \left. + \log|D| + b^\prime D^{-1}b \right\}.
-\end{eqnarray*}
-Given $\theta$, differentiating with respect to $\beta$ and $b$ returns Henderson's equations in (\ref{Henderson:Equations}).
-
-\subsubsection{The LME model as a general linear model}
-Henderson's equations in (\ref{Henderson:Equations}) can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
-\[
-\delta = \begin{pmatrix}{\beta \cr b},
-\ y_{a} = \begin{pmatrix}{
-	y \cr \psi
-},
-\ T = \begin{pmatrix}{
-	X & Z  \cr
-	0 & I
-},
-\ \textrm{and} \ W = \begin{pmatrix}{
-	\Sigma & 0  \cr
-	0 &  D },
-\]
-where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
-
-\end{verbatim}
 
 
 \section{Repeated measurements in LME models}

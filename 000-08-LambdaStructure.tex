@@ -1,0 +1,119 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{subfigure}
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{amsbsy}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.1}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.25cm}{0cm}{0.5cm}{0.5cm}
+
+\pagenumbering{arabic}
+%-------------------------------------------------------------------Simplifying GLS by KH -%
+
+
+\begin{document}
+% ================================================================================================================= %
+\section{Lambda Structure}
+
+\begin{equation}
+\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{0},\sigma^2 \boldsymbol{\Lambda})
+\end{equation}
+\begin{enumerate}
+	\item A simple assumption is to assumes that residuals are independent and homoscedastic, i.e. $\boldsymbol{Lambda = I}$.
+	
+	\item For the Bland Altman blood pressure data,$\boldsymbol{\Lambda}$ has kronecker product structure
+	and has dimensions $6 \times 6$.
+\end{enumerate}
+
+
+
+\subsection{Variance-Covariance Structures}
+
+\subsubsection{Independence}
+
+As though analyzed using between subjects analysis.
+\[
+\left(
+\begin{array}{c c c}
+\psi^2 & 0 & 0   \\
+0 & \psi^2 & 0   \\
+0 & 0 & \psi^2   \\
+\end{array}%
+\right)
+\]
+
+
+\subsubsection{Compound Symmetry}
+
+Assumes that the variance-covariance structure has a single variance (represented by $\psi^2$)
+for all 3 of the time points and a single covariance (represented by $\psi_{ij}$) for each of the pairs of trials.
+
+\[
+\left(%
+\begin{array}{c c c}
+\psi^2 &  \psi_{12} & \psi_{13}   \\
+\psi_{21} & \psi^2 & \psi_{23}   \\
+\psi_{31} & \psi_{32} & \psi^2   \\
+\end{array}%
+\right)
+\]
+
+
+\subsubsection{Unstructured}
+
+Assumes that each variance and covariance is unique.
+Each trial has its own variance (e.g. s12 is the variance of trial 1)
+and each pair of trials has its own covariance (e.g. s21 is the covariance of trial 1 and trial2).
+This structure is illustrated by the half matrix below.
+
+
+\subsubsection{Autoregressive}
+
+Another common covariance structure which is frequently observed
+in repeated measures data is an autoregressive structure,
+which recognizes that observations which are more proximate
+are more correlated than measures that are more distant.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{chicago}
+\bibliography{DB-txfrbib}
+\end{document}

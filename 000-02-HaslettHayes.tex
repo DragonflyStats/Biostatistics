@@ -1,0 +1,100 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{subfiles}
+\usepackage{subfigure}
+\usepackage{framed}
+\usepackage{subfiles}
+\usepackage{amsbsy}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.1}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.25cm}{0cm}{0.5cm}{0.5cm}
+
+\pagenumbering{arabic}
+%-------------------------------------------------------------------Simplifying GLS by KH -%
+
+
+\begin{document}
+
+
+
+
+\section*{Haslett and Hayes - Residuals}
+Haslett and Hayes (1998) and Haslett (1999) considered the case of an LME model with correlated covariance structure.
+
+\section{Haslett's Analysis} %2.5
+For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
+the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
+
+
+
+A general theory is presented for residuals from the general linear model with correlated errors. 
+It is demonstrated that there are two fundamental types of residual associated with this model, 
+referred to here as the marginal and the conditional residual. 
+
+These measure respectively the distance to the global aspects of the model as represented by the expected value 
+and the local aspects as represented by the conditional expected value. 
+
+These residuals may be multivariate. 
+
+\citet{HaslettHayes} developes some important dualities which have simple implications for diagnostics. 
+
+%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
+%------------------------------------------------------------%
+
+	
+	% Haslett Dillane
+	%==================================================================%
+	Haslett \& Dillane (199X) offers an
+	procedure to assess the influences for the variance components
+	within the linear model, complementing the existing methods for
+	the fixed components. 
+	
+	
+	The essential problem is that there is no
+	useful updating procedures for $\hat{V}$, or for $\hat{V}^{-1}$.
+	Haslett \& Dillane (199X) propose an alternative , and
+	computationally inexpensive approach, making use of the
+	`\texttt{delete=replace}' identity.
+	
+	\citet{Haslett99} considers the effect of `leave k out'
+	calculations on the parameters $\beta$ and $\sigma^{2}$, using
+	several key results from \citet{HaslettHayes} on partioned
+	matrices.
+	
+
+
+	
+	%%% Haslett \& Dillane (19XX) }
+	
+	Haslett \& Dillane (19XX) remark that linear mixed effects models
+	didn't experience a corresponding growth in the use of deletion
+	diagnostics, adding that \citet{McCullSearle} makes no mention of
+	diagnostics whatsoever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{chicago}
+\bibliography{DB-txfrbib}
+\end{document}
