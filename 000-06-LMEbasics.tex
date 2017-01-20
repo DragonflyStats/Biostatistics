@@ -20,20 +20,8 @@
 \setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.25cm}{0cm}{0.5cm}{0.5cm}
 
 \pagenumbering{arabic}
-%-------------------------------------------------------------------Simplifying GLS by KH -%
-
 
 \begin{document}
-
-
-
-
-
-
-
-
-\newpage
-
 
 \subsection{Laird Ware Formulation}
 \begin{equation*}
@@ -48,6 +36,32 @@
 
 
 
+\subsection{Stating the LME Model}
+The general linear mixed
+model is
+\[
+Y = X\beta + Zu + \varepsilon\]
+where Y is a $(n\times1)$ vector of observed data, X is an $(n\times p)$ fixed-effects design or regressor matrix of rank
+k, Z is a $(n \times g)$ random-effects design or regressor matrix, $u$ is a $(g \times 1)$ vector of random effects, and $\varepsilon$ is
+an $(n\times1)$ vector of model errors (also random effects). The distributional assumptions made by the MIXED
+procedure are as follows: γ is normal with mean 0 and variance G; $\varepsilon$ is normal with mean 0 and variance
+R; the random components $u$ and $\varepsilon$ are independent. Parameters of this model are the fixed-effects β and
+all unknowns in the variance matrices G and R. The unknown variance elements are referred to as the
+covariance parameters and collected in the vector $theta$.
+%===========================================================================%
+
+The concept of critiquing the model-data agreement applies in mixed models in the same way as in linear
+fixed-effects models. In fact, because of the more complex model structure, you can argue that model and
+data diagnostics are even more important. For example, you are not only concerned with capturing the
+important variables in the model. You are also concerned with “distributing” them correctly between the
+fixed and random components of the model. The mixed model structure presents unique and interesting
+challenges that prompt us to reexamine the traditional ideas of influence and residual analysis.
+%==========================================================================%
+This paper presents the extension of traditional tools and statistical measures for influence and residual
+analysis to the linear mixed model and demonstrates their implementation in the MIXED procedure (experimental
+features in SAS 9.1). The remainder of this paper is organized as follows. The “Background” section
+briefly discusses some mixed model estimation theory and the challenges to model diagnosis that result
+from it.
 
 
 
