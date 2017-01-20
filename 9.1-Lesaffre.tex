@@ -45,56 +45,5 @@
 	the information should be ignored.
 	%-----------------------------------------------------------------------------------------%
 	\newpage
-\section{Lesaffre's paper.} %5.6
 
-\begin{itemize}
-\item Lesaffre considers the case-weight perturbation approach.
-
-
-
-
-\item \citep{cook86} describes a local approach wherein each case is given a weight $w_{i}$ and the effect on the parameter estimation is measured by perturbing these weights. Choosing weights close to zero or one corresponds to the global case-deletion approach.
-
-
-\item Lesaffre  describes the displacement in log-likelihood as a useful metric to evaluate local influence \citep{cook86}.
-
-
-
-
-\item \citet{lesaffre} describes a framework to detect outlying observations that matter in an LME model. Detection should be carried out by evaluating diagnostics $C_{i}$ , $C_{i}(\alpha)$ and $C_{i}(D,\sigma^2)$.
-\end{itemize}
-
-
-
-
-
-
-Lesaffre defines the total local influence of individual $i$ as
-\begin{equation}
-C_{i} = 2 | \triangle \prime _{i} L^{-1} \triangle_{i}|.
-\end{equation}
-
-
-
-
-The influence function of the MLEs evaluated at the $i$th point $IF_{i}$, given by
-\begin{equation}
-IF_{i} = -L^{-1}\triangle _{i}
-\end{equation}
-can indicate how $\hat{theta}$ changes as the weight of the $i$th
-subject changes.
-
-
-The manner by which influential observations distort the estimation process can be determined by inspecting the
-interpretable components in the decomposition of the above measures of local influence.
-
-
-
-
-Lesaffre comments that there is no clear way of interpreting the information contained in the angles, but that this doesn't mean the information should be ignored.
-
-
-
-
-\bibliography{DB-txfrbib}
 \end{document}
