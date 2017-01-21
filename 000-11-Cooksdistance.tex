@@ -1,3 +1,8 @@
+Cook's D is a good measure of the influence of an observation and is proportional to the sum of the squared differences between predictions made with all observations in the analysis and predictions made leaving out the observation in question. If the predictions are the same with or without the observation in question, then the observation has no influence on the regression model. If the predictions differ greatly when the observation is not included in the analysis, then the observation is influential.
+
+\subsection{Interpreting Cook's Distance}
+A common rule of thumb is that an observation with a value of Cook's D over 1.0 has too much influence. As with all rules of thumb, this rule should be applied judiciously and not thoughtlessly.
+
 \chapter{Cook's Distance}
 How to extract/compute leverage and Cook's distances for linear mixed effects models
 
@@ -7,6 +12,7 @@ You should have a look at the R package influence.ME. It allows you to compute m
 
 An example model:
 
+\begin{verbatim}
 library(lme4)
 model <- lmer(mpg ~ disp + (1 | cyl), mtcars)
 
@@ -24,7 +30,7 @@ Plot Cook's distance:
 plot(infl, which = "cook")
 
 enter image description here
-
+\end{verbatim}
 %================================================================================%
 
 %% Stack Overflow  Question
