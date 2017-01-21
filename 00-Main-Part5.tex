@@ -74,73 +74,6 @@ where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\ma
 
 
 
-\section{Augmented GLMs}
-%Augmented General linear models.
-% Youngjo et al page 154
-\subsection{Augmented linear model}
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-
-
-The error term $e^{*}$ is normal with mean zero. The variance
-matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-\begin{equation}
-y_{a} = T \delta + e^{*}
-\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-\newpage
-
-
-Generalized linear models are a generalization of classical linear  models.
 
 \section{Simplifying GLS (K Hayes)}
 
@@ -199,8 +132,16 @@ Inferential method was developed for the mixed linear model via Lee and Nelder's
 
 % Generalized linear models are a generalization of classical linear  models.
 
+\section{Augmented GLMs} %3.1
 
-\section{Augmented linear model}
+With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
 The subscript $M$ is a label referring to the mean model.
 \begin{equation}
 \left(%
@@ -210,7 +151,6 @@ Y \\
 \end{array}%
 \right) = \left(
 \begin{array}{cc}
-% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
 X & Z \\
 0 & I \\
 \end{array}\right) \left(%
@@ -222,7 +162,168 @@ X & Z \\
 \end{equation}
 
 
+%Augmented Generalized linear models.
 
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
+
+
+\begin{equation}
+y_{a} = T \delta + e^{*}
+\end{equation}
+
+%y_{a} = T \delta + e^{*}
+%\end{equation}
+
+Weighted least squares equation
+
+
+
+
+
+
+
+
+
+
+$y_{a} = T \delta + e^{*}$
+
+
+Weighted least squares equation
+
+
+
+
+% Youngjo et al page 154
+
+
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+
+
+\section{Augmented GLMs} 
+
+
+%---------------------------------------------------------------------------%
+% - 3. Augmented GLMS
+%---------------------------------------------------------------------------%
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+
+%y_{a} = T \delta + e^{
+%\end{equation}
+
+Weighted least squares equation
+
+
+% Youngjo et al page 154
+
+
+
+
+%=================================================================================%
+
+
+\section{Augmented GLMs}
+%Augmented General linear models.
+% Youngjo et al page 154
 
 The error term $e^{*}$ is normal with mean zero. The variance
 matrix of the error term is given by
@@ -260,209 +361,10 @@ Weighted least squares equation
 
 
 % Youngjo et al page 154
-%=======================================================================================================================%
-
-\section{Augmented GLMs} %3.1
-
-With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-
-
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-%Augmented Generalized linear models.
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-
-%y_{a} = T \delta + e^{*}
-%\end{equation}
-
-Weighted least squares equation
-
-
-
-
-
-
-%\chapter{Application to Method Comparison Studies} % Chapter 4
-
-
-%---------------------------------------------------------------------------%
-% - 1. Application to MCS
-% - 2. Grubbs' Data
-% - 3. R implementation
-% - 4. Influence measures using R
-
-
-\section{Augmented GLMs} %3.1
-
-
-With the use of h-likelihood, a random effected model of the form can be viewed as an `augmented GLM' with the response variables $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-  Y \\
-  \psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-  X & Z \\
-  0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-  \beta \\
-  \nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-
-
-%Augmented Generalized linear models.
-
-
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-  \Sigma & 0 \\
-  0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-
-$y_{a} = T \delta + e^{*}$
-
-
-Weighted least squares equation
-
-
-
-
-% Youngjo et al page 154
-
-
+\newpage
 
 
 Generalized linear models are a generalization of classical linear  models.
-
-\section{Augmented GLMs} %3.1
-
-With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-
-%---------------------------------------------------------------------------%
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-%Augmented Generalized linear models.
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-\begin{equation}
-y_{a} = T \delta + e^{*}
-\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-
-
-
-\section{The Augmented Model Matrix}  %3.1.2
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-  T & Z \\
-  0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-  \beta  \\
-  \nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-
-
 
 \section{Grubbs' Data} %4.2
 
@@ -579,71 +481,6 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 
 
 
-
-\section{Augmented GLMs} 
-
-
-%---------------------------------------------------------------------------%
-% - 3. Augmented GLMS
-%---------------------------------------------------------------------------%
-
-
-Generalized linear models are a generalization of classical linear  models.
-
-With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-
-
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-%Augmented Generalized linear models.
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-
-%y_{a} = T \delta + e^{
-%\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-
-
-
-
-%=================================================================================%
 
 
 \section{Grubbs' Data} %4.2
