@@ -113,13 +113,7 @@
 	
 	
 	
-	\subsection*{Influence Analysis for LME Models} %1.1.3
-	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. Christensen et al advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
-	
-	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
-	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence (Zewotir).
-	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
-	
+
 	\subsection{Influence Statistics for LME models} %1.1.4
 	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
 	\begin{itemize}
@@ -146,36 +140,7 @@
 	\end{itemize}
 	%---------------------------------------------------------------------------%
 	\newpage
-	\subsection*{Influence Statistics for LME models} %1.1.4
-	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
-	\begin{itemize}
-		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
-		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
-		\item influence on precision of estimates: CovRatio and CovTrace
-		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
-		\item outlier properties: internally and externally studentized residuals, leverage
-	\end{itemize}
-	
-	\newpage
-	\subsection{Influence Analysis for LME Models} %1.1.3
-	The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
-	
-	Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
-	Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
-	Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
-	
-	\subsection{Influence Statistics for LME models} %1.1.4
-	Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
-	\begin{itemize}
-		\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
-		\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
-		\item influence on precision of estimates: CovRatio and CovTrace
-		\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
-		\item outlier properties: internally and externally studentized residuals, leverage
-	\end{itemize}
-	%---------------------------------------------------------------------------%
-	
-	
+
 	\subsection{What is Influence} %1.1.5
 	
 	Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
@@ -249,83 +214,6 @@ OLS regression, the residual sums of squares serves that purpose. In linear mixe
 
 %---------------------------------------------------------------------------%
 \newpage
-\section{Cook's Distance} %1.9
-
-\subsection{Cook's Distance}%1.19.1 
-Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
-a new regression coefficient each time an observation is deleted.
-
-
-
-
-
-\subsection{Cooks's Distance}%1.9.2
-\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
-
-\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
-
-If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.	
-	
-
-\chapter{Cook's Distance}
-How to extract/compute leverage and Cook's distances for linear mixed effects models
-
-Does anyone know how to compute (or extract) leverage and Cook's distances for a mer class object (obtained through lme4 package)? I'd like to plot these for a residuals analysis.
-
-You should have a look at the R package influence.ME. It allows you to compute measures of influential data for mixed effects models generated by lme4.
-
-An example model:
-
-library(lme4)
-model <- lmer(mpg ~ disp + (1 | cyl), mtcars)
-
-The function influence is the basis for all further steps:
-
-library(influence.ME)
-infl <- influence(model, obs = TRUE)
-
-Calculate Cook's distance:
-
-cooks.distance(infl)
-
-Plot Cook's distance:
-
-plot(infl, which = "cook")
-
-enter image description here
-
-%================================================================================%
-
-%% Stack Overflow  Question
-%% - http://stats.stackexchange.com/questions/54818/how-to-extract-compute-leverage-and-cooks-distances-for-linear-mixed-effects-mo
-
-How to extract/compute leverage and Cook's distances for linear mixed effects models
-
-Does anyone know how to compute (or extract) leverage and Cook's distances for a mer class object (obtained through lme4 package)? I'd like to plot these for a residuals analysis.
-
-You should have a look at the R package influence.ME. It allows you to compute measures of influential data for mixed effects models generated by lme4.
-
-An example model:
-
-\begin{verbatim}
-library(lme4)
-model <- lmer(mpg ~ disp + (1 | cyl), mtcars)
-\end{verbatim}
-
-The function influence is the basis for all further steps:
-
-\begin{verbatim}
-library(influence.ME)
-infl <- influence(model, obs = TRUE)
-Calculate Cook's distance:
-
-cooks.distance(infl)
-Plot Cook's distance:
-
-plot(infl, which = "cook")
-\end{verbatim}
-
-%================================================================================%
 
 \chapter{Zewotir}
 
@@ -383,7 +271,10 @@ with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X
 compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
 
 
-\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+
+
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+
 
 
 
@@ -430,37 +321,9 @@ The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the v
 The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 
-%---------------------------------------------------------------------------%
-\newpage
-\section{Haslett's Analysis} %2.5
-For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\newpage
-\chapter{Zewotir's Paper}
-
-
-% 2.1 Efficient Updating Theorem
-% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
-% 2.3 Computation and Notation
-% 2.4 Measures 2
-% 2.5 Haslett Hayes Paper
-% 2.6 Demidenko I Influence
 
 
 
-\section{Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-
-
-\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-
-\newpage
 \section{Haslett's Analysis} %2.5
 For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
 the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
@@ -811,164 +674,6 @@ H = A \left(A^\top  A\right)^{-1} A^\top ,
 
 %-------------------------------------------------------------------------------------------------------%
 
-\section{Cross Validation} %5.4
-
-Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
-$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
-excluded.
-
-
-In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
-
-
-Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
-
-subsection{Cross Validation: Updating standard deviation} %5.4.1
-
-The variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
-\end{equation}
-
-Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
-
-\begin{equation}
-Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-\end{equation}
-
-The updated estimate for the slope is therefore
-\begin{equation}
-\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-\end{equation}
-
-It is necessary to determine the mean for $x$ and $y$ of the
-remaining $n-1$ terms
-\begin{equation}
-\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-\end{equation}
-
-\begin{equation}
-\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-\end{equation}
-
-The updated intercept estimate is therefore
-
-\begin{equation}
-\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-\end{equation}
-
-%------------------------------------------------------------------------%
-\newpage
-subsection{Cross Validation: Updating standard deviation} %5.4.1
-
-The variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
-\end{equation}
-
-Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
-
-\begin{equation}
-Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-\end{equation}
-
-The updated estimate for the slope is therefore
-\begin{equation}
-\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-\end{equation}
-
-It is necessary to determine the mean for $x$ and $y$ of the
-remaining $n-1$ terms
-\begin{equation}
-\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-\end{equation}
-
-\begin{equation}
-\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-\end{equation}
-
-The updated intercept estimate is therefore
-
-\begin{equation}
-\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-\end{equation}
-
-%------------------------------------------------------------------------%
-\newpage
-\subsection{Cross Validation: Updating standard deviation} %5.4.1
-
-The variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
-\end{equation}
-
-Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
-
-\begin{equation}
-Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-\end{equation}
-
-The updated estimate for the slope is therefore
-\begin{equation}
-\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-\end{equation}
-
-It is necessary to determine the mean for $x$ and $y$ of the
-remaining $n-1$ terms
-\begin{equation}
-\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-\end{equation}
-
-\begin{equation}
-\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-\end{equation}
-
-The updated intercept estimate is therefore
-
-\begin{equation}
-\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-\end{equation}
-
-%------------------------------------------------------------------------%
-\newpage
 
 \chapter{Appendices} % Chapter 5
 %---------------------------------------------------------------------------------------------------------%
@@ -1078,11 +783,166 @@ In leave-one-out cross validation, each observation is omitted in turn, and a re
 Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
 
 
-\section{Updating Estimates} %5.5
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
 
 
-\section{Updating Estimates} %5.5
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
 
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
 
 \subsection{Updating Standard deviation}
 A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
