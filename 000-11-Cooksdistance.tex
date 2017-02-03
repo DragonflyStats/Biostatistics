@@ -1,3 +1,26 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{amsbsy}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.4}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.5cm}{0cm}{1cm}{1cm}
+
+\pagenumbering{arabic}
+
+
+\begin{document}
+	
 Cook's D is a good measure of the influence of an observation and is proportional to the sum of the squared differences between predictions made with all observations in the analysis and predictions made leaving out the observation in question. If the predictions are the same with or without the observation in question, then the observation has no influence on the regression model. If the predictions differ greatly when the observation is not included in the analysis, then the observation is influential.
 
 \subsection{Interpreting Cook's Distance}
@@ -338,13 +361,5 @@ John Fox (1), in his booklet on regression diagnostics is rather cautious when i
 In your case the observations 7 and 16 could be considered as influential. Well, I would at least have a closer look at them. The observation 29 is not substantially different from a couple of other observations.
 
 (1) Fox, John. (1991). Regression Diagnostics: An Introduction. Sage Publications.
-\chapter{Appendices} % Chapter 5
-%---------------------------------------------------------------------------------------------------------%
-% Appendices
-% - The Hat Matrix (5.1)
-% - Sherman Morrison Woodbury Formula (5.2)
-% -  Hat Matrix applied to MCS (5.3)
-% - Cross Validation (Updating standard deviation) (5.4)
-% - Updating Estimates (5.5)
-% - Lesaffre's paper (5.6)
-%---------------------------------------------------------------------------------------------------------%
+
+\end{document}

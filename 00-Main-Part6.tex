@@ -23,6 +23,321 @@
 	\author{Kevin O'Brien}
 	\title{Mixed Models for Method Comparison Studies}
 	\tableofcontents
+
+			
+			%---------------------------------------------------------------------------%
+			
+			
+			\section{Introduction}%1.1
+			In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
+			Model diagnostic techniques determine whether or not the distributional assumptions are satisfied, and to assess the influence of unusual observations.
+			
+			\subsection{What is Influence} %1.1.5
+			
+			
+			Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+			points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
+			
+			
+			
+			\newpage
+			
+			%==================================================================================================== %
+			\subsection{Influence}
+			Broadly
+			defined, ``\textit{influence}” is understood as the ability of a single or multiple data points, through their presence
+			or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
+			violate assumptions of the statistical model. 
+			
+			
+			The goal of influence analysis is not primarily to mark data
+			points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
+			result of influence analysis. The goal is rather to determine which cases are influential and the manner in
+			which they are important to the analysis. Outliers, for example, may be the most noteworthy data points in
+			an analysis. They can point to a model breakdown and lead to development of a better model.
+			
+			
+			\section{Influence analysis} %1.7
+			
+			Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+			
+			\emph{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+			For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+			
+			\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+			Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+			
+			The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+			interest.
+			
+			
+			
+			\subsection{Overall Influence}
+			An overall influence statistic measures the change in the objective function being minimized. For example, in
+			OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+			\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+			
+			
+			%-------%
+			\subsection{Quantifying Influence}  %1.1.6
+			
+			
+			The basic procedure for quantifying influence is simple as follows:
+			
+			
+			\begin{itemize}
+				\item Fit the model to the data and obtain estimates of all parameters.
+				\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+				\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+			\end{itemize}
+			
+			
+			\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+			
+			
+			
+			
+			
+			
+			
+			\subsection{Model Data Agreement}
+			Schabenberger(20XX) describes the examination of model-data agreement as comprising several elements; \begin{itemize}
+				\item residual analysis, 
+				\item goodness of fit, 
+				\item collinearity diagnostics
+				\item influence analysis.
+			\end{itemize}
+			\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+			%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+			
+			The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+			
+			
+			
+			
+			%-------%
+			\subsection{Quantifying Influence}  %1.1.6
+			
+			The basic procedure for quantifying influence is simple as follows:
+			
+			\begin{itemize}
+				\item Fit the model to the data and obtain estimates of all parameters.
+				\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+				\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+			\end{itemize}
+			
+			\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+			
+			%-------%
+			
+			\subsection{Quantifying Influence}  %1.1.6
+			
+			The basic procedure for quantifying influence is simple as follows:
+			
+			\begin{itemize}
+				\item Fit the model to the data and obtain estimates of all parameters.
+				\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+				\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+			\end{itemize}
+			
+			\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+			
+			
+			
+			
+			
+			
+			%---------------------------------------------------------------------------%
+			
+			
+			\newpage
+			\subsection{Residual diagnostics} %1.3
+			For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
+			
+			\newpage
+			\subsection*{Extension of techniques to LME Models} %1.2
+			
+			Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+			
+			% - \citet{Beckman}
+			Beckman, Nachtsheim and Cook (1987)  applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+			
+			While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+			
+			If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+			
+			\begin{itemize}
+				\item the estimates of fixed effects,
+				\item the estimates of the precision of the fixed effects,
+				\item the estimates of the covariance parameters,
+				\item the estimates of the precision of the covariance parameters,
+				\item fitted and predicted values.
+			\end{itemize}
+			
+			\newpage
+			
+			
+			Influence Diagnostics
+			Basic Idea and Statistics
+			
+			The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+			
+			Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+			\begin{itemize}
+				\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+				\item influence on parameter estimates: Cook’s  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+				\item influence on precision of estimates: CovRatio and CovTrace
+				\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+				\item outlier properties: internally and externally studentized residuals, leverage
+			\end{itemize}
+			For linear models for uncorrelated data, it is not necessary to refit the model after removing a data point in order to measure the impact of an observation on the model. The change in fixed effect estimates, residuals, residual sums of squares, and the variance-covariance matrix of the fixed effects can be computed based on the fit to the full data alone. By contrast, in mixed models several important complications arise. Data points can affect not only the fixed effects but also the covariance parameter estimates on which the fixed-effects estimates depend. 
+			
+			Furthermore, closed-form expressions for computing the change in important model quantities might not be available.
+			This section provides background material for the various influence diagnostics available with the MIXED procedure. See the section Mixed Models Theory for relevant expressions and definitions. The parameter vector  denotes all unknown parameters in the  and  matrix.
+			The observations whose influence is being ascertained are represented by the set  and referred to simply as "the observations in ." The estimate of a parameter vector, such as , obtained from all observations except those in the set  is denoted . In case of a matrix , the notation  represents the matrix with the rows in  removed; these rows are collected in . If  is symmetric, then notation  implies removal of rows and columns. The vector  comprises the responses of the data points being removed, and  is the variance-covariance matrix of the remaining observations. When , lowercase notation emphasizes that single points are removed, such as .
+			
+
+				%-------------------------------------------------------------------------------------------------%
+				\section{Leverage and Influence}
+				\subsection{Influence}
+				The influence of an observation can be thought of in terms of how much the predicted scores for other observations would differ if the observation in question were not included. 
+				
+				Cook's D is a good measure of the influence of an observation and is proportional to the sum of the squared differences between predictions made with all observations in the analysis and predictions made leaving out the observation in question. If the predictions are the same with or without the observation in question, then the observation has no influence on the regression model. If the predictions differ greatly when the observation is not included in the analysis, then the observation is influential.
+				
+				\subsection{Interpreting Cook's Distance}
+				A common rule of thumb is that an observation with a value of Cook's D over 1.0 has too much influence. As with all rules of thumb, this rule should be applied judiciously and not thoughtlessly.
+				
+				\subsection{Leverage}
+				% http://onlinestatbook.com/2/regression/influential.html
+				% Leverage
+				The leverage of an observation is based on how much the observation's value on the predictor variable differs from the mean of the predictor variable. The greater an observation's leverage, the more potential it has to be an influential observation. 
+				
+				For example, an observation with a value equal to the mean on the predictor variable has no influence on the slope of the regression line regardless of its value on the criterion variable. On the other hand, an observation that is extreme on the predictor variable has the potential to affect the slope greatly.
+				
+				\subsubsection{Calculation of Leverage (h)}
+				The first step is to standardize the predictor variable so that it has a mean of 0 and a standard deviation of 1. Then, the leverage (h) is computed by squaring the observation's value on the standardized predictor variable, adding 1, and dividing by the number of observations.
+				
+				
+				\subsection{Summary of Influence Statistics}
+				\begin{itemize}
+					\item	\textbf{Studentized Residuals} – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
+					\item	\textbf{Leverage Values (Hat Diag)} – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
+					\item	\textbf{DFFITS} – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
+					\item	\textbf{DFBETAS} – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
+					\\
+					The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
+					
+					\item	\textbf{Cook’s D} – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
+				\end{itemize}
+				\newpage
+				
+				%---------------------------------------------------------------------------%
+				\newpage
+				\section{Influence analysis} %1.7
+				
+				Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+				
+				\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+				For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+				
+				
+				
+				%---------------------------------------------------------------------------%
+				\newpage
+				\section{Iterative and non-iterative influence analysis} %1.13
+				\citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
+				
+				
+				A measure of total influence requires updates of all model parameters.
+				
+				
+				however, this doesnt increase the procedures execution time by the same degree.
+				\subsection{Iterative Influence Analysis}
+				
+				
+				%----schabenberger page 8
+				For linear models, the implementation of influence analysis is straightforward.
+				However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
+				This can only be achieved in general is by omitting observations, then refitting the model.
+				
+				
+				\citet{schabenberger} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
+				
+				\newpage
+				
+				\section{Influence analysis} %1.7
+				
+				
+				Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+				
+				
+				\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+				For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+				
+				
+				\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+				Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+				
+				
+				The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+				interest.
+				
+				
+				
+				
+				
+				
+				\subsection{Overall Influence}
+				An overall influence statistic measures the change in the objective function being minimized. For example, in
+				OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+				\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+				
+
+					%-----------------------------------------------------------------%
+					\section*{Diagnostic Methods for OLS models}
+					% Cook's Distance for OLS models
+					% http://www.amstat.org/meetings/jsm/2012/onlineprogram/AbstractDetails.cfm?abstractid=305411
+					Influence diagnostics are formal techniques allowing for the identification of observations that exert substantial 
+					influence on the estimates of fixed effects and variance covariance parameters. 
+					
+					The idea of influence diagnostics for a given observation is to quantify the effect of omission of this observation 
+					from the data on the results of the model fit. To this aim, the concept of likelihood displacement is used. 
+					
+					%---------------------------------------------------------------%
+					% We have developed a function in R, which allows performing influence diagnostics for linear mixed effects models 
+					% fitted using the lme() function from the nlme package. 
+					% The use of the new function is illustrated using data from a randomized clinical trial.
+					
+					%---------------------------------------------------------------%
+					
+					\subsection*{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+					%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+					
+					The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+					
+					\newpage
+					\section{Case Deletion Diagnostics} %1.6
+					
+					\textbf{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+					
+					\subsection{Deletion Diagnostics}
+					
+					Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
+					
+					Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
+					
+					Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
+					
+					Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
+					
+					The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
+					
+					\section{Effects on fitted and predicted values}
+					\begin{equation}
+					\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+					\end{equation}
+					
+
 \chapter{Influence}
 	
 	
@@ -655,300 +970,7 @@ For overall influence, the most common approaches are the `likelihood distance' 
 'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
 
 
-\chapter{Zewotir}
 
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\section{Efficient Updating Theorem} %2.1
-\citet{Zewotir} describes the basic theorem of efficient updating.
-\begin{itemize}
-	\item \[ m_i = {1 \over c_{ii}}\]
-	%\item
-	%item
-	%\item
-\end{itemize}
-
-
-
-
-\subsubsection{Random Effects}
-
-
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-
-\subsubsection{linear functions}
-
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-
-
-
-
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-
-
-
-
-
-\section{Haslett's Analysis} %2.5
-For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
-
-
-A general theory is presented for residuals from the general linear model with correlated errors.
-It is demonstrated that there are two fundamental types of residual associated with this model,
-referred to here as the marginal and the conditional residual.
-
-
-These measure respectively the distance to the global aspects of the model as represented by the expected value
-and the local aspects as represented by the conditional expected value.
-
-
-These residuals may be multivariate.
-
-
-\citet{HaslettHayes} developes some important dualities which have simple implications for diagnostics.
-
-
-%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
-
-
-
-\section{Demidenko's I Influence} %2.6
-The concept of I Influence is generalized  to the non linea regression model.
-
-
-
+\bibliographystyle{chicago}
 \bibliography{DB-txfrbib}
-%---------------------------------------------------------------------------%
-%1.1 Introduction to Influence Analysis
-%1.2 Extension of techniques to LME Models
-%1.3 Residual Diagnostics
-%1.4 Standardized and studentized residuals
-%1.5 Covariance Parameters
-%1.6 Case Deletion Diagnostics
-%1.7 Influence Analysis
-%1.8 Terminology for Case Deletion
-%1.9 Cook's Distance (Classical Case)
-%1.10 Cook's Distance (LME Case)
-%1.11 Likelihood Distance
-%1.12 Other Measures
-%1.13 CPJ Paper
-%1.14 Matrix Notation of Case Deletion
-%1.15 CPJ's Three Propositions
-%1.16 Other measures of Influence
-
-
-
-
-
-\newpage
-\subsection{Extension of techniques to LME Models} %1.2
-
-Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models. Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
-
-Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
-
-While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
-
-If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
-
-\begin{itemize}
-	\item the estimates of fixed effects,
-	\item the estimates of the precision of the fixed effects,
-	\item the estimates of the covariance parameters,
-	\item the estimates of the precision of the covariance parameters,
-	\item fitted and predicted values.
-\end{itemize}
-
-
-
-
-
-
-%---------------------------------------------------------------------------%
-\newpage
-\subsection{Influence Statistics for LME models} %1.1.4
-Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
-\begin{itemize}
-	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
-	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
-	\item influence on precision of estimates: CovRatio and CovTrace
-	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
-	\item outlier properties: internally and externally studentized residuals, leverage
-\end{itemize}
-%---------------------------------------------------------------------------%
-
-
-
-
-\newpage
-\subsection{Extension of techniques to LME Models} %1.2
-
-
-Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
-
-
-Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
-
-
-While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
-
-
-If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
-
-
-\begin{itemize}
-	\item the estimates of fixed effects,
-	\item the estimates of the precision of the fixed effects,
-	\item the estimates of the covariance parameters,
-	\item the estimates of the precision of the covariance parameters,
-	\item fitted and predicted values.
-\end{itemize}
-
-
-
-
-
-
-
-
-\newpage
-\subsection{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
-
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-
-
-%--------------------------------------------------%
-\subsection{Residual Analysis for Linear Models, LME models and GLMs}
-
-\textbf{Keywords:}
-
-\begin{itemize}
-	\item Residuals (\emph{Beginners}), 
-	\item Testing the Assumption of Normality (\emph{Beginners})
-	\item Diagnostic Plots with the \texttt{plot} function
-	\item Cook's Distance
-	\item DFFits and DFBeta
-	\item Standardized and Studentized Residuals
-	\item Influence Leverage and Outlierness
-\end{itemize}
-%=================================================================================================== %
-\newpage
-
-%http://www.artifex.org/~meiercl/R_statistics_guide.pdf
-\subsection{Identifying outliers with a LME model object}
-
-The process is slightly different than with standard LME model objects, since the \textbf{\emph{influence}}
-function does not work on lme model objects. Given \textbf{\emph{mod.lme}}, we can use the plot function to
-identify outliers.
-%----------------------%
-\subsection{Diagnostics for Random Effects}
-Empirical best linear unbiased predictors EBLUPS provide the a useful way of diagnosing random effects.
-
-EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller than the estimated effects would be if they were computed by treating a random factor as if it was fixed (West et al )
-
-
-
-
-\newpage
-
-
-\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
-%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
-
-The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
-
-
-
-
-\subsection{Case Deletion Diagnostics for Mixed Models}
-
-\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
-
-\citet{Christiansen} develops these techniques in the context of REML
-
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-%===================================================================================== %
-
-
-\section{Demidenko's I Influence} %2.6
-The concept of I Influence is generalized  to the non linea regression model.
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-
-
-
-\section{Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-
-
-\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-
-
-
-
-
-
-\section{The Hat Matrix} %5.1
-
-The projection matrix $H$ (also known as the hat matrix), is a
-well known identity that maps the fitted values $\hat{Y}$ to the
-observed values $Y$, i.e. $\hat{Y} = HY$.
-
-\begin{equation}
-H =\quad X(X^{T}X)^{-1}X^{T}
-\end{equation}
-
-$H$ describes the influence each observed value has on each fitted
-value. The diagonal elements of the $H$ are the `leverages', which
-describe the influence each observed value has on the fitted value
-for that same observation. The residuals ($R$) are related to the
-observed values by the following formula:
-\begin{equation}
-R = (I-H)Y
-\end{equation}
-
-The variances of $Y$ and $R$ can be expressed as:
-\begin{eqnarray}
-\mbox{var}(Y) = H\sigma^{2} \nonumber\\
-\mbox{var}(R) = (I-H)\sigma^{2}
-\end{eqnarray}
-
-Updating techniques allow an economic approach to recalculating
-the projection matrix, $H$, by removing the necessity to refit the
-model each time it is updated. However this approach is known for
-numerical instability in the case of down-dating.
-
-
-
-
-
-
 \end{document}
