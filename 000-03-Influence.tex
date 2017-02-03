@@ -65,8 +65,6 @@ OLS regression, the residual sums of squares serves that purpose. In linear mixe
 \index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
 
 
-
-\newpage
 \section{Iterative and non-iterative influence analysis} %1.13
 \citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
 
@@ -149,7 +147,6 @@ The general idea of quantifying the influence of one or more observations relies
 
 
 
-%-------%
 \subsection{Quantifying Influence}  %1.1.6
 
 The basic procedure for quantifying influence is simple as follows:
@@ -162,21 +159,6 @@ The basic procedure for quantifying influence is simple as follows:
 
 \citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
 
-%-------%
-
-\subsection{Quantifying Influence}  %1.1.6
-
-The basic procedure for quantifying influence is simple as follows:
-
-\begin{itemize}
-	\item Fit the model to the data and obtain estimates of all parameters.
-	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
-	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
-\end{itemize}
-
-\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
-
-\newpage
 
 
 \section*{Influence Diagnostics : Basic Idea and Statistics}
@@ -400,9 +382,7 @@ OLS regression, the residual sums of squares serves that purpose. In linear mixe
 			result of influence analysis. The goal is rather to determine which cases are influential and the manner in
 			which they are important to the analysis. Outliers, for example, may be the most noteworthy data points in
 			an analysis. They can point to a model breakdown and lead to development of a better model.
-			
-			
-			\newpage
+
 			\section{Influence analysis} %1.7
 			
 			Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
