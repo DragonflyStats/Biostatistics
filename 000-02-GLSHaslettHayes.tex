@@ -26,6 +26,343 @@
 \begin{document}
 
 
+
+\chapter{General Linear model}
+\section{General Linear model} Mixed Effects Models are seen as
+especially robust in the analysis of unbalanced data when compared
+to similar analyses done under the General Linear Model framework
+(Pinheiro and Bates, 2000).
+
+A Mixed Effects Model is an extension of the General Linear Model
+that can specify additional random effects terms
+
+
+
+
+\subsection{Equivalence of LME model}
+Henderson's mixed model equations are presented on page 147 of
+Youngjo et al. Youngjo et al demonstrate that this formulation is
+equivalent to an augmented general linear model.
+
+Youngjo et al show that the linear mixed effects model can be
+shown to be the augmented classical linear model involving fixed
+effects parameters only.
+\section{The LME model as a general linear model}
+Henderson's equations in (\ref{Henderson:Equations}) can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
+\[
+\delta = \left(\begin{array}{c}\beta \\ b \end{array}\right),
+\ y_{a} = \left(\begin{array}{c}
+y \cr \psi
+\end{array}\right),
+\ T = \left(\begin{array}{cc}
+X & Z  \\
+0 & I
+\end{array}\right),
+\ \textrm{and} \ W = \left(\begin{array}{cc}
+\Sigma & 0  \cr
+0 &  D \end{array}\right),
+\]
+where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
+%===========================================================================================%
+
+
+%---------------------------------------------------------------------------%
+% - 3. Augmented GLMS
+%---------------------------------------------------------------------------%
+
+
+
+
+\section{Simplifying GLS (K Hayes)}
+
+\subsection{Introduction}
+
+Hayes and Haslett (1998) present an approach to the problem of \textbf{general least squares} estimation of the general linear model in terms of constrained optimization, which is in turn solved via Lagrange multipliers. The crux of the proposed approach is that one system of equations is sufficiently versatile, and provides for \begin{itemize} \item the estimation of new observations, \item estimation of fixed parameters in regression \item estimation of fixed and random effects in mixed models,\item the diagnostics associated with conditional and marginal residuals \item and of subset deletion. \end{itemize}
+
+\subsection{Overview}
+Hayes and Haslett (1998) have demonstrated how the problem of best linear unbiased estimation can be posed in terms of Lagrange multipliers. Both BLUE and BLUP can be treated as distinct estimation problems from the following equation.
+
+\begin{equation}
+\left(  \begin{array}{cc} V & X \\    X^t & 0 \\
+\end{array}\right)\left(  \begin{array}{c}    \boldsymbol{\lambda}_{z}\\   \boldsymbol{\gamma}_z \\  \end{array}
+\right)=\left(  \begin{array}{c}    \mbox{cov}(Y,Z)\\   A^{t} \\  \end{array}\right)\end{equation}
+
+
+Hence BLUE and BLUP can be considered as the estimation of two different variables from $Y$. This equation has a natural role in the derivation of \emph{leave- k-out} residuals and diagnostic measures, and replaces the traditional approach of using a variety of clumsy updating formulas. Note that this approach may be used to determine the impact of deletion on any quantity computed from $Y$.
+
+
+
+
+\section{Generalized Least Squares}
+
+
+generalized least squares (GLS) is a technique for estimating the unknown parameters in a linear regression model. 
+The GLS is applied when the variances of the observations are unequal (heteroscedasticity), or when there is a certain degree of correlation between the observations. 
+In these cases ordinary least squares can be statistically inefficient, or even give misleading inferences.
+
+
+
+\[ Y = X\beta + \varepsilon, \qquad \mathrm{E}[\varepsilon|X]=0,\ \operatorname{Var}[\varepsilon|X]=\Omega.\]
+
+
+
+\subsection{Introduction to Generalized Least Squares}
+\begin{equation}
+\boldsymbol{y}_i = \boldsymbol{X}_i\boldsymbol{\beta} + \boldsymbol{\epsilon}_i
+\end{equation}
+
+
+
+Estimation under this model has been studied extensively in the linear regression model.
+
+%-------------------------------------------------------------------Simplifying GLS by KH -%
+
+
+
+
+\section{Hierarchical likelihood} %3.3
+Inferential method was developed for the mixed linear model via Lee and Nelder's (1996) hierarchical-likelihood (h-likelihood).
+
+\section{Importance-Weighted Least-Squares (IWLS)}  %3.4
+
+
+
+
+% Generalized linear models are a generalization of classical linear  models.
+
+\section{Augmented GLMs} %3.1
+
+With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
+
+
+\begin{equation}
+y_{a} = T \delta + e^{*}
+\end{equation}
+
+%y_{a} = T \delta + e^{*}
+%\end{equation}
+
+Weighted least squares equation
+
+
+
+
+
+
+
+
+
+
+$y_{a} = T \delta + e^{*}$
+
+
+Weighted least squares equation
+
+
+
+
+% Youngjo et al page 154
+
+
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+
+
+\section{Augmented GLMs} 
+
+
+%---------------------------------------------------------------------------%
+% - 3. Augmented GLMS
+%---------------------------------------------------------------------------%
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+
+%y_{a} = T \delta + e^{
+%\end{equation}
+
+Weighted least squares equation
+
+
+% Youngjo et al page 154
+
+
+
+
+%=================================================================================%
+
+
+\section{Augmented GLMs}
+%Augmented General linear models.
+% Youngjo et al page 154
+
+The error term $e^{*}$ is normal with mean zero. The variance
+matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
+
+
+\begin{equation}
+y_{a} = T \delta + e^{*}
+\end{equation}
+
+Weighted least squares equation
+
+
+% Youngjo et al page 154
+\newpage
+
+
+Generalized linear models are a generalization of classical linear  models.
 \section{Generalized Least Squares}
 
 \subsection{Introduction to Generalized Least Squares}
@@ -173,6 +510,34 @@ That is, a 95\% confidence interval is computed on the logit estimate, and then 
 
 
 \newpage
+
+
+\section{Simplifying GLS}
+
+It is straightforward to show that $\hat{\beta} = (X^tV^{-l}X)^{-l}X^tV^{-l}Y = BY$ and at the minimum the sum of squares is $Y^{t} (V^{-l}  - V^{-l}(X^tV^{-l}X)^{-l}X^tV^{-l})Y = Y^{t}QY$.\\
+\bigskip
+
+\emph{The purpose of this note is to give emphasis to one derivation, based on Lagrange multipliers, which leads to a system of equations that is very intuitive and lends itself readily to specialization. This approach is in fact standard in the geostatistical treatment of \textbf{kriging} (see Matheron 1962; Journel and Huijbregts 1981; Ripley 1981; Cressie 1993). In the genetics literature it is associated with the name of Henderson (1983); or in the classical statistical literature Hocking (1996, p. 73) is a suitable reference.}
+
+\emph{The approach based on Lagrange multipliers deemphasizes the explicit determination of $\hat{\beta}$ and leads to a clearer understanding of the complementary (but for some confusing) tasks known as best linear unbiased estimation (BLUE) and best linear unbiased prediction (BLUP). Regrettably, Robinson-despite offering four derivations, and having as his main concern the interplay of BLUP and BLUE-gives it little prominence.}
+
+It has recently been discussed by Searle (1997, p; 278) who said that it makes another approach (Searle, Casella, and McCulloch 1992, p. 271) seem "obtuse and unnecessarily complicated." By contrast, our treatment emphasizes the fact that it leads to a single set of equations whose solution sheds simplifying light on very many issues in general least squares.
+
+The American Statistician's Teacher's Corner (e.g., McLean, Sanders, and Stroup 1991; Puntanen and Styan 1989) has already played host to previous attempts to simplify the explanation of such topics. Various authors (CPJ, Haslett Hayes ,Martin ) have visited the more specialized area of diagnostics and have developed \textbf{\emph{down-dating}} (leave-$k$-out) formulas.
+
+The conventional approach here is via tricky identities based on the inverses of partitioned matrices. Here again the Lagrange system of equations leads to a much simplified and-we claim-much more intuitive derivation of these more technical results.
+
+
+\emph{
+	The essence of the approach is to seek that linear combination of the available data Y which is best for the
+	estimation of Z among those linear estimators which are constrained to be unbiased. We adopt therefore a constrained minimization approach, using Lagrange multipliers. By best we mean that combination $\hat{Z}(Y) = \lambda_{z}^{t}Y$ which has least mean square error $E( Z- \lambda_{z}^{t}Y)^2$, and by unbiased we mean $E( Z- \lambda_{z}^{t}Y)) = 0$. }
+Here $Z$ denotes that scalar which is to be the objective of the estimation. This estimator is written as $\hat{Z}(Y)$ to make its dependence on $Y$ explicit. Note that the term "best" is applied in the context of minimizing the prediction variance $var(Z - Z(Y))$. We shall see that Z may be used to denote either a random variable or an unknown parameter, and that it will be sufficient to specify Z via $E[Z]$ and $cov(Z, Y)$. If $Z$ is not a random variable then of course the latter is zero and $E[Z] = Z$. We establish-very simply, as below-a general solution in terms of A and $\operatorname{cov}(Z, Y)$ and achieve particular tasks by identification of these. Our presentation is for a scalar Z, but the notation facilitates generalization to vector Z.
+
+
+%--------------------------------------------------------------------%
+\newpage
+
+
 
 
 \section*{Haslett and Hayes - Residuals}
