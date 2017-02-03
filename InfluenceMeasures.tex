@@ -1,0 +1,152 @@
+
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\subsection{Influence Statistics for LME models} %1.1.4
+Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+\begin{itemize}
+	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on precision of estimates: CovRatio and CovTrace
+	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+	\item outlier properties: internally and externally studentized residuals, leverage
+\end{itemize}
+%---------------------------------------------------------------------------%
+
+
+
+\section{Measures of Influence} %1.16
+
+The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+
+Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
+estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
+
+
+\subsection{DFBETA} %1.16.3
+\begin{eqnarray}
+DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+&=& B(Y-Y_{\bar{a}}
+\end{eqnarray}
+%-------------------------------------------------------------------------------------------------------------------------------------%
+
+\subsection{DFFITS} %1.16.1
+DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+\begin{displaymath} DFFITS = {\widehat{y_i} -
+	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+
+%---------------------------------------------------------------------------%
+
+%==========================================================================%
+\newpage
+\section*{Influence Analysis}
+The basic rationale behind measuring influential cases is that when iteratively single units are omitted
+from the data, models based on these data should not produce substantially different estimates.
+%===================================================================== %
+\subsection*{Well Known Influence Measures}
+
+\textit{``Regression Diagnostics: Identifying Influential Data
+	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
+provides a foundation for much of the subsequent work.
+
+\begin{description}
+	\item[Cook's Distance] Cook’s Distance is a measure indicating to what extent model parameters are influenced by (a set
+	of) influential data on which the model is based.
+	\item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
+	in parameter estimates between a (mixed effects) regression model based on a full set of
+	data, and a model from which a (potentially influential) subset of data is removed. A value for
+	DFBETAS is calculated for each parameter in the model separately.
+\end{description}
+
+
+
+
+
+\subsection{Quantifying Influence}  %1.1.6
+
+The basic procedure for quantifying influence is simple as follows:
+
+\begin{itemize}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+\end{itemize}
+
+Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+
+%--------------------------------------------------------------%
+\newpage
+\section{Measures 2} %2.4
+
+\subsection{Cook's Distance} %2.4.1
+\begin{itemize}
+	\item For variance components $\gamma$
+\end{itemize}
+
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+
+\subsection{Variance Ratio} %2.4.2
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Variance Ratio} %2.4.2
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Cook-Weisberg statistic} %2.4.3
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+
+\subsection{Andrews-Pregibon statistic} %2.4.4
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Measures 2} %2.4
+
+
+
+\newpage
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+\subsection{Information Ratio}
+
+
+\subsection{Cook's Distance} %2.4.1
+\begin{itemize}
+	\item For variance components $\gamma$
+\end{itemize}
+
+
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\section{Zewotir Measures of Influence in LME Models}%2.2
+%Zewotir page 161
+Zewotir describes a number of approaches to model diagnostics, investigating each of the following;
+\begin{itemize}
+	\item Variance components
+	\item Fixed effects parameters
+	\item Prediction of the response variable and of random effects
+	\item likelihood function
+\end{itemize}
+
+

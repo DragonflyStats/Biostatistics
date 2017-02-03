@@ -1,0 +1,39 @@
+
+
+\newpage
+
+%==================================================================================================== %
+\subsection{Influence}
+Broadly
+defined, ``\textit{influence}” is understood as the ability of a single or multiple data points, through their presence
+or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
+violate assumptions of the statistical model. 
+
+
+The goal of influence analysis is not primarily to mark data
+points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
+result of influence analysis. The goal is rather to determine which cases are influential and the manner in
+which they are important to the analysis. Outliers, for example, may be the most noteworthy data points in
+an analysis. They can point to a model breakdown and lead to development of a better model.
+
+
+\section{Influence analysis} %1.7
+
+Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+
+\emph{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+
+\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+
+The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+interest.
+
+
+
+\subsection{Overall Influence}
+An overall influence statistic measures the change in the objective function being minimized. For example, in
+OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+

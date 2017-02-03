@@ -40,9 +40,6 @@
 	\begin{enumerate}
 		\item
 		\item
-		\item
-		\item
-		\item
 	\end{enumerate}
 	\item Alternative Methods
 	\begin{enumerate}
@@ -113,51 +110,7 @@
 		\item	
 		\item	
 	\end{itemize}
-	%-------------------------------------------------%		
-	% Chapter 3
-	
-	\item	Introduction to LME Models	
-	\begin{itemize}	
-		\item	
-		\item	
-		\item	
-	\end{itemize}
-	
-	%-------------------------------------------------%				
-	% Chapter 4		
-	
-	\item	Roy's Hypothesis Tests	
-	\begin{itemize}	
-		\item	
-		\item	Bendix Carstensens's Approach
-		\item	
-	\end{itemize}		
-	
-	%-------------------------------------------------%				
-	% Chapter 5		
-	
-	\item	Simulation Studies	
-	\begin{itemize}	
-		\item	Reconstruction of Blood Data
-		\item	
-		\item	
-	\end{itemize}		
-	
-	
-	%-------------------------------------------------%				
-	% Chapter 6		
-	
-	\item	Profile Likelihood	
-	\begin{itemize}	
-		\item	Douglas Bates Comments on Interval Estimation
-		\item	
-		\item	
-	\end{itemize}		
-	
-	
-	
-	
-	
+
 	
 \end{itemize}		
 
@@ -202,185 +155,7 @@ The \texttt{lme4} package does not allow for Roy's Model, for reasons that will 
 To advance the ideas that eminate from Roys' paper, one is required to use the \texttt{nlme} context. However, to take advantage of the infrastructure already provided for \texttt{lme4} models, one may change the research question away from that of Roy's paper. 
 To this end, an exploration of what textbf{influence.ME} can accomplished is merited.
 
-%==========================================================================%
-\newpage
-\section*{Influence Analysis}
-The basic rationale behind measuring influential cases is that when iteratively single units are omitted
-from the data, models based on these data should not produce substantially different estimates.
-%===================================================================== %
-\subsection*{Well Known Influence Measures}
 
-\textit{``Regression Diagnostics: Identifying Influential Data
-	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
-provides a foundation for much of the subsequent work.
-
-\begin{description}
-	\item[Cook's Distance] Cook’s Distance is a measure indicating to what extent model parameters are influenced by (a set
-	of) influential data on which the model is based.
-	\item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
-	in parameter estimates between a (mixed effects) regression model based on a full set of
-	data, and a model from which a (potentially influential) subset of data is removed. A value for
-	DFBETAS is calculated for each parameter in the model separately.
-\end{description}
-
-
-%================================================================== %
-\newpage
-\section*{Influence Measures with \textit{influence.ME}}influence.ME calculates measures of influence for mixed effects models estimated with the lme4 R package. The
-basic rationale behind measuring influential cases is that when iteratively single units are omitted
-
-from the data, models based on these data should not produce substantially different estimates. 
-
-Calculating measures of influential data for an LME model requires the re-estimation
-of this model for each set of potentially influential data separately. The \texttt{estex(} function does this,
-and returns the altered estimates resulting from each re-estimation. 
-
-The main function in the influence.ME package is the \texttt{influence()}.
-
-\begin{quote} Based on a priorly estimated
-	mixed effects regression model (estimated using lme4), the \texttt{influence()} function iteratively modifies
-	the mixed effects model to neutralize the effect a grouped set of data has on the parameters, and
-	which returns returns the fixed parameters of these iteratively modified models. These are used to
-	compute measures of influential data. ()
-\end{quote}
-
-\subsection*{Using the influence.ME package}
-Influence Analysis can onnly be carried out with LME models fitted using the functions in the \textbf{lme4} package. Such models are known as \texttt{mer} objects.
-Hence the \texttt{estex()} function only works on LME
-models of class \texttt{mer}.
-The package developers advise that it is required that the \texttt{mer} model was estimated using a factor variable to indicate group levels.
-When using something similar to \texttt{+ (1 | as.factor(variable))}, the function is not able of
-identifying the correct grouping factors, and returns an error.
-
-Executing this procedure can be computationally highly demanding, because \texttt{estex()} entails the re-estimation of the provided mixed effects model for each level of the specified grouping factor (after alteration of the data).
-%============================================================================= %
-\subsection*{Functionality of the influence.ME pacakge}
-To standardize the assessment of how influential an observation (or group of observations)is, several measures
-of influence are used by influence.ME.
-
-
-\begin{itemize}
-	\item DFBETAS is a standardized measure of the absolute difference
-	between the estimate with a particular case included and the estimate without that particular
-	case. 
-	\item Cook’s distance provides an overall measurement of the change in all parameter
-	estimates, or a selection thereof.
-\end{itemize}
-
-The \texttt{estex()} command computes revised estimates can subsequently
-be entered to the \texttt{cooks.distance} and \texttt{dfbetas} commands, to calculate Cook’s Distance
-and the DFBETAS (standardized difference of the beta) measures.
-%--------------------------------------------------------------%
-\subsubsection*{The \texttt{pchange} command}
-
-The \texttt{pchange} command computes the percentile change, as a measure of influential data. This unstandardized measure can
-serve to help interpret the magnitude of the influence single or combined grouping levels exert on
-mixed effects models. 
-
-The percentage change in parameter estimates between an LME model based on a full set of data, and a model from which a (potentially influential)
-subset of data is removed. A value of percentage change is calculated for each parameter in the
-model separately, based on the information returned by the \texttt{estex()} function.
-
-\subsection*{sigtest}
-
-The \texttt{sigTest} function can test for changes in the level of statistical significance resulting from
-the deletion of potentially influential observations
-
-
-
-\subsection{Quantifying Influence}  %1.1.6
-
-The basic procedure for quantifying influence is simple as follows:
-
-\begin{itemize}
-	\item Fit the model to the data and obtain estimates of all parameters.
-	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
-	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
-\end{itemize}
-
-Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
-
-%--------------------------------------------------------------%
-\newpage
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-
-
-%--------------------------------------------------------------%
-\newpage
-\section{Measures 2} %2.4
-
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-
-
-
-
-
-
-%---------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-Zewotir describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-
-\newpage
-\subsubsection{Random Effects}
-
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-\subsubsection{linear functions}
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-\subsection{Information Ratio}
 
 
 %--------------------------------------------------------------%
@@ -405,74 +180,6 @@ DFFITS is a statistical measured designed to a show how influential an observati
 	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
 
 
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\subsection{Influence Statistics for LME models} %1.1.4
-Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
-\begin{itemize}
-	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
-	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
-	\item influence on precision of estimates: CovRatio and CovTrace
-	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
-	\item outlier properties: internally and externally studentized residuals, leverage
-\end{itemize}
-%---------------------------------------------------------------------------%
-
-
-
-\section{Measures of Influence} %1.16
-
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
-
-Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-
-\subsection{DFBETA} %1.16.3
-\begin{eqnarray}
-DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-&=& B(Y-Y_{\bar{a}}
-\end{eqnarray}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-
-%---------------------------------------------------------------------------%
-
-\section{Likelihood Distance} %1.11
-The \index{likelihood distance} likelihood distance is a global summary measure that expresses the joint influence of the subsets of observations, $U$, on all parameters in $\phi$ that were subject to updating. \citet{schab} points out the likelihood distance gives the amount by which the log-likelihood of the model fitted from the full data changes if one were
-to estimate the model from a reduced-data estimates. Importantly $LD(\psi_{(U)})$ is not the log-likelihood obtained by fitting the model to the reduced data set. It is obtained by evaluating the likelihood function based on the full data set (containing all $n$ observations) at the reduced-data estimates.
-
-
-%---------------------------------------------------------- %
-%Likelihood Displacement.
-\[  LD(\boldsymbol{(U)})= 2[l\boldsymbol{\hat{(\phi)}} - l\boldsymbol{\hat{\phi}_\omega} ] \]
-\[  RLD(\boldsymbol{(U)})= 2[ l_R\boldsymbol{\hat{(\phi)}} - l_R\boldsymbol{\hat{(\phi)}_\omega} ] \]
-%	Large values indicate that $\boldsymbol{\hat{\theta}}$ and $\boldsymbol{\hat{\theta}_\omega}$ differ considerably.
-
-
-
-
-%---------------------------------------------------------------------------%
-\newpage
-\section{Likelihood Distance} %1.11
-The likelihood distance gives the amount by which the log-likelihood of the full data changes if one were
-to evaluate it at the reduced-data estimates. The important point is that $l(\psi_{(U)})$ is not the log-likelihood
-obtained by fitting the model to the reduced data set.
-
-It is obtained by evaluating the likelihood function based on the full data set (containing all n observations) at the reduced-data estimates.
-
-The likelihood distance is a global, summary measure, expressing the joint influence of the observations in
-the set $U$ on all parameters in $\psi$  that were subject to updating.
-%------------%
-
-\subsection{Likelihood Distance}
-
-The \index{likelihood distance} likelihood distance is a global, summary measure, expressing the joint influence of the observations in the set $U$ on all parameters in $\phi$  that were subject to updating.
-
-
 
 %------------------------------%
 
@@ -487,33 +194,6 @@ Introduction of analytical quality specifications in the mountain plots may be u
 
 
 
-%% TAM
-
-Davis (1989) proposes the TAM model, which suggests an hypothesis as to why users may adopt particular technologies, and not others. 
-According to this theory, when users are presented with a new 
-technology, two important factors will influence their decision about how and when they will adopt it.
-\begin{description}
-	\item[Perceived usefulness (PU)] - This was defined by Fred Davis as "the degree to which a person believes that using a particular system would enhance his or her job performance".
-	\item[Perceived ease-of-use (PEOU)] - Davis defined this as "the degree to which a person believes that using a particular system would be free from effort" 
-\end{description}
-
-Davis's explanations of these term can be rephrased for application to statistical analysis. 
-Perceived Use could refer to the degree to which an user would deem a particular statistical method would properly establish the results of an analaysis. In the case of method comparison studies, proper indication of agreement, or lack thereof.
-
-%---------------------------------------------%
-Perceived ease-of-use requires only applying the context of a
-
-A very modest statistical skill set is the only prerequistive for constructing a Bland-Altman plot, and computing limits of agreement. The main building blocks 
-are simple descriptive, statistics and a knowledge of the normal distribution. These are topics that feature in almost every undergraduate statistics courses.
-
-In short, the user perceives the Bland-Altman methodology to be an easy-to-implement technique, that will properly address the question of agreement.
-
-Conversely the Survival plot is a derivative of the Kaplan-Meier Curve, a non-parametric graphical technique that features in Survival Analysis. This subject area is a well known domain of statistics, but would be encountered 
-on curriculums of specialist courses. The Mountain Plot is formally called the empirical folder cumulative distribution plot. 
-Currently there is only one software implementation , medcalc.be toolkot (FIX)
-
-The ROC curve is a plot that is commonly used in the appraisal of a statistical analytics systems. Interpretation of the plot, the nearer the curve is to the
-top left corner of the plot, the better the statistical method is at making predicting outcomes.
 
 %=========================================================================%
 The addition of an extra factor
@@ -657,18 +337,6 @@ Model Diagnostics with \texttt{nlme}
 
 
 
-%==============================================================================%
-
-
-\section{Method Comparison Stduies with \texttt{R}}
-
-\subsection{Accuracy and Precision}
-
-An important consideration in discussing methods of measurement are the issues of accuracy and precision.
-
-\subsection{What is Agreement}
-
-Agreement between two methods of clinical measurement can be quantified using the differences between observations made using the two methods on the same subjects. (Bland and Altman 1999)
 
 \subsection{Inappropriate Techniques for MCS}
 
@@ -730,16 +398,7 @@ The command \texttt{lmeU} fits a model with a particular subject removed. The id
 A plot ofthe per-observation diagnostics individual subject log-likelihood contributions can be rendered.
 
 \subsubsection*{Likelihood Displacement}
-\section{Bland Altman Methodology}
 
-\subsection{Bias}
-Bland and Altman define bias a \emph{a consistent tendency for one
-method to exceed the other} [$3$] and propose estimating its value
-by determining the mean of the differences. The variation about
-this mean shall be estimated by the  standard deviation of the
-differences. Bland and Altman remark that these estimates are based on the
-assumption that bias and variability are constant throughout the
-range of measures.
 
 \section{The Bland Altman Plot}
 In 1986 Bland and Altman published a paper in the Lancet proposing
@@ -760,11 +419,7 @@ and  $x_{2}$ on the abscissa.
 
 
 
-\subsection{Criticism of Bland Altman Plot}
-Unfortunately the Bland-Altman plot has a fatal flaw: it indicates
-incorrectly that there are systematic differences or bias in the
-relationship between two measures, when one has been calibrated
-against the other. (Hopkins)
+
 \subsection{Treatment of Outliers}
 Bland and Altman attend to the issue of outliers in their 1986
 paper, wherein they present a data set with an extreme outlier
@@ -868,106 +523,6 @@ compared to a clinically acceptable difference in measurements.
 
 \subsection{Gold Standard} This is considered to be the most
 accurate measurement of a particular parameter.
-\section{Discussion on Method Comparison Studies}
-
-The need to compare the results of two different measurement
-techniques is common in medical statistics.
-\\
-\\
-In particular, in medicine, new methods or devices that are
-cheaper, easier to use, or less invasive, are routinely developed.
-Agreement between a new method and a traditional reference or gold
-standard must be evaluated before the new one is put into
-practice. Various methodologies have been proposed for this
-purpose in recent years.
-
-Indications on how to deal with outliers in Bland Altman plots
-\\
-We wish to determine how outliers should be treated in a Bland
-Altman Plot
-\\
-In their 1983 paper they merely state that the plot can be used to
-'spot outliers'.
-\\
-In  their 1986 paper, Bland and Altman give an example of an
-outlier. They state that it could be omitted in practice, but make
-no further comments on the matter.
-\\
-In Bland and Altmans 1999 paper, we get the clearest indication of
-what Bland and Altman suggest on how to react to the presence of
-outliers. Their recommendation is to recalculate the limits
-without them, in order to test the difference with the calculation
-where outliers are retained.\\
-
-The span has reduced from 77 to 59 mmHg, a noticeable but not
-particularly large reduction.
-\\
-However, they do not recommend removing outliers. Furthermore,
-they say:
-\\
-We usually find that this method of analysis is not too sensitive
-to one or two large outlying differences.
-\\
-We ask if this would be so in all cases. Given that the limits of
-agreement may or may not be disregarded, depending on their
-perceived suitability, we examine whether it would possible that
-the deletion of an outlier may lead to a calculation of limits of
-agreement that are usable in all cases?
-\\
-Should an Outlying Observation be omitted from a data set? In
-general, this is not considered prudent.
-\\
-Also, it may be required that the outliers are worthy of
-particular attention themselves.
-\\
-Classifying outliers and recalculating We opted to examine this
-matter in more detail. The following points have to be considered
-\\how to suitably identify an outlier (in a generalized sense)
-\\Would a recalculation of the limits of agreement generally
-results in  a compacted range between the upper and lower limits
-of agreement?
-\subsection{Agreement} Bland and Altman (1986) define Perfect
-agreement as 'The case where all of the pairs of rater data lie
-along the line of equality'. The Line of Equality is defined as
-the 45 degree line passing through the origin, or X=Y on a XY
-plane.
-
-\subsection{Lack Of Agreement}
-\begin{enumerate}
-\item Constant Bias\item Proportional Bias
-\end{enumerate}
-
-\subsubsection*{Constant Bias} This is a form of systematic
-deviations estimated as the average difference between the test
-and the reference method
-
-
-\subsubsection*{Proportional Bias} Two methods may agree on
-average, but they may exhibit differences over a range of
-measurements\section{Bland Altman Plot} Bland Altman have
-recommended the use of graphical techniques to assess agreement.
-Principally their method is calculating , for each pair of
-corresponding two methods of measurement of some underlying
-quantity, with no replicate measurements, the difference and mean.
-Differences are then plotted against the mean.
-\\
-Hopkins argued that the bias in a subsequent Bland-Altman plot was
-due, in part, to using least-squares regression at the calibration
-phase.
-
-\subsection{Bland Altman plots using 'Gold Standard' raters}
-According to Bland and Altman, one should use the methodology
-previous outlined, even when one of the raters is a Gold Standard.
-
-
-\subsection{Bias Detection}
-further to this method, the presence of constant bias may be
-indicated if the average value differences is not equal to zero.
-Bland and Altman does, however, indicate the indication of absence
-of bias does not provide sufficient information to allow a
-judgement as to whether or not one method can be substituted for
-another.
-
 
 \chapter{The Bland Altman Plot}
 \section{Bland Altman Plots}
@@ -1062,18 +617,6 @@ measurement error. Bland Altman propose a correction for this.
 Carstensen attends to this issue also, adding that another
 approach would be to treat each repeated measurement separately.
 
-\subsection{Criticism of Bland Altman Plot}
-Hopkins[$8$] argues that the plot indicates incorrectly that there
-are systematic differences or bias in the relationship between two
-measures, when one has been calibrated against the other.
-\\
-An Evaluation of the correlation between the difference and means
-complement the analysis.
-\\
-Bland and Altman caution that the calculations are based on the
-assumption that the data is normally distributed. This can be
-verified by using a histogram. If Data is not normally
-distributed, it can be transformed.
 
 
 
@@ -1127,49 +670,6 @@ chosen transformation the situation may be even worse. But if a plot with conver
 plot is readily back-transformed to the original scale for practical use.
 %---------------------------------------------------------------------------------
 
-
-\chapter{REGRESSION}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Regression
-\section{Model II Regression}
-\subsection{Simple Linear Regression} Simple Linear Regression is  well
-known statistical technique , wherein estimates for slope and
-intercept of the line of best fit are derived according to the
-Ordinary Least Square (OLS) principle.This method is known to
-Cornbleet and Cochrane as Model I regression.
-\\
-\\
-In Model I regression, the independent variable is assumed to be
-measured without error. For method comparison studies, both sets
-of measurement must be assumed to be measured with imprecision and
-neither case can be taken to be a reference method. Arbitrarily
-selecting either method as the reference will yield two
-conflicting outcomes. A fitting based on '$X$ on $Y$' will give
-inconsistent results with a fitting based on '$Y$ on $X$'.
-Consequently model I regression is inappropriate for such cases.
-\\
-\\
-Conversely, Cornbleet Cochrane state that when the independent
-variable $X$ is a precisely measured reference method, Model I
-regression may be considered suitable. They qualify this statement
-by referring the $X$ as \emph{the 'correct' value}, tacitly
-implying that there must still be some measurement error present.
-The validity of this approach has been disputed elsewhere.
-
-
-
-
-\subsection{Model II regression}
-Cochrane and Cornbleet argue for the use of methods that based on
-the assumption that both methods are imprecisely measured ,and
-that yield a fitting that is consistent with both '$X$ on $Y$' and
-'$Y$ on $X$' formulations. These methods uses alternatives to the
-OLS approach to determine the slope and intercept.
-\\
-They describe three such alternative methods of regression; Deming
-, Mandel, and Bartlett regression. Collectively the authors refer
-to these approaches as Model II regression techniques.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Distribution of Maxima} It is possible to use Order
 Statistics theory to assess conditional probabilities. With two
 random variables $T_{0}$ and $T_{1}$, we define two variables $Z$
@@ -1220,19 +720,7 @@ method
 
 
 
-\subsection{Criticism of Bland Altman Plots}
 
-An Evaluation of the correlation between the difference and means
-complement the analysis.
-\\
-Bland and Altman caution that the calculations are based on the
-assumption that the data is normally distributed. This can be
-verified by using a histogram. If Data is not normally
-distributed, it can be transformed.
-\\
-Luiz \emph{et al} remarks that that Bland Altman Plot should be
-used only for small data sets, as the use of an index will be of
-little value to the analysis.
 
 
 \newpage
@@ -1280,44 +768,6 @@ the practitioner opinion to judge the outcome of the methodology.
 
 \chapter{Appendix}
 
-
-\subsection{Contention }
-Several papers have commented that this approach is undermined
-when the basic assumptions underlying linear regression are not
-met, the regression equation, and consequently the estimations of
-bias are undermined. Outliers are a source of error in regression
-estimates.In method comparison studies, the X variable is a
-precisely measured reference method. Cornbleet Gochman (1979)
-argued that criterion may be regarded as the correct value. Other
-papers dispute this.
-\subsection{Least Product Regression}
-Least Product Regression , also known as 'Model II regression'
-caters for cases in which random error is attached to both
-dependent and independent variables. Ludbrook cites this
-methodology as being pertinent to Method comparison studies.
-\\
-\\
-The sum of the products of the vertical and horizontal deviations
-of the x,y values from the line is minimized.
-\\
-\\
-Least products regression analysis is considered suitable for
-calibrating one method against another.Ludbrook comments that it
-is also a sensitive technique for detecting and distinguishing
-fixed and proportional bias between methods.
-\\
-\\
-Proposed as an alternative to Bland \& Altman methodology ,this
-method is also known as 'Geometric Mean Regression' and 'Reduced
-Major Axis Regression'.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Difference with Least Squares Regression}
-Least-products regression can lead to inflated SEEs and estimates
-that do not tend to their true values an N approaches infinity
-(Draper and Smith, 1998).
 
 \section*{Bayesian BA - Philip J Schluter}
 Bayesian Bland Altman Approaches
@@ -1403,30 +853,7 @@ Tolerance Interval around the TDI estimate
 %PAGE 5 of 12 COLUMN 2
 Coverage Probability is another user friendly measure of agrre,ment which is related to the computation of the TDI.
 
-
-\newpage
-\section{Influence analysis} %1.7
-
-Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
-
-\emph{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
-For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
-
-\subsection{Cook's 1986 paper on Local Influence}%1.7.1
-Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
-
-The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
-interest.
-
-
-
-\subsection{Overall Influence}
-An overall influence statistic measures the change in the objective function being minimized. For example, in
-OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
-\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
-
-
-\subsection{Influence}
+\section{Schabenberger}
 
 \emph{schab} examines the use and implementation of
 influence measures in LME models.
@@ -1463,21 +890,6 @@ reduced-data parameter estimates.
 %	\noindent This paper reviews the use of diagnostic measures for LME models in SAS. This text has been widely cited by texts that don't deal with SAS implementations.
 %\end{abstract}
 %
-
-%==================================================================================================== %
-\subsection{Influence}
-Broadly
-defined, ``\textit{influence}” is understood as the ability of a single or multiple data points, through their presence
-or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
-violate assumptions of the statistical model. 
-
-
-The goal of influence analysis is not primarily to mark data
-points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
-result of influence analysis. The goal is rather to determine which cases are influential and the manner in
-which they are important to the analysis. Outliers, for example, may be the most noteworthy data points in
-an analysis. They can point to a model breakdown and lead to development of a better model.
-
 
 %==================================================================================================== %
 
@@ -1658,54 +1070,6 @@ The profile likelihood (or likelihood or likelihood ratio) methid is applicable 
 all likelihood based statstical analysis and is generally less sensitive to the difficulties
 encountered by walkd-Tyoe CIs.
 
-\section{Quiroz Burdick}
-%-------------------------------------------------------------------------%
-Assessmet of individual agreements with repeated measurements based on Generalized Confidence intervals.
-
-%KEYWORDS
-
-Bootstrap confidence intervals.
-Coverage probability (CP)
-Equivalence Studies
-Individual agreements
-Generalized Confidence intervals (GCI)
-Total deviation index (TDI)
-Variance components
-
-%--------------------------------------------------------------------------%
-%SUMMARY
-Proposing an equivalence test for assessing individual agreement based on TDI and CP.
-The bounds used in the tests are constucted using a bootstrap approach and generalized confidence intervals (GCI).
-
-%--------------------------------------------------------------------------%
-%PAGE 345
-%Exchangability
-
-Equivalence testing is an approach commonly used to determine the acceptability of a new method 
-against a reference method.
-
-%--------------------------------------------------------------------------%
-%PAGE 346 TDI and CP
-
-Both the TDI and CP are attractive criteria as they are easy to interpret.
-
-Bootstrap approach was later applied to mixed models with repeated measurements by Choudhary (2007)
-
-%--------------------------------------------------------------------------%
-%PAGE 346 - EXPERIMENTAL DESIGN
-$T$ for test measurement, $R$ for reference measurement
-
-%--------------------------------------------------------------------------%
-%PAGE 347
-
-$\otimes$ is the Kroneckor Product operator.
-
-\[  \Sigma_{MS} =  \left[     \begin{array}{cc} \sigma^2_{TS} & 0 \\ 0 & \sigma^2_{RS} \end{array}\right] \]
-
-%--------------------------------------------------------------------------%
-% PAPERS
-
-%Paper on GCIs - http://www.jstor.org/discover/10.2307/2290779?uid=3738232&uid=2&uid=4&sid=21103546837943
 
 
 \section{Turkan's LMEs}
@@ -1830,30 +1194,6 @@ methods.
 didn't experience a corresponding growth in the use of deletion
 diagnostics, adding that \citet{McCullSearle} makes no mention of
 diagnostics whatsoever.
-
-\citet{Christensen} describes three propositions that are required
-for efficient case-deletion in LME models. The first proposition
-decribes how to efficiently update $V$ when the $i$th element is
-deleted.
-\begin{equation}
-V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-	\lambda\prime}{\nu^{}ii}
-\end{equation}
-
-
-The second of christensen's propostions is the following set of
-equations, which are variants of the Sherman Wood bury updating
-formula.
-\begin{eqnarray}
-X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-	(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-\end{eqnarray}
-
 
 \citet{schabenberger} examines the use and implementation of
 influence measures in LME models.
@@ -2028,11 +1368,6 @@ Without loss of generality, matrices can be partitioned as if the $i-$th omitted
 
 %--------------------------------------------------------------------------%
 \newpage
-\subsection{Terminology for Case Deletion diagnostics} %1.8
-
-\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
-'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
-
 
 \subsection{Case Deletion Diagnostics} %1.6
 
@@ -2065,21 +1400,6 @@ Preisser(19XX) describes two type of diagnostics. When the set consists of only 
 	\item Simplifying GLS
 	\item Paper progression
 \end{enumerate}
-
-\section{Linear mixed effects models}
-
-% http://www.artifex.org/~meiercl/R_statistics_guide.pdf
-These models are used when there are both fixed and random effects that need to be incorporated into a model.
-
-Fixed effects usually correspond to experimental treatments for which one has data for the entire population of samples corresponding to that treatment.
-
-Random effects,on the other hand, are assigned in the case where we have measurements on a group of samples, and those
-samples are taken from some larger sample pool, and are presumed to be representative.
-
-As such, linear mixed effects models treat the error for fixed effects differently than the error for random effects.
-
-
-
 
 
 
@@ -2148,27 +1468,6 @@ EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller
 		\end{itemize}
 		from the full-data estimates.
 %-------------------------------------------------------------------Simplifying GLS by KH -%
-\newpage
-\section*{Deming Regression}
-
-Performance of Deming regression analysis in case of misspecified analytical error ratio in method comparison studies
-
-%-----------------------------------------------------------------------------------------------%
-Application of Deming regression analysis to interpret method comparison data presupposes specification of the 
-squared analytical error ratio ($\lambda$, but in cases involving only single measurements by each method, this 
-ratio may be unknown and is often assigned a default value of one. 
-
-On the basis of simulations, this practice was evaluated in situations with real error ratios deviating from one. 
-Comparisons of two electrolyte methods and two glucose methods were simulated. 
-
-In the first case, misspecification of $\lambda$ produced a bias that amounted to two-thirds of the maximum bias of the 
-ordinary least-squares regression method. Standard errors and the results of hypothesis-testing also became misleading. 
-In the second situation, a misspecified error ratio resulted only in a negligible bias. 
-
-Thus, given a short range of values in relation to the measurement errors, it is important that $\lambda$ is correctly 
-estimated either from duplicate sets of measurements or, in the case of single measurement sets, specified from 
-quality-control data. However, even with a misspecified error ratio, Deming regression analysis is likely to perform 
-better than least-squares regression analysis.
 
 %---------------------------------------------------------------------------------------------------%
 \newpage
@@ -2364,21 +1663,7 @@ The suitable calculation of confidence limits for this variance ratio are to be 
 
 %http://lme4.r-forge.r-project.org/slides/2009-07-21-Seewiesen/4PrecisionD.pdf
 
-\section{Quiroz-Burdick PEFR Example}
 
-The data consist of two paired measurements on the same subject made with the large Wright peak flow meter and a mini
-Wright meter.
-
-Paired differences of less than 101/min are considered of no practical clinical significance. That is to say, it would have no bearing on
-any decision related to a clinical matter.
-
-A serious error would be declare that the mini-meter is as effective as the large meter when in fact it is not.
-
-%---------------------------------------------%
-% PAGE 355
-
-\[ H_0 : \kappa_{0.90} \geq 10 \]
-\[ H_A : \kappa_{0.90} < 10 \]
 
 %---------------------------------------------%
 
