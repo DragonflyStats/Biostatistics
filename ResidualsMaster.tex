@@ -29,148 +29,148 @@
 	
 
 %-------------------------------------------------------------- %
-	\section{Residual}
-	
-	A residual (or fitting error), on the other hand, is an observable estimate of the unobservable statistical error.
-	Residual (or error) represents unexplained (or residual) variation after fitting a regression model. It is the difference (or left over) between the observed value of the variable and the value suggested by the regression model.
-	Consider the previous example with men's heights and suppose we have a random sample of n people. The sample mean could serve as a good estimator of the population mean. Then we have:
-	
-	
-	The difference between the observed value of the dependent variable (y) and the predicted value (ŷ) is called the residual (e). Each data point has one residual.
-	
-	\[ \mbox{Residual} = \mbox{Observed value} - \mbox{Predicted value}\]
-	\[e = y - \hat{y} \]
-	
-	Both the sum and the mean of the residuals are equal to zero. .
-	
-	%--------------------------------- %
-	
-	
-	The difference between the height of each man in the sample and the unobservable population mean is a statistical error, whereas
-	The difference between the height of each man in the sample and the observable sample mean is a residual.
-	Note that the sum of the residuals within a random sample is necessarily zero, and thus the residuals are necessarily not independent. The statistical errors on the other hand are independent, and their sum within the random sample is almost surely not zero.
-	
-	%------------------------------- %
-	
+\section{Residual}
+
+A residual (or fitting error), on the other hand, is an observable estimate of the unobservable statistical error.
+Residual (or error) represents unexplained (or residual) variation after fitting a regression model. It is the difference (or left over) between the observed value of the variable and the value suggested by the regression model.
+Consider the previous example with men's heights and suppose we have a random sample of n people. The sample mean could serve as a good estimator of the population mean. Then we have:
+
+
+The difference between the observed value of the dependent variable (y) and the predicted value (ŷ) is called the residual (e). Each data point has one residual.
+
+\[ \mbox{Residual} = \mbox{Observed value} - \mbox{Predicted value}\]
+\[e = y - \hat{y} \]
+
+Both the sum and the mean of the residuals are equal to zero. .
+
+%--------------------------------- %
+
+
+The difference between the height of each man in the sample and the unobservable population mean is a statistical error, whereas
+The difference between the height of each man in the sample and the observable sample mean is a residual.
+Note that the sum of the residuals within a random sample is necessarily zero, and thus the residuals are necessarily not independent. The statistical errors on the other hand are independent, and their sum within the random sample is almost surely not zero.
+
+%------------------------------- %
+
 \subsection{Other uses of the word "error" in statistics}
-	
-	The use of the term "error" as discussed in the sections above is in the sense of a deviation of a value from a hypothetical unobserved value. At least two other uses also occur in statistics, both referring to observable prediction errors:
-	
-	\begin{itemize}
-		\item Mean square error or mean squared error (abbreviated MSE) and root mean square error (RMSE) refer to the amount by which the values predicted by an estimator differ from the quantities being estimated (typically outside the sample from which the model was estimated).
-		
-		\item 
-		Sum of squared errors, typically abbreviated SSE or SSe, refers to the residual sum of squares (the sum of squared residuals) of a regression; this is the sum of the squares of the deviations of the actual values from the predicted values, within the sample used for estimation. Likewise, the sum of absolute errors (SAE) refers to the sum of the absolute values of the residuals, which is minimized in the least absolute deviations approach to regression.
-		
-	\end{itemize}
-	
-	%=================================================== %
-	% http://www.ime.usp.br/~jmsinger/MAE0610/Mixedmodelresiduals.pdf
-	\subsection{Residual Plots}
-	A residual plot is a graph that shows the residuals on the vertical axis and the independent variable on the horizontal axis. If the points in a residual plot are randomly dispersed around the horizontal axis, a linear regression model is appropriate for the data; otherwise, a non-linear model is more appropriate.
-	
-	Below the table on the left shows inputs and outputs from a simple linear regression analysis, and the chart on the right displays the residual (e) and independent variable (X) as a residual plot.
-	
-	%x	60	70	80	85	95
-	%y	70	65	70	95	85
-	%ŷ	65.411	71.849	78.288	81.507	87.945
-	%e	4.589	-6.849	-8.288	13.493	-2.945
-	% Image of residual plot
-	
-	The residual plot shows a fairly random pattern - the first residual is positive, the next two are negative, the fourth is positive, and the last residual is negative. This random pattern indicates that a linear model provides a decent fit to the data.
-	
-	Below, the residual plots show three typical patterns. The first plot shows a random pattern, indicating a good fit for a linear model. The other plot patterns are non-random (U-shaped and inverted U), suggesting a better fit for a non-linear model.
-	
-	
-	%Random pattern	Non-random: U-shaped	Non-random: Inverted U
-	In the next lesson, we will work on a problem, where the residual plot shows a non-random pattern. And we will show how to "transform" the data to use a linear model with nonlinear data.
-	\section{Studentization}
-	In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
-	
-	This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
-	
-	\section{Residual Analysis for LME Models}
-	
-	In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
-	
-	\textbf{Cite:Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-		\item Cook's distance for LME models,
-		\item \index{likelihood distance} likelihood distance,
-		\item the variance (information) ration,
-		\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-		\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-	\end{itemize}
-	
-	
-	
-	
-	%--------------------------------------------------------------%
-	\subsection{LME REsiduals}	
-	Cox and Snell (1968, JRSS-B): general definition of residuals for
-	models with single source of variability
-	Hilden-Minton (1995, PhD thesis UCLA), Verbeke and Lesaffre
-	(1997, CSDA) or Pinheiro and Bates (2000, Springer): extension to
-	define three types of residuals that accommodate the extra source of
-	variability present in linear mixed models, namely:
-	
-	i) Marginal residuals, 
-	%bξ = y − X\hat{\beta} = \hat{M}^{-1}\hat{Q}y ,
-	
-	predictors of marginal errors, 
-	
-	%ξ = y − E[y] = y − X\beta = Zb + e
-	
-	ii) Conditional residuals, 
-	\[be = y − X\hat{\beta} − Zbb = \hat{\sigma}Q\hat{y}\] , predictors of
-	conditional errors 
-	\[e = y − E[y|b] = y − X\beta − Zb\]
-	
-	iii) BLUP, Zbb, predictors of random effects,
-	\[ Zb = E[y|b] − E[y]\]
-	
 
-	%----------------------------- %
-	\section{Residual Diagnostics}
+The use of the term "error" as discussed in the sections above is in the sense of a deviation of a value from a hypothetical unobserved value. At least two other uses also occur in statistics, both referring to observable prediction errors:
+
+\begin{itemize}
+	\item Mean square error or mean squared error (abbreviated MSE) and root mean square error (RMSE) refer to the amount by which the values predicted by an estimator differ from the quantities being estimated (typically outside the sample from which the model was estimated).
 	
-	Consider a residual vector of the form $\hat{e} = \boldsymbol{PY} $, where $\boldsymbol{P}$ is a projection matrix, possibly an oblique projector.
-	External studentization uses an estimate of $Var$ that does not involve the $i$th observation.
+	\item 
+	Sum of squared errors, typically abbreviated SSE or SSe, refers to the residual sum of squares (the sum of squared residuals) of a regression; this is the sum of the squares of the deviations of the actual values from the predicted values, within the sample used for estimation. Likewise, the sum of absolute errors (SAE) refers to the sum of the absolute values of the residuals, which is minimized in the least absolute deviations approach to regression.
 	
-	Externally studentized residuals are often preferred over studentized residuals because they have well known distributional
-	properties in the standard linear models for independent data.
-	
-	Residuals that are scaled by the estimated variances of the responses are referred to as Pearson-type residuals.
-	
-	Standardization: \[ \frac{\hat{e}_i}{\sqrt{v_i}}\]
-	Studentization \[ \frac{\hat{e}_i}{\sqrt{\hat{v}_i}}\]
-	
+\end{itemize}
+
+%=================================================== %
+% http://www.ime.usp.br/~jmsinger/MAE0610/Mixedmodelresiduals.pdf
+\subsection{Residual Plots}
+A residual plot is a graph that shows the residuals on the vertical axis and the independent variable on the horizontal axis. If the points in a residual plot are randomly dispersed around the horizontal axis, a linear regression model is appropriate for the data; otherwise, a non-linear model is more appropriate.
+
+Below the table on the left shows inputs and outputs from a simple linear regression analysis, and the chart on the right displays the residual (e) and independent variable (X) as a residual plot.
+
+%x	60	70	80	85	95
+%y	70	65	70	95	85
+%ŷ	65.411	71.849	78.288	81.507	87.945
+%e	4.589	-6.849	-8.288	13.493	-2.945
+% Image of residual plot
+
+The residual plot shows a fairly random pattern - the first residual is positive, the next two are negative, the fourth is positive, and the last residual is negative. This random pattern indicates that a linear model provides a decent fit to the data.
+
+Below, the residual plots show three typical patterns. The first plot shows a random pattern, indicating a good fit for a linear model. The other plot patterns are non-random (U-shaped and inverted U), suggesting a better fit for a non-linear model.
 
 
-	
-	
+%Random pattern	Non-random: U-shaped	Non-random: Inverted U
+In the next lesson, we will work on a problem, where the residual plot shows a non-random pattern. And we will show how to "transform" the data to use a linear model with nonlinear data.
+\section{Studentization}
+In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
 
-	\section{residuals.lme {nlme}- Extract lme Residuals}
+This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
+
+\section{Residual Analysis for LME Models}
+
+In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
+
+\textbf{Cite:Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
+
+
+
+%--------------------------------------------------------------%
+\subsection{LME REsiduals}	
+Cox and Snell (1968, JRSS-B): general definition of residuals for
+models with single source of variability
+Hilden-Minton (1995, PhD thesis UCLA), Verbeke and Lesaffre
+(1997, CSDA) or Pinheiro and Bates (2000, Springer): extension to
+define three types of residuals that accommodate the extra source of
+variability present in linear mixed models, namely:
+
+i) Marginal residuals, 
+%bξ = y − X\hat{\beta} = \hat{M}^{-1}\hat{Q}y ,
+
+predictors of marginal errors, 
+
+%ξ = y − E[y] = y − X\beta = Zb + e
+
+ii) Conditional residuals, 
+\[be = y − X\hat{\beta} − Zbb = \hat{\sigma}Q\hat{y}\] , predictors of
+conditional errors 
+\[e = y − E[y|b] = y − X\beta − Zb\]
+
+iii) BLUP, Zbb, predictors of random effects,
+\[ Zb = E[y|b] − E[y]\]
+
+
+%----------------------------- %
+\section{Residual Diagnostics}
+
+Consider a residual vector of the form $\hat{e} = \boldsymbol{PY} $, where $\boldsymbol{P}$ is a projection matrix, possibly an oblique projector.
+External studentization uses an estimate of $Var$ that does not involve the $i$th observation.
+
+Externally studentized residuals are often preferred over studentized residuals because they have well known distributional
+properties in the standard linear models for independent data.
+
+Residuals that are scaled by the estimated variances of the responses are referred to as Pearson-type residuals.
+
+Standardization: \[ \frac{\hat{e}_i}{\sqrt{v_i}}\]
+Studentization \[ \frac{\hat{e}_i}{\sqrt{\hat{v}_i}}\]
+
+
+
+
+
+
+\section{residuals.lme {nlme}- Extract lme Residuals}
+
+The residuals at level $i$ are obtained by subtracting the fitted levels at that level from the response vector (and dividing by the estimated within-group standard error, if \texttt{type="pearson"}). 
+
+The fitted values at level i are obtained by adding together the population fitted values (based only on the fixed effects estimates) and the estimated contributions of the random effects to the fitted values at grouping levels less or equal to i.
+
+%------------------------------------------------------------------------%
+
+\begin{framed}
+	\begin{verbatim}
 	
-	The residuals at level $i$ are obtained by subtracting the fitted levels at that level from the response vector (and dividing by the estimated within-group standard error, if \texttt{type="pearson"}). 
+	fm1 <- lme(distance ~ age + Sex, 
+	data = Orthodont, random = ~ 1)
+	head(residuals(fm1, level = 0:1))
+	summary(residuals(fm1) /
+	residuals(fm1, type = "p")) 
 	
-	The fitted values at level i are obtained by adding together the population fitted values (based only on the fixed effects estimates) and the estimated contributions of the random effects to the fitted values at grouping levels less or equal to i.
+	# constant scaling factor 1.432
 	
-	%------------------------------------------------------------------------%
-	
-	\begin{framed}
-		\begin{verbatim}
-		
-		fm1 <- lme(distance ~ age + Sex, 
-		data = Orthodont, random = ~ 1)
-		head(residuals(fm1, level = 0:1))
-		summary(residuals(fm1) /
-		residuals(fm1, type = "p")) 
-		
-		# constant scaling factor 1.432
-		
-		\end{verbatim}
-	\end{framed}
-	
-	%-------------------------------------------------------------------------------------------------------------------------------------%
+	\end{verbatim}
+\end{framed}
+
+%-------------------------------------------------------------------------------------------------------------------------------------%
 \section{Diagnostic Plots for Linear Models with \texttt{R}}
 Plot Diagnostics for an \texttt{lm} Object
 
@@ -185,405 +185,405 @@ Six plots (selectable by \texttt{which}) are currently available:
 	\item a plot of residuals against leverages, 
 	\item a plot of Cook's distances against leverage/(1-leverage).
 \end{enumerate} By default, the first three and 5 are provided.
-	%====================================================================%
-	\subsubsection{Residuals plots}
-	
-	lme allows to plot the residuals in the following ways:
-	
-	\begin{framed}
-		\begin{verbatim}
-		res_lme=residuals(model_lme)
-		plot(res_lme)
-		qqnorm(res_lme)
-		qqline(res_lme)
-		plot(model_lme)
-		\end{verbatim}
-	\end{framed}
-	
-	When the \texttt{plot} function calls the model object, the residual plot is produced.
-	
-	
-	%====================================================================%
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		plot(JS.roy1, which=c(1) )
-		\end{verbatim}
-	\end{framed}
-	
-	LME models assume that the residuals of the model are normally distributed. A Normal probability plot can be constructed to check this assumption. Commonly used \texttt{R} commands can be used to construct the plot.
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		qqnorm(resid(JS.roy1),pch="*",col="red")
-		qqline(resid(JS.roy1),col="blue")
-		\end{verbatim}
-	\end{framed}
-	
-	\begin{framed}
-		\begin{verbatim}
-		table(dat$method[1:255])
-		## 
-		##   J   S 
-		## 255   0
-		table(dat$method[256:510])
-		## 
-		##   J   S 
-		##   0 255
-		\end{verbatim}	
-	\end{framed}
-	\begin{framed}
-		\begin{verbatim}
-		library(predictMeans)
-		CookD(model, group=method, plot=TRUE, idn=5, newwd=FALSE)
-		\end{verbatim}
-	\end{framed}
-	
-	
-	
-	
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		> shapiro.test(resid(JS.roy1)[256:510])
-		
-		Shapiro-Wilk normality test
-		
-		data:  resid(JS.roy1)[256:510]
-		W = 0.9395, p-value = 9.503e-09
-		\end{verbatim}
-	\end{framed}
-	%	\begin{figure}[h!]
-	%		\centering
-	%		\includegraphics[width=0.9\linewidth]{images/Resid-newplot2}
-	%		
-	%	\end{figure}
-	
-	\begin{framed}
-		\begin{verbatim}
-		plot(roy.NLME, resid(., type = "p") ~ fitted(.) | method, 
-		abline = 0, id=.05)
-		\end{verbatim}
-	\end{framed}
-	%	\begin{figure}
-	%		\centering
-	%		\includegraphics[width=0.9\linewidth]{images/bloodnlmeResidPlot2}
-	%		\caption{}
-	%		\label{fig:blood}
-	%	\end{figure}
-	
-	\begin{framed}
-		\begin{verbatim}
-		library(predictMeans)
-		CookD(model, group=method, plot=TRUE, idn=5, newwd=FALSE)
-		\end{verbatim}
-	\end{framed}
+%====================================================================%
+\subsubsection{Residuals plots}
 
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		
-		blood.red <- blood[!(blood$subject %in% c(68,78,80)),]
-		dim(blood.red)
-		# 27 observations should be removed.
-		
-		blood.NLME.red <-lme(BP ~ method-1 , random=~1|subject,data = blood.red)
-		plot(blood.NLME.red, resid(., type = "p") ~ fitted(.) | method, abline = 0, id=.05)
-		\end{verbatim}
-	\end{framed}
+lme allows to plot the residuals in the following ways:
 
-	
-	\begin{framed}
-		\begin{verbatim}
-		> shapiro.test(resid(JS.roy1)[1:255])
-		
-		Shapiro-Wilk normality test
-		
-		data:  resid(JS.roy1)[1:255]
-		W = 0.9931, p-value = 0.2852
-		\end{verbatim}
-	\end{framed}
-	
-	\begin{framed}
-		\begin{verbatim}
-		> shapiro.test(resid(JS.roy1)[256:510])
-		
-		Shapiro-Wilk normality test
-		
-		data:  resid(JS.roy1)[256:510]
-		W = 0.9395, p-value = 9.503e-09
-		\end{verbatim}
-	\end{framed}
-	%	\begin{figure}[h!]
-	%		\centering
-	%		\includegraphics[width=0.9\linewidth]{images/Resid-newplot2}
-	%		
-	%	\end{figure}
-	
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		data.frame( response = resid(JS.ARoy20091, type = "response"), 
-		pearson  = resid(JS.ARoy20091, type = "pearson"), 
-		normalized = resid(JS.ARoy20091, type = "normalized") )
-		\end{verbatim}
-	\end{framed}
-	
+\begin{framed}
 	\begin{verbatim}
-	response      pearson    normalized
-	1    -4.65805902 -0.761587227 -0.7615872269
-	2    -0.88701342 -0.145025661  0.0776238081
-	3    -5.16580898 -0.844603753 -0.8446037530
-	4     2.29041830  0.374480726  0.6450898404
-	5     7.87508366  1.287567009  1.2875670086
-	6    -6.57048659 -1.074266908 -1.5090772378
-	...........................................
+	res_lme=residuals(model_lme)
+	plot(res_lme)
+	qqnorm(res_lme)
+	qqline(res_lme)
+	plot(model_lme)
 	\end{verbatim}
-	For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		> pearson %>%
-		+   as.numeric %>% 
-		+   matrix(nrow=85) %>%
-		+   round(4) 
-		[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
-		[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
-		[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
-		[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
-		[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
-		[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
-		[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
-		...........................................
-		
-		\end{verbatim}
-	\end{framed}
-	
-	We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
-	\begin{framed}
-		\begin{verbatim}
-		# standardized residuals versus fitted values 
-		plot(JS.ARoy20091, resid(., type = "pearson") ~ fitted(.) , 
-		abline = 0, id = 0.05)
-		\end{verbatim}
-	\end{framed}
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		par(mfrow=c(1,2))
-		qqnorm((resid(JS.ARoy20091)[1:255]),
-		pch="*",col="red",
-		ylim=c(-40,40),
-		main="Method J")
-		qqline(resid(JS.ARoy20091)[1:255],col="blue")
-		qqnorm((resid(JS.ARoy20091)[256:510]),
-		pch="*",col="red",
-		ylim=c(-40,40),
-		main="Method S")
-		qqline(resid(JS.ARoy20091)[256:510],col="blue")
-		par(mfrow=c(1,1))
-		\end{verbatim}	
-	\end{framed}
-	
-	\subsubsection{Residuals plots}
-	
+\end{framed}
 
-	
-	When the \texttt{plot} function calls the model object, the residual plot is produced.
-	
-	
-	%====================================================================%
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		plot(JS.roy1, which=c(1) )
-		\end{verbatim}
-	\end{framed}
-	
-	LME models assume that the residuals of the model are normally distributed. A Normal probability plot can be constructed to check this assumption. Commonly used \texttt{R} commands can be used to construct the plot.
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		qqnorm(resid(JS.roy1),pch="*",col="red")
-		qqline(resid(JS.roy1),col="blue")
-		\end{verbatim}
-	\end{framed}
-	
-	\begin{framed}
-		\begin{verbatim}
-		table(dat$method[1:255])
-		## 
-		##   J   S 
-		## 255   0
-		table(dat$method[256:510])
-		## 
-		##   J   S 
-		##   0 255
-		\end{verbatim}	
-	\end{framed}
+When the \texttt{plot} function calls the model object, the residual plot is produced.
 
-	\begin{framed}
-		\begin{verbatim}
-		plot(roy.NLME, resid(., type = "p") ~ fitted(.) | method, 
-		abline = 0, id=.05)
-		\end{verbatim}
-	\end{framed}
-	%	\begin{figure}
-	%		\centering
-	%		\includegraphics[width=0.9\linewidth]{images/bloodnlmeResidPlot2}
-	%		\caption{}
-	%		\label{fig:blood}
-	%	\end{figure}
-	
 
-	
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		data.frame( response = resid(JS.ARoy20091, type = "response"), 
-		pearson  = resid(JS.ARoy20091, type = "pearson"), 
-		normalized = resid(JS.ARoy20091, type = "normalized") )
-		\end{verbatim}
-	\end{framed}
-	
+%====================================================================%
+
+
+\begin{framed}
 	\begin{verbatim}
-	response      pearson    normalized
-	1    -4.65805902 -0.761587227 -0.7615872269
-	2    -0.88701342 -0.145025661  0.0776238081
-	3    -5.16580898 -0.844603753 -0.8446037530
-	4     2.29041830  0.374480726  0.6450898404
-	5     7.87508366  1.287567009  1.2875670086
-	6    -6.57048659 -1.074266908 -1.5090772378
-	...........................................
+	plot(JS.roy1, which=c(1) )
 	\end{verbatim}
-	For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		> pearson %>%
-		+   as.numeric %>% 
-		+   matrix(nrow=85) %>%
-		+   round(4) 
-		[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
-		[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
-		[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
-		[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
-		[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
-		[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
-		[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
-		...........................................
-		
-		\end{verbatim}
-	\end{framed}
-	
-	We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
-	\begin{framed}
-		\begin{verbatim}
-		# standardized residuals versus fitted values 
-		plot(JS.ARoy20091, resid(., type = "pearson") ~ fitted(.) , 
-		abline = 0, id = 0.05)
-		\end{verbatim}
-	\end{framed}
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		par(mfrow=c(1,2))
-		qqnorm((resid(JS.ARoy20091)[1:255]),
-		pch="*",col="red",
-		ylim=c(-40,40),
-		main="Method J")
-		qqline(resid(JS.ARoy20091)[1:255],col="blue")
-		qqnorm((resid(JS.ARoy20091)[256:510]),
-		pch="*",col="red",
-		ylim=c(-40,40),
-		main="Method S")
-		qqline(resid(JS.ARoy20091)[256:510],col="blue")
-		par(mfrow=c(1,1))
-		\end{verbatim}	
-	\end{framed}
-	
-	This code will allow you to make QQ plots for each level of the random effects.  LME models assume that not only the within-cluster residuals are normally distributed, but that each level of the random effects are as well. Depending on the model, you can vary the level from 0, 1, 2 and so on
-	\begin{framed}
-		\begin{verbatim}
-		qqnorm(JS.ARoy20091, ~ranef(.))
-		
-		# 	qqnorm(JS.ARoy20091, ~ranef(.,levels=1)
-		\end{verbatim}
-	\end{framed}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=0.9\linewidth]{images/ResidPlot2}
-		\caption{}
-		\label{fig:ResidPlot2}
-	\end{figure}	
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		data.frame( response = resid(JS.roy1, type = "response"), 
-		pearson  = resid(JS.roy1, type = "pearson"), 
-		normalized = resid(JS.roy1, type = "normalized") )
-		\end{verbatim}
-	\end{framed}
-	
+\end{framed}
+
+LME models assume that the residuals of the model are normally distributed. A Normal probability plot can be constructed to check this assumption. Commonly used \texttt{R} commands can be used to construct the plot.
+
+
+\begin{framed}
 	\begin{verbatim}
-	response      pearson    normalized
-	1    -4.65805902 -0.761587227 -0.7615872269
-	2    -0.88701342 -0.145025661  0.0776238081
-	3    -5.16580898 -0.844603753 -0.8446037530
-	4     2.29041830  0.374480726  0.6450898404
-	5     7.87508366  1.287567009  1.2875670086
-	6    -6.57048659 -1.074266908 -1.5090772378
-	...........................................
+	qqnorm(resid(JS.roy1),pch="*",col="red")
+	qqline(resid(JS.roy1),col="blue")
 	\end{verbatim}
-	For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
+\end{framed}
+
+\begin{framed}
+	\begin{verbatim}
+	table(dat$method[1:255])
+	## 
+	##   J   S 
+	## 255   0
+	table(dat$method[256:510])
+	## 
+	##   J   S 
+	##   0 255
+	\end{verbatim}	
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+	library(predictMeans)
+	CookD(model, group=method, plot=TRUE, idn=5, newwd=FALSE)
+	\end{verbatim}
+\end{framed}
+
+
+
+
+
+
+\begin{framed}
+	\begin{verbatim}
+	> shapiro.test(resid(JS.roy1)[256:510])
 	
+	Shapiro-Wilk normality test
 	
-	\begin{framed}
-		\begin{verbatim}
-		> pearson %>%
-		+   as.numeric %>% 
-		+   matrix(nrow=85) %>%
-		+   round(4) 
-		[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
-		[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
-		[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
-		[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
-		[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
-		[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
-		[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
-		...........................................
-		
-		\end{verbatim}
-	\end{framed}
+	data:  resid(JS.roy1)[256:510]
+	W = 0.9395, p-value = 9.503e-09
+	\end{verbatim}
+\end{framed}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[width=0.9\linewidth]{images/Resid-newplot2}
+%		
+%	\end{figure}
+
+\begin{framed}
+	\begin{verbatim}
+	plot(roy.NLME, resid(., type = "p") ~ fitted(.) | method, 
+	abline = 0, id=.05)
+	\end{verbatim}
+\end{framed}
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.9\linewidth]{images/bloodnlmeResidPlot2}
+%		\caption{}
+%		\label{fig:blood}
+%	\end{figure}
+
+\begin{framed}
+	\begin{verbatim}
+	library(predictMeans)
+	CookD(model, group=method, plot=TRUE, idn=5, newwd=FALSE)
+	\end{verbatim}
+\end{framed}
+
+
+
+\begin{framed}
+	\begin{verbatim}
 	
-	We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
-	\begin{framed}
-		\begin{verbatim}
-		# standardized residuals versus fitted values 
-		plot(JS.roy1, resid(., type = "pearson") ~ fitted(.) , 
-		abline = 0, id = 0.05)
-		\end{verbatim}
-	\end{framed}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=0.9\linewidth]{images/Residuals-JS-Roy}
-		\caption{}
-		\label{fig:Residuals-JS-Roy}
-	\end{figure}
+	blood.red <- blood[!(blood$subject %in% c(68,78,80)),]
+	dim(blood.red)
+	# 27 observations should be removed.
 	
+	blood.NLME.red <-lme(BP ~ method-1 , random=~1|subject,data = blood.red)
+	plot(blood.NLME.red, resid(., type = "p") ~ fitted(.) | method, abline = 0, id=.05)
+	\end{verbatim}
+\end{framed}
+
+
+\begin{framed}
+	\begin{verbatim}
+	> shapiro.test(resid(JS.roy1)[1:255])
+	
+	Shapiro-Wilk normality test
+	
+	data:  resid(JS.roy1)[1:255]
+	W = 0.9931, p-value = 0.2852
+	\end{verbatim}
+\end{framed}
+
+\begin{framed}
+	\begin{verbatim}
+	> shapiro.test(resid(JS.roy1)[256:510])
+	
+	Shapiro-Wilk normality test
+	
+	data:  resid(JS.roy1)[256:510]
+	W = 0.9395, p-value = 9.503e-09
+	\end{verbatim}
+\end{framed}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[width=0.9\linewidth]{images/Resid-newplot2}
+%		
+%	\end{figure}
+
+
+
+\begin{framed}
+	\begin{verbatim}
+	data.frame( response = resid(JS.ARoy20091, type = "response"), 
+	pearson  = resid(JS.ARoy20091, type = "pearson"), 
+	normalized = resid(JS.ARoy20091, type = "normalized") )
+	\end{verbatim}
+\end{framed}
+
+\begin{verbatim}
+response      pearson    normalized
+1    -4.65805902 -0.761587227 -0.7615872269
+2    -0.88701342 -0.145025661  0.0776238081
+3    -5.16580898 -0.844603753 -0.8446037530
+4     2.29041830  0.374480726  0.6450898404
+5     7.87508366  1.287567009  1.2875670086
+6    -6.57048659 -1.074266908 -1.5090772378
+...........................................
+\end{verbatim}
+For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
+
+
+\begin{framed}
+	\begin{verbatim}
+	> pearson %>%
+	+   as.numeric %>% 
+	+   matrix(nrow=85) %>%
+	+   round(4) 
+	[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
+	[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
+	[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
+	[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
+	[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
+	[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
+	[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
+	...........................................
+	
+	\end{verbatim}
+\end{framed}
+
+We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
+\begin{framed}
+	\begin{verbatim}
+	# standardized residuals versus fitted values 
+	plot(JS.ARoy20091, resid(., type = "pearson") ~ fitted(.) , 
+	abline = 0, id = 0.05)
+	\end{verbatim}
+\end{framed}
+
+
+\begin{framed}
+	\begin{verbatim}
+	par(mfrow=c(1,2))
+	qqnorm((resid(JS.ARoy20091)[1:255]),
+	pch="*",col="red",
+	ylim=c(-40,40),
+	main="Method J")
+	qqline(resid(JS.ARoy20091)[1:255],col="blue")
+	qqnorm((resid(JS.ARoy20091)[256:510]),
+	pch="*",col="red",
+	ylim=c(-40,40),
+	main="Method S")
+	qqline(resid(JS.ARoy20091)[256:510],col="blue")
+	par(mfrow=c(1,1))
+	\end{verbatim}	
+\end{framed}
+
+\subsubsection{Residuals plots}
+
+
+
+When the \texttt{plot} function calls the model object, the residual plot is produced.
+
+
+%====================================================================%
+
+
+\begin{framed}
+	\begin{verbatim}
+	plot(JS.roy1, which=c(1) )
+	\end{verbatim}
+\end{framed}
+
+LME models assume that the residuals of the model are normally distributed. A Normal probability plot can be constructed to check this assumption. Commonly used \texttt{R} commands can be used to construct the plot.
+
+
+\begin{framed}
+	\begin{verbatim}
+	qqnorm(resid(JS.roy1),pch="*",col="red")
+	qqline(resid(JS.roy1),col="blue")
+	\end{verbatim}
+\end{framed}
+
+\begin{framed}
+	\begin{verbatim}
+	table(dat$method[1:255])
+	## 
+	##   J   S 
+	## 255   0
+	table(dat$method[256:510])
+	## 
+	##   J   S 
+	##   0 255
+	\end{verbatim}	
+\end{framed}
+
+\begin{framed}
+	\begin{verbatim}
+	plot(roy.NLME, resid(., type = "p") ~ fitted(.) | method, 
+	abline = 0, id=.05)
+	\end{verbatim}
+\end{framed}
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.9\linewidth]{images/bloodnlmeResidPlot2}
+%		\caption{}
+%		\label{fig:blood}
+%	\end{figure}
+
+
+
+
+
+\begin{framed}
+	\begin{verbatim}
+	data.frame( response = resid(JS.ARoy20091, type = "response"), 
+	pearson  = resid(JS.ARoy20091, type = "pearson"), 
+	normalized = resid(JS.ARoy20091, type = "normalized") )
+	\end{verbatim}
+\end{framed}
+
+\begin{verbatim}
+response      pearson    normalized
+1    -4.65805902 -0.761587227 -0.7615872269
+2    -0.88701342 -0.145025661  0.0776238081
+3    -5.16580898 -0.844603753 -0.8446037530
+4     2.29041830  0.374480726  0.6450898404
+5     7.87508366  1.287567009  1.2875670086
+6    -6.57048659 -1.074266908 -1.5090772378
+...........................................
+\end{verbatim}
+For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
+
+
+\begin{framed}
+	\begin{verbatim}
+	> pearson %>%
+	+   as.numeric %>% 
+	+   matrix(nrow=85) %>%
+	+   round(4) 
+	[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
+	[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
+	[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
+	[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
+	[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
+	[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
+	[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
+	...........................................
+	
+	\end{verbatim}
+\end{framed}
+
+We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
+\begin{framed}
+	\begin{verbatim}
+	# standardized residuals versus fitted values 
+	plot(JS.ARoy20091, resid(., type = "pearson") ~ fitted(.) , 
+	abline = 0, id = 0.05)
+	\end{verbatim}
+\end{framed}
+
+
+\begin{framed}
+	\begin{verbatim}
+	par(mfrow=c(1,2))
+	qqnorm((resid(JS.ARoy20091)[1:255]),
+	pch="*",col="red",
+	ylim=c(-40,40),
+	main="Method J")
+	qqline(resid(JS.ARoy20091)[1:255],col="blue")
+	qqnorm((resid(JS.ARoy20091)[256:510]),
+	pch="*",col="red",
+	ylim=c(-40,40),
+	main="Method S")
+	qqline(resid(JS.ARoy20091)[256:510],col="blue")
+	par(mfrow=c(1,1))
+	\end{verbatim}	
+\end{framed}
+
+This code will allow you to make QQ plots for each level of the random effects.  LME models assume that not only the within-cluster residuals are normally distributed, but that each level of the random effects are as well. Depending on the model, you can vary the level from 0, 1, 2 and so on
+\begin{framed}
+	\begin{verbatim}
+	qqnorm(JS.ARoy20091, ~ranef(.))
+	
+	# 	qqnorm(JS.ARoy20091, ~ranef(.,levels=1)
+	\end{verbatim}
+\end{framed}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{images/ResidPlot2}
+	\caption{}
+	\label{fig:ResidPlot2}
+\end{figure}	
+
+
+\begin{framed}
+	\begin{verbatim}
+	data.frame( response = resid(JS.roy1, type = "response"), 
+	pearson  = resid(JS.roy1, type = "pearson"), 
+	normalized = resid(JS.roy1, type = "normalized") )
+	\end{verbatim}
+\end{framed}
+
+\begin{verbatim}
+response      pearson    normalized
+1    -4.65805902 -0.761587227 -0.7615872269
+2    -0.88701342 -0.145025661  0.0776238081
+3    -5.16580898 -0.844603753 -0.8446037530
+4     2.29041830  0.374480726  0.6450898404
+5     7.87508366  1.287567009  1.2875670086
+6    -6.57048659 -1.074266908 -1.5090772378
+...........................................
+\end{verbatim}
+For the $J$ observations, the variance is 6.116252 whereas for the $S$ observations, the denominator is 9.118144. (with the expected ratio of  1.490806)
+
+
+\begin{framed}
+	\begin{verbatim}
+	> pearson %>%
+	+   as.numeric %>% 
+	+   matrix(nrow=85) %>%
+	+   round(4) 
+	[,1]    [,2]    [,3]    [,4]    [,5]    [,6]
+	[1,] -0.7616  0.2194  0.3829 -0.2983  0.3597 -0.0790
+	[2,] -0.1450  0.1820 -0.1450 -0.5014  0.1567  0.2663
+	[3,] -0.8446  0.4634  0.1364 -0.1630 -0.2727  0.1660
+	[4,]  0.3745 -0.2795 -0.2795 -0.2658 -0.2658  0.6115
+	[5,]  1.2876 -0.6744 -0.6744  0.8935 -0.0935 -0.8612
+	[6,] -1.0743  1.8687 -0.7473 -0.0383  0.2908 -0.3673
+	...........................................
+	
+	\end{verbatim}
+\end{framed}
+
+We can plot the residuals against the fitted values, to assess the assumption of constant variance. 
+\begin{framed}
+	\begin{verbatim}
+	# standardized residuals versus fitted values 
+	plot(JS.roy1, resid(., type = "pearson") ~ fitted(.) , 
+	abline = 0, id = 0.05)
+	\end{verbatim}
+\end{framed}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{images/Residuals-JS-Roy}
+	\caption{}
+	\label{fig:Residuals-JS-Roy}
+\end{figure}
+
 
 \begin{itemize}
 	\item
@@ -602,8 +602,8 @@ Six plots (selectable by \texttt{which}) are currently available:
 
 %---------------------------------------------------------------------------%
 \chapter{Residuals for LME Models}
-	%-------------------------------------------------------------- %
-	
+%-------------------------------------------------------------- %
+
 
 \section{Diagnostic Tools for the nlme package}
 
@@ -624,9 +624,651 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 
 %\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
 
+\chapter{Model Diagnostics}
+%---------------------------------------------------------------------------%
+%1.1 Introduction to Influence Analysis
+%1.2 Extension of techniques to LME Models
+%1.3 Residual Diagnostics
+%1.4 Standardized and studentized residuals
+%1.5 Covariance Parameters
+%1.6 Case Deletion Diagnostics
+%1.7 Influence Analysis
+%1.8 Terminology for Case Deletion
+%1.9 Cook's Distance (Classical Case)
+%1.10 Cook's Distance (LME Case)
+%1.11 Likelihood Distance
+%1.12 Other Measures
+%1.13 CPJ Paper
+%1.14 Matrix Notation of Case Deletion
+%1.15 CPJ's Three Propositions
+%1.16 Other measures of Influence
+%---------------------------------------------------------------------------%
+\section{Introduction}%1.1
+In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
+Model diagnostic techniques determine whether or not the distributional assumptions are satisfied, and to assess the influence of unusual observations.
+
+\subsection{Model Data Agreement} %1.1.1
+\citet{schabenberger} describes the examination of model-data agreement as comprising several elements; residual analysis, goodness of fit, collinearity diagnostics and influence analysis.
+
+\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+
+
+
+\subsection{Influence Analysis for LME Models} %1.1.3
+The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{CPJ} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+
+Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model. Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{Zewotir}.
+Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+
+\subsection{Influence Statistics for LME models} %1.1.4
+Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+\begin{itemize}
+	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on precision of estimates: CovRatio and CovTrace
+	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+	\item outlier properties: internally and externally studentized residuals, leverage
+\end{itemize}
+%---------------------------------------------------------------------------%
+
+
+\subsection{What is Influence} %1.1.5
+
+Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
+
+%-------%
+\subsection{Quantifying Influence}  %1.1.6
+
+The basic procedure for quantifying influence is simple as follows:
+
+\begin{itemize}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+\end{itemize}
+
+\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Extension of techniques to LME Models} %1.2
+
+Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+
+Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+
+While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+
+If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
+
+\begin{itemize}
+	\item the estimates of fixed effects,
+	\item the estimates of the precision of the fixed effects,
+	\item the estimates of the covariance parameters,
+	\item the estimates of the precision of the covariance parameters,
+	\item fitted and predicted values.
+\end{itemize}
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Residual diagnostics} %1.3
+For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
+
+
+
+%--Marginal and Conditional Residuals
+
+\subsection{Residuals diagnostics in mixed models}
+
+%schabenberger
+The marginal and conditional means in the linear mixed model are
+$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
+$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
+
+A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
+model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. 
+
+
+\subsection{Marginal and Conditional Residuals}
+
+A marginal residual is the difference between the observed data and the estimated (marginal) mean, $r_{mi} = y_i - x_0^{\prime} \hat{b}$
+A conditional residual is the difference between the observed data and the predicted value of the observation,
+$r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
+
+In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
+
+\[ \hat{epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
+
+However, using conditional residuals for diagnostics presents difficulties, as they tend to be correlated and their variances may be different for different subgroups, which can lead to erroneous conclusions.
+
+%1.5
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+
+
+
+
+
+
+\begin{equation}
+r_{mi}=x^{T}_{i}\hat{\beta}
+\end{equation}
+
+\subsection{Marginal Residuals}
+\begin{eqnarray}
+\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
+&=& BY \nonumber
+\end{eqnarray}
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Standardized and studentized residuals} %1.4
+%--Studentized and Standardized Residuals
+
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+\subsection{Standardization} %1.4.1
+
+A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
+
+\subsection{Studentization} %1.4.2
+Instead, you can compute studentized residuals by dividing a residual by an estimate of its standard deviation. 
+
+\subsection{Internal and External Studentization} %1.4.3
+If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+standard error computation, the residual is said to be \index{internally studentization}internally studentized.
+
+Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
+
+
+\subsection{Computation}%1.4.4
+
+The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+
+\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+
+\subsection{Pearson Residual}%1.4.5
+
+Another possible scaled residual is the \index{Pearson residual} `Pearson residual', whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Covariance Parameters} %1.5
+The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+% - where is this coming from?
+% - where is it used again?
+% - Has this got anything to do with CovTrace etc?
+%---------------------------------------------------------------------------%
+\newpage
+\section{Case Deletion Diagnostics} %1.6
+
+\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+\subsection{Deletion Diagnostics}
+
+Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
+
+Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
+
+Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
+
+Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
+
+The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
+
+\section{Effects on fitted and predicted values}
+\begin{equation}
+\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+\end{equation}
+
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\citet{Christiansen} develops these techniques in the context of REML
+
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Influence analysis} %1.7
+
+Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+
+\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+
+\subsection{Cook's 1986 paper on Local Influence}%1.7.1
+Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+
+The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+interest.
+
+
+
+\subsection{Overall Influence}
+An overall influence statistic measures the change in the objective function being minimized. For example, in
+OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+
+%--------------------------------------------------------------------------%
+\newpage
+\section{Terminology for Case Deletion diagnostics} %1.8
+
+\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
+'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Cook's Distance} %1.9
+
+\subsection{Cook's Distance}%1.19.1 
+Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
+a new regression coefficient each time an observation is deleted.
+
+
+\citet{cook77} greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
+
+\index{Cook's distance}Cook's Distance is a well known diagnostic technique used in classical linear models, extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
+
+\subsection{Cooks's Distance}%1.9.2
+\index{Cook's distance} Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
+
+\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
+
+If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.
+
+
+\subsection{Cook's Distance}%1.9.3
+\index{Cook's Distance}
+In classical linear regression, a commonly used meausre of influence is Cook's distance. It is used as a measure of influence on the regression coefficients.
+
+For linear mixed effects models, Cook's distance can be extended to model influence diagnostics by definining.
+
+\[ C_{\beta i} = {(\hat{\beta} - \hat{\beta}_{[i]})^{T}(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}) (\hat{\beta} - \hat{\beta}_{[i]}) \over p}\]
+
+It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Cook's Distance for LMEs} %1.10
+Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
+Diagnostic methods for variance components are based on `one-step' methods. \citet{cook86} gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
+
+For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
+
+\[
+\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
+\]
+
+For random effect estimates, the \index{Cook's distance} Cook's distance is
+
+\[
+\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
+\]
+Large values for Cook's distance indicate observations for special attention.
+
+\subsection{Change in the precision of estimates}
+
+The effect on the precision of estimates is separate from the effect on the point estimates. Data points that
+have a small \index{Cook's distance}Cook's distance, for example, can still greatly affect hypothesis tests and confidence intervals, if their  influence on the precision of the estimates is large.
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Likelihood Distance} %1.11
+The likelihood distance gives the amount by which the log-likelihood of the full data changes if one were
+to evaluate it at the reduced-data estimates. The important point is that $l(\psi_{(U)})$ is not the log-likelihood
+obtained by fitting the model to the reduced data set.
+
+It is obtained by evaluating the likelihood function based on the full data set (containing all n observations) at the reduced-data estimates.
+
+The likelihood distance is a global, summary measure, expressing the joint influence of the observations in
+the set $U$ on all parameters in $\psi$  that were subject to updating.
+%------------%
+
+\subsection{Likelihood Distance}
+
+The \index{likelihood distance} likelihood distance is a global, summary measure, expressing the joint influence of the observations in the set $U$ on all parameters in $\phi$  that were subject to updating.
+
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Iterative and non-iterative influence analysis} %1.13
+\citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
+
+A measure of total influence requires updates of all model parameters.
+
+however, this doesnt increase the procedures execution time by the same degree.
+\subsection{Iterative Influence Analysis}
+
+%----schabenberger page 8
+For linear models, the implementation of influence analysis is straightforward.
+However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
+This can only be achieved in general is by omitting observations, then refitting the model.
+
+\citet{schabenberger} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
+
+
+%----------------------------------------------------------------------------------------%
+\newpage
+\section{The CPJ Paper}%1.13
+
+\subsection{Case-Deletion results for Variance components}
+\citet{CPJ} examines case deletion results for estimates of the variance components, proposing the use of one-step estimates of variance components for examining case influence. The method describes focuses on REML estimation, but can easily be adapted to ML or other methods.
+
+This paper develops their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted regression problem ( conditional on the estimated covariance matrix) for fixed effects.
+
+% Lesaffre's approach accords with that proposed by Christensen et al when applied in a repeated measurement context, with a large sample size.
+
+\subsection{CPJ Notation} %1.13.1
+
+\[ \boldsymbol{C} = \boldsymbol{H}^{-1} = \left[
+\begin{array}{cc}
+c_{ii} & \boldsymbol{c}_{i}^{\prime}\\
+\boldsymbol{c}_{i} &  \boldsymbol{C}_{[i]}
+\end{array} \right]
+\]
+
+\citet{CPJ} noted the following identity:
+
+\[ \boldsymbol{H}_{[i]}^{-1}  = \boldsymbol{C}_{[i]} - {1 \over c_{ii}}\boldsymbol{c}_{[i]}\boldsymbol{c}_{[i]}^{\prime} \]
+
+
+\citet{CPJ} use the following as building blocks for case deletion statistics.
+\begin{itemize}
+	\item $\breve{x}_i$
+	\item $\breve{z}_i$
+	\item $\breve{z}_ij$
+	\item $\breve{y}_i$
+	\item $p_ii$
+	\item $m_i$
+\end{itemize}
+All of these terms are a function of a row (or column) of $\boldsymbol{H}$ and $\boldsymbol{H}_{[i]}^{-1}$
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Matrix Notation for Case Deletion} %1.14
+
+\subsection{Case deletion notation} %1.14.1
+
+For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
+removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
+
+\subsection{Partitioning Matrices} %1.14.2
+Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{CPJ's Three Propositions} %1.15
+%-----------------------------%
+
+
+\subsubsection{Proposition 1}
+
+\[
+\boldsymbol{V}^{-1} =
+\left[ \begin{array}{cc}
+\nu^{ii} & \lambda_{i}^{\prime}  \\
+\lambda_{i} & \Lambda_{[i]}
+\end{array}\right] \]
+
+
+\[\boldsymbol{V}_{[i]}^{-1} = \boldsymbol{\Lambda}_{[i]} - { \lambda_{i} \lambda_{i} ^{\prime} \over \lambda_{i} } \]
+
+%-----------------------------%
+\subsection{Proposition 2}
+
+\begin{itemize}
+	\item[(i)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{X}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}$
+	\item[(ii)] = $(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y})^{-1}$
+	\item[(iii)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{Y}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y}$
+\end{itemize}
+%-----------------------------%
+\subsection{Proposition 3}
+This proposition is similar to the formula for the one-step Newtown Raphson estimate of the logistic regression coefficients given by Pregibon (1981) and discussed in Cook Weisberg.
+
+%-----------------------------------------------------------------------------------------------------------------------------------%
+
+
+\newpage
+\section{Measures of Influence} %1.16
+
+The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+
+Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
+estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
+
+
+\subsection{DFFITS} %1.16.1
+DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+\begin{displaymath} DFFITS = {\widehat{y_i} -
+	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+
+
+\subsection{PRESS} %1.16.2
+The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+\begin{equation}
+PRESS = \sum(y-y^{(k)})^2
+\end{equation}
+
+
+\begin{itemize}
+	\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
+	\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
+\end{itemize}
+
+\subsection{DFBETA} %1.16.3
+\begin{eqnarray}
+DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+&=& B(Y-Y_{\bar{a}}
+\end{eqnarray}
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------Chapter 2	------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+
+\chapter{Zewotir's Paper}
+
+% 2.1 Efficient Updating Theorem
+% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
+% 2.3 Computation and Notation 
+% 2.4 Measures 2
+%2.5 Haslett Analysis
+
+\section{Efficient Updating Theorem} %2.1
+\citet{Zewotir} describes the basic theorem of efficient updating.
+\begin{itemize}
+	\item \[ m_i = {1 \over c_{ii}}\]
+	%\item
+	%item
+	%\item
+\end{itemize}
+%-------------------------------------------------------------------------------------------------------------------------------------%
+\section{Zewotir Measures of Influence in LME Models}%2.2
+%Zewotir page 161
+\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
+\begin{itemize}
+	\item Variance components
+	\item Fixed effects parameters
+	\item Prediction of the response variable and of random effects
+	\item likelihood function
+\end{itemize}
+
+\subsection{Cook's Distance}
+\begin{itemize}
+	\item For variance components $\gamma$: $CD(\gamma)_i$,
+	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+\end{itemize}
+
+\newpage
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+\subsection{Information Ratio}
+
+
+%--------------------------------------------------------------%
+\newpage
+\section{Computation and Notation } %2.3
+with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+
+
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+%--------------------------------------------------------------%
+\newpage
+\section{Measures 2} %2.4
+
+\subsection{Cook's Distance} %2.4.1
+\begin{itemize}
+	\item For variance components $\gamma$
+\end{itemize}
+
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+\subsection{Variance Ratio} %2.4.2
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Cook-Weisberg statistic} %2.4.3
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Andrews-Pregibon statistic} %2.4.4
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 
 %-------------------------------------------------------------------------------------------------Chapter 3------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+
+\chapter{Augmented GLMs} 
+
+
+%---------------------------------------------------------------------------%
+% - 3. Augmented GLMS
+%---------------------------------------------------------------------------%
+
+
+Generalized linear models are a generalization of classical linear  models.
+
+\section{Augmented GLMs} %3.1
+
+With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+$y_{a} = T \delta + e^{*}$
+
+Weighted least squares equation
+
+
+% Youngjo et al page 154
+
+
+\subsection{The Augmented Model Matrix}  %3.2
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
+
+
+\subsection{Importance-Weighted Least-Squares (IWLS)}  %3.3
+
+
+\subsection{H-Likelihood}
+
+
+
+
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------------------------------------------%
+%-------------------------------------------------------------------------------------------------Chapter 4------------------------%
 %-------------------------------------------------------------------------------------------------------------------------------------%
 %-------------------------------------------------------------------------------------------------------------------------------------%
 
@@ -639,9 +1281,429 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 % - 2. Grubbs' Data
 % - 3. R implementation
 % - 4. Influence measures using R
+%---------------------------------------------------------------------------%
+
+\section{Application to MCS} %4.1
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$
+based upon the full set of observations, and let
+$\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case
+excluded.
 
 
-%\printindex
-%\bibliographystyle{chicago}
-%\bibliography{DB-txfrbib}
-\end{document}
+\section{Grubbs' Data} %4.2
+
+For the Grubbs data the $\hat{\beta}$ estimated are
+$\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
+fourth case out, i.e. $k=4$ the corresponding estimates are
+$\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
+
+
+\begin{equation}
+Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
+\end{equation}
+
+When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
+
+
+\newpage
+
+\begin{table}[ht]
+	\begin{center}
+		\begin{tabular}{rrrrr}
+			\hline
+			& F & C & D & A \\
+			\hline
+			1 & 793.80 & 794.60 & -0.80 & 794.20 \\
+			2 & 793.10 & 793.90 & -0.80 & 793.50 \\
+			3 & 792.40 & 793.20 & -0.80 & 792.80 \\
+			4 & 794.00 & 794.00 & 0.00 & 794.00 \\
+			5 & 791.40 & 792.20 & -0.80 & 791.80 \\
+			6 & 792.40 & 793.10 & -0.70 & 792.75 \\
+			7 & 791.70 & 792.40 & -0.70 & 792.05 \\
+			8 & 792.30 & 792.80 & -0.50 & 792.55 \\
+			9 & 789.60 & 790.20 & -0.60 & 789.90 \\
+			10 & 794.40 & 795.00 & -0.60 & 794.70 \\
+			11 & 790.90 & 791.60 & -0.70 & 791.25 \\
+			12 & 793.50 & 793.80 & -0.30 & 793.65 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\newpage
+
+\begin{equation}
+Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
+\end{equation}
+
+Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
+
+When considering the regression of case-wise differences and averages, we write
+
+\begin{equation}
+D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
+\end{equation}
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let $\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case excluded.
+
+For the Grubbs data the $\hat{\beta}$ estimated are $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
+fourth case out, i.e. $k=4$ the corresponding estimates are $\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
+
+\begin{equation}
+Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
+\end{equation}
+
+Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
+
+\begin{verbatim}
+Call: lm(formula = D ~ A)
+
+Coefficients: (Intercept)            A
+-37.51896      0.04656
+
+\end{verbatim}
+
+
+
+
+When considering the regression of case-wise differences and averages, we write
+
+\begin{equation}
+D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
+\end{equation}
+
+
+
+\subsection{Influence measures using R} %4.4
+\texttt{R} provides the following influence measures of each observation.
+
+%Influence measures: This suite of functions can be used to compute
+%some of the regression (leave-one-out deletion) diagnostics for
+%linear and generalized linear models discussed in Belsley, Kuh and
+% Welsch (1980), Cook and Weisberg (1982)
+
+
+
+\begin{table}[ht]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
+			\hline
+			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
+			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
+			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
+			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
+			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
+			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
+			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
+			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
+			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
+			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
+			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
+			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+%-------------------------------------------------------------------------------------------------------%
+\chapter{Appendices} % Chapter 5
+%---------------------------------------------------------------------------------------------------------%
+% Appendices
+% - The Hat Matrix (5.1)
+% - Sherman Morrison Woodbury Formula (5.2)
+% -  Hat Matrix applied to MCS (5.3)
+% - Cross Validation (Updating standard deviation) (5.4)
+% - Updating Estimates (5.5)
+% - Lesaffre's paper (5.6)
+%---------------------------------------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+\newpage
+\section{The Hat Matrix} %5.1
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+\subsection{Hat Values for MCS regression}
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
+
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
+
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+%------------------------------------------------------------------------%
+\newpage
+\section{Updating Estimates} %5.5
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row. In time series problems, there will be scientific interest in the changing relationship between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric rotation of a plane.
+
+Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row.
+
+\subsection{Updating Standard deviation}
+A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
+
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
+
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
+\end{equation}
+
+\subsection{Updating of Regression Estimates}
+Updating techniques are used in regression analysis to add or
+delete rows from a model, allowing the analyst the effect of the
+observation associated with that row. In time series problems,
+there will be scientific interest in the changing relationship
+between variables. In cases where there a single row is to be
+added or deleted, the procedure used is equivalent to a geometric
+rotation of a plane.
+
+Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
+is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
+$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+\subsection{Updating Regression Estimates}
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
+
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
+
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
+
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
+
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
+
+The updated intercept estimate is therefore
+
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
+
+\subsection{Inference on intercept and slope}
+\begin{equation}
+\hat{\beta_{1}} \pm t_{(\alpha, n-2) }
+\sqrt{\frac{S^2}{(n-1)S^{2}_{x}}}
+\end{equation}
+
+\begin{equation}
+\frac{\hat{\beta_{0}}-\beta_{0}}{SE(\hat{\beta_{0}})}
+\end{equation}
+\begin{equation}
+\frac{\hat{\beta_{1}}-\beta_{1}}{SE(\hat{\beta_{0}})}
+\end{equation}
+
+
+\subsubsection{Inference on correlation coefficient} This test of
+the slope is coincidentally the equivalent of a test of the
+correlation of the $n$ observations of $X$ and $Y$.
+\begin{eqnarray}
+H_{0}: \rho_{XY} = 0 \nonumber \\
+H_{A}: \rho_{XY} \ne 0 \nonumber \\
+\end{eqnarray}
+
+%---------------------------------------------------------%
+\newpage
+\section{Lesaffre's paper.} %5.6
+
+Lesaffre considers the case-weight perturbation approach.
+
+
+%\citep{cook86}
+Cook's 86 describes a local approach wherein each case is given a weight $w_{i}$ and the effect on the parameter estimation is measured by perturbing these weights. Choosing weights close to zero or one corresponds to the global case-deletion approach.
+
+Lesaffre  describes the displacement in log-likelihood as a useful metric to evaluate local influence %\citep{cook86}.
+
+
+%\citet{lesaffre}
+Lesaffre describes a framework to detect outlying observations that matter in an LME model. Detection should be carried out by evaluating diagnostics $C_{i}$ , $C_{i}(\alpha)$ and $C_{i}(D,\sigma^2)$.
+
+
+Lesaffre defines the total local influence of individual $i$ as
+\begin{equation}
+C_{i} = 2 | \triangle \prime _{i} L^{-1} \triangle_{i}|.
+\end{equation}
+
+
+The influence function of the MLEs evaluated at the $i$th point $IF_{i}$, given by
+\begin{equation}
+IF_{i} = -L^{-1}\triangle _{i}
+\end{equation}
+can indicate how $\hat{theta}$ changes as the weight of the $i$th
+subject changes.
+
+The manner by which influential observations distort the estimation process can be determined by inspecting the
+interpretable components in the decomposition of the above measures of local influence.
+
+
+Lesaffre comments that there is no clear way of interpreting the information contained in the angles, but that this doesn't mean the information should be ignored.
+
+
+\printindex
+\bibliographystyle{chicago}
+\bibliography{DB-txfrbib}
+
+\end{document} 
