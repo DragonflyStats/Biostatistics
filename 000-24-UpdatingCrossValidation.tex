@@ -2,6 +2,96 @@
 \begin{document}
 
 
+\chapter{Appendices} % Chapter 5
+
+\section{The Hat Matrix} %5.1
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted
+value. The diagonal elements of the $H$ are the `leverages', which
+describe the influence each observed value has on the fitted value
+for that same observation. The residuals ($R$) are related to the
+observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating
+the projection matrix, $H$, by removing the necessity to refit the
+model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+\section{Sherman Morrison Woodbury Formula} % 5.2
+
+The `Sherman Morrison Woodbury' Formula is a well known result in
+linear algebra;
+\begin{equation}
+(A+a^{T}B)^{-1} \quad = \quad A^{-1}-
+A^{-1}a^{T}(I-bA^{-1}a^{T})^{-1}bA^{-1}
+\end{equation}
+
+This result is highly useful for analyzing regression diagnostics,
+and for matrices inverses in general. Consider a $p \times p$
+matrix $X$, from which a row $x_{i}^{T}$ is to be added or
+deleted. \citet{CookWeisberg} sets $A = X^{T}X$, $a=-x_{i}^{T}$
+and $b=x_{i}^{T}$, and writes the above equation as
+
+\begin{equation}
+(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
+\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
+\end{equation}
+
+The projection matrix $H$ (also known as the hat matrix), is a
+well known identity that maps the fitted values $\hat{Y}$ to the
+observed values $Y$, i.e. $\hat{Y} = HY$.
+
+\begin{equation}
+H =\quad X(X^{T}X)^{-1}X^{T}
+\end{equation}
+
+$H$ describes the influence each observed value has on each fitted value. The diagonal elements of the $H$ are the `leverages', which describe the influence each observed value has on the fitted value for that same observation. The residuals ($R$) are related to the observed values by the following formula:
+\begin{equation}
+R = (I-H)Y
+\end{equation}
+
+The variances of $Y$ and $R$ can be expressed as:
+\begin{eqnarray}
+\mbox{var}(Y) = H\sigma^{2} \nonumber\\
+\mbox{var}(R) = (I-H)\sigma^{2}
+\end{eqnarray}
+
+Updating techniques allow an economic approach to recalculating the projection matrix, $H$, by removing the necessity to refit the model each time it is updated. However this approach is known for
+numerical instability in the case of down-dating.
+
+
+
+\subsection{Hat Values for MCS regression}
+
+With A as the averages and D as the casewise differences.
+\begin{verbatim}
+fit = lm(D~A)
+\end{verbatim}
+
+\begin{displaymath}
+H = A \left(A^\top  A\right)^{-1} A^\top ,
+\end{displaymath}
+
+
+
+%----------------------------------------------------------------------------%
 
 
 \section{Cross Validation} %5.4
@@ -17,6 +107,43 @@ In leave-one-out cross validation, each observation is omitted in turn, and a re
 
 
 Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+
+\section{Cross Validation} %5.4
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
+
+\section{Cross Validation} %5.4
+
+
+Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+
+
+Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
+$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
+excluded.
+
+
+
+
+In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+
+
+
+
+Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
+
 
 \subsection{Cross Validation: Updating standard deviation} %5.4.1
 
@@ -68,27 +195,54 @@ The updated intercept estimate is therefore
 
 %------------------------------------------------------------------------%
 \newpage
-\section{Cross Validation} %5.4
+\subsection{Cross Validation: Updating standard deviation} %5.4.1
 
+The variance of a data set can be calculated using the following formula.
+\begin{equation}
+S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
+\end{equation}
 
-Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
+While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
 
+\begin{equation}
+Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
+\end{equation}
 
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
-$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
-excluded.
+Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
 
+\begin{equation}
+Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
+\end{equation}
+\begin{equation}
+Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
+\end{equation}
 
+The updated estimate for the slope is therefore
+\begin{equation}
+\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
+\end{equation}
 
+It is necessary to determine the mean for $x$ and $y$ of the
+remaining $n-1$ terms
+\begin{equation}
+\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
+\end{equation}
 
-In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
+\begin{equation}
+\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
+\end{equation}
 
+The updated intercept estimate is therefore
 
+\begin{equation}
+\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
+\end{equation}
 
-
-Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
-
-
+%------------------------------------------------------------------------%
+\newpage
 \subsection{Cross Validation: Updating standard deviation} %5.4.1
 
 
@@ -264,68 +418,7 @@ H_{A}: \rho_{XY} \ne 0 \nonumber \\
 
 %------------------------------------------------------------------------%
 \newpage
-\section{Cross Validation} %5.4
 
-Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
-$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
-excluded.
-
-
-In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
-
-
-Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
-
-\subsection{Cross Validation: Updating standard deviation} %5.4.1
-
-The variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}
-\end{equation}
-
-Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
-
-\begin{equation}
-Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-\end{equation}
-
-The updated estimate for the slope is therefore
-\begin{equation}
-\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-\end{equation}
-
-It is necessary to determine the mean for $x$ and $y$ of the
-remaining $n-1$ terms
-\begin{equation}
-\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-\end{equation}
-
-\begin{equation}
-\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-\end{equation}
-
-The updated intercept estimate is therefore
-
-\begin{equation}
-\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-\end{equation}
-
-%------------------------------------------------------------------------%
-\newpage
 \section{Updating Estimates} %5.5
 
 \subsection{Updating of Regression Estimates}
@@ -486,22 +579,7 @@ H = A \left(A^\top  A\right)^{-1} A^\top ,
 
 
 
-%-------------------------------------------------------------------------------------------------------%
 
-
-\section{Cross Validation} %5.4
-
-Cross validation techniques for linear regression employ the use `leave one out' re-calculations. In such procedures the regression coefficients are estimated for $n-1$ covariates, with the $Q^{th}$ observation omitted.
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let
-$\hat{\beta}^{-Q}$ denoted the estimate with the $Q^{th}$ case
-excluded.
-
-
-In leave-one-out cross validation, each observation is omitted in turn, and a regression model is fitted on the rest of the data. Cross validation is used to estimate the generalization error of a given model. alternatively it can be used for model selection by determining the candidate model that has the smallest generalization error.
-
-
-Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
 
 
 \section{Cross Validation} %5.4
