@@ -166,49 +166,8 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 
 
 Zewotir remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-\section{Measures of Influence} %1.16
 
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
-
-Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-
-
-
-
-
-
-%=========================================================================%
-The addition of an extra factor
-
-Interaction terms are featured in ANOVA designs.
-
-%=========================================================================%
-My search just now found no mention of Cook's distance or influence measures.  
-
-The closest I found was an unanswered question on this from 
-April 2003 (http://finzi.psych.upenn.edu/R/Rhelp02a/archive/4797.html).
-
-Beyond that, there is an excellent discussion of "Examining a Fitted Model" in Sec. 4.3 (pp. 174-197) of Pinheiro and Bates (2000) 
-Mixed-Effects Models in S and S-Plus (Springer).  
-
-Pinheiro and Bates decided NOT to include plots of Cook's distance among the many diagnostics they did provide.  
-However, 'plot(fit.lme)' plots 'standardized residuals' vs. predicted or 'fitted values'.  
-Wouldn't points with large influence stand apart from the crowd in terms of 'fitted value'?
-
-Of course, there are many things other one could do to get at related information, including reading the code for 'influence' and 'lme', and 
-figure out from that how to write an 'influence' method for an 'lme' object. 
-
-
-%============================================================================%
-%============================================================================%
-\subsection{ Liao Shaio}
+\section{ Liao Shaio}
 
 Lai et Shiao is interesting in that it extends the usual method comparison study question. It correctly identifies LME models as a methodoloy that can used to make such questions tractable.
 The Data Set used in their examples is unavailable for independent use. Therefore, for the sake of consistency, a data set will be simulated based on the Blood Data that will allow for extra variables.
@@ -235,7 +194,7 @@ Joseph G. Voelkel Bruce E. Siskowski
 
 % - http://sprouts.aisnet.org/785/1/TAMReview.pdf
 % - http://organizacija.fov.uni-mb.si/index.php/organizacija/article/viewFile/557/999
-\subsection{Limits of agreement for Carstensen's data}
+\section{Limits of agreement for Carstensen's data}
 
 
 \citet{bxc2008} describes the calculation of the limits of agreement (with the inter-method bias implicit) for both data sets, based on his formulation;
@@ -363,34 +322,32 @@ The command \texttt{lmeU} fits a model with a particular subject removed. The id
 
 A plot ofthe per-observation diagnostics individual subject log-likelihood contributions can be rendered.
 
-\subsubsection*{Likelihood Displacement}
+\subsubsection*{The addition of an extra factor}
 
 
-\section{The Bland Altman Plot}
-In 1986 Bland and Altman published a paper in the Lancet proposing
-the difference plot for use for method comparison purposes. It has
-proved highly popular ever since. This is a simple, and widely
-used , plot of the differences of each data pair, and the
-corresponding average value. An important requirement is that the
-two measurement methods use the same scale of measurement.
-\\
-Variations of the Bland Altman plot is the use of ratios, in the
-place of differences.
-\begin{equation}
-D_{i} = X_{i} - Y_{i}   \label{BA01}
-\end{equation}
-Altman and Bland suggest plotting the within subject differences $
-D = X_{1} - X_{2} $ on the ordinate versus the average of $x_{1}$
-and  $x_{2}$ on the abscissa.
+%=========================================================================%
 
 
+Interaction terms are featured in ANOVA designs.
+
+%=========================================================================%
+My search just now found no mention of Cook's distance or influence measures.  
+
+The closest I found was an unanswered question on this from 
+April 2003 (http://finzi.psych.upenn.edu/R/Rhelp02a/archive/4797.html).
+
+Beyond that, there is an excellent discussion of "Examining a Fitted Model" in Sec. 4.3 (pp. 174-197) of Pinheiro and Bates (2000) 
+Mixed-Effects Models in S and S-Plus (Springer).  
+
+Pinheiro and Bates decided NOT to include plots of Cook's distance among the many diagnostics they did provide.  
+However, 'plot(fit.lme)' plots 'standardized residuals' vs. predicted or 'fitted values'.  
+Wouldn't points with large influence stand apart from the crowd in terms of 'fitted value'?
+
+Of course, there are many things other one could do to get at related information, including reading the code for 'influence' and 'lme', and 
+figure out from that how to write an 'influence' method for an 'lme' object. 
 
 
-\subsection{Treatment of Outliers}
-Bland and Altman attend to the issue of outliers in their 1986
-paper, wherein they present a data set with an extreme outlier
-
-
+%============================================================================%
 
 \section{Paired T tests}
 This method can be applied to test for statisitcally significant
@@ -457,280 +414,6 @@ indicated equivalence, equivalence does not reflect agreement.
 
 
 
-\section{Bland Altman Plots In Literature}
-\citet{mantha} contains a study the use of Bland Altman plots of
-44 articles in several named journals over a two year period. 42
-articles used Bland Altman's limits of agreement, wit the other
-two used correlation and regression analyses. \citet{mantha}
-remarks that 3 papers, from 42 mention predefined maximum width
-for limits of agreement which would not impair medical care.
-
-The conclusion of \citet{mantha} is that there are several
-inadequacies and inconsistencies in the reporting of results ,and
-that more standardization in the use of Bland Altman plots is
-required. The authors recommend the prior determination of limits
-of agreement before the study is carried out. This contention is
-endorsed by \citet{lin}, which makes a similar recommendation for
-the sample size, noting that\emph{sample sizes required either was
-not mentioned or no rationale for its choice was given}.
-
-\begin{quote}
-In order to avoid the appearance of "data dredging", both the
-sample size and the (limits of agreement) should be specified and
-justified before the actual conduct of the trial. \citep{lin}
-\end{quote}
-
-\citet{Dewitte} remarks that the limits of agreement should be
-compared to a clinically acceptable difference in measurements.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%4 Inappropriate assessment of Agreement       %%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\subsection{Gold Standard} This is considered to be the most
-accurate measurement of a particular parameter.
-
-\chapter{The Bland Altman Plot}
-\section{Bland Altman Plots}
-The issue of whether two measurement methods are comparable to the
-extent that they can be used interchangeably with sufficient
-accuracy is encountered frequently in scientific research.
-Historically comparison of two methods of measurement was carried
-out by use of matched pairs correlation coefficients or simple
-linear regression. Bland and Altman recognized the inadequacies of
-these analyses and articulated quite thoroughly the basis on which
-of which they are unsuitable for comparing two methods of
-measurement \citep*{BA83}.
-
-As an alternative they proposed a simple statistical methodology
-specifically appropriate for method comparison studies. They
-acknowledge that there are other valid methodologies, but argue
-that a simple approach is preferable to complex approaches,
-\emph{"especially when the results must be explained to
-non-statisticians"} \citep*{BA83}.
-
-The first step recommended which the authors argue should be
-mandatory is construction of a simple scatter plot of the data.
-The line of equality ($X=Y$) should also be shown, as it is
-necessary to give the correct interpretation of how both methods
-compare. A scatter plot of the Grubbs data is shown in figure 2.1.
-A visual inspection thereof confirms the previous conclusion that
-there is an inter method bias present, i.e. Fotobalk device has a
-tendency to record a lower velocity.
-
-
-
-In light of shortcomings associated with scatterplots,
-\citet*{BA83} recommend a further analysis of the data. Firstly
-differences of measurements of two methods on the same subject
-should  be calculated, and then the average of those measurements
-(Table 1.1). The averages of the two measurements is considered by
-Bland and Altman to the best estimate for the unknown true value.
-Importantly both methods must measure with the same units. These
-results are then plotted, with differences on the ordinate and
-averages on the abscissa (figure 1.2). \citet*{BA83}express the
-motivation for this plot thusly:
-\begin{quote}
-"From this type of plot it is much easier to assess the magnitude
-of disagreement (both error and bias), spot outliers, and see
-whether there is any trend, for example an increase in
-(difference) for high values. This way of plotting the data is a
-very powerful way of displaying the results of a method comparison
-study."
-\end{quote}
-\newpage
-% latex table generated in R 2.6.0 by xtable 1.5-5 package
-% Thu Aug 27 16:31:52 2009
-\begin{table}[tbh]
-\begin{center}
-
-\begin{tabular}{|c|c|c|c|c|}
-  \hline
- Round & Fotobalk [F] & Counter [C] & Differences [F-C] & Averages [(F+C)/2] \\
-  \hline
-1 & 793.80 & 794.60 & -0.80 & 794.20 \\
-  2 & 793.10 & 793.90 & -0.80 & 793.50 \\
-  3 & 792.40 & 793.20 & -0.80 & 792.80 \\
-  4 & 794.00 & 794.00 & 0.00 & 794.00 \\
-  5 & 791.40 & 792.20 & -0.80 & 791.80 \\
-  6 & 792.40 & 793.10 & -0.70 & 792.80 \\
-  7 & 791.70 & 792.40 & -0.70 & 792.00 \\
-  8 & 792.30 & 792.80 & -0.50 & 792.50 \\
-  9 & 789.60 & 790.20 & -0.60 & 789.90 \\
-  10 & 794.40 & 795.00 & -0.60 & 794.70 \\
-  11 & 790.90 & 791.60 & -0.70 & 791.20 \\
-  12 & 793.50 & 793.80 & -0.30 & 793.60 \\
-   \hline
-\end{tabular}
-\caption{Fotobalk and Counter Methods: Differences and Averages}
-\end{center}
-\end{table}
-
-
-
-
-\subsection{Repeated Measurements }
-In cases where there are repeated measurements by each of the two
-methods on the same subjects , Bland Altman suggest calculating
-the mean for each method on each subject and use these pairs of
-means to compare the two methods.
-\\
-The estimate of bias will be unaffected using this approach, but
-the estimate of the standard deviation of the differences will be
-too small, because of the reduction of the effect of repeated
-measurement error. Bland Altman propose a correction for this.
-\\
-Carstensen attends to this issue also, adding that another
-approach would be to treat each repeated measurement separately.
-
-
-
-
-
-
-
-\subsection{Introduction}
-\begin{itemize}
-	\item Comparing two methods of measurement is normally done by computing limits of agreement (LoA), i.e. prediction limits for
-	a future difference between measurements with the two methods. When the difference is not constant it is not clear what
-	this means, since the difference between the methods depends on the average; hence, unlike the case where the difference is
-	constant, LoA cannot directly be translated into a prediction interval for a measurement by one method given that of another.
-	\item The main point in the paper by Bland and Altman [1] is however different from the outlook in this paper; Bland and Altman
-	mainly discuss whether two methods of measurement can be used interchangeably and how to assess this with the help of
-	proper statistical methods to derive LoA, i.e. prediction limits for differences between two methods.
-	This paper takes as starting point that the classical LoA can be converted to a prediction interval for one method given a
-	measurement by the other (details in the next section). This sort of relationship can be shown in a plot as a line with slope 1
-	and prediction limits as lines also with slope 1; applicable for the prediction both from method 1 to method 2 and vice versa. In
-	the case of non-constant difference it would be desirable to be able to produce a similar plot, usable both ways. Thus, the aim
-	of this paper is to produce a conversion from one method to another that also applies in the case where the difference between
-	methods is not constant.
-	\item In this paper, I set up a proper model for data for method comparison studies which in the case of constant difference between
-	methods leads to the classical LoA, and in the case of linear bias gives a simple formula for the prediction. The paper only
-	addresses the situation where only one measurement by each method is available, although replicate measurements by each
-	method are desirable whenever possible [2]. Moreover, the situation with non-constant variance over the range of measurements
-	is not covered either.
-\end{itemize}
-\newpage
-\subsection{Discussion}
-%----------------------------------------------------------------------------------------------------------------%
-I have here proposed a simple twist to the results from regression of the differences on the sums in the case of a linear relationship
-between two methods of measurement. It is consistent with the obvious underlying model, and exploits the fact that although
-the parameters of the model cannot be estimated, those functions of the parameters that are needed for creating predictions
-can be estimated.
-%----------------------------------------------------------------------------------------------------------------%
-The prediction limits provided have the attractive property that if the prediction line with limits is drawn in a coordinate
-system, the chart will apply in both ways; hence, both the line and the limits are symmetric. Precisely as the prediction intervals
-derived from the classical LoA are in the case where the difference between methods is constant.
-%----------------------------------------------------------------------------------------------------------------%
-The drawback is that the regression of the differences on the means ignores that the averages are correlated with the residuals
-(i.e. the error terms), and therefore gives biased estimates if the slope linking the two methods is far from 1 or the residual
-variances are very different. However, both of these are rather uncommon in method comparison studies, so the method proposed
-here is widely applicable.
-%----------------------------------------------------------------------------------------------------------------%
-When considering LoA, the only feasible transformation is the log-transform, which gives LoA for the ratio of measurements,
-which is immediately understandable. If, for example, the measurements are fractions where some are close to either 0 or 1 a
-logit transform may be adequate. 
-
-LoA would then be for (log) odds-ratios, not very easily understood. For other more arbitrarily
-chosen transformation the situation may be even worse. But if a plot with conversion lines and limits are constructed, then the
-plot is readily back-transformed to the original scale for practical use.
-%---------------------------------------------------------------------------------
-
-\subsection{Distribution of Maxima} It is possible to use Order
-Statistics theory to assess conditional probabilities. With two
-random variables $T_{0}$ and $T_{1}$, we define two variables $Z$
-and $W$ such that they take the maximum and minimum values of the
-pair of $T$ values.\subsection{Plot of the Maxima against the
-Minima}
-
-
-In Figure 1,  The Maximas are plotted against their corresponding
-minima. The Critical values of the Maxima and Minima are displayed
-in the dotted lines.The Line of Equality depicts the obvious
-logical constraint of the each Maximum value being greater than
-its corresponding minimum value.
-
-
-
-The scientific question at hand is the correct approach to
-assessing whether two methods can be used interchangeably.
-\citet{BA99} expresses this as follows:
-\begin{quote}We want to
-know by how much (one) method is likely to differ from the
-(other), so that if it not enough to cause problems in the
-mathematical interpretation we can ... use the two
-interchangeably.
-\end{quote}
-
-
-
-Consequently, of the categories of method comparison study,
-comparison studies, the second category, is of particular
-importance, and the following discussion shall concentrate upon
-it. Less emphasis shall be place on the other three categories.
-
- \bigskip Further to \citet{BA86}, 'equivalence' of two methods expresses
- that both can be used interchangeably.
-\citet[p.49]{DunnSEME} remarks that this is a very restrictive
-interpretation of equivalence, and that while agreement indicated
-equivalence, equivalence does not necessarily reflect agreement.
-
-The main difference between Myers proposed method and the Bland
-Altman is that the random effects model is used to estimate the
-within-subject variance after adjusting for known and unknown
-variables. The Bland Altman approach uses one way analysis of
-variance to estimate the within subject variance. In general, the
-random effects model is an extension of the analysis of the ANOVA
-method and it can adjust for many more covariates than the ANOVA
-method
-
-
-
-
-
-
-\newpage
-\section{Conclusions about Existing Methodologies}
-
-Scatterplots are recommended by \citet{BA83} for an initial
-examination of the data, facilitating an initial judgement and
-helping to identify potential outliers. They are not useful for a
-thorough examination of the data. \citet{BritHypSoc} notes that
-data points will tend to cluster around the line of equality,
-obscuring interpretation.
-
-
-The Bland Altman methodology is well noted for its ease of use,
-and can be easily implemented with most software packages. Also it
-doesn't require the practitioner to have more than basic
-statistical training. The plot is quite informative about the
-variability of the differences over the range of measurements. For
-example, an inspection of the plot will indicate the 'fan effect'.
-They also can be used to detect the presence of an outlier.
-
- \citet{ludbrook97,ludbrook02}criticizes these plots on the
-basis that they presents no information on effect of constant bias
-or proportional bias. These plots are only practicable when both
-methods measure in the same units. Hence they are totally
-unsuitable for conversion problems. The limits of agreement are
-somewhat arbitrarily constructed. They may or may not be suitable
-for the data in question. It has been found that the limits given
-are too wide to be acceptable. There is no guidance on how to deal
-with outliers. Bland and Altman recognize effect they would have
-on the limits of agreeement, but offer no guidance on how to
-correct for those effects.
-
-There is no formal testing procedure provided. Rather, it is upon
-the practitioner opinion to judge the outcome of the methodology.
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%9 Appendix                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Appendix}
 
@@ -1154,208 +837,6 @@ methods.
 
 
 
-\section{Case Deletion Diagnostics for LME models}
-
-\citet{HaslettDillane} remark that linear mixed effects models
-didn't experience a corresponding growth in the use of deletion
-diagnostics, adding that \citet{McCullSearle} makes no mention of
-diagnostics whatsoever.
-
-\citet{schabenberger} examines the use and implementation of
-influence measures in LME models.
-
-Influence is understood to be the ability of a single or multiple
-data points, through their presences or absence in the data, to
-alter important aspects of the analysis, yield qualitatively
-different inferences, or violate assumptions of the statistical
-model \citep{schabenberger}.
-
-Outliers are the most noteworthy data points in an analysis, and
-an objective of influence analysis is how influential they are,
-and the manner in which they are influential.
-
-\citet{schabenberger} describes a simple procedure for quantifying
-influence. Firstly a model should be fitted to the data, and
-estimates of the parameters should be obtained. The second step is
-that either single of multiple data points, specifically outliers,
-should be omitted from the analysis, with the original parameter
-estimates being updated. This is known as `leave one out \ leave k
-out' analysis. The final step of the procedure is comparing the
-sets of estimates computed from the entire and reduced data sets
-to determine whether the absence of observations changed the
-analysis.
-
-
-
-A residual is the difference between an observed quantity and its
-estimated or predicted value. In LME models, there are two types
-of residuals, marginal residuals and conditional residuals. A
-marginal residual is the difference between the observed data and
-the estimated marginal mean. A conditional residual is the
-difference between the observed data and the predicted value of
-the observation. In a model without random effects, both sets of
-residuals coincide.
-
-\citet{schabenberger} notes that it is not always possible to
-derive influence statistics necessary for comparing full- and
-reduced-data parameter estimates. \citet{HaslettDillane} offers an
-procedure to assess the influences for the variance components
-within the linear model, complementing the existing methods for
-the fixed components. The essential problem is that there is no
-useful updating procedures for $\hat{V}$, or for $\hat{V}^{-1}$.
-\citet{HaslettDillane} propose an alternative , and
-computationally inexpensive approach, making use of the
-`delete=replace' identity.
-
-\citet{Haslett99} considers the effect of `leave k out'
-calculations on the parameters $\beta$ and $\sigma^{2}$, using
-several key results from \citet{HaslettHayes} on partioned
-matrices.
-
-
-
-
-
-
-In LME models, fitted by either ML or REML, an important overall
-influence measure is the likelihood distance \citep{cook82}. The
-procedure requires the calculation of the full data estimates
-$\hat{\psi}$ and estimates based on the reduced data set
-$\hat{\psi}_{(U)}$. The likelihood distance is given by
-determining
-
-
-\begin{eqnarray}
-LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
-RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
-\end{eqnarray}
-
-
-
-%------------------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------%
-\newpage
-\subsection{Case Deletion Diagnostics} %1.6
-
-
-\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
-
-\subsection{Effects on fitted and predicted values}
-\begin{equation}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
-\end{equation}
-
-
-
-
-\subsection{Case Deletion Diagnostics for Mixed Models}
-
-\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
-
-\citet{Christiansen} develops these techniques in the context of REML
-
-\newpage
-
-
-
-
-A general method for comparing nested models fit by maximum liklihood is the liklihood ratio 
-test. This test can be used for models fit by REML (restricted maximum liklihood), but only if the 
-fixed terms in the two models are invariant, and both models have been fit by REML. Otherwise, 
-the argument: method=”ML” must be employed (ML = maximum liklihood). 
-
-Example of a liklihood ratio test used to compare two models: 
-
-!"%;=0%1&=*#(?5"&=*#(B8"
-
-The output will contain a p-value, and this should be used in conjunction with the AIC scores to 
-judge which model is preferred. Lower AIC scores are better. 
-
-Generally, liklihood ratio tests should be used to evaluate the significance of terms on the 
-random effects portion of two nested models, and should not be used to determine the 
-significance of the fixed effects. 
-
-A simple way to more reliably test for the significance of fixed effects in an LME model is to use 
-conditional F-tests, as implemented with the simple “anova” function. 
-
-Example: 
-"
-!"%;=0%1&=*#(?8"
-
-will give the most reliable test of the fixed effects included in model1. 
-
-
-
-
-
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-
-
-
-
-
-
-\subsection{Matrix Notation for Case Deletion} %1.14
-
-\subsection{Case deletion notation} %1.14.1
-
-For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
-removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
-
-\subsection{Partitioning Matrices} %1.14.2
-Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
-
-%---------------------------------------------------------------------------%
-
-
-\subsection{Case Deletion Diagnostics} %1.6
-
-\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
-
-
-
-\subsection{Case Deletion Diagnostics for Mixed Models}
-
-\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
-
-\citet{Christiansen} develops these techniques in the context of REML
-
-
-%--------------------------------------------------------------------------%
-\newpage
-
-\subsection{Case Deletion Diagnostics} %1.6
-
-\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
-
-\subsection{Deletion Diagnostics}
-
-Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
-
-Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
-
-Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
-Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
-
-The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
-
-
-\subsection{Terminology for Case Deletion diagnostics} %1.8
-% \citet{preisser}
-Preisser(19XX) describes two type of diagnostics. When the set consists of only one observation, the type is called
-'observation-diagnostics'. For multiple observations, Preisser describes the diagnostics as 'cluster-deletion' diagnostics.
 
 \section{Work List}
 \begin{enumerate}
@@ -1437,153 +918,6 @@ EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller
 
 %---------------------------------------------------------------------------------------------------%
 \newpage
-\section{Generalized Least Squares}
-
-\subsection{Introduction to Generalized Least Squares}
-\begin{equation}
-\boldsymbol{y}_i = \boldsymbol{X}_i\boldsymbol{\beta} + \boldsymbol{\epsilon}_i
-\end{equation}
-
-Estimation under this model has been studied extensively in the linear regression model.
-
-%-------------------------------------------------------------------Simplifying GLS by KH -%
-\newpage
-
-\subsection{Introduction}
-\subsubsection{Robinson's (1991) review}
-\emph{ Robinson's (1991) review of best linear unbiased prediction (BLUP), together with the subsequent discussion, has emphasized the very considerable range of models that may be addressed via the general least squares (GLS) solution to the general linear model $Y = X\beta + \varepsilon$, where $E(\varepsilon) = 0$ and $var(\varepsilon) = V$. These include linear mixed models, geostatistics, time series and multivariate regression.}
-
-
-\emph{ The texts by Christensen (1996, 1991) and the connections to modern topics of image analysis, quality analysis, Bayesian methods, and splines (all in Robinson and discussion) make it an eminently suitable topic for teaching in any course concerning statistical linear models. }
-
-
-\emph{Nevertheless some of the matrix algebra that results from solving the normal equations for individual specifications of the general linear model will be daunting, and far from intuitive for many students, even those who are at home in linear space. The conventional approach to prediction and estimation from data $Y$ associated with covariates X via the general linear model $Y = X\beta + \varepsilon$ is essentially a two-stage process.}
-
-The first stage is to determine the best,in the GLS sense, estimator $\hat{\beta}$ of $\beta$ and subsequently to determine everything else from this.
-
-The estimator is said to be best if it minimizes the generalization of the sum of squares $\hat{e}^{t}V^{-1}\hat{e}$, where $\hat{e} = Y- X\hat{\beta}$
-
-%---------------------------------------------------%
-%Simplifying GLS
-\newpage
-
-It is straightforward to show that $\hat{\beta} = (X^tV^{-l}X)^{-l}X^tV^{-l}Y = BY$ and at the minimum the sum of squares is $Y^{t} (V^{-l}  - V^{-l}(X^tV^{-l}X)^{-l}X^tV^{-l})Y = Y^{t}QY$.\\
-\bigskip
-
-\emph{The purpose of this note is to give emphasis to one derivation, based on Lagrange multipliers, which leads to a system of equations that is very intuitive and lends itself readily to specialization. This approach is in fact standard in the geostatistical treatment of \textbf{kriging} (see Matheron 1962; Journel and Huijbregts 1981; Ripley 1981; Cressie 1993). In the genetics literature it is associated with the name of Henderson (1983); or in the classical statistical literature Hocking (1996, p. 73) is a suitable reference.}
-
-\emph{The approach based on Lagrange multipliers deemphasizes the explicit determination of $\hat{\beta}$ and leads to a clearer understanding of the complementary (but for some confusing) tasks known as best linear unbiased estimation (BLUE) and best linear unbiased prediction (BLUP). Regrettably, Robinson-despite offering four derivations, and having as his main concern the interplay of BLUP and BLUE-gives it little prominence.}
-
-It has recently been discussed by Searle (1997, p; 278) who said that it makes another approach (Searle, Casella, and McCulloch 1992, p. 271) seem "obtuse and unnecessarily complicated." By contrast, our treatment emphasizes the fact that it leads to a single set of equations whose solution sheds simplifying light on very many issues in general least squares.
-
-The American Statistician's Teacher's Corner (e.g., McLean, Sanders, and Stroup 1991; Puntanen and Styan 1989) has already played host to previous attempts to simplify the explanation of such topics. Various authors (CPJ, Haslett Hayes ,Martin ) have visited the more specialized area of diagnostics and have developed \textbf{\emph{down-dating}} (leave-$k$-out) formulas.
-
-The conventional approach here is via tricky identities based on the inverses of partitioned matrices. Here again the Lagrange system of equations leads to a much simplified and-we claim-much more intuitive derivation of these more technical results.
-
-
-\emph{
-	The essence of the approach is to seek that linear combination of the available data Y which is best for the
-	estimation of Z among those linear estimators which are constrained to be unbiased. We adopt therefore a constrained minimization approach, using Lagrange multipliers. By best we mean that combination $\hat{Z}(Y) = \lambda_{z}^{t}Y$ which has least mean square error $E( Z- \lambda_{z}^{t}Y)^2$, and by unbiased we mean $E( Z- \lambda_{z}^{t}Y)) = 0$. }
-Here $Z$ denotes that scalar which is to be the objective of the estimation. This estimator is written as $\hat{Z}(Y)$ to make its dependence on $Y$ explicit. Note that the term "best" is applied in the context of minimizing the prediction variance $var(Z - Z(Y))$. We shall see that Z may be used to denote either a random variable or an unknown parameter, and that it will be sufficient to specify Z via $E[Z]$ and $cov(Z, Y)$. If $Z$ is not a random variable then of course the latter is zero and $E[Z] = Z$. We establish-very simply, as below-a general solution in terms of A and cov(Z, Y) and achieve particular tasks by identification of these. Our presentation is for a scalar Z, but the notation facilitates generalization to vector Z.
-
-
-%--------------------------------------------------------------------%
-
-\subsection{Predictors and Estimators}
-
-\emph{We note that Robinson (1991) stated "A convention has somehow developed that estimators of random effects are called predictors while estimators of fixed effects are called estimators." We agree that this distinction is confusing and indeed unnecessary.} \\ \bigskip
-
-
-
-We seek $\hat{Z}(Y) = \lambda_{z}^{t}Y$, where $ \lambda_{z}^{t}$, is an $n \times 1$ vector of estimation coefficients. It is convenient to specify $E[Z]=A\beta$ for known $A$. In this context $A$ denotes a row vector, but we generalize this in the following. The constraint requiring $\hat{Z}(Y)$ to be unbiased now reduces to $(A -  \lambda_{z}^{t}X) = 0$. A solution is found by minimizing $var(Z -  \lambda_{z}^{t}Y) + \gamma^t_z (X^t\lambda_{z} - A^t)$, where $\gamma_z$ is a $p \times 1$ vector of Lagrange multipliers, where $p$ is the length of the parameter vector $\beta$. Setting to zero the derivatives with respect to $\lambda_{z}$ and $\gamma_z $ yields the system.
-
-
-
-
-\begin{equation}
-\left(
-\begin{array}{cc}
-V & X \\
-X^t & 0 \\
-\end{array}
-\right)\left(
-\begin{array}{c}
-\lambda_{z}\\
-\gamma_z \\
-\end{array}
-\right)=\left(
-\begin{array}{c}
-\mbox{cov}(Y,Z)\\
-A^{t} \\
-\end{array}
-\right)
-\end{equation}
-
-
-If the inverse exists we have that
-\begin{equation}
-\left(
-\begin{array}{c}
-\lambda_{z}\\
-\gamma_z \\
-\end{array}
-\right)=\left(
-\begin{array}{cc}
-V & X \\
-X^t & 0 \\
-\end{array}
-\right) ^{-1}\left(
-\begin{array}{c}
-\mbox{cov}(Y,Z)\\
-A^{t} \\
-\end{array}
-\right)
-\end{equation}
-
-
-
-so that
-\[ \hat{Z}(Y) =
-\left(
-\begin{array}{cc}
-\lambda_{z}^{t}&
-\gamma_z^{t} \\
-\end{array}
-\right)=\left(
-\begin{array}{c}
-Y \\
-0 \\
-\end{array}
-\right) \]
-
-In terms of the estimation problem being considered the square matrix on the left-hand side of (1) concerns "what we have," namely, the data plus constraints.
-
-The matrix does not depend on Z and consequently need only be constructed once before application to a range of problems. The right- hand side contains the term $cov(Z,Y)$ and can be specified for whatever Z is being considered.
-
-It is this feature of system (1) that makes a generic approach to estimation possible.
-
-
-\newpage
-
-% Failure of Wald CIs
-% http://people.upei.ca/hstryhn/stryhn208.pdf
-
-\subsection{Two Options }
-\begin{itemize}
-	\item Wald Type CIs
-	\item PL Type CIs
-\end{itemize}
-
-\subsection{Profile Likelihood Confidence Intervals}
-The Profile-likelihood based confidence intervals methods is described in Venzon and Moolgavkar, Journal of the Royal Statistical Society, Series C vol 37, no.1, 1988, pp. 87-94. 
-
-Profile likelihood confidence intervals can be computed for real parameter estimates.
-
-The default confidence intervals for real parameter estimates in the 0-1 interval are based on the standard error and the logit transformation.  
-That is, a 95\% confidence interval is computed on the logit estimate, and then these intervals are transformed to the real scale.  
-
-
-\newpage
 
 \section{Two-tailed testing} A test for equality of variances, based on the likelihood Ratio test, is very simple to implement using existing methodologies. All that is required it to specify the reference model and the relevant nested mode as arguments to the command \texttt{anova()}. The output can be interpreted in the usual way.
 
@@ -1598,7 +932,7 @@ A useful approach is to compute the confidence intervals for the ratio of within
 Pinheiro and Bates (pg 93-95) give a description of how confidence intervals for the variance components are computed. Furthermore a complete set of confidence intervals can be computed to complement the variance component estimates.
 However , to facilitate one tailed testing, What is required is the computation of the variance ratios of within-item and between-item standard deviations.
 
-A na�ve approach would be to compute the variance ratios by relevant F distribution quantiles. However, the question arises as to the appropriate degrees of freedom. However, Douglas Bates has stated that an alternative approach is required (i.e. Profile Likelihoods)
+A naive approach would be to compute the variance ratios by relevant F distribution quantiles. However, the question arises as to the appropriate degrees of freedom. However, Douglas Bates has stated that an alternative approach is required (i.e. Profile Likelihoods)
 
 \begin{quote}
 	"The omission of standard errors on variance components is intentional.
@@ -1631,179 +965,568 @@ The suitable calculation of confidence limits for this variance ratio are to be 
 
 
 
-%---------------------------------------------%
+
+%----------------------------------------------------------------------------%
+
+\chapter{Model Diagnostics}
+%---------------------------------------------------------------------------%
+% - 1. Introduction
+% - 2. What is Influence
+% - 3. Residual Diagnostics for Classical Models
+% - 4. Extension to LME Models
+% - 5. Conditional and Marginal Residuals
+% - 6. Studentized and Standardized Residuals
+% - 7. Case Deletion Diagnostics
+% - 8. Influence Analysis
+% - 9. Cook's Distance
+% - 10. Cook's Distance for LMEs
+% - 11. Likelihood Distances
+% - 12. Haslett's Analysis
+% - 13. Measures of Influence (Cook's D, PRESS and DFFITS)
+% - 14. Iterative and non-iterative influence analysis
+% - 15. Matrix Notation for Case Delection
+% - 16. CPJ's Three Propositions
+% - 17. Augmented GLMs
+% - 18. Covariance Parameters
+% - 19. Terminology for Case Deletion diagnostics
+%- 20. The CPJ Paper
+%---------------------------------------------------------------------------%
+\section{Introduction}%1.1
+In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
+
+\subsection{Checking model assumptions}
+In classical linear regression, it is important to carry out model diagnostic techniques to determine whether or not the distributional assumptions are satisfied. Model diagnostics are also used to determine the influence of unusual observations.
+
+\citet{schabenberger} describes the examination of model-data agreement as comprising several elements; residual analysis, goodness of fit, collinearity diagnostics and influence analysis.
+
+\subsection{Influence Diagnostics: Basic Idea and Statistics}
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
+\begin{itemize}
+	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
+	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on precision of estimates: CovRatio and CovTrace
+	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
+	\item outlier properties: internally and externally studentized residuals, leverage
+\end{itemize}
+
+\subsection{Introduction }
+The linear mixed effects model is a useful methodology for fitting a wide range of models. However, linear mixed effects models are known to be sensitive to outliers. \citet{christensen} advises that identification of outliers is necessary before conclusions may be drawn from the fitted model.
+
+Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model.
+
+The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model.
+
+Influence analysis methodologies have been used extensively in classical linear models, and provided the basis for methodologies for use with LME models.
+
+Computationally inexpensive diagnostics tools have been developed to examine the issue of influence \citep{tewomir}.
+Studentized residuals, error contrast matrices and the inverse of the response variance covariance matrix are regular components of these tools.
+
+\section{Outline of Thesis}
+Thus the study of method comparison is introduced. The intention of this thesis is to progress the
+study of method comparison studies, using a statistical method known as Linear mixed effects models.
+Chapter two shall describe linear mixed effects models, and how the use of the linear mixed
+effects models have so far extended to method comparison studies. Implementations of important existing work shall be presented, using the \texttt{R} programming language.
+
+Model diagnostics are an integral component of a complete statistical analysis.
+In chapter three model diagnostics shall be described in depth, with particular
+emphasis on linear mixed effects models, further to chapter two.
+
+For the fourth chapter, important linear mixed effects model diagnostic methods shall be extended to method comparison studies, and proposed methods shall be demonstrated on data sets that have become well known in literature on method comparison. The purpose is to both calibrate these methods and to demonstrate applications for them.
+The last chapter shall focus on robust measures of important parameters such as agreement.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{What is Influence} %1.2
+
+Broadly defined, ``influence"is understood as the ability of a single or multiple data points, through their presence
+or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
+violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
+result of influence analysis \citep{schabenberger}.
+
+Influence is defined as the `ability of a single or multiple data points, through their presence or absence
+%-------%
+\subsection{Quantifying Influence}  %1.2.1
+
+The basic procedure for quantifying influence is simple as follows:
+\begin{itemize}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence
+	of the observations changes the analysis.
+\end{itemize}
+%---------------------------------------------------------------------------%
+\newpage
+\section{Residual diagnostics} %1.3
+For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
+
+In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
+
+\[ \hat{epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
+
+However, using conditional residuals for diagnostics presents difficulties, as they tend to be correlatedand their variances may be different for different subgroups, which can lead to erroneous conclusions.
+\subsection{Residuals}
+
+The computation of internally studentized residuals relies on the diagonal entries of
+$\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
+
+\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
+
+Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
 
 
-\chapter{Application to Method Comparison Studies} % Chapter 4
+\subsection{Residuals diagnostics in mixed models}
 
+A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
+model you can distinguish marginal residuals $rm$ and conditional residuals $rc$. A marginal residual is the
+difference between the observed data and the estimated (marginal) mean.
+
+\citet{cook86} introduces powerful tools for local-influence
+assessment and examining perturbations in the assumptions of a
+model. In particular the effect of local perturbations of
+parameters or observations are examined.
 
 
 
 %---------------------------------------------------------------------------%
-% - 1. Application to MCS
-% - 2. Grubbs' Data
-% - 3. R implementation
-% - 4. Influence measures using R
+\newpage
+\section{Extension of technique to LME Models} %1.4
+
+Model diagnostic techniques , well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
+
+Beckman, Nachtsheim and Cook (1987) applied the \index{local influence}local influence method of Cook (1986)
+to the analysis of the linear mixed model.
+
+
+While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
+
+
+If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect
+\begin{itemize}
+	\item the estimates of fixed effects
+	\item the estimates of the precision of the fixed effects
+	\item the estimates of the covariance parameters
+	\item the estimates of the precision of the covariance parameters
+	\item fitted and predicted values
+\end{itemize}
+
+
 %---------------------------------------------------------------------------%
+\newpage
+\section{Marginal and Conditional Residuals} %1.5
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+The marginal and conditional means in the linear mixed model are
+$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
+$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
 
+%schabenberger
+A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
+model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. A marginal residual is the
+difference between the observed data and the estimated (marginal) mean, $r_{mi} = y_i - x_0^{\prime} \hat{b}$
+A conditional residual is the difference between the observed data and the predicted value of the observation,
+$r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
 
-\section{Application to MCS} %4.1
-
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$
-based upon the full set of observations, and let
-$\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case
-excluded.
-
-
-
-
-\section{Grubbs' Data} %4.2
-
-
-For the Grubbs data the $\hat{\beta}$ estimated are
-$\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are
-$\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-
-
+\subsection{Marginal and Conditional Residuals}
 
 \begin{equation}
-Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
+r_{mi}=x^{T}_{i}\hat{\beta}
 \end{equation}
 
+\subsection{Marginal Residuals}
+\begin{eqnarray}
+\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
+&=& BY \nonumber
+\end{eqnarray}
 
-When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
+%---------------------------------------------------------------------------%
+\newpage
+\section{Standardized and studentized residuals} %1.6
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+Another possible scaled residual is the \index{Pearson residual} `Pearson residual' whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+
+\subsection{Studentization} %1.6.1
+
+A random variable is said to be standardized if the difference from its mean is scaled by its standard
+deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values
+of $\theta$. Standardization is thus not possible in practice.
+Instead, you can compute studentized residuals
+by dividing a residual by an estimate of its standard deviation. If that estimate is independent of the ith
+observation, the process is termed external studentization.
+This is usually accomplished by excluding the
+$i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+standard error computation, the residual is said to be \textbf{\emph{internally studentized}}.
+%---------------------------------------------------------------------------%
+\newpage
+\section{Case Deletion Diagnostics} %1.7
+
+Christensen, Pearson and Johnson (1992) studied \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance}Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+\subsection{Case Deletion Diagnostics}
+Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
+
+
+The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
+
+\section{Effects on fitted and predicted values}
+\begin{equation}
+\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+\end{equation}
+
+\subsection{Deletion Diagnostics}
+
+Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
+
+Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
+
+Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
+
+
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\citet{Christiansen} develops these techniques in the context of
+REML
+
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient
+computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by
+making use of basic building blocks, computed only once for the full model.
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Influence analysis} %1.8
+
+Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+
+\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
+For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
+
+\subsection{Cook's 1986 paper on Local Influence}%1.8.1
+Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
+
+The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
+interest.
+
+
+
+\subsection{Overall Influence}
+An overall influence statistic measures the change in the objective function being minimized. For example, in
+OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
 
 
 
 
 \newpage
+\section{Likelihood Distance} %1.11
+The likelihood distance gives the amount by which the log-likelihood of the full data changes if one were
+to evaluate it at the reduced-data estimates. The important point is that $l(\psi_{(U)})$ is not the log-likelihood
+obtained by fitting the model to the reduced data set.
 
+It is obtained by evaluating the likelihood function based on the full data set (containing all n observations) at the reduced-data estimates.
 
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{rrrrr}
-			\hline
-			& F & C & D & A \\
-			\hline
-			1 & 793.80 & 794.60 & -0.80 & 794.20 \\
-			2 & 793.10 & 793.90 & -0.80 & 793.50 \\
-			3 & 792.40 & 793.20 & -0.80 & 792.80 \\
-			4 & 794.00 & 794.00 & 0.00 & 794.00 \\
-			5 & 791.40 & 792.20 & -0.80 & 791.80 \\
-			6 & 792.40 & 793.10 & -0.70 & 792.75 \\
-			7 & 791.70 & 792.40 & -0.70 & 792.05 \\
-			8 & 792.30 & 792.80 & -0.50 & 792.55 \\
-			9 & 789.60 & 790.20 & -0.60 & 789.90 \\
-			10 & 794.40 & 795.00 & -0.60 & 794.70 \\
-			11 & 790.90 & 791.60 & -0.70 & 791.25 \\
-			12 & 793.50 & 793.80 & -0.30 & 793.65 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
+The likelihood distance is a global, summary measure, expressing the joint influence of the observations in
+the set $U$ on all parameters in $\psi$  that were subject to updating.
+%------------%
 
+\subsection{Likelihood Distance}
 
+The \index{likelihood distance} likelihood distance is a global, summary measure, expressing the joint influence of the observations in the set $U$ on all parameters in $\phi$  that were subject to updating.
 
-
+%---------------------------------------------------------------------------%
 \newpage
+\section{Haslett's Analysis} %1.12
+For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
+the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
 
 
+\section{Iterative and non-iterative influence analysis} %1.14
+\citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
+
+A measure of total influence requires updates of all model parameters.
+
+however, this doesnt increase the procedures execution time by the same degree.
+\subsection{Iterative Influence Analysis}
+
+%----schabenberger page 8
+For linear models, the implementation of influence analysis is straightforward.
+However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
+This can only be achieved in general is by omitting observations, then refitting the model.
+
+\citet{schabenberger} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
+
+
+
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Matrix Notation for Case Delection} %1.15
+
+\subsection{Case deletion notation} %1.15.1
+
+For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
+removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
+
+\subsection{Partitioning Matrices} %1.15.2
+Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{CPJ's Three Propositions} %1.16
+%-----------------------------%
+
+
+\subsubsection{Proposition 1}
+
+\[
+\boldsymbol{V}^{-1} =
+\left[ \begin{array}{cc}
+\nu^{ii} & \lambda_{i}^{\prime}  \\
+\lambda_{i} & \Lambda_{[i]}
+\end{array}\right] \]
+
+
+\[\boldsymbol{V}_{[i]}^{-1} = \boldsymbol{\Lambda}_{[i]} - { \lambda_{i} \lambda_{i} ^{\prime} \over \lambda_{i} } \]
+
+%-----------------------------%
+\subsection{Proposition 2}
+
+\begin{itemize}
+	\item[(i)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{X}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}$
+	\item[(ii)] = $(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y})^{-1}$
+	\item[(iii)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{Y}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y}$
+\end{itemize}
+%-----------------------------%
+\subsection{Proposition 3}
+This proposition is similar to the formula for the one-step Newtown Raphson estimate of the logistic regression coefficients given by pregibon (1981)
+and discussed in Cook Weisberg.
+
+%---------------------------------------------------------------------------%
+\newpage
+\section{Augmented GLMs} %1.17
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+Generalized linear models are a generalization of classical linear
+models.
+
+The subscript $M$ is a label referring to the mean model.
 \begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
 \end{equation}
 
 
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
+%Augmented Generalized linear models.
 
 
-When considering the regression of case-wise differences and averages, we write
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
 
 
 \begin{equation}
-D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-\end{equation}
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let $\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case excluded.
-
-
-For the Grubbs data the $\hat{\beta}$ estimated are $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are $\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-
-\begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
+y_{a} = T \delta + e^{*}
 \end{equation}
 
-
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-
-
-\begin{verbatim}
-Call: lm(formula = D ~ A)
+Weighted least squares equation
 
 
-Coefficients: (Intercept)            A
--37.51896      0.04656
+% Youngjo et al page 154
+
+%--------------------------------------------------------------------------%
+\newpage
+\section{Covariance Parameters} %1.18
+The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+%--------------------------------------------------------------------------%
+\newpage
+\section{Terminology for Case Deletion diagnostics} %1.19
+
+\citet{preisser} describes two type of diagnostics. When the set
+consists of only one observation, the type is called
+'observation-diagnostics'. For multiple observations, Preisser
+describes the diagnostics as 'cluster-deletion' diagnostics.
 
 
-\end{verbatim}
+%----------------------------------------------------------------------------------------%
+\newpage
+\section{The CPJ Paper}%1.20
+
+\subsection{Case-Deletion results for Variance components}
+\citet{Christensen}examines case deletion results for estimates of the variance components, proposing the use of one-step estimates of variance components for examining case influence. The method describes focuses on REML estimation, but can easily be adapted to ML or other methods.
+
+%\citet{Christensen}
+Christensen developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted resgression problem ( conditional on the estimated covariance matrix) for fixed effects. Lesaffre's approach accords with that proposed by Christensen et al when applied in a repeated measurement context, with a large
+sample size.
+
+% Zewotir's Paper
+
+\subsection{CPJ Notation}
+
+\[ \boldsymbol{C} = \boldsymbol{H}^{-1} = \left[
+\begin{array}{cc}
+c_{ii} & \boldsymbol{c}_{i}^{\prime}\\
+\boldsymbol{c}_{i} &  \boldsymbol{C}_{[i]}
+\end{array} \right]
+\]
+
+\citet{CPJ} noted the following identity:
+
+\[ \boldsymbol{H}_{[i]}^{-1}  = \boldsymbol{C}_{[i]} - {1 \over c_{ii}}\boldsymbol{c}_{[i]}\boldsymbol{c}_{[i]}^{\prime} \]
+
+
+\citet{CPJ} use the following as building blocks for case deletion statistics.
+\begin{itemize}
+	\item $\breve{x}_i$
+	\item $\breve{z}_i$
+	\item $\breve{z}_ij$
+	\item $\breve{y}_i$
+	\item $p_ii$
+	\item $m_i$
+\end{itemize}
+All of these terms are a function of a row (or column) of $\boldsymbol{H}$ and $\boldsymbol{H}_{[i]}^{-1}$
+%-------------------------------------------------------------------------------------------------------------------------------------%
+
+\chapter{Roy2013}
+
+http://business.utsa.edu/wps/MSS/0017MSS-253-2013.pdf
+
+
+Testing the Equality of Mean Vectors for Paired Doubly Multivariate Observations 
+
+
+Example 2. (Mineral Data): This data set is taken from Johnson and Wichern (2007, p. 43).
+An investigator measured the mineral content of bones (radius, humerus and ulna) by photon
+absorptiometry to examine whether dietary supplements would slow bone loss in 25 older women.
+Measurements were recorded for three bones on the dominant and nondominant sides. Thus,
+the data is doubly multivariate and clearly u = 2 and q = 3.
+The bone mineral contents for the ﬁrst 24 women one year after their participation in an
+experimental program is given in Johnson and Wichern (2007, p. 353). 
+
+
+
+Thus, for our analysis
+we take only ﬁrst 24 women in the ﬁrst data set. We test whether there has been a bone loss
+considering the data as doubly multivariate and has BCS structure. We rearrange the variables
+in the data set by grouping together the mineral content of the dominant sides of radius, humerus
+and ulna as the ﬁrst three variables, that is, the variables in the ﬁrst location (u = 1) and then
+the mineral contents for the non-dominant side of the same bones (u = 2)
+
+
+
+	\section{Outlier Testing} 
+	A new outlier identification test for method comparison studies based on robust regression.
+	
+	The identification of outliers in method comparison studies (MCS) is an important part of data analysis, as outliers can indicate serious errors in the measurement process. Common outlier tests proposed in the literature usually require a homogeneous sample distribution and homoscedastic random error variances. However, datasets in MCS usually do not meet these assumptions. In this work, a new outlier test based on robust linear regression is proposed to overcome these special problems. The LORELIA (local reliability) residual test is based on a local, robust residual variance estimator, given as a weighted sum of the observed residuals. The new test is compared to a standard test proposed in the literature by a Monte Carlo simulation. Its performance is illustrated in examples.
+	
+	\section{Lorelia}
+	
+	
+	Method comparison studies are performed in order to prove equivalence between two measurement methods or instruments. The identification of outliers is an important part of data analysis as outliers can indicate serious errors in the measurement process. Common outlier tests 
+	proposed in the literature require a homogeneous sample distribution and homoscedastic random error variances. However, datasets in method comparison studies usually do not meet these assumptions. To overcome this problem, different data transformation methods are proposed in the literature. However, they will only be applicable if the random errors can be described by simple additive or multiplicative models. In this work, a new outlier test based on robust linear regression is proposed which provides a general solution to the above problem. The LORELIA (LOcal RELIAbility) residual test is based on a local, robust residual variance estimator, given as a weighted sum of the observed residuals. Outlier limits are estimated from the actual data situation without making assumptions on the underlying error variance model. The performance of the new test is demonstrated in examples and simulations.
+	
+	\section{Note on Roy's paper}
+	\begin{enumerate}
+		
+		
+		\item Basic model:
+		\begin{center}
+			$ \boldsymbol{y_{i}} = \boldsymbol{X_{i}\beta}
+			+ \boldsymbol{Z_{i}b_{i}} + \boldsymbol{\epsilon_{i}}, \qquad i=1,\dots,n$ \\
+			$\boldsymbol{Z_{i}} \sim \mathcal{N}(\boldsymbol{0,\Sigma}),\quad
+			\boldsymbol{\epsilon_{i}} \sim \mathcal{N}(\boldsymbol{0, \sigma^2
+				\boldsymbol{I} })$
+		\end{center}
+		
+		Assumptions are made about homoskedasticity.
+		
+		\item General model:
+		\begin{center}
+			$ \boldsymbol{y_{i}} = \boldsymbol{X_{i}\beta}
+			+ \boldsymbol{Z_{i}b_{i}} + \boldsymbol{\epsilon_{i}}, \qquad i=1,\dots,n$ \\
+			$\boldsymbol{Z_{i}} \sim \mathcal{N}(\boldsymbol{0,\Psi}),\quad
+			\boldsymbol{\epsilon_{i}} \sim \mathcal{N}(\boldsymbol{0,\sigma^2 \boldsymbol{\Lambda} })$
+		\end{center}
+		
+		Assumptions about homoskedasticity are relaxed \cite[pg.202]{pb}.
+		
+		
+		
+		
+		
+		\item $\sigma^2 \boldsymbol{\Lambda}$ is the general form for the VC structure for residuals.
+		
+		\item The response vector $\boldsymbol{y}_{i}$ comprises the observations of
+		the subject, as measured by two methods, taking three measurements each.
+		Hence a $6 \times 1$ random vector corresponding to the $i$th subject.
+		\begin{equation}
+		\boldsymbol{y}_{i} = (y_{i}^{j1},y_{i}^{Jj2},y_{i}^{j3},y_{i}^{s1},y_{i}^{s2},y_{i}^{s3}) \prime
+		\end{equation}
+		
+		\item The number of replicates is $p$. A subject will have up to
+		$2p$ measurements, for the two instrument case, i.e. $Max(n_{i}) = 2p$.
+		(Let $k$ denote number of instruments, which is assumed to be $2$
+		unless stated otherwise.) For the blood pressure data $p=3$.
+		
+		
+	\end{enumerate}
+	
+	
+
+
+\bibliographystyle{chicago}
+\bibliography{DB-txfrbib}
 
 
 
 
-
-
-
-
-%When considering the regression of case-wise differences and averages, we write
-%
-%
-%\begin{equation}
-%	D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-%\end{equation}
-
-
-\subsection{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
-
-
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
-
-
-
-
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-\addcontentsline{toc}{section}{Bibliography}
-
-\bibliography{transferbib}
-\end{document}
+\end{document} 
