@@ -47,6 +47,15 @@
 	r_{mi}=x^{T}_{i}\hat{\beta}
 	\end{equation}
 	
+
+
+%---------------------------------------------------------------------------%
+
+\subsection{Overall Influence}
+An overall influence statistic measures the change in the objective function being minimized. For example, in
+OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
+\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
+
 	\subsection{Marginal Residuals}
 	\begin{eqnarray}
 	\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
@@ -119,45 +128,41 @@
 			\end{tabular}
 		\end{center}
 	\end{table}
-	\section{Measures of Influence} %1.16
+\section{Leverage and Influence}
+	\subsection{What is Influence} %1.1.5
 	
-	The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+	Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
+	points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
 	
-	
-	\subsection{DFFITS} %1.16.1
-	DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-	\begin{displaymath} DFFITS = {\widehat{y_i} -
-		\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-	
-	
-	\subsection{PRESS} %1.16.2
-	The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-	\begin{equation}
-	PRESS = \sum(y-y^{(k)})^2
-	\end{equation}
-	
-	
-	\begin{itemize}
-		\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-		\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-	\end{itemize}
-	
-	\subsection*{DFBETA} %1.16.3
-	\begin{eqnarray}
-	DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-	&=& B(Y-Y_{\bar{a}}
-	\end{eqnarray}
+	%-------%
+\subsection{Influence}
+The influence of an observation can be thought of in terms of how much the predicted scores for other observations would differ if the observation in question were not included. 
 
 
 
+\subsection{Leverage}
+% http://onlinestatbook.com/2/regression/influential.html
+% Leverage
+The leverage of an observation is based on how much the observation's value on the predictor variable differs from the mean of the predictor variable. The greater an observation's leverage, the more potential it has to be an influential observation. 
+
+For example, an observation with a value equal to the mean on the predictor variable has no influence on the slope of the regression line regardless of its value on the criterion variable. On the other hand, an observation that is extreme on the predictor variable has the potential to affect the slope greatly.
+
+\subsubsection{Calculation of Leverage (h)}
+The first step is to standardize the predictor variable so that it has a mean of 0 and a standard deviation of 1. Then, the leverage (h) is computed by squaring the observation's value on the standardized predictor variable, adding 1, and dividing by the number of observations.
+
+
+\subsection{Summary of Influence Statistics}
+\begin{itemize}
+	\item	\textbf{Studentized Residuals} – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
+	\item	\textbf{Leverage Values (Hat Diag)} – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
+	\item	\textbf{DFFITS} – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
+	\item	\textbf{DFBETAS} – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
+	\\
+	The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
+	
+	\item	\textbf{Cook’s D} – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
+\end{itemize}
 \newpage
-\subsection{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-
-\newpage
-
-\subsection*{Abstract}
-This chapter is broken into two parts. The first part is a review of diagnostics methods for linear models, intended to acquaint the reader with the subject, and also to provide a basis for material covered in the second part. Particular attention is drawn to graphical methods.
 
 
 \section{Framework for Model Validation using Residual Diagnostics}
@@ -527,35 +532,6 @@ If the global measure suggests that the points in $U$ are influential, the natur
 
 
 
-\section{Leverage and Influence}
-\subsection{Influence}
-The influence of an observation can be thought of in terms of how much the predicted scores for other observations would differ if the observation in question were not included. 
-
-
-
-\subsection{Leverage}
-% http://onlinestatbook.com/2/regression/influential.html
-% Leverage
-The leverage of an observation is based on how much the observation's value on the predictor variable differs from the mean of the predictor variable. The greater an observation's leverage, the more potential it has to be an influential observation. 
-
-For example, an observation with a value equal to the mean on the predictor variable has no influence on the slope of the regression line regardless of its value on the criterion variable. On the other hand, an observation that is extreme on the predictor variable has the potential to affect the slope greatly.
-
-\subsubsection{Calculation of Leverage (h)}
-The first step is to standardize the predictor variable so that it has a mean of 0 and a standard deviation of 1. Then, the leverage (h) is computed by squaring the observation's value on the standardized predictor variable, adding 1, and dividing by the number of observations.
-
-
-\subsection{Summary of Influence Statistics}
-\begin{itemize}
-	\item	\textbf{Studentized Residuals} – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
-	\item	\textbf{Leverage Values (Hat Diag)} – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
-	\item	\textbf{DFFITS} – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
-	\item	\textbf{DFBETAS} – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
-	\\
-	The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
-	
-	\item	\textbf{Cook’s D} – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
-\end{itemize}
-\newpage
 
 	\section{Influence in LME Models}
 	
@@ -628,12 +604,7 @@ The first step is to standardize the predictor variable so that it has a mean of
 	%---------------------------------------------------------------------------%
 	\newpage
 
-	\subsection{What is Influence} %1.1.5
-	
-	Broadly defined, influence is understood as the ability of a single or multiple data points, through their presence or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
-	points for deletion so that a better model fit can be achieved for the reduced data, although this might be a result of influence analysis \citep{schabenberger}.
-	
-	%-------%
+
 	\subsection{Quantifying Influence}  %1.1.6
 	
 	The basic procedure for quantifying influence is simple as follows:
@@ -677,18 +648,6 @@ Likelihood based estimation methods, such as ML and REML, are sensitive to unusu
 \citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
 For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
 
-\subsection{Cook's 1986 paper on Local Influence}%1.7.1
-Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
-
-The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
-interest.
-
-%---------------------------------------------------------------------------%
-
-\subsection{Overall Influence}
-An overall influence statistic measures the change in the objective function being minimized. For example, in
-OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
-\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
 
 \section{Terminology for Case Deletion diagnostics} %1.8
 
@@ -727,15 +686,6 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 
 
-\chapter{Zewotir's Paper}
-
-% 2.1 Efficient Updating Theorem
-% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
-% 2.3 Computation and Notation
-% 2.4 Measures 2
-% 2.5 Haslett Hayes Paper
-% 2.6 Demidenko I Influence
-
 \section{Zewotir Measures of Influence in LME Models}%2.2
 %Zewotir page 161
 \citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
@@ -746,60 +696,6 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 	\item likelihood function
 \end{itemize}
 
-
-\section{Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-
-
-\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-
-
-
-
-
-\section{Demidenko's I Influence} %2.6
-The concept of I Influence is generalized  to the non linea regression model.
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\chapter{Zewotir's Paper}
-
-% 2.1 Efficient Updating Theorem
-% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
-% 2.3 Computation and Notation 
-% 2.4 Measures 2
-%2.5 Haslett Analysis
-
-
-
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 
 
@@ -998,13 +894,12 @@ The key to making deletion diagnostics useable is the development of efficient c
 
 %===================================================================================== %
 
-\subsection{Cook's 1986 paper on Local Influence}%1.7.1
-Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
 
-The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
-interest.
+\section{Demidenko's I Influence} %2.6
+The concept of I Influence is generalized  to the non linea regression model.
+%-------------------------------------------------------------------------------------------------------------------------------------%
 
-\newpage
+
 
 
 \section{Computation and Notation } %2.3
@@ -1012,10 +907,13 @@ with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X
 compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
 
 
-\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
 
-%------------------------------------------------------------------------%
-\newpage
+
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+
+
+
+
 
 
 \section{The Hat Matrix} %5.1
@@ -1051,125 +949,6 @@ numerical instability in the case of down-dating.
 
 
 
-section{The Hat Matrix} %5.1
 
-
-The projection matrix $H$ (also known as the hat matrix), is a
-well known identity that maps the fitted values $\hat{Y}$ to the
-observed values $Y$, i.e. $\hat{Y} = HY$.
-
-
-\begin{equation}
-H =\quad X(X^{T}X)^{-1}X^{T}
-\end{equation}
-
-
-$H$ describes the influence each observed value has on each fitted
-value. The diagonal elements of the $H$ are the `leverages', which
-describe the influence each observed value has on the fitted value
-for that same observation. The residuals ($R$) are related to the
-observed values by the following formula:
-\begin{equation}
-R = (I-H)Y
-\end{equation}
-
-
-The variances of $Y$ and $R$ can be expressed as:
-\begin{eqnarray}
-\mbox{var}(Y) = H\sigma^{2} \nonumber\\
-\mbox{var}(R) = (I-H)\sigma^{2}
-\end{eqnarray}
-
-
-Updating techniques allow an economic approach to recalculating
-the projection matrix, $H$, by removing the necessity to refit the
-model each time it is updated. However this approach is known for
-numerical instability in the case of down-dating.
-
-\newpage
-
-
-
-
-
-\chapter{Appendices} % Chapter 5
-%---------------------------------------------------------------------------------------------------------%
-% Appendices
-% - The Hat Matrix (5.1)
-% - Sherman Morrison Woodbury Formula (5.2)
-% -  Hat Matrix applied to MCS (5.3)
-% - Cross Validation (Updating standard deviation) (5.4)
-% - Updating Estimates (5.5)
-% - Lesaffre's paper (5.6)
-%---------------------------------------------------------------------------------------------------------%
-%------------------------------------------------------------------------%
-\newpage
-section{The Hat Matrix} %5.1
-
-The projection matrix $H$ (also known as the hat matrix), is a
-well known identity that maps the fitted values $\hat{Y}$ to the
-observed values $Y$, i.e. $\hat{Y} = HY$.
-
-\begin{equation}
-H =\quad X(X^{T}X)^{-1}X^{T}
-\end{equation}
-
-$H$ describes the influence each observed value has on each fitted
-value. The diagonal elements of the $H$ are the `leverages', which
-describe the influence each observed value has on the fitted value
-for that same observation. The residuals ($R$) are related to the
-observed values by the following formula:
-\begin{equation}
-R = (I-H)Y
-\end{equation}
-
-The variances of $Y$ and $R$ can be expressed as:
-\begin{eqnarray}
-\mbox{var}(Y) = H\sigma^{2} \nonumber\\
-\mbox{var}(R) = (I-H)\sigma^{2}
-\end{eqnarray}
-
-Updating techniques allow an economic approach to recalculating
-the projection matrix, $H$, by removing the necessity to refit the
-model each time it is updated. However this approach is known for
-numerical instability in the case of down-dating.
-
-
-\section{Lesaffre's paper.} %5.6
-
-Lesaffre considers the case-weight perturbation approach.
-
-
-%\citep{cook86}
-Cook's 86 describes a local approach wherein each case is given a weight $w_{i}$ and the effect on the parameter estimation is measured by perturbing these weights. Choosing weights close to zero or one corresponds to the global case-deletion approach.
-
-Lesaffre  describes the displacement in log-likelihood as a useful metric to evaluate local influence %\citep{cook86}.
-
-
-%\citet{lesaffre}
-Lesaffre describes a framework to detect outlying observations that matter in an LME model. Detection should be carried out by evaluating diagnostics $C_{i}$ , $C_{i}(\alpha)$ and $C_{i}(D,\sigma^2)$.
-
-
-Lesaffre defines the total local influence of individual $i$ as
-\begin{equation}
-C_{i} = 2 | \triangle \prime _{i} L^{-1} \triangle_{i}|.
-\end{equation}
-
-
-The influence function of the MLEs evaluated at the $i$th point $IF_{i}$, given by
-\begin{equation}
-IF_{i} = -L^{-1}\triangle _{i}
-\end{equation}
-can indicate how $\hat{theta}$ changes as the weight of the $i$th
-subject changes.
-
-The manner by which influential observations distort the estimation process can be determined by inspecting the
-interpretable components in the decomposition of the above measures of local influence.
-
-
-Lesaffre comments that there is no clear way of interpreting the information contained in the angles, but that this doesn't mean the information should be ignored.
-
-
-%-------------------------------------------------------------------------------------------------------%
 
 \end{document}
