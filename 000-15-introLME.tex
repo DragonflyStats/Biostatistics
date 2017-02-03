@@ -1,0 +1,49 @@
+
+
+\section{Linear mixed effects models}
+
+% http://www.artifex.org/~meiercl/R_statistics_guide.pdf
+These models are used when there are both fixed and random effects that need to be incorporated into a model.
+
+Fixed effects usually correspond to experimental treatments for which one has data for the entire population of samples corresponding to that treatment.
+
+Random effects,on the other hand, are assigned in the case where we have measurements on a group of samples, and those
+samples are taken from some larger sample pool, and are presumed to be representative.
+
+As such, linear mixed effects models treat the error for fixed effects differently than the error for random effects.
+
+
+\subsection{Stating the LME Model}
+The general linear mixed
+model is
+\[
+Y = X\beta + Zu + \varepsilon\]
+where Y is a $(n\times1)$ vector of observed data, X is an $(n\times p)$ fixed-effects design or regressor matrix of rank
+k, Z is a $(n \times g)$ random-effects design or regressor matrix, $u$ is a $(g \times 1)$ vector of random effects, and $\varepsilon$ is
+an $(n\times1)$ vector of model errors (also random effects). The distributional assumptions made by the MIXED
+procedure are as follows: γ is normal with mean 0 and variance G; $\varepsilon$ is normal with mean 0 and variance
+R; the random components $u$ and $\varepsilon$ are independent. Parameters of this model are the fixed-effects β and
+all unknowns in the variance matrices G and R. The unknown variance elements are referred to as the
+covariance parameters and collected in the vector $theta$.
+%===========================================================================%
+
+The concept of critiquing the model-data agreement applies in mixed models in the same way as in linear
+fixed-effects models. In fact, because of the more complex model structure, you can argue that model and
+data diagnostics are even more important. For example, you are not only concerned with capturing the
+important variables in the model. You are also concerned with “distributing” them correctly between the
+fixed and random components of the model. The mixed model structure presents unique and interesting
+challenges that prompt us to reexamine the traditional ideas of influence and residual analysis.
+%==========================================================================%
+This paper presents the extension of traditional tools and statistical measures for influence and residual
+analysis to the linear mixed model and demonstrates their implementation in the MIXED procedure (experimental
+features in SAS 9.1). The remainder of this paper is organized as follows. The “Background” section
+briefly discusses some mixed model estimation theory and the challenges to model diagnosis that result
+from it.
+
+%	 The diagnostics implemented in the MIXED procedure are discussed in the “Residual Diagnostics
+%	in the MIXED Procedure” section (page 3) and the “Influence Diagnostics in the MIXED Procedure” section
+%	(page 5). The syntax options and suboptions you use to request the various diagnostics are briefly sketched
+%	in the “Syntax” section (page 9). The presentation concludes with an example.
+%	
+%	
+%====================================================================================================================%
