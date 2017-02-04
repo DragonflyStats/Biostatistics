@@ -1216,25 +1216,6 @@ Given this procedure, the PRESS statistic can be calculated for a number of cand
 	%----------------------------------------------------------------------------%
 
 
-	\section{Linnet - References}
-	The statistical procedures are described in:
-	Linnet K. Necessary sample size for method comparison studies based on regression analysis. Clin Chem 1999; 45: 882-94.
-	Linnet K. Performance of Deming regression analysis in case of misspecified analytical error ratio in method comparison studies. Clin Chem 1998; 44: 1024-1031.
-	Linnet K. Evaluation of regression procedures for methods comparison studies. Clin Chem 1993; 39. 424-432.
-	Linnet K. Estimation of the linear relationship between measurements of two methods with proportional errors. Stat Med 1990; 9: 1463-1473.
-	
-	
-\section{Lewis Conversion} 
-While regarding a comparison of two pump meters under operational conditions
-
-‘..It is suspected that the various assumptions made by each method are weak under operational conditions’
-Lewis listed several sources of variation that relate to the practical aspects of each measurement method.
-
-‘There is little reasons to believe that the laboratory conditions of the devise provide a suitable basis for the conversion of data gathered under operational conditions.
-
-
-%-------------------------------------------------------------%
-Latent variables are variables that are not measured (i.e. not observed) but whose values is observed from other observed variables. One advantage of using latent variables is that it reduces the dimensionality of data. A large number of observable variables can be aggregated in a model to represent an underlying concept, making it easier for humans to understand the data.	[wikipedia]
 
 
 	\section{RSquared for LME models}
@@ -1813,53 +1794,6 @@ measurement over the observation period can be taken as a random
 effect.
 
 
-	\subsubsection{Taxonomy of Cook's Distances for LMEs}
-	\citet{Zewotir} discusses a taxonomy of Cook's distance when applied to LME models. \begin{itemize}
-		\item For variance components $\gamma$: $CD(\gamma)_i$,
-		\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-		\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-		\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-	\end{itemize}			
-	%	
-	%
-	%	
-	%A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-	
-	
-	
-
-\subsubsection{Computational Limitations for Cook's Distance}
-Application of Cooks Distances are limited by computation tractability.
-
-
-Application of case-deletion diagnostics offer some interested for Method Comparison Studies
-
-
-Care must be given when interpreting these plots. For example the position of case 68 on the BSVR indicates that that
-case 68
-
-
-
-Any diagnostic plot may constructed using Overall variability and intermethod bias.
-\subsection{Case-Deletion Diagnostics}
-Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
-
-Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers. Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
-
-% Cook's Distance for OLS models
-
-Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model. 
-
-The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model.
-
-\section{Cook's Distance}
-As well as individual observations, Cook's distance can be used to analyse the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
-%\subsubsection{Effects on fitted and predicted values}
-\begin{eqnarray}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
-\delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}
-\end{eqnarray}
-%It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted.
 \section{Haslett Dillane Hayes}
 	\citet{HaslettDillane} offers an procedure to assess the influences for the variance components
 	within the linear model, complementing the existing methods for the fixed components. The essential problem is that there is no useful updating procedures for $\hat{V}$, or for $\hat{V}^{-1}$.
@@ -1878,18 +1812,23 @@ As well as individual observations, Cook's distance can be used to analyse the i
 	several key results from \citet{HaslettHayes} on partioned
 	matrices.
 
+\subsection{Case-Deletion Diagnostics}
+Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
+
+Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers. Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
+
+% Cook's Distance for OLS models
+
+Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model. 
+
+The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model.
+
 \section{Demidenk Case Deletion Diagnostics}
 \citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects.
 
 The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
 %==============================%
 
-	\section{Cooks's Distance - Implementation with \texttt{R}}
-	Cook's Distance is a measure indicating to what extent model parameters are influenced by (a set of) influential data on which the model is based. This function computes the Cook's distance based on the information returned by the \texttt{estex()} function.
-	
-	%====================================================================================================%	
-	
-	
 
 	\section{LME diagnostic measures}
 	\subsection{Andrews-Pregibon statistic} %2.4.4
@@ -2367,189 +2306,7 @@ follows
 	
 	
 
-	\chapter{Augmented GLMs} 
-	
-	
-	%---------------------------------------------------------------------------%
-	% - 3. Augmented GLMS
-	%---------------------------------------------------------------------------%
-	
-	
-	Generalized linear models are a generalization of classical linear  models.
-	
-	\section{Augmented GLMs} %3.1
-	
-	With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
-	The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
-	
-	
-	
-	%Augmented Generalized linear models.
-	% Youngjo et al page 154
-	
-	The subscript $M$ is a label referring to the mean model.
-	\begin{equation}
-	\left(%
-	\begin{array}{c}
-	Y \\
-	\psi_{M} \\
-	\end{array}%
-	\right) = \left(
-	\begin{array}{cc}
-	X & Z \\
-	0 & I \\
-	\end{array}\right) \left(%
-	\begin{array}{c}
-	\beta \\
-	\nu \\
-	\end{array}%
-	\right)+ e^{*}
-	\end{equation}
-	
-	
-	%Augmented Generalized linear models.
-	
-	
-	The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-	\begin{equation}
-	\Sigma_{a} = \left(%
-	\begin{array}{cc}
-	\Sigma & 0 \\
-	0 & D \\
-	\end{array}%
-	\right).
-	\end{equation}
-	
-	$y_{a} = T \delta + e^{*}$
-	
-	Weighted least squares equation
-	
-	
-	% Youngjo et al page 154
-	
-	
-	\subsection{The Augmented Model Matrix}  %3.2
-	\begin{equation}
-	X = \left(%
-	\begin{array}{cc}
-	T & Z \\
-	0 & I \\
-	\end{array}%
-	\right)
-	\delta = \left(%
-	\begin{array}{c}
-	\beta  \\
-	\nu  \\
-	\end{array}%
-	\right)
-	\end{equation}
-	
-	
-	
-	
-	
-	%-------------------------------------------------------------------------------------------------------------------------------------%
-	%-------------------------------------------------------------------------------------------------------------------------------------%
-	%-------------------------------------------------------------------------------------------------Chapter 4------------------------%
-	%-------------------------------------------------------------------------------------------------------------------------------------%
-	%-------------------------------------------------------------------------------------------------------------------------------------%
-	
-	newpage
-	
-	\section{Algorithms : ML v REML}
-	Maximum likelihood estimation is a method of obtaining estimates of unknown parameters by optimizing a likelihood function. The ML
-	parameter estimates are the values of the argument that maximise the likelihood function, i.e. the estimates that make the observed
-	values of the dependent variable most likely, given the distributional assumptions
-	
-	The most common iterative algorithms used for the optimization
-	problem in the context of LMEs are the EM algoritm, fisher scoring
-	algorithm and NR algorithm, which [cite:West] commends as the
-	preferred method.
-	
-	A mixed model is an extension of the general linear models that
-	can specify additional random effects terms.
-	
-	Parameter of the mixed model can be estimated using either ML or
-	REML, while the AIC and the BIC can be used as measures of
-	"goodness of fit" for particular models, where smaller values are
-	considered preferable.
-	
-	%--------------------------------------------------------------------%
-	
-	(\textbf{\emph{Wikipedia}})The restricted (or residual, or reduced) maximum likelihood (REML) approach is a particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
-	
-	In contrast to the earlier maximum likelihood estimation, REML can produce unbiased estimates of variance and covariance parameters.
-	
-	%-----------------------------------------------------------------------------------------%
-	
-	\noindent \textbf{ML procedures for LME}
-	
-	The maximum likelihood procedure of Hartley and Rao yields
-	simultaneous estimates for both the fixed effects and the random
-	effect, by maximising the likelihood of $\boldsymbol{y}$ with
-	respect to each element of $\boldsymbol{\beta}$ and
-	$\boldsymbol{b}$.
-	
-	%-----------------------------------------------------------------------------------------%
-	
-	\section{Estimation of random effects}
-	
-	Estimation of random effects for LME models in the NLME package is accomplished through use
-	of both EM (Expectation-Maximization) algorithms and Newton-Raphson algorithms.
-	\begin{itemize}
-		\item EM iterations bring estimates of the parameters into the region of the optimum very quickly, but
-		convergence to the optimum is slow when near the optimum.
-		\item Newton-Raphson iterations are computationally intensive and can be unstable when far from the
-		optimum. However, close to the optimum they converge quickly.
-		\item The LME function implements a hybrid approach, using 25 EM iterations to quickly get near the
-		optimum, then switching to Newton-Raphson iterations to quickly converge to the optimum. \item If
-		convergence problems occur, the ``control�argument in LME can be used to change the way the
-		model arrives at the optimum.
-	\end{itemize}
-	
-	
-	
-	
-	%--Marginal and Conditional Residuals
-	
-	\section{Covariance Parameters} %1.5
-	The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
-	% - where is this coming from?
-	% - where is it used again?
-	% - Has this got anything to do with CovTrace etc?
-	%---------------------------------------------------------------------------%
-	
-	\subsection{Methods and Measures}
-	The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-	
-	\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-		\item Cook's distance for LME models,
-		\item \index{likelihood distance} likelihood distance,
-		\item the variance (information) ration,
-		\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-		\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-	\end{itemize}
-	%--------------------------------------------------------------------------------------------%
-	
-	
-	\section{Haslett's Analysis} %2.5
-	For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-	the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
-	
-	
-	%---------------------------------------------------------------------------------------------------------%
-	
-	
-	\section{Computation and Notation } %2.3
-	with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-	compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-	
-	
-	\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-	
-	
-	
-	
+
 	\chapter{Generalized linear models}
 	\section{Generalized Linear model}
 	In statistics, the generalized linear model (GzLM) is a flexible
@@ -5458,6 +5215,77 @@ The larger this statistic is for observation $i$, the stronger the influence tha
 
 Generalized linear models are a generalization of classical linear  models.
 
+	\section{Augmented GLMs} %3.1
+	
+	With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
+	The augmented linear predictor is \[\eta_{ma}  = (\eta^t, \eta^t_m)^t) = T\omega. \].
+	
+	
+	
+	%Augmented Generalized linear models.
+	% Youngjo et al page 154
+	
+	The subscript $M$ is a label referring to the mean model.
+	\begin{equation}
+	\left(%
+	\begin{array}{c}
+	Y \\
+	\psi_{M} \\
+	\end{array}%
+	\right) = \left(
+	\begin{array}{cc}
+	X & Z \\
+	0 & I \\
+	\end{array}\right) \left(%
+	\begin{array}{c}
+	\beta \\
+	\nu \\
+	\end{array}%
+	\right)+ e^{*}
+	\end{equation}
+	
+	
+	%Augmented Generalized linear models.
+	
+	
+	The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+	\begin{equation}
+	\Sigma_{a} = \left(%
+	\begin{array}{cc}
+	\Sigma & 0 \\
+	0 & D \\
+	\end{array}%
+	\right).
+	\end{equation}
+	
+	$y_{a} = T \delta + e^{*}$
+	
+	Weighted least squares equation
+	
+	
+	% Youngjo et al page 154
+	
+	
+	\subsection{The Augmented Model Matrix}  %3.2
+	\begin{equation}
+	X = \left(%
+	\begin{array}{cc}
+	T & Z \\
+	0 & I \\
+	\end{array}%
+	\right)
+	\delta = \left(%
+	\begin{array}{c}
+	\beta  \\
+	\nu  \\
+	\end{array}%
+	\right)
+	\end{equation}
+	
+	
+	
+
+
 \section{Augmented GLMs} %3.1
 
 With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
@@ -5539,8 +5367,104 @@ T & Z \\
 %-------------------------------------------------------------------------------------------------------------------------------------%
 %-------------------------------------------------------------------------------------------------Chapter 4------------------------%
 %-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
+	
+	Generalized linear models are a generalization of classical linear  models.
+	
+
+	\section{Algorithms : ML v REML}
+	Maximum likelihood estimation is a method of obtaining estimates of unknown parameters by optimizing a likelihood function. The ML
+	parameter estimates are the values of the argument that maximise the likelihood function, i.e. the estimates that make the observed
+	values of the dependent variable most likely, given the distributional assumptions
+	
+	The most common iterative algorithms used for the optimization
+	problem in the context of LMEs are the EM algoritm, fisher scoring
+	algorithm and NR algorithm, which [cite:West] commends as the
+	preferred method.
+	
+	A mixed model is an extension of the general linear models that
+	can specify additional random effects terms.
+	
+	Parameter of the mixed model can be estimated using either ML or
+	REML, while the AIC and the BIC can be used as measures of
+	"goodness of fit" for particular models, where smaller values are
+	considered preferable.
+	
+	%--------------------------------------------------------------------%
+	
+	(\textbf{\emph{Wikipedia}})The restricted (or residual, or reduced) maximum likelihood (REML) approach is a particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
+	
+	In contrast to the earlier maximum likelihood estimation, REML can produce unbiased estimates of variance and covariance parameters.
+	
+	%-----------------------------------------------------------------------------------------%
+	
+	\noindent \textbf{ML procedures for LME}
+	
+	The maximum likelihood procedure of Hartley and Rao yields
+	simultaneous estimates for both the fixed effects and the random
+	effect, by maximising the likelihood of $\boldsymbol{y}$ with
+	respect to each element of $\boldsymbol{\beta}$ and
+	$\boldsymbol{b}$.
+	
+	%-----------------------------------------------------------------------------------------%
+	
+	\section{Estimation of random effects}
+	
+	Estimation of random effects for LME models in the NLME package is accomplished through use
+	of both EM (Expectation-Maximization) algorithms and Newton-Raphson algorithms.
+	\begin{itemize}
+		\item EM iterations bring estimates of the parameters into the region of the optimum very quickly, but
+		convergence to the optimum is slow when near the optimum.
+		\item Newton-Raphson iterations are computationally intensive and can be unstable when far from the
+		optimum. However, close to the optimum they converge quickly.
+		\item The LME function implements a hybrid approach, using 25 EM iterations to quickly get near the
+		optimum, then switching to Newton-Raphson iterations to quickly converge to the optimum. \item If
+		convergence problems occur, the ``control�argument in LME can be used to change the way the
+		model arrives at the optimum.
+	\end{itemize}
+	
+	
+	
+	
+	%--Marginal and Conditional Residuals
+	
+	\section{Covariance Parameters} %1.5
+	The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
+	% - where is this coming from?
+	% - where is it used again?
+	% - Has this got anything to do with CovTrace etc?
+	%---------------------------------------------------------------------------%
+	
+	\subsection{Methods and Measures}
+	The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+	
+	\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+		\item Cook's distance for LME models,
+		\item \index{likelihood distance} likelihood distance,
+		\item the variance (information) ration,
+		\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+		\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+	\end{itemize}
+	%--------------------------------------------------------------------------------------------%
+	
+	
+	\section{Haslett's Analysis} %2.5
+	For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
+	the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
+	
+	
+	%---------------------------------------------------------------------------------------------------------%
+	
+	
+	\section{Computation and Notation } %2.3
+	with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
+	compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
+	
+	
+	\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+	
+	
+	
 
 \chapter{Application to Method Comparison Studies} % Chapter 4
 

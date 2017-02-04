@@ -19,7 +19,51 @@
 \pagenumbering{arabic}
 
 %---------------------------------------------------------------------------%
-\newpage
+	\subsubsection{Taxonomy of Cook's Distances for LMEs}
+	\citet{Zewotir} discusses a taxonomy of Cook's distance when applied to LME models. \begin{itemize}
+		\item For variance components $\gamma$: $CD(\gamma)_i$,
+		\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+		\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+		\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+	\end{itemize}			
+	%	
+	%
+	%	
+	%A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+	
+	
+	
+	
+	\subsubsection{Computational Limitations for Cook's Distance}
+	Application of Cooks Distances are limited by computation tractability.
+	
+	
+	Application of case-deletion diagnostics offer some interested for Method Comparison Studies
+	
+	
+	Care must be given when interpreting these plots. For example the position of case 68 on the BSVR indicates that that
+	case 68
+	
+	
+	
+	Any diagnostic plot may constructed using Overall variability and intermethod bias.
+	
+	\section{Cooks's Distance - Implementation with \texttt{R}}
+	Cook's Distance is a measure indicating to what extent model parameters are influenced by (a set of) influential data on which the model is based. This function computes the Cook's distance based on the information returned by the \texttt{estex()} function.
+	
+	%====================================================================================================%	
+	
+	
+	
+	\section{Cook's Distance}
+	As well as individual observations, Cook's distance can be used to analyse the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
+	%\subsubsection{Effects on fitted and predicted values}
+	\begin{eqnarray}
+	\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
+	\delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}
+	\end{eqnarray}
+	%It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted.
+
 \section{Cook's Distance} %1.9
 
 \citet{cook77} greatly expanded the study of residuals and influence measures. Cook's key observation was the effects of deleting each observation in turn could be computed without undue additional computational expense. Consequently deletion diagnostics have become an integral part of assessing linear models.
