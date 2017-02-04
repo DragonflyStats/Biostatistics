@@ -43,52 +43,16 @@ estimations of the fixed and random regression coefficients $\beta$ and $u$, giv
 Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
 a new regression coefficient each time an observation is deleted.
 
-\subsection{DFFITS} %1.13.2
+\subsection{DFFITS} %1.16.1
+DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
 \begin{displaymath} DFFITS = {\widehat{y_i} -
 	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
 
-
-
-\subsection{PRESS} %1.13.3
-The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
-
-\subsubsection{PRESS}
-
-The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-
-\begin{equation}
-PRESS = \sum(y-y^{-Q})^2
-\end{equation}
-
-\subsection{PRESS}
-\begin{equation}
-e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}
-\end{equation}
-\begin{equation}
-PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
-\end{equation}
-
-\subsection{DFBETA} %1.13.4
-\begin{eqnarray}
-DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-&=& B(Y-Y_{\bar{a}}
-\end{eqnarray}
 %---------------------------------------------------------------------------%
-\newpage
-\subsection{PRESS} %1.16.2
-The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
 
 
-\begin{itemize}
-	\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-	\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-\end{itemize}
+	
+
 
 \subsection{DFBETA} %1.16.3
 \begin{eqnarray}
@@ -96,12 +60,34 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 &=& B(Y-Y_{\bar{a}}
 \end{eqnarray}
 
-%-------------------------------------------------------------------------------------------------------------------------------------%
+%---------------------------------------------------------------------------%
+
+\subsection{PRESS}
+\begin{equation}
+e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}
+\end{equation}
+
+\begin{equation}
+PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+\end{equation}
+
+\subsection{PRESS} %1.13.3
+The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+\begin{equation}
+PRESS = \sum(y-y^{(k)})^2
+\end{equation}
+\begin{itemize}
+\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
+\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
+\end{itemize}
+	
+
+
+
+
 \subsection{Influential Observations : DFBeta and DFBetas}
 % http://stats.stackexchange.com/questions/22161/how-to-read-cooks-distance-plots
 Cook's distance refers to how far, on average, predicted y-values will move if the observation in question is dropped from the data set. dfbeta refers to how much a parameter estimate changes if the observation in question is dropped from the data set. Note that with k covariates, there will be k+1 dfbetas (the intercept,$\beta_0$, and 1 $\beta$ for each covariate). Cook's distance is presumably more important to you if you are doing predictive modeling, whereas dfbeta is more important in explanatory modeling.
-
-
 
 \section{Measures of Influence} %1.16
 
@@ -110,60 +96,10 @@ The impact of an observation on a regression fitting can be determined by the di
 Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
 estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
 
+%=========================================%
 
-\subsection{DFBETA} %1.16.3
-\begin{eqnarray}
-DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-&=& B(Y-Y_{\bar{a}}
-\end{eqnarray}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-
-%---------------------------------------------------------------------------%
-
-%==========================================================================%
-\newpage
-	\section{Measures of Influence} %1.16
-	
-	The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
-	
-	
-	\subsection{DFFITS} %1.16.1
-	DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-	\begin{displaymath} DFFITS = {\widehat{y_i} -
-		\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-	
-	
-	\subsection{PRESS} %1.16.2
-	The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-	\begin{equation}
-	PRESS = \sum(y-y^{(k)})^2
-	\end{equation}
-	
-	
-	\begin{itemize}
-		\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-		\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-	\end{itemize}
-	
-	\subsection*{DFBETA} %1.16.3
-	\begin{eqnarray}
-	DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-	&=& B(Y-Y_{\bar{a}}
-	\end{eqnarray}
-	
-
-	\subsection{Residual diagnostics} %1.3
-	For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-	
-
-	
-	\subsection*{Abstract}
-	This chapter is broken into two parts. The first part is a review of diagnostics methods for linear models, intended to acquaint the reader with the subject, and also to provide a basis for material covered in the second part. Particular attention is drawn to graphical methods.
+\subsection{Residual diagnostics} %1.3
+For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 	
 
 \section*{Influence Analysis}
@@ -185,26 +121,7 @@ provides a foundation for much of the subsequent work.
 	DFBETAS is calculated for each parameter in the model separately.
 \end{description}
 
-\section{Measures of Influence} %1.16
 
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
-
-Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-
-
-
-
-
-
-
-%============================================================================%
 
 
 
@@ -229,19 +146,20 @@ Cook (1986) introduces powerful tools for local-influence assessment and examini
 	\item For variance components $\gamma$
 \end{itemize}
 
+
 Diagnostic tool for variance components
 \[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
 
 
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
+%--------------==========================================================-----%
+
 
 \subsection{Variance Ratio} %2.4.2
 \begin{itemize}
 	\item For fixed effect parameters $\beta$.
 \end{itemize}
+
+
 
 \subsection{Cook-Weisberg statistic} %2.4.3
 \begin{itemize}
@@ -257,44 +175,8 @@ The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the v
 The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 
-%--------------------------------------------------------------%
-\newpage
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 
-
-
-
-\section{Measures 2} %2.4
-
-
-
-\newpage
 \subsubsection{Random Effects}
 
 A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
@@ -307,17 +189,7 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 \subsection{Information Ratio}
 
 
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
 
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
 \section{Zewotir Measures of Influence in LME Models}%2.2
 %Zewotir page 161
 Zewotir describes a number of approaches to model diagnostics, investigating each of the following;
