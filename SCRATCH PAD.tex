@@ -416,125 +416,6 @@ the methodologies proposed by this research can easily be extended.
 	
 	
 
-	\section{Regression Methods}
-	Conventional regression models are estimated using the ordinary
-	least squares (OLS) technique, and are referred to as `Model I
-	regression'\citep{CornCoch,ludbrook97}. A key feature of Model I
-	models is that the independent variable is assumed to be measured
-	without error. As often pointed out in several papers
-	\citep{BA83,ludbrook97}, this assumption invalidates simple linear
-	regression for use in method comparison studies, as both methods
-	must be assumed to be measured with error.
-	
-	The use of regression models that assumes the presence of error in
-	both variables $X$ and $Y$ have been proposed for use instead.
-	\citep{CornCoch,ludbrook97}, These methodologies are collectively
-	known as `Model II regression'. They differ in the method used to
-	estimate the parameters of the regression.
-	
-	Regression estimates depend on formulation of the model. A
-	formulation with one method considered as the $X$ variable will
-	yield different estimates for a formulation where it is the $Y$
-	variable. With Model I regression,the models fitted in both cases
-	will entirely different and inconsistent. However with Model II
-	regression, they will be consistent and complementary.
-	
-	\subsection{Deming's Regression}
-	The most commonly known Model II methodology is known as Deming's
-	Regression, (also known an Ordinary Least Product regression).
-	Deming regression is recommended by \citet*{CornCoch} as the
-	preferred Model II regression for use in method comparison
-	studies. As previously noted, the Bland Altman Plot is
-	uninformative about the comparative influence of proportional bias
-	and fixed bias. Deming's regression provides independent tests for
-	both types of bias.
-	
-	For a given $\lambda$, \citet{Kummel} derived the following
-	estimate for the Demimg regression slope parameter. ($\alpha$ is
-	simply estimated by using the identity
-	$\bar{Y}-\hat{\beta}\bar{X}$.)
-	\begin{equation}
-	\hat{\beta} =\quad \frac{S_{YY} - \lambda S_{XX}+[(S_{YY} -
-		\lambda S_{XX})^{2}+ 4\lambda S^{2}_{XY}]^{1/2}}{2S_{XY}}
-	\end{equation}
-	
-	
-	As with conventional regression methodologies, Deming's regression
-	calculates an estimate for both the slope and intercept for the
-	fitted line, and standard errors thereof. Therefore there is
-	sufficient information to carry out hypothesis tests on both
-	estimates, that are informative about presence of fixed and
-	proportional bias.
-	
-	A $95\%$ confidence interval for the intercept estimate can be
-	used to test the intercept, and hence fixed bias, is equal to
-	zero. This hypothesis is accepted if the confidence interval for
-	the estimate contains the value $0$ in its range. Should this be,
-	it can be concluded that fixed bias is not present. Conversely, if
-	the hypothesis is rejected, then it is concluded that the
-	intercept is non zero, and that fixed bias is present.
-	
-	Testing for proportional bias is a very similar procedure. The
-	$95\%$ confidence interval for the slope estimate can be used to
-	test the hypothesis that the slope is equal to $1$. This
-	hypothesis is accepted if the confidence interval for the estimate
-	contains the value $1$ in its range. If the hypothesis is
-	rejected, then it is concluded that the slope is significant
-	different from $1$ and that a proportional bias exists.
-	
-	For convenience, a new data set shall be introduced to demonstrate
-	Demings regression. Measurements of transmitral volumetric flow
-	(MF) by doppler echocardiography, and left ventricular stroke
-	volume (SV) by cross sectional echocardiography in 21 patients
-	withour aortic valve disease are tabulated in \citet{zhang}. This
-	data set features in the discussion of method comparison studies
-	in \citet[p.398]{images/AltmanBook} .
-	
-	\newpage
-	% latex table generated in R 2.6.0 by xtable 1.5-5 package
-	% Tue Sep 01 13:31:17 2009
-	\begin{table}[h!]
-		\begin{center}
-			\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
-				\hline
-				Patient & MF  & SV  & Patient & MF  & SV  & Patient & MF  & SV \\
-				&($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$)
-				\\
-				\hline
-				1 & 47 & 43 &  8 & 75 & 72 &  15 & 90 & 82 \\
-				2 & 66 & 70 & 9 & 79 & 92 &  16 & 100 & 100 \\
-				3 & 68 & 72 & 10 & 81 & 76 & 17 & 104 & 94 \\
-				4 & 69 & 81 & 11 & 85 & 85 &  18 & 105 & 98 \\
-				5 & 70 & 60 & 12 & 87 & 82 & 19 & 112 & 108 \\
-				6 & 70 & 67 & 13 & 87 & 90 & 20 & 120 & 131 \\
-				7 & 73 & 72 & 14 & 87 & 96 &  21 & 132 & 131 \\
-				
-				\hline
-			\end{tabular}
-			\caption{Transmitral volumetric flow(MF) and left ventricular
-				stroke volume (SV) in 21 patients. (Zhang et al 1986)}
-		\end{center}
-	\end{table}
-	\newpage
-	\begin{figure}[h!]
-		% Requires \usepackage{graphicx}
-		\includegraphics[width=130mm]{images/ZhangDeming.jpeg}
-		\caption{Deming Regression For Zhang's Data}\label{ZhangDeming}
-	\end{figure}
-	
-	Deming's Regression suffers from some crucial drawback. Firstly it
-	is computationally complex, and it requires specific software
-	packages to perform calculations.Secondly it is uninformative
-	about the comparative precision of two methods of measurement.
-	Most importantly \citet{CarollRupert} states that Deming's
-	regression is acceptable only when the precision ratio ($\lambda$,
-	in their paper as $\eta$) is correctly specified ,but in practice
-	this is often not the case, with the $\lambda$ being
-	underestimated.
-	\newpage
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-
 
 \chapter{Appendix}
 
@@ -989,52 +870,7 @@ Empirical best linear unbiased predictors EBLUPS provide the a useful way of dia
 
 EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller than the estimated effects would be if they were computed by treating a random factor as if it was fixed (West etal )
 
-		%---------------------------------------------------------------------------%
-		\newpage
-		\section{Iterative and non-iterative influence analysis} %1.13
-		\citet{schab} highlights some of the issue regarding implementing mixed model diagnostics.
-		
-		% A measure of total influence requires updates of all model parameters.
-		% however, this doesnt increase the procedures execution time by the same degree.
-		
-		\subsection{Iterative Influence Analysis}
-		
-		%----schabenberger page 8
-		For linear models, the implementation of influence analysis is straightforward.
-		However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
-		This can only be achieved in general is by omitting observations, then refitting the model.
-		
-		\citet{schab} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
-		
-		
-		
-		
-		
-		\subsection{Iterative vs Non-Iterative Influence Analysis}
-		%\subsection{ITERATIVE VS. NONITERATIVE INFLUENCE ANALYSIS}
-		While the basic idea of influence analysis is straightforward, the implementation in mixed models can be
-		tricky. For example, update formulas for the fixed effects are available only when the covariance parameters
-		are assumed to be known. At most the profiled residual variance can be updated without refitting the model.
-		
-		A measure of total influence requires updates of all model parameters, and the only way that this can be
-		achieved in general is by removing the observations in question and refitting the model. 
-		
-		Because this “\textbf{bruteforce}”
-		method involves iterative reestimation of the covariance parameters, it is termed \textbf{\textit{iterative influence
-				analysis}}. Reliance on closed-form update formulas for the fixed effects without updating the (un-profiled)
-		covariance parameters is termed a noniterative influence analysis.
-		
-		An iterative analysis seems like a costly, computationally intensive enterprise. If you compute iterative
-		influence diagnostics for all n observations, then a total of $n + 1$ mixed models are fit iteratively. This does
-		not imply, of course, that the procedure’s execution time increases n-fold. Keep in mind that
-		\begin{itemize}
-			\item iterative reestimation always starts at the converged full-data estimates. If a data point is not influential,
-			then its removal will have little effect on the objective function and parameter estimates. Within
-			one or two iterations, the process should arrive at the reduced-data estimates.
-			\item if complete reestimation does require many iterations, then this is important information in itself. The
-			likelihood surface has probably changed drastically, and the reduced-data estimates are moving away
-		\end{itemize}
-		from the full-data estimates.
+	
 %-------------------------------------------------------------------Simplifying GLS by KH -%
 
 %---------------------------------------------------------------------------------------------------%
@@ -1108,82 +944,9 @@ If the global measure suggests that the points in $U$ are influential, the natur
 
 
 
-%--Marginal and Conditional Residuals
-
-\subsection{Residuals diagnostics in mixed models}
-
-%schabenberger
-The marginal and conditional means in the linear mixed model are
-$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
-$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
-
-A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. 
-
-
-\subsection{Marginal and Conditional Residuals}
-
-A marginal residual is the difference between the observed data and the estimated (marginal) mean, $r_{mi} = y_i - x_0^{\prime} \hat{b}$
-A conditional residual is the difference between the observed data and the predicted value of the observation,
-$r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
-
-In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
-
-\[ \hat{epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
-
-However, using conditional residuals for diagnostics presents difficulties, as they tend to be correlated and their variances may be different for different subgroups, which can lead to erroneous conclusions.
-
-%1.5
-%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
 
 
 
-
-
-
-\begin{equation}
-r_{mi}=x^{T}_{i}\hat{\beta}
-\end{equation}
-
-\subsection{Marginal Residuals}
-\begin{eqnarray}
-\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
-&=& BY \nonumber
-\end{eqnarray}
-
-%---------------------------------------------------------------------------%
-\newpage
-\section{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
-
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-\subsection{Standardization} %1.4.1
-
-A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
-
-\subsection{Studentization} %1.4.2
-Instead, you can compute studentized residuals by dividing a residual by an estimate of its standard deviation. 
-
-\subsection{Internal and External Studentization} %1.4.3
-If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
-standard error computation, the residual is said to be \index{internally studentization}internally studentized.
-
-Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
-
-
-\subsection{Computation}%1.4.4
-
-The computation of internally studentized residuals relies on the diagonal entries of $\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
-
-\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
-
-\subsection{Pearson Residual}%1.4.5
-
-Another possible scaled residual is the \index{Pearson residual} `Pearson residual', whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
-
-%---------------------------------------------------------------------------%
-\newpage
 \section{Covariance Parameters} %1.5
 The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
 % - where is this coming from?
@@ -1455,43 +1218,8 @@ Influence can be thought of as the product of leverage and outlierness. An obser
 %\section{Residual diagnostics} %1.3
 For classical linear models, residual diagnostics are typically conducted using a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 
-\section{Case Deletion Diagnostics}
 
-Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations. Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
-
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the $i-$th observation, can be computed without re-fitting the model. %\subsection{Terminology for Case Deletion diagnostics} %1.8
-
-\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
-`\textit{observation-diagnostics}'. For multiple observations, Preisser describes the diagnostics as `\textit{cluster-deletion}' diagnostics. When applied to LME models, such update formulas are available only if one assumes that the covariance parameters are not affected by the removal of the observation in question. However, this is rarely a reasonable assumption.
-
-
-
-%--------------------------------------%
-\subsection{Extension of Diagnostic Methods to LME models}
-
-\citet{CPJ} noted the case deletion diagnostics techniques had not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{CPJ} develops these techniques in the context of REML.
-
-\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, a well-known metric, for diagnosing influential observations when estimating the fixed effect parameters and variance components. Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models. We shall provide a fuller discussion of Cook's distance in due course.
-
-
-\citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects. 
-
-The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
-%A simple compact matrix formula is derived to assess the local influence of the fixed-effects regression coefficients. 
-
-
-%
-%
-%\section{Case Deletion Diagnostics for LME models} %1.6
-%
-%Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. 
-
-\citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
-
-\subsection*{Cook's distance}
+\section*{Cook's distance}
 In the study of Linear model diagnostics, Cook proposed a measure that combines the information of leverage and residual of the observation, now known simply as the Cook's Distance. \citet{CPJ} would later adapt the Cook's distance measure for the analysis of LME models.
 
 
@@ -1814,62 +1542,8 @@ emphasis on linear mixed effects models, further to chapter two.
 For the fourth chapter, important linear mixed effects model diagnostic methods shall be extended to method comparison studies, and proposed methods shall be demonstrated on data sets that have become well known in literature on method comparison. The purpose is to both calibrate these methods and to demonstrate applications for them.
 The last chapter shall focus on robust measures of important parameters such as agreement.
 
-%---------------------------------------------------------------------------%
-\newpage
-\section{What is Influence} %1.2
-
-Broadly defined, ``influence"is understood as the ability of a single or multiple data points, through their presence
-or absence in the data, to alter important aspects of the analysis, yield qualitatively different inferences, or
-violate assumptions of the statistical model. The goal of influence analysis is not primarily to mark data
-points for deletion so that a better model fit can be achieved for the reduced data, although this might be a
-result of influence analysis \citep{schabenberger}.
-
-Influence is defined as the `ability of a single or multiple data points, through their presence or absence
-%-------%
-\subsection{Quantifying Influence}  %1.2.1
-
-The basic procedure for quantifying influence is simple as follows:
-\begin{itemize}
-	\item Fit the model to the data and obtain estimates of all parameters.
-	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
-	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence
-	of the observations changes the analysis.
-\end{itemize}
-%---------------------------------------------------------------------------%
-\newpage
-\section{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-
-In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
-
-\[ \hat{epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
-
-However, using conditional residuals for diagnostics presents difficulties, as they tend to be correlatedand their variances may be different for different subgroups, which can lead to erroneous conclusions.
-\subsection{Residuals}
-
-The computation of internally studentized residuals relies on the diagonal entries of
-$\boldsymbol{V} (\hat{\theta})$ - $\boldsymbol{Q} (\hat{\theta})$, where $\boldsymbol{Q} (\hat{\theta})$ is computed as
-
-\[ \boldsymbol{Q} (\hat{\theta}) = \boldsymbol{X} ( \boldsymbol{X}^{\prime}\boldsymbol{Q} (\hat{\theta})^{-1}\boldsymbol{X})\boldsymbol{X}^{-1} \]
-
-Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
 
 
-\subsection{Residuals diagnostics in mixed models}
-
-A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $rm$ and conditional residuals $rc$. A marginal residual is the
-difference between the observed data and the estimated (marginal) mean.
-
-\citet{cook86} introduces powerful tools for local-influence
-assessment and examining perturbations in the assumptions of a
-model. In particular the effect of local perturbations of
-parameters or observations are examined.
-
-
-
-%---------------------------------------------------------------------------%
-\newpage
 \section{Extension of technique to LME Models} %1.4
 
 Model diagnostic techniques , well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
@@ -1891,83 +1565,8 @@ If the global measure suggests that the points in $U$ are influential, the natur
 \end{itemize}
 
 
-%---------------------------------------------------------------------------%
-\newpage
-\section{Marginal and Conditional Residuals} %1.5
-%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
-The marginal and conditional means in the linear mixed model are
-$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
-$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
-
-%schabenberger
-A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. A marginal residual is the
-difference between the observed data and the estimated (marginal) mean, $r_{mi} = y_i - x_0^{\prime} \hat{b}$
-A conditional residual is the difference between the observed data and the predicted value of the observation,
-$r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
-
-\subsection{Marginal and Conditional Residuals}
-
-\begin{equation}
-r_{mi}=x^{T}_{i}\hat{\beta}
-\end{equation}
-
-\subsection{Marginal Residuals}
-\begin{eqnarray}
-\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
-&=& BY \nonumber
-\end{eqnarray}
-
-%---------------------------------------------------------------------------%
-\newpage
-\section{Standardized and studentized residuals} %1.6
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-Another possible scaled residual is the \index{Pearson residual} `Pearson residual' whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
-
-\subsection{Studentization} %1.6.1
-
-A random variable is said to be standardized if the difference from its mean is scaled by its standard
-deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values
-of $\theta$. Standardization is thus not possible in practice.
-Instead, you can compute studentized residuals
-by dividing a residual by an estimate of its standard deviation. If that estimate is independent of the ith
-observation, the process is termed external studentization.
-This is usually accomplished by excluding the
-$i-$th observation when computing the estimate of its standard error. If the observation contributes to the
-standard error computation, the residual is said to be \textbf{\emph{internally studentized}}.
-%---------------------------------------------------------------------------%
-\newpage
-\section{Case Deletion Diagnostics} %1.7
-
-Christensen, Pearson and Johnson (1992) studied \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance}Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
-
-\subsection{Case Deletion Diagnostics}
-Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers.
 
 
-The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
-
-\section{Effects on fitted and predicted values}
-\begin{equation}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
-\end{equation}
-
-\subsection{Deletion Diagnostics}
-
-Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
-
-Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
-
-Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
-
-\subsection{Case Deletion Diagnostics for Mixed Models}
-
-\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
-
-\citet{Christiansen} develops these techniques in the context of
-REML
 
 \subsection{Methods and Measures}
 The key to making deletion diagnostics useable is the development of efficient
@@ -1983,114 +1582,15 @@ making use of basic building blocks, computed only once for the full model.
 \end{itemize}
 
 
-%---------------------------------------------------------------------------%
-\newpage
-\section{Influence analysis} %1.8
-
-Likelihood based estimation methods, such as ML and REML, are sensitive to unusual observations. Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
-
-\citet{west} examines a group of methods that examine various aspects of influence diagnostics for LME models.
-For overall influence, the most common approaches are the `likelihood distance' and the `restricted likelihood distance'.
-
-\subsection{Cook's 1986 paper on Local Influence}%1.8.1
-Cook 1986 introduced methods for local influence assessment. These methods provide a powerful tool for examining perturbations in the assumption of a model, particularly the effects of local perturbations of parameters of observations.
-
-The local-influence approach to influence assessment is quitedifferent from the case deletion approach, comparisons are of
-interest.
-
-
-
-\subsection{Overall Influence}
-An overall influence statistic measures the change in the objective function being minimized. For example, in
-OLS regression, the residual sums of squares serves that purpose. In linear mixed models fit by
-\index{maximum likelihood} maximum likelihood (ML) or \index{restricted maximum likelihood} restricted maximum likelihood (REML), an overall influence measure is the \index{likelihood distance} likelihood distance [Cook and Weisberg ].
 
 
 
 
-\newpage
-\section{Likelihood Distance} %1.11
-The likelihood distance gives the amount by which the log-likelihood of the full data changes if one were
-to evaluate it at the reduced-data estimates. The important point is that $l(\psi_{(U)})$ is not the log-likelihood
-obtained by fitting the model to the reduced data set.
-
-It is obtained by evaluating the likelihood function based on the full data set (containing all n observations) at the reduced-data estimates.
-
-The likelihood distance is a global, summary measure, expressing the joint influence of the observations in
-the set $U$ on all parameters in $\psi$  that were subject to updating.
-%------------%
-
-\subsection{Likelihood Distance}
-
-The \index{likelihood distance} likelihood distance is a global, summary measure, expressing the joint influence of the observations in the set $U$ on all parameters in $\phi$  that were subject to updating.
-
-%---------------------------------------------------------------------------%
-\newpage
 \section{Haslett's Analysis} %1.12
 For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
 the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
 
 
-\section{Iterative and non-iterative influence analysis} %1.14
-\citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
-
-A measure of total influence requires updates of all model parameters.
-
-however, this doesnt increase the procedures execution time by the same degree.
-\subsection{Iterative Influence Analysis}
-
-%----schabenberger page 8
-For linear models, the implementation of influence analysis is straightforward.
-However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
-This can only be achieved in general is by omitting observations, then refitting the model.
-
-\citet{schabenberger} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
-
-
-
-
-%---------------------------------------------------------------------------%
-\newpage
-\section{Matrix Notation for Case Delection} %1.15
-
-\subsection{Case deletion notation} %1.15.1
-
-For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
-removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
-
-\subsection{Partitioning Matrices} %1.15.2
-Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
-
-%---------------------------------------------------------------------------%
-\newpage
-\section{CPJ's Three Propositions} %1.16
-%-----------------------------%
-
-
-\subsubsection{Proposition 1}
-
-\[
-\boldsymbol{V}^{-1} =
-\left[ \begin{array}{cc}
-\nu^{ii} & \lambda_{i}^{\prime}  \\
-\lambda_{i} & \Lambda_{[i]}
-\end{array}\right] \]
-
-
-\[\boldsymbol{V}_{[i]}^{-1} = \boldsymbol{\Lambda}_{[i]} - { \lambda_{i} \lambda_{i} ^{\prime} \over \lambda_{i} } \]
-
-%-----------------------------%
-\subsection{Proposition 2}
-
-\begin{itemize}
-	\item[(i)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{X}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{X}$
-	\item[(ii)] = $(\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y})^{-1}$
-	\item[(iii)] $ \boldsymbol{X}_{[i]}^{T}\boldsymbol{V}^{-1}_{[i]}\boldsymbol{Y}_{[i]}$ = $\boldsymbol{X}^{\prime}\boldsymbol{V}^{-1}\boldsymbol{Y}$
-\end{itemize}
-%-----------------------------%
-\subsection{Proposition 3}
-This proposition is similar to the formula for the one-step Newtown Raphson estimate of the logistic regression coefficients given by pregibon (1981)
-and discussed in Cook Weisberg.
 
 %---------------------------------------------------------------------------%
 \newpage
@@ -2165,54 +1665,9 @@ Weighted least squares equation
 \newpage
 \section{Covariance Parameters} %1.18
 The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
-%--------------------------------------------------------------------------%
-\newpage
-\section{Terminology for Case Deletion diagnostics} %1.19
-
-\citet{preisser} describes two type of diagnostics. When the set
-consists of only one observation, the type is called
-'observation-diagnostics'. For multiple observations, Preisser
-describes the diagnostics as 'cluster-deletion' diagnostics.
 
 
-%----------------------------------------------------------------------------------------%
-\newpage
-\section{The CPJ Paper}%1.20
 
-\subsection{Case-Deletion results for Variance components}
-\citet{Christensen}examines case deletion results for estimates of the variance components, proposing the use of one-step estimates of variance components for examining case influence. The method describes focuses on REML estimation, but can easily be adapted to ML or other methods.
-
-%\citet{Christensen}
-Christensen developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted resgression problem ( conditional on the estimated covariance matrix) for fixed effects. Lesaffre's approach accords with that proposed by Christensen et al when applied in a repeated measurement context, with a large
-sample size.
-
-% Zewotir's Paper
-
-\subsection{CPJ Notation}
-
-\[ \boldsymbol{C} = \boldsymbol{H}^{-1} = \left[
-\begin{array}{cc}
-c_{ii} & \boldsymbol{c}_{i}^{\prime}\\
-\boldsymbol{c}_{i} &  \boldsymbol{C}_{[i]}
-\end{array} \right]
-\]
-
-\citet{CPJ} noted the following identity:
-
-\[ \boldsymbol{H}_{[i]}^{-1}  = \boldsymbol{C}_{[i]} - {1 \over c_{ii}}\boldsymbol{c}_{[i]}\boldsymbol{c}_{[i]}^{\prime} \]
-
-
-\citet{CPJ} use the following as building blocks for case deletion statistics.
-\begin{itemize}
-	\item $\breve{x}_i$
-	\item $\breve{z}_i$
-	\item $\breve{z}_ij$
-	\item $\breve{y}_i$
-	\item $p_ii$
-	\item $m_i$
-\end{itemize}
-All of these terms are a function of a row (or column) of $\boldsymbol{H}$ and $\boldsymbol{H}_{[i]}^{-1}$
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 \chapter{Roy2013}
 
@@ -2298,54 +1753,6 @@ the mineral contents for the non-dominant side of the same bones (u = 2)
 		
 	\end{enumerate}
 	
-\chapter{Residual Analysis}
-\section{Introduction to Residual Analysis}
-
-Residual analysis is a widely used model validation technique. A residual is simply the difference between an observed value and the corresponding fitted value, as predicted by the model. The rationale is that, if the model is properly fitted to the model, then the residuals would approximate the random errors that one should expect.
-that is to say, if the residuals behave randomly, with no discernible trend, the model has fitted the data well. If some sort of non-random trend is evident in the model, then the model can be considered to be poorly fitted.
-
-%========================================================================================================= %
-%\subsection{Introduction}
-%A statistical model, whether of the fixed-effects or mixed-effects variety, represents how you think your data were generated. 
-%Following model specification and estimation, it is of interest to explore the model-data
-%agreement by raising questions such as
-
-Statistical software environments, such as the \texttt{R} Programming language, provides a suite of tests and graphical procedure sfor appraising a fitted linear model, with several 
-of these procedures analysing the model residuals.
-
-\newpage
-%=========================================================================%
-\section{Framework for Model Validation using Residual Diagnostics}
-In statistical modelling, the process of model validation is a critical step, but also a step that is too often overlooked. A very simple procedure is to examine commonly encountered
-metrics, such as the $R^2$ value. However, using a small handful of simple measures and methods is insufficient to properly assess the quality of a fitted model. To do so properly, a full and comprehensive
-analysis that tests of all of the assumptions, as far as possible, must be carried out. A statistical model, whether of the fixed-effects or mixed-effects variety, represents how you think your data
-were generated. Following model specification and estimation, it is of interest to explore the model-data
-agreement by raising questions such as
-\begin{itemize}
-	\item Does the model-data agreement support the model assumptions?
-	\item Should model components be refined, and if so, which components? For example, should regressors
-	be added or removed, and is the covariation of the observations modeled properly?
-	\item Are the results sensitive to model and/or data? Are individual data points or groups of cases particularly
-	influential on the analysis?
-\end{itemize}
-
-
-\subsection{Residual Analysis}
-A residual is the difference between an observed quantity and its
-estimated or predicted value. 
-Residual analysis is a widely used model validation technique. A residual is simply the difference between an observed value and the corresponding fitted value, as predicted by the model. The rationale is that, if the model is properly fitted to the model, then the residuals would approximate the random errors that one should expect.
-that is to say, if the residuals behave randomly, with no discernible trend, the model has fitted the data well. If some sort of non-random trend is evident in the model, then the model can be considered to be poorly fitted.
-Statistical software environments, such as the \texttt{R} Programming language, provides a suite of tests and graphical procedure sfor appraising a fitted linear model, with several 
-of these procedures analysing the model residuals.
-
-In classical linear models, an examination of model-data agreement has traditionally revolved around
-
-The second part of the chapter looks at diagnostics techniques for LME models, firsly covering the theory, then proceeding to a discussion on 
-implementing these using \texttt{R} code.
-
-While a substantial body of work has been developed in this area, there is still areas worth exploring. 
-In particular the development of graphical techniques pertinent to LME models should be looked at.
-
 
 
 
@@ -2874,129 +2281,12 @@ A plot ofthe per-observation diagnostics individual subject log-likelihood contr
 	
 	
 	
-	\section{Case Deletion Diagnostics for LME models}
-	
-	%%%\citet{christensen}
-	
-	Christensen (19XX)  describes three propositions that are required
-	for efficient case-deletion in LME models. The first proposition
-	decribes how to efficiently update $V$ when the $i$th element is
-	deleted.
-	\begin{equation}
-	V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-		\lambda\prime}{\nu^{}ii}
-	\end{equation}
-	
-	
-	The second of Christensen's propostions is the following set of
-	equations, which are variants of the Sherman Wood bury updating
-	formula.
-	\begin{eqnarray}
-	X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-	\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-	(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-	\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-		(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-	X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-	\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-	\end{eqnarray}
+
 	
 	
 	
-	
-	
-	
-	
-	
-	In LME models, fitted by either ML or REML, an important overall
-	influence measure is the likelihood distance \citep{cook82}. The
-	procedure requires the calculation of the full data estimates
-	$\hat{\psi}$ and estimates based on the reduced data set
-	$\hat{\psi}_{(U)}$. The likelihood distance is given by
-	determining
-	
-	
-	\begin{eqnarray}
-	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
-	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
-	\end{eqnarray}
-	
-	
-	
-	
-	
-	\subsection{Residual Diagnostics in LME models}
-	\begin{itemize}
-		\item A \textbf{residual} is the difference between the observed quantity and the predicted value. In LME models a distinction is made between marginal residuals and conditional residuals.
-		
-		\item A \textbf{Marginal residual} is the difference between the observed data and the estimated marginal mean (Schabenberger  pg3)
-		The computation of case deletion diagnostics in the classical model is made simple by the fact that important estimates can be computed without refitting the model. 
-		
-		\item Such update formulae are available in the mixed model only if you assume that the covariance parameters are not affect by the removal of the observation in question. Schabenberger remarks that this is not a reasonable assumption.
-		
-	\end{itemize}
-	
-	
-	Basic procedure for quantifying influence is simple
-	
-	\begin{enumerate}
-		\item  	Fit the model to the data
-		\item   	Remove one or more data points from the analysis and compute updated estimates of model parameters
-		\item  	Based on the full and reduced data estimates, contrast quantities of interest to determine how the absence of the observations changed the analysis.
-	\end{enumerate}
-	The likelihood distance is a global summary measure expressing the joint influence of the observations in the set U on all parameters in $\Psi$ that were subject to updating.
-	
-	
-	\section{Case Deletion Diagnostics for LME models}
-	
-	\citet{HaslettDillane} remark that linear mixed effects models
-	didn't experience a corresponding growth in the use of deletion
-	diagnostics, adding that \citet{McCullSearle} makes no mention of
-	diagnostics whatsoever.
-	
-	\citet{Christensen} describes three propositions that are required
-	for efficient case-deletion in LME models. The first proposition
-	decribes how to efficiently update $V$ when the $i$th element is
-	deleted.
-	\begin{equation}
-	V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-		\lambda\prime}{\nu^{}ii}
-	\end{equation}
-	
-	
-	The second of christensen's propostions is the following set of
-	equations, which are variants of the Sherman Wood bury updating
-	formula.
-	\begin{eqnarray}
-	X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-	\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-	(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-	\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-		(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-	X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-	\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-	\end{eqnarray}
-	
-	
-	
-	
-	
-	
-	
-	
-	In LME models, fitted by either ML or REML, an important overall
-	influence measure is the likelihood distance \citep{cook82}. The
-	procedure requires the calculation of the full data estimates
-	$\hat{\psi}$ and estimates based on the reduced data set
-	$\hat{\psi}_{(U)}$. The likelihood distance is given by
-	determining
-	
-	
-	\begin{eqnarray}
-	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
-	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
-	\end{eqnarray}
-	
+
+
 	\section{Carstensen}
 	Let $y_{mir} $ be the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2,$ $i=1,\ldots,N,$ and $r = 1,\ldots,n_i.$ When the design is balanced and there is no ambiguity we can set $n_i=n.$ The LME model underpinning Roy's approach can be written
 	\begin{equation}

@@ -282,7 +282,42 @@ When considering the regression of case-wise differences and averages, we write
 D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 \end{equation}
 
-
+	\subsection{Influence measures using R} %4.4
+	\texttt{R} provides the following influence measures of each observation.
+	
+	
+	%Influence measures: This suite of functions can be used to compute
+	%some of the regression (leave-one-out deletion) diagnostics for
+	%linear and generalized linear models discussed in Belsley, Kuh and
+	% Welsch (1980), Cook and Weisberg (1982)
+	
+	
+	
+	
+	
+	
+	\begin{table}[ht]
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|c|c|}
+				\hline
+				& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
+				\hline
+				1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
+				2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
+				3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
+				4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
+				5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
+				6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
+				7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
+				8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
+				9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
+				10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
+				11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
+				12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{table}
 
 \subsection{Influence measures using R}
 \texttt{R} provides the following influence measures of each observation.
@@ -294,28 +329,7 @@ D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 
 
 
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
+
 
 
 \section{Grubbs' Data} %4.2
@@ -396,80 +410,8 @@ When considering the regression of case-wise differences and averages, we write
 D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
 \end{equation}
 
-%===============================================================================================%
-\subsection{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
 
-
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
-
-
-
-
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-\section{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
-
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
-
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-
-
-
+\newpage
 \section{Grubbs' Data} %4.2
 
 For the Grubbs data the $\hat{\beta}$ estimated are
