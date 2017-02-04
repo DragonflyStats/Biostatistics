@@ -1929,13 +1929,6 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 
 
 
-	\section{Zewotir: Computation and Notation } %2.3
-	with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-	compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-	
-	
-	Zewotir remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-	%===============================================================================================================%
 	\section{Haslett Hayes}                %-Case Deletion section 3
 	
 	For fixed effect linear models with correlated error structure
@@ -2299,12 +2292,7 @@ follows
 		The estimated model parameters are used to predict the correlations and covariance between measured variables 
 		The predicted correlations, or covariance are compared to the observed correlations, or covariance. (Measures of model fit are calculated)
 	\end{itemize}
-	%-------------------------------------------------------------%
 
-
-	\chapter{Appendices 1}
-	
-	
 
 
 	\chapter{Generalized linear models}
@@ -3488,41 +3476,6 @@ The unknown variance elements are referred to as the covariance parameters and c
 % - where is it used again?
 % - Has this got anything to do with CovTrace etc?
 %---------------------------------------------------------------------------%
-
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-
-%-------------------------------------------------------------------------------------------------Chapter 2	------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-\section{Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-\citet{Zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-%--------------------------------------------------------------%
-
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
 
 
 
@@ -5115,95 +5068,6 @@ $\sigma^2_{A}$ is the variance of variable $A$, $\sigma^2_{B}$ is the variance o
 %-------------------------------------------------------------------------------------------------------------------------------------%
 %-------------------------------------------------------------------------------------------------------------------------------------%
 
-\chapter{Zewotir's Paper}
-
-% 2.1 Efficient Updating Theorem
-% 2.2 Zewotir Measures of Influence in LME Models (section 4 of paper)
-% 2.3 Computation and Notation 
-% 2.4 Measures 2
-%2.5 Haslett Analysis
-
-\section{Efficient Updating Theorem} %2.1
-\citet{Zewotir} describes the basic theorem of efficient updating.
-\begin{itemize}
-	\item \[ m_i = {1 \over c_{ii}}\]
-	%\item
-	%item
-	%\item
-\end{itemize}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-\subsection{Cook's Distance}
-\begin{itemize}
-	\item For variance components $\gamma$: $CD(\gamma)_i$,
-	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-\end{itemize}
-
-\newpage
-\subsubsection{Random Effects}
-
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-\subsubsection{linear functions}
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-\subsection{Information Ratio}
-
-
-%--------------------------------------------------------------%
-\newpage
-\section{Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-%--------------------------------------------------------------%
-\newpage
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-
-
-%-------------------------------------------------------------------------------------------------Chapter 3------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 \chapter{Augmented GLMs} 
 
