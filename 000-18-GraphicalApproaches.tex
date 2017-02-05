@@ -1,5 +1,26 @@
-%------------------------------%
-\subsection*{Mountain Plot}
+\documentclass[12pt, a4paper]{report}
+\usepackage{natbib}
+\usepackage{vmargin}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\bibliographystyle{chicago}
+\renewcommand{\baselinestretch}{1.8}
+
+% left top textwidth textheight headheight % headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.5cm}{0cm}{1cm}{1cm}
+
+\pagenumbering{arabic}
+
+
+\begin{document}
+
+\section*{Mountain Plot}
 %% http://www.clinchem.org/content/43/11/2039.long
 
 Krouwer and Monti (29) presented a graphical method for evaluation of laboratory assays (a mountain plot). 
@@ -10,7 +31,7 @@ These investigators, therefore, recommend use of their plot together with differ
 Introduction of analytical quality specifications in the mountain plots may be useful in method evaluations.
 
 \newpage
-Bartko’s Ellipse
+\subsection*{Bartko’s Ellipse}
 
 Bartko’s proposes a graphical approach that complements the Bland-Altman approach.
 [Bartko 1998]
@@ -22,5 +43,12 @@ To get a folded plot, the following transformation is performed for all percenti
 
 The mountain plot is a useful complementary plot to the Bland & Altman plot. 
 In particular, the mountain plot offers the following advantages:
-•	It is easier to find the central 95% of the data, even when the data are not Normally distributed.
-•	Different distributions can be compared more easily.
+\begin{itemize}
+	\item It is easier to find the central 95% of the data, even when the data are not Normally distributed.
+	\item Different distributions can be compared more easily.
+	
+\end{itemize}
+\addcontentsline{toc}{section}{Bibliography}
+
+\bibliography{transferbib}
+\end{document}
