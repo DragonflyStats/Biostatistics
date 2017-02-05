@@ -493,7 +493,18 @@ $\boldsymbol{R}_{i}$ is a sub-matrix of this.\\
 	\item $\boldsymbol{\beta}$ is the solutions of the means of the two methods. In the LME output, the bias ad corresponding
 	t-value and p-values are presented. This is relevant to Roy's first test.\end{itemize}
 %-----------------------------------------------------------------------------------%
+\subsection*{Hamlett and Lam}
+\citet{Lam} used ML estimation to estimate the true correlation between the variables when
+the measurements are linked over time. The methodology relies on the assumption that the two variables with repeated measures follow a multivariate normal distribution. The methodology currently does not extend to any more than two cases. The MLE of the correlation takes into account the dependency among repeated measures.
 
+The true correlation $\rho_{xy}$ is repeated measurements can be considered as having two components: between subject and within-subject correlation. The usefulness of estimating repeated measure correlation coefficients is the calculation of between-method and within-method variabilities are produced as by-products.
+
+
+
+
+\subsection{Test for inter-method bias}
+Bias is determinable by examination of the 't-table'. Estimate for both methods are given, and the bias is simply the difference between the two. Because the $R$ implementation does not account for an intercept term, a $p-$value is not given. Should a $p-$value be required specifically for the bias, and simple restructuring of the model is required wherein an intercept term is included. Output from a second implementation will yield a $p-$value.
+\newpage
 
 \section{LME}
 Consistent with the conventions of mixed models, \citet{pkc}
@@ -2740,12 +2751,6 @@ the methodologies proposed by this research can easily be extended.
 
 
 
-\chapter{Introduction}
-
-
-
-
-\chapter{Appendix}
 
 
 \section*{Bayesian BA - Philip J Schluter}
@@ -4508,13 +4513,11 @@ A plot ofthe per-observation diagnostics individual subject log-likelihood contr
 
 
 
-\section{Introduction}
 
 
 \chapter{Model Diagnostics}
 
-%---------------------------------------------------------%
-\newpage
+
 \section{Lesaffre's paper.} %5.6
 
 Lesaffre considers the case-weight perturbation approach.

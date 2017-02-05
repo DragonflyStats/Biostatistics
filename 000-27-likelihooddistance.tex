@@ -19,7 +19,20 @@
 \pagenumbering{arabic}
 
 %---------------------------------------------------------------------------%
-\newpage
+	In LME models, fitted by either ML or REML, an important overall
+	influence measure is the likelihood distance \citep{cook82}. The
+	procedure requires the calculation of the full data estimates
+	$\hat{\psi}$ and estimates based on the reduced data set
+	$\hat{\psi}_{(U)}$. The likelihood distance is given by
+	determining
+	
+	
+	\begin{eqnarray}
+	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
+	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
+	\end{eqnarray}
+
+
 
 
 \section{Likelihood Distance} %1.11
