@@ -3837,75 +3837,7 @@ the fixed effects estimate of deleting each observation in turn could be cheaply
 
 %---------------------------------------------------------------------------%
 \newpage
-\section{Augmented GLMs} %1.17
 
-
-%Augmented Generalized linear models.
-% Youngjo et al page 154
-Generalized linear models are a generalization of classical linear
-models.
-
-The subscript $M$ is a label referring to the mean model.
-\begin{equation}
-\left(%
-\begin{array}{c}
-Y \\
-\psi_{M} \\
-\end{array}%
-\right) = \left(
-\begin{array}{cc}
-X & Z \\
-0 & I \\
-\end{array}\right) \left(%
-\begin{array}{c}
-\beta \\
-\nu \\
-\end{array}%
-\right)+ e^{*}
-\end{equation}
-
-
-%Augmented Generalized linear models.
-
-
-The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
-\begin{equation}
-\Sigma_{a} = \left(%
-\begin{array}{cc}
-\Sigma & 0 \\
-0 & D \\
-\end{array}%
-\right).
-\end{equation}
-
-\begin{equation}
-X = \left(%
-\begin{array}{cc}
-T & Z \\
-0 & I \\
-\end{array}%
-\right)
-\delta = \left(%
-\begin{array}{c}
-\beta  \\
-\nu  \\
-\end{array}%
-\right)
-\end{equation}
-
-
-
-\begin{equation}
-y_{a} = T \delta + e^{*}
-\end{equation}
-
-Weighted least squares equation
-
-
-% Youngjo et al page 154
-
-%--------------------------------------------------------------------------%
-\newpage
 \section{Covariance Parameters} %1.18
 The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
 
@@ -4518,41 +4450,7 @@ A plot ofthe per-observation diagnostics individual subject log-likelihood contr
 \chapter{Model Diagnostics}
 
 
-\section{Lesaffre's paper.} %5.6
 
-Lesaffre considers the case-weight perturbation approach.
-
-
-%\citep{cook86}
-Cook's 86 describes a local approach wherein each case is given a weight $w_{i}$ and the effect on the parameter estimation is measured by perturbing these weights. Choosing weights close to zero or one corresponds to the global case-deletion approach.
-
-Lesaffre  describes the displacement in log-likelihood as a useful metric to evaluate local influence %\citep{cook86}.
-
-
-%\citet{lesaffre}
-Lesaffre describes a framework to detect outlying observations that matter in an LME model. Detection should be carried out by evaluating diagnostics $C_{i}$ , $C_{i}(\alpha)$ and $C_{i}(D,\sigma^2)$.
-
-
-Lesaffre defines the total local influence of individual $i$ as
-\begin{equation}
-C_{i} = 2 | \triangle \prime _{i} L^{-1} \triangle_{i}|.
-\end{equation}
-
-
-The influence function of the MLEs evaluated at the $i$th point $IF_{i}$, given by
-\begin{equation}
-IF_{i} = -L^{-1}\triangle _{i}
-\end{equation}
-can indicate how $\hat{theta}$ changes as the weight of the $i$th
-subject changes.
-
-The manner by which influential observations distort the estimation process can be determined by inspecting the
-interpretable components in the decomposition of the above measures of local influence.
-
-
-Lesaffre comments that there is no clear way of interpreting the information contained in the angles, but that this doesn't mean the information should be ignored.
-
-\newpage
 
 
 
@@ -4936,6 +4834,75 @@ Generalized linear models are a generalization of classical linear  models.
 	
 
 
+\section{Augmented GLMs} %1.17
+
+
+%Augmented Generalized linear models.
+% Youngjo et al page 154
+Generalized linear models are a generalization of classical linear
+models.
+
+The subscript $M$ is a label referring to the mean model.
+\begin{equation}
+\left(%
+\begin{array}{c}
+Y \\
+\psi_{M} \\
+\end{array}%
+\right) = \left(
+\begin{array}{cc}
+X & Z \\
+0 & I \\
+\end{array}\right) \left(%
+\begin{array}{c}
+\beta \\
+\nu \\
+\end{array}%
+\right)+ e^{*}
+\end{equation}
+
+
+%Augmented Generalized linear models.
+
+
+The error term $e^{*}$ is normal with mean zero. The variance matrix of the error term is given by
+\begin{equation}
+\Sigma_{a} = \left(%
+\begin{array}{cc}
+\Sigma & 0 \\
+0 & D \\
+\end{array}%
+\right).
+\end{equation}
+
+\begin{equation}
+X = \left(%
+\begin{array}{cc}
+T & Z \\
+0 & I \\
+\end{array}%
+\right)
+\delta = \left(%
+\begin{array}{c}
+\beta  \\
+\nu  \\
+\end{array}%
+\right)
+\end{equation}
+
+
+
+\begin{equation}
+y_{a} = T \delta + e^{*}
+\end{equation}
+
+Weighted least squares equation
+
+
+% Youngjo et al page 154
+
+%--------------------------------------------------------------------------%
+\newpage
 \section{Augmented GLMs} %3.1
 
 With the use of h-likihood, a random effected model of the form can be viewed as an `augmented GLM' with the response varaibkes $(y^t, \phi^t_m)^t$, (with $\mu = E(y)$,$ u = E(\phi)$, $var(y) = \theta V (\mu)$.
@@ -5116,140 +5083,7 @@ T & Z \\
 	
 	
 
-\chapter{Application to Method Comparison Studies} % Chapter 4
 
-
-%---------------------------------------------------------------------------%
-% - 1. Application to MCS
-% - 2. Grubbs' Data
-% - 3. R implementation
-% - 4. Influence measures using R
-%---------------------------------------------------------------------------%
-
-\section{Application to MCS} %4.1
-
-Let $\hat{\beta}$ denote the least square estimate of $\beta$
-based upon the full set of observations, and let
-$\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case
-excluded.
-
-
-\section{Grubbs' Data} %4.2
-
-For the Grubbs data the $\hat{\beta}$ estimated are
-$\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are
-$\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-
-\begin{equation}
-Y^{-Q} = \hat{\beta}^{-Q}X^{-Q}
-\end{equation}
-
-When considering the regression of case-wise differences and averages, we write $D^{-Q} = \hat{\beta}^{-Q}A^{-Q}$
-
-
-\newpage
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{rrrrr}
-			\hline
-			& F & C & D & A \\
-			\hline
-			1 & 793.80 & 794.60 & -0.80 & 794.20 \\
-			2 & 793.10 & 793.90 & -0.80 & 793.50 \\
-			3 & 792.40 & 793.20 & -0.80 & 792.80 \\
-			4 & 794.00 & 794.00 & 0.00 & 794.00 \\
-			5 & 791.40 & 792.20 & -0.80 & 791.80 \\
-			6 & 792.40 & 793.10 & -0.70 & 792.75 \\
-			7 & 791.70 & 792.40 & -0.70 & 792.05 \\
-			8 & 792.30 & 792.80 & -0.50 & 792.55 \\
-			9 & 789.60 & 790.20 & -0.60 & 789.90 \\
-			10 & 794.40 & 795.00 & -0.60 & 794.70 \\
-			11 & 790.90 & 791.60 & -0.70 & 791.25 \\
-			12 & 793.50 & 793.80 & -0.30 & 793.65 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
-
-
-\newpage
-
-\begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-\end{equation}
-
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-
-When considering the regression of case-wise differences and averages, we write
-
-\begin{equation}
-D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-\end{equation}
-Let $\hat{\beta}$ denote the least square estimate of $\beta$ based upon the full set of observations, and let $\hat{\beta}^{(k)}$ denoted the estimate with the $k^{th}$ case excluded.
-
-For the Grubbs data the $\hat{\beta}$ estimated are $\hat{\beta}_{0}$ and $\hat{\beta}_{1}$ respectively. Leaving the
-fourth case out, i.e. $k=4$ the corresponding estimates are $\hat{\beta}_{0}^{-4}$ and $\hat{\beta}_{1}^{-4}$
-
-\begin{equation}
-Y^{(k)} = \hat{\beta}^{(k)}X^{(k)}
-\end{equation}
-
-Consider two sets of measurements , in this case F and C , with the vectors of case-wise averages $A$ and case-wise differences $D$ respectively. A regression model of differences on averages can be fitted with the view to exploring some characteristics of the data.
-
-\begin{verbatim}
-Call: lm(formula = D ~ A)
-
-Coefficients: (Intercept)            A
--37.51896      0.04656
-
-\end{verbatim}
-
-
-
-
-When considering the regression of case-wise differences and averages, we write
-
-\begin{equation}
-D^{-Q} = \hat{\beta}^{-Q}A^{-Q}
-\end{equation}
-
-
-
-\subsection{Influence measures using R} %4.4
-\texttt{R} provides the following influence measures of each observation.
-
-%Influence measures: This suite of functions can be used to compute
-%some of the regression (leave-one-out deletion) diagnostics for
-%linear and generalized linear models discussed in Belsley, Kuh and
-% Welsch (1980), Cook and Weisberg (1982)
-
-
-
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|c|c|c|c|}
-			\hline
-			& dfb.1\_ & dfb.A & dffit & cov.r & cook.d & hat \\
-			\hline
-			1 & 0.42 & -0.42 & -0.56 & 1.13 & 0.15 & 0.18 \\
-			2 & 0.17 & -0.17 & -0.34 & 1.14 & 0.06 & 0.11 \\
-			3 & 0.01 & -0.01 & -0.24 & 1.17 & 0.03 & 0.08 \\
-			4 & -1.08 & 1.08 & 1.57 & 0.24 & 0.56 & 0.16 \\
-			5 & -0.14 & 0.14 & -0.24 & 1.30 & 0.03 & 0.13 \\
-			6 & -0.00 & 0.00 & -0.11 & 1.31 & 0.01 & 0.08 \\
-			7 & -0.04 & 0.04 & -0.08 & 1.37 & 0.00 & 0.11 \\
-			8 & 0.02 & -0.02 & 0.15 & 1.28 & 0.01 & 0.09 \\
-			9 & 0.69 & -0.68 & 0.75 & 2.08 & 0.29 & 0.48 \\
-			10 & 0.18 & -0.18 & -0.22 & 1.63 & 0.03 & 0.27 \\
-			11 & -0.03 & 0.03 & -0.04 & 1.53 & 0.00 & 0.19 \\
-			12 & -0.25 & 0.25 & 0.44 & 1.05 & 0.09 & 0.12 \\
-			\hline
-		\end{tabular}
-	\end{center}
-\end{table}
 
 
 \addcontentsline{toc}{section}{Bibliography}
