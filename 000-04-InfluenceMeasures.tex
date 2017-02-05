@@ -19,17 +19,44 @@
 
 
 \begin{document}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-\subsection{Influence Statistics for LME models} %1.1.4
+\section*{Influence Analysis}
+The basic rationale behind measuring influential cases is that when iteratively single units are omitted
+from the data, models based on these data should not produce substantially different estimates.
+%===================================================================== %
+
+\subsection{Quantifying Influence}  %1.1.6
+
+The basic procedure for quantifying influence is simple as follows:
+
+\begin{itemize}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
+\end{itemize}
+
+Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.	
+
+\subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
+
+%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
+	
+
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+
 Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
 \begin{itemize}
 	\item overall measures compare changes in objective functions: (restricted) likelihood distance (Cook and Weisberg 1982, Ch. 5.2)
-	\item influence on parameter estimates: Cook's  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
+	\item influence on parameter estimates: Cook’s  (Cook 1977, 1979), MDFFITS (Belsley, Kuh, and Welsch 1980, p. 32)
 	\item influence on precision of estimates: CovRatio and CovTrace
 	\item influence on fitted and predicted values: PRESS residual, PRESS statistic (Allen 1974), DFFITS (Belsley, Kuh, and Welsch 1980, p. 15)
 	\item outlier properties: internally and externally studentized residuals, leverage
 \end{itemize}
-%---------------------------------------------------------------------------%
+For linear models for uncorrelated data, it is not necessary to refit the model after removing a data point in order to measure the impact of an observation on the model. The change in fixed effect estimates, residuals, residual sums of squares, and the variance-covariance matrix of the fixed effects can be computed based on the fit to the full data alone. By contrast, in mixed models several important complications arise. Data points can affect not only the fixed effects but also the covariance parameter estimates on which the fixed-effects estimates depend. 
+
+Furthermore, closed-form expressions for computing the change in important model quantities might not be available.
+This section provides background material for the various influence diagnostics available with the MIXED procedure. See the section Mixed Models Theory for relevant expressions and definitions. The parameter vector  denotes all unknown parameters in the  and  matrix.
+The observations whose influence is being ascertained are represented by the set  and referred to simply as "the observations in ." The estimate of a parameter vector, such as , obtained from all observations except those in the set  is denoted . In case of a matrix , the notation  represents the matrix with the rows in  removed; these rows are collected in . If  is symmetric, then notation  implies removal of rows and columns. The vector  comprises the responses of the data points being removed, and  is the variance-covariance matrix of the remaining observations. When , lowercase notation emphasizes that single points are removed, such as .
 
 
 
@@ -61,6 +88,25 @@ provides a foundation for much of the subsequent work.
 	data, and a model from which a (potentially influential) subset of data is removed. A value for
 	DFBETAS is calculated for each parameter in the model separately.
 \end{description}
+			
+
+
+%===================================================================== %
+
+
+
+\subsection{Summary of Influence Statistics}
+\begin{itemize}
+\item	\textbf{Studentized Residuals} – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
+\item	\textbf{Leverage Values (Hat Diag)} – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
+\item	\textbf{DFFITS} – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
+\item	\textbf{DFBETAS} – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
+				\\
+				The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
+				
+\item	\textbf{Cook’s D} – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
+\end{itemize}
+			
 \section{Measures of Influence} %1.13
 
 The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
@@ -91,7 +137,17 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 
 %---------------------------------------------------------------------------%
 
-\subsection{PRESS}
+\subsection{PRESS} %1.13.3
+The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+\begin{equation}
+PRESS = \sum(y-y^{(k)})^2
+\end{equation}
+\begin{itemize}
+	\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
+	\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
+\end{itemize}
+
+
 \begin{equation}
 e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}
 \end{equation}
@@ -100,16 +156,6 @@ e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}
 PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
 \end{equation}
 
-\subsection{PRESS} %1.13.3
-The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
-\begin{itemize}
-\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-\end{itemize}
-	
 
 
 
@@ -131,43 +177,10 @@ estimations of the fixed and random regression coefficients $\beta$ and $u$, giv
 For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 	
 
-\section*{Influence Analysis}
-The basic rationale behind measuring influential cases is that when iteratively single units are omitted
-from the data, models based on these data should not produce substantially different estimates.
-%===================================================================== %
-\subsection*{Well Known Influence Measures}
 
-\textit{``Regression Diagnostics: Identifying Influential Data
-	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
-provides a foundation for much of the subsequent work.
-
-\begin{description}
-	\item[Cook's Distance] Cook’s Distance is a measure indicating to what extent model parameters are influenced by (a set
-	of) influential data on which the model is based.
-	\item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
-	in parameter estimates between a (mixed effects) regression model based on a full set of
-	data, and a model from which a (potentially influential) subset of data is removed. A value for
-	DFBETAS is calculated for each parameter in the model separately.
-\end{description}
-
-
-
-
-
-\subsection{Quantifying Influence}  %1.1.6
-
-The basic procedure for quantifying influence is simple as follows:
-
-\begin{itemize}
-	\item Fit the model to the data and obtain estimates of all parameters.
-	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
-	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
-\end{itemize}
-
-Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
 
 %--------------------------------------------------------------%
-\newpage
+
 \section{Measures 2} %2.4
 
 \subsection{Cook's Distance} %2.4.1
@@ -179,8 +192,6 @@ Cook (1986) introduces powerful tools for local-influence assessment and examini
 Diagnostic tool for variance components
 \[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
 
-
-%--------------==========================================================-----%
 
 
 \subsection{Variance Ratio} %2.4.2
