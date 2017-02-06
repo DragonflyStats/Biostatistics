@@ -1,17 +1,215 @@
-http://blog.echen.me/2012/01/17/quick-introduction-to-ggplot2/
+
+%====================================================================%
+\newpage
+\subsection*{Beckerman - Conclusions}
+
+
+- Diagnostic methods are useful for assessing the
+adequacy of assumptions underlying a modeling process
+and for identifying unexpected characteristics of
+the data that may seriously influence conclusions or
+require special attention. Such methods may also
+serve as the initial step in the determination of the
+robustness of a sample.
+- In recent years, deleting observations has become
+a popular and extremely useful basis for studying
+sensitivity in statistical problems. The deletion of observations,
+however, is just one possible way in which
+a postulated model might be perturbed meaningfully.
+- The methodology discussed in this article is designed
+to allow an assessment of the sensitivity of a mixedmodel
+analysis to perturbations in many of the standard
+assumptions. Results from sensitivity analyses
+must be treated with caution, and the sensitivity itself
+must become part of the conclusions. 
+- When perturbing error variances, the cause of the sensitivity
+can often be traced via hmax to a few influential observations,
+and in such cases the proposed methodology
+agrees well with case deletion. 
+- The usefulness of case
+deletion, however, seems limited to providing an understanding
+only of certain aspects of the error component
+of a mixed model. For example, case deletion
+will not generally lead to the identification of influential
+groups associated with a variance component. 
+- As
+briefly described in Section 3, the proposed methodology
+can be adapted easily to handle such concerns.
+
+
+
+%====================================================================%
+\newpage
+
+\subsection*{Roy’s Tests (Roy 2009)}
+=============================
+Roy 2009 devised an LME based Testing approach to the MCS problem, based on earlier work by Hamlett et al. 
+Roy 2009 presents a series of three formal hypothesis tests for assessing agreement between two methods of measurement.
+Roy also alludes to some of the current shortcomings of the approach.
+
+### Components of Test
+
+Comparing different model specifications with LRT tests
+
+### Papers:
+- Roy 2007
+- Roy 2009
+- Hamlett et al.
+- Roy Leiva 2011
+
+
+%====================================================================%
+\newpage
+\subsection*{lme4 package}
+
+lme4 is a project led by Douglas Bates (one of the co-authors of nlme), looking at modernizing the code and
+making room for trying new ideas. On the positive side, it seems to be a bit faster than nlme and it deals 
+a lot better with cross-classified random factors. lme4 doesn’t deal with covariance and correlation structures yet.
+
+One difference between the two packages is that nlme reports standard deviations instead of variances for
+the random effects.
+
+### Links 
+- http://www.bodowinter.com/tutorial/bw_LME_tutorial2.pdf
+- http://www.unt.edu/rss/class/Jon/Benchmarks/LinearMixedModels_JDS_Dec2010.pdf
+
+%====================================================================%
+\newpage
+http://medicina.med.up.pt/im/trabalhos_10_11/Sites/Turma4/article.pdf
+
+
+ABSTRACT
+Our main aim is to assess if the Bland Altman‟s method has been correctly applied in articles and
+proceeding papers. From the 18360 documents indexed on ISI which quote the method, we excluded
+1071 because we were interested in documents that could have applied the method, which means
+that only articles and proceeding papers were considered, in a total of 17289 documents. From those,
+we randomly selected a sample of 70 articles (to guarantee that all documents could be read and
+analyzed and, simultaneously, to have an amount big enough to enable us to draw valid conclusions)
+using SPSS program and assigned 35 to each class, 3 for each student. The data were collected
+using a checklist and each document was analyzed twice by two different students to verify the interobserver
+reproducibility of the checklist. After that we built a data base on SPSS with the collected
+data and used a chi-square statistical test to data analysis. In the results we estimated, with a
+confidence interval of 95%, the proportion of articles that applied the method and the proportion of
+articles that applied each of the checklist‟s conditions, sorted by impact factor of the journals where
+they were published and publication year. We found that 91% of our sample indeed applied Bland
+Altman‟s method, but only 14% have correctly applied the method, fulfilling all of the checklist‟s
+conditions. On the other hand, we can only take conclusion about one of the checklist‟s items (the
+second assumption) because only in that case we obtained a p-value less than 0.05, being able to
+say that the more recent articles verify the second assumption more often than the older ones, and
+that was in line with what we have expected.
+
+%====================================================================%
+\newpage
+MethComp Package - Compute Lin's Total deviation index
+
+### Description
+
+This index calculates a value such that a certain fraction of difference between methods will be numerically smaller than this.
+
+### Usage
+
+<pre><code>
+TDI( y1, y2, p = 0.05, boot = 1000, alpha = 0.05 )
+</code></pre>
+
+### Arguments
+
+* y1	- Measurements by one method.
+* y2	- Measurements by the other method
+* p	- The fraction of items with differences numerically exceeding the TDI
+* boot	- If numerical, this is the number of bootstraps. If FALSE no confidence interval for the TDI is produced.
+* alpha	 - 1 - confidence degree.
 
 
 
 
 %====================================================================%
+\newpage
+\subsection*{ A Multi-Rate nonparametric test of agreement and corresponding agreement plot}
+
+- Published in: Computational Statistics and Data Analysis 54(2010)109-119
+- Author: Alan D. Hutson, University of Buffalo
+
+Survival analytical techniques were used to assess agreement of a quantitative variable
+
+*J Llorca, M Delgado-Rodríguez - Journal of clinical epidemiology*
+
+### Overview
+1. **Background and Objective:** Survival–agreement plots have been suggested as a new graphical approach to assess agreement in
+quantitative variables. We propose that survival analytical techniques can complement this method, providing a new analytical insight
+for agreement.
+2. **Methods:** Two survival–agreement plots are used to detect the bias between to measurements of the same variable. The presence of
+bias is tested with log-rank test, and its magnitude with Cox regression.
+3. **Results:** An example on C-reactive protein determinations shows how survival analytical methods would be interpreted in the context
+of assessing agreement.
+4. **Conclusion:** Log-rank test, Cox regression, or other analytical methods could be used to assess agreement in quantitative variables;
+correct interpretations require good clinical sense
+
+<hr>
+- In clinical or epidemiologic research, the measurement of variables always implies some degree of error.
+Because it is impossible to control the various sources of variation, the assessment of the reliability of a
+measurement is essential. 
+- Otherwise, concordance analysis must take into account the "clinical" interpretation 
+of the measurement under study, because its practical usefulness is of central importance. In this article, 
+we propose a new approach to assess the reliability of a quantitative measurement. We use a graphical approach 
+familiar to statisticians and data analysts of the biomedical area, associating to it the useful feature of 
+interpretation based on the proportion of concordant cases. 
+- We believe that the proposed graphical approach 
+can serve as a complement, or as a alternative, to the Altman-Bland method for agreement analysis. It allows
+a simple interpretation of agreement that takes into account the "clinical" importance of the differences 
+between observers or methods. 
+-In addition, it allows the analysis of reliability or agreement, by means of survival analysis techniques.
+
+\subsubsection*{Discussion}
+The proposed approach presents advantages and disadvantages compared to the Altman-Bland proposal or to
+mountain plot. These two approaches, depending on the research interests, can complement or serve as alternative
+one to another. For small data sets, the Altman-Bland approach should be used, and the incorporation of any index
+would be of little value to the analysis.In general, the use of measures of agreement—particularly
+in the case of a quantitative variable—is difficult, because these measures are calculated, and interpreted, almost
+strictly, from a statistical standpoint. The proposed approach has the advantage of expressing, by means of a graphic, an
+index that is easily interpreted, and depends upon the degree of relevance of the agreement, as judged by the researcher.
+
+Moreover, the form of the resulting step function can also yield much information: very high steps indicating that a
+Fig. 2. Proportion of discordance between systolic blood pressure by two observrs (J and R) and a semiautomatic device (S) until “tolerance” limits.
+better agreement will be reached more rapidly, that is, for smaller differences. However, in choosing the module of the difference,
+for example, we loose sight of some characteristics of the differences, very much evident in the Altman-Bland
+approach or in the mountain plot. These characteristics can have a great impact in the study of agreement [21]. 
+
+The average of the differences can serve as an estimate of the bias among the methods. Besides the bias, a tendency in the
+differences as a function of the magnitude of the measurement or an increase of the differences indicating a greater
+error due to the measurement are not considered in the proposed approach, because it does not take into account
+the magnitude of the measurement. Nevertheless, if the magnitude of the bias does not have “clinical” relevance, it
+might be that the absence of this information may not impair the analysis.
+
+On the other hand, if considering the magnitude of the measurement is of importance, the proposed graphic could
+take it into account through the calculation of relative differences.
+
+For instance, in the X-axis of the graphic, instead of showing the modules of the differences, we would present the
+differences relative to the magnitude of the measurement,
+as follows:
+%% EQUATION |AB| / [(AB)/2]
+Therefore, the graphic would be completely adimensional, what could be an advantage, for the sake of comparison.
+Although our proposal is descriptive in nature, it allows the use of inference resources, by means of tests associated to
+the Kaplan-Meier analysis. It is possible, for example, to use the log-rank test to evaluate whether the difference between
+two curves of agreement, for a certain categorical covariate is statistically significant. The sample size must
+be always taken into account, in particular, when the sample is subdivided.
+
+\newpage
+
+This approach takes advantage of readily avilable tests of uniformity found in most statistical software packages.
+Such tests include the KS d statistic, the Anderson Darling Statistic and the Cramer-Von Mises statistical test for univariate data.
+
+An important aspect of this approach is the "Agreement Region".
 
 
+%======================================================================================%
 http://iopscience.iop.org/0026-1394/44/5/015
 
 
 % - http://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/balt?action=AttachFile&do=get&target=balt.pdf
 % - Eric Fèvre
 
+\subsection*{Tukey Mean Plot}
 % - Including the Tukey Mean-Difference (Bland–Altman) Plot in a Statistics Course
 % - Marcin Kozak1 andAgnieszka Wnuk2
 % - http://onlinelibrary.wiley.com/doi/10.1111/test.12032/abstract
@@ -29,13 +227,14 @@ here we add make three copies of the both data sets, and add a small amount of n
 jitter(lewis)
 
 
-https://books.google.ie/books?id=FJd6BAAAQBAJ&pg=PA186&lpg=PA186&dq=bland+altman+conversion+problems&source=bl&ots=ir2u2Qdl10&sig=WhKvuvY63S5moXaPW1tZ4VzUDgk&hl=en&sa=X&ei=lkDzVMr7IOOc7gaS0YAI&ved=0CDQQ6AEwAw#v=onepage&q=bland%20altman%20conversion%20problems&f=false
+% https://books.google.ie/books?id=FJd6BAAAQBAJ&pg=PA186&lpg=PA186&dq=bland+altman+conversion+problems&source=bl&ots=ir2u2Qdl10&sig=WhKvuvY63S5moXaPW1tZ4VzUDgk&hl=en&sa=X&ei=lkDzVMr7IOOc7gaS0YAI&ved=0CDQQ6AEwAw#v=onepage&q=bland%20altman%20conversion%20problems&f=false
+
 %% page 47
 
 William Clark described the Clarke EGA in Baibetes care for thie first time The EGA aims to quanitify the clinical signiginciance of blood glucose estimaites
 between self-blood glucouse monitors as comapred to glouceome determination
-\subsection*{Bartko BB}
-Bartko and Blackwood Bradley
+\subsection*{Bartko and Blackwood Bradley}
+
 The Bradley Blackwood procedure is a simultaneous test for equality of the variance and mean of a pair of data sets. 
 A linear regression is fitted according to the sums and differences.
 The null hypothesis is that mean and variance of both methods equal.
@@ -52,7 +251,7 @@ It is noticeably a simultaneous test for bias and precision. If I It is uninform
 
 \newpage
 How Bland and Altman have extended the Difference Plot (with Limits of agreement) to the case of replicate measurements.
-When replicate measurements are taken with each method on each item, more complex methodologies are required. Bland & Altman(1999) describe a number of approaches to adopt in such a case. The first approach is to take the average measurement over the replicates measurements on each subject by each method.
+When replicate measurements are taken with each method on each item, more complex methodologies are required. Bland \& Altman(1999) describe a number of approaches to adopt in such a case. The first approach is to take the average measurement over the replicates measurements on each subject by each method.
 The second approach is to simply treat these replicate measurements as independent measurements in their own right, and use the pre-existing Bland-Altman approach for single measurements.
 The proposed approach shares the same overall structure as their earlier work. However complex calculations are now required to compute the variance of case-wise differences. This is compounded by the fact that different approaches are required depending on whether or not there are equal or unequal numbers of replicates.
 What have they missed? Carstensen et al discuss in depth the shortfalls in this approach.
@@ -61,7 +260,9 @@ Carstensen et al (2008) address the flaws in both approaches, demonstrating how 
 \subsection*{What are Tolerance Intervals?}
 A tolerance interval is a statistical interval within which, with some confidence level, a specified proportion of a population falls.
 The Engineering Statistics Handbook describes the difference: Confidence limits are limits within which we expect a given population parameter, such as the mean, to lie. Statistical tolerance limits are limits within which we expect a stated proportion of the population to lie.
+
 It is useful to make the distinction between tolerance intervals and confidence intervals clear. The confidence interval describes a single-valued population parameter, commonly the mean, with a specified confidence level. The tolerance interval, on the other hand, describes the range of data values that includes a specific proportion of the population.
+
 As discussed in Vardeman (1992), the tolerance interval is not as widely used as the confidence interval and prediction interval, largely because of the emphasis placed on these in undergraduate teaching. Furthermore, Vardeman(1992) argues this lack of awareness can lead to misuse of confidence intervals where other types of intervals are more appropriate.
 Curiously Carstensen et al (2008) describe the Limits of agreement as a prediction interval, although stating that it is formulated in correctly for that purpose.
 
@@ -71,7 +272,7 @@ Total Deviation Index and Coverage Probability
 
 The Coverage Probability describes the proportion captured within a pre-specified boundary of the absolute paired-measurement differences from two methods of measurement, i.e., the value of k such that P(|D| <k) = pk.
 
-Bayesian Approach: 
+\subsection*{Bayesian Approach: }
 consistent with philosophy of hypothesis testing free stats, but it is unclear what Bland and Altman had in mind.
 Schluter(2009) develops a multivariate hierarchical Bayesian approach to Bland-Altman’s methodology, presenting two methods of analysis that complement pre-existing literature. 
 
@@ -102,7 +303,7 @@ More recent contributions to method comparison literature are Total Deviation In
 Intra-method agreements/repeatability
 The matter of intra-method agreement, also known as repeatability, has received greater attention in recent contributions. Intra-method agreement describes a method of measurement giving a consistent set of measurements for the same item under identical conditions, such that variability of these measurements can be assumed to be caused by random error only. Many authors argue that the
 Bland and Altman 1999 propose the coefficient of repeatability (CR) as a measure of intra-method agreement. Recent literature has set out as a one of the conditions for agreement that two methods must have comparable coefficients of repeatability, or an equivalent condition thereof (Roy 2009).
-Deming Regression
+\subsection*{Deming Regression}
 Deming Regression describes a type of regression model where error is assumed for both variables, rather than just one of them. One of the key drawbacks is that the variance ratio, the ratio of the residual variances must be specified( equivalently the ratio of the respective coefficient of variability).
 Orthogonal regression is a special case of Deming Regression whereby the residual variances are assumed to be equal.  In the case of single measurements, a practitioner would be forced to make this assumption. If it was found the coefficients of repeatability were known for both methods, the variance ratio could be computed accordingly as the ratio of CRs.  
 This begets the question as to how should a Deming regression be performed, given that there are replicates measurements for each item. Linear Mixed Effects models are the most plausible solution to this.
@@ -118,52 +319,59 @@ Lastly, the methods have equal between-subject variability.  Put simply, for the
 Firstly, a practitioner would investigate whether a significant inter-method bias is present between the methods. This bias is specified as a fixed effect in the LME model.  For a practitioner who has a reasonable level of competency in R and undergraduate statistics (in particular simple linear regression model) this is a straight-forward procedure.
 Reference Model (Ref.Fit)
 Conventionally LME models can be tested using Likelihood Ratio Tests, wherein a reference model is compared to a nested model.
+
+\begin{verbatim}
 > Ref.Fit = lme(y ~ meth-1, data = dat,   #Symm , Symm#
 +     random = list(item=pdSymm(~ meth-1)), 
 +     weights=varIdent(form=~1|meth),
 +     correlation = corSymm(form=~1 | item/repl), 
 +     method="ML")
-
+\end{verbatim}
 Roy(2009) presents two nested models that specify the condition of equality as required, with a third nested model for an additional test. There three formulations share the same structure, and can be specified by making slight alterations of the code for the Reference Model.
 Nested Model (Between-Item Variability)
+
+\begin{verbatim}
 > NMB.fit  = lme(y ~ meth-1, data = dat,   #CS , Symm#
 +     random = list(item=pdCompSymm(~ meth-1)),
 +     correlation = corSymm(form=~1 | item/repl), 
 +     method="ML")
-
+\end{verbatim}
 
 
 
 
 Nested Model (Within –item Variability)
+\begin{verbatim}
 > NMW.fit = lme(y ~ meth-1, data = dat,   #Symm , CS# 
 +     random = list(item=pdSymm(~ meth-1)),
 +     weights=varIdent(form=~1|meth), 
 +     correlation = corCompSymm(form=~1 | item/repl), 
 +     method="ML")
-
+\end{verbatim}
 
 Nested Model (Overall Variability)
 Additionally there is a third nested model, that can be used to test overall variability, substantively a a joint test for between-item and within-item variability. The motivation for including such a test in the suite is not clear, although it does circumvent the need for multiple comparison procedures in certain circumstances, hence providing a simplified procedure for non-statisticians.
+\begin{verbatim}
 > NMO.fit = lme(y ~ meth-1, data = dat,   #CS , CS# 
 +     random = list(item=pdCompSymm(~ meth-1)), 
 +     correlation = corCompSymm(form=~1 | item/repl), 
 +     method="ML")
-
+\end{verbatim}
 
 ANOVAs  for  Original Fits
 The likelihood Ratio test is very simple to implement in R. All that is required it to specify the reference model and the relevant nested mode as arguments to the command anova().
 The figure below displays the three tests described by Roy (2009).
+
+\begin{verbatim}
 > testB    = anova(Ref.Fit,NMB.fit)                          # Between-Subject Variabilities
 > testW   = anova(Ref.Fit,NMW.fit)                        # Within-Subject Variabilities
 > testO     = anova(Ref.Fit,NMO.fit)                        # Overall Variabilities
+\end{verbatim}
 
-
-
-Using ML or REML Fitting
+\subsection*{Using ML or REML Fitting}
 Noticeably Roy (2009) uses ML estimation when specifying the LME models. No explanation is given, although plausibly it is due to the constraints of the computational environment being used.
-Both West et al (2010) and Pinheiro & Bates (2000) compare ML and REML estimation, describing what types of tests are appropriate for each.  When variance components are being tested, REML estimation is in fact the correct approach. 
-However, Choudhary & Nagaraja(2007) point out  that for a joint test of Fixed and Random effects that ML estimation is the appropriate estimation method.
+Both West et al (2010) and Pinheiro\& Bates (2000) compare ML and REML estimation, describing what types of tests are appropriate for each.  When variance components are being tested, REML estimation is in fact the correct approach. 
+However, Choudhary \& Nagaraja(2007) point out  that for a joint test of Fixed and Random effects that ML estimation is the appropriate estimation method.
 
 
 Comparison of ML and REML fits
@@ -190,7 +398,7 @@ Between Subject Variability
 [■(〖30.10195〗^2&0.83×30.10195×31.16573@..&〖31.16573〗^2 )]
 
 
-
+\begin{verbatim}
 # Systolic blood pressure measurements made 
 # simultaneously by two observers (J and R) 
 # and an automatic blood pressure measuring
@@ -206,9 +414,9 @@ Blood = matrix(data=c(100, 106, 107, 98, 98, 111, 122, 128, 124, 108, 110, 108, 
 116, 112, 94, 118, 114, 96, 124, 149, 137,108, 110, 114, 106, 110, 114, 114, 118, 126,106, 98, 100, 104, 100, 100, 137, 135, 134,122, 112, 112, 122, 114, 114, 121, 123, 128), 
 nrow = 85, ncol = 9, byrow = TRUE,
 dimnames = list(NULL, c("J1","J2","J3","R1","R2","R3","S1","S2","S3")) )
+\end{verbatim}
 
-
-
+\begin{verbatim}
 #####################################################################
 #Preparing the Blood Data
 library(nlme)
@@ -223,11 +431,39 @@ order.groups = FALSE )
 
 dat = subset(blood, subset = meth != "R")
 
+\end{verbatim}
+
+\newpage
 
 
+\subsection{Agreement R Pacakge}
 
+- Coverage Probability 
+- TDI
 
+<hr>
+<pre><code>
+#Initialise Packages
 
+install.packages("Agreement")
+</code></pre>
+### Agreement: Statistical Tools for Measuring Agreement
+
+- This package computes several statistics for measuring agreement, for example, mean square deviation (MSD), total deviation index (TDI) or concordance correlation coefficient (CCC). 
+- It can be used for both continuous data and categorical data for multiple raters and multiple readings cases.
+<hr>
+Agreement Measurements Summary 
+
+Under the normal or log-normal distribution, each of the agreement measurements (MSD, CCC, TDI, and CP) 
+basically measures the same information but from different perspectives. Note that the asymptotic variances 
+of MSD, CCC, preci- sion, and accuracy were derived from the covariance matrix of
+the sample moments, in which the normality assumption was used, even though the point estimates do not 
+depend on the normality assumption. None of the methods proposed in this article is expected to be 
+robust against outliers and/or large deviation from normality. The interpretation of MSD is 
+difficult to understand. The TDI is desirable as an alternative because of its straightforward
+interpretation. 
+
+\newpage
 Contents
 Dunn’s Criticism of BA	1
 Which method of measurement is more precise?	1
@@ -655,7 +891,7 @@ The figure below displays the three tests described by Roy (2009).
 
 
 
-One Way Testing for Comparative Precision
+\subsection*{One Way Testing for Comparative Precision}
 
 Precision and Repeatability
 Bland and Altman (1999) and Barnhart et al (2008) make the connection between precision and repeatability clear. As repeatability and within-item variance are equivalent, we can determine the most precise method of measurement from two candidate methods by comparing their respective within-item variances.
@@ -714,7 +950,7 @@ AIC: 4075.594
 
 Between Subject Variability
 
-[■(〖30.28301〗^2&0.83×30.28301×31.55595@..&〖31.35595〗^2 )]	Fit1r (REML)
+%[■(〖30.28301〗^2&0.83×30.28301×31.55595@..&〖31.35595〗^2 )]	Fit1r (REML)
 
 Dataset: Blood RS
 
@@ -724,10 +960,10 @@ AIC: 4068.172
 
 Between Subject Variability
 
-[■(〖30.10195〗^2&0.83×30.10195×31.16573@..&〖31.16573〗^2 )]
+%[■(〖30.10195〗^2&0.83×30.10195×31.16573@..&〖31.16573〗^2 )]
 
 
-
+\begin{verbatim}
 # Systolic blood pressure measurements made 
 # simultaneously by two observers (J and R) 
 # and an automatic blood pressure measuring
@@ -743,9 +979,9 @@ Blood = matrix(data=c(100, 106, 107, 98, 98, 111, 122, 128, 124, 108, 110, 108, 
 116, 112, 94, 118, 114, 96, 124, 149, 137,108, 110, 114, 106, 110, 114, 114, 118, 126,106, 98, 100, 104, 100, 100, 137, 135, 134,122, 112, 112, 122, 114, 114, 121, 123, 128), 
 nrow = 85, ncol = 9, byrow = TRUE,
 dimnames = list(NULL, c("J1","J2","J3","R1","R2","R3","S1","S2","S3")) )
+\end{verbatim}
 
-
-
+\begin{verbatim}
 #####################################################################
 #Preparing the Blood Data
 library(nlme)
@@ -759,6 +995,8 @@ order.groups = FALSE )
 #pick out two of the three methods ( use J and S ) 
 
 dat = subset(blood, subset = meth != "R")
+
+\end{verbatim}
 
 
 
@@ -823,12 +1061,14 @@ repeated m_var/type= un subject=rep(subj) r;
 
 Here we give the SAS code for fitting the linear mixed effects model to the same data under the alternative hypothesis that the two methods have the same within-subject variabilities.*/
 
+\begin{verbatim}
 proc mixed data=BloodPressure1 method=ml covtest;
 classes subj m_var rep;
 model y=m_var /s ddfm=kr;
 random m_var /type= un subject=subj v vcorr g;
 repeated m_var/type= cs subject=rep(subj) r;
 run;
+\end{verbatim}
 The difference is in the arguments to the “repeated” parameter.
 Discussion of the code
 The proc mixed statement invokes the procedure, here using the dataset named “BloodPressure1.”
@@ -876,7 +1116,7 @@ In fact, specifying a subject effect is equivalent to nesting all other effects 
 
 
 
-Section 8 - REPEATED STATEMENT
+\subsection*{Section 8 - REPEATED STATEMENT}
 
 The REPEATED statement controls the covariance structure imposed upon the residuals or errors.
 
@@ -909,7 +1149,7 @@ Section 9.1 : The optimization in lmer is done with respect to the elements of t
 Those are based on the same relative variances but different conditional estimates of σ2 (and hence different estimates of the elements of the variance-covariance of the random effects). It turns out that there is very little difference in the value of the profiled log-likelihood at the ML estimates and at the REML estimates. 
 This is not to say that the log-likelihood is similar at the two (complete) sets of estimates - it is the profiled log-likelihoods that are similar and these are what are used to create the likelihood ratio test statistic, even when the models have been fit by REML.
 
-Section 10 - Other Commands used in Roy’s code
+\subsection*{Section 10 - Other Commands used in Roy’s code}
 
 G requests that the estimated G matrix be displayed. PROC MIXED displays blanks for values that are 0. 
 If you specify the SUBJECT= option, then the block of the  G matrix corresponding to the first subject is displayed. 
@@ -984,7 +1224,7 @@ A full specification of the model in fm1 is
  Residual     0.4354534 0.659889   
 
 \newpage
-Section 6  -  A Roy 2009
+\subsection*{Section 6  -  A Roy 2009}
 
 This is the SAS code for fitting the linear mixed effects model to the data of Bland and Altman (1999, Table 1) under the null hypothesis that the two methods, the observer J and the blood pressure monitor S, do not have the same within-subject variabilities. 
 
@@ -1083,7 +1323,7 @@ Section 9.1 : The optimization in lmer is done with respect to the elements of t
 Those are based on the same relative variances but different conditional estimates of σ2 (and hence different estimates of the elements of the variance-covariance of the random effects). It turns out that there is very little difference in the value of the profiled log-likelihood at the ML estimates and at the REML estimates. 
 This is not to say that the log-likelihood is similar at the two (complete) sets of estimates - it is the profiled log-likelihoods that are similar and these are what are used to create the likelihood ratio test statistic, even when the models have been fit by REML.
 
-Section 10 - Other Commands used in Roy’s code
+\subsection*{Section 10 - Other Commands used in Roy’s code}
 
 G requests that the estimated G matrix be displayed. PROC MIXED displays blanks for values that are 0. 
 If you specify the SUBJECT= option, then the block of the  G matrix corresponding to the first subject is displayed. 
@@ -1116,7 +1356,7 @@ R implementation
 + weights = varIdent( form = ˜1 | meth ),
 + data=fat
 + )
-SAS implementation
+\subsection*{SAS implementation}
 
 proc mixed data = rdata ;
 class meth item ;
@@ -1144,7 +1384,7 @@ In general the random statement in PROC MIXED is
 easy to translate into nlme.  The repeated statement isn't.
 The basic approach in lme is to define one or more factors that represent the grouping of the observations.  In the example above the data contain the information that the grouping is by the "Subject"
 factor
-
+\begin{verbatim}
 > formula(Oxboys)
 height ~ age | Subject
 
@@ -1157,8 +1397,10 @@ Variance   StdDev   Corr
 age          2.8248081 1.680717 0.641 
 Residual     0.4354534 0.659889   
 
+\end{verbatim}
 
-\subsection8{analytical chemistry}
+
+\subsection*{analytical chemistry}
 Comparing analytical methods 
 An ion-selective electrode (ISE) determination of sulphide from sulphate-reducing bacteria was compared with a gravimetric determination. 
 
