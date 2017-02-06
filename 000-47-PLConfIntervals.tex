@@ -1,3 +1,22 @@
+% http://www.jstor.org/discover/10.2307/2347496?uid=3738232&uid=2&uid=4&sid=21102779496553
+% http://lme4.r-forge.r-project.org/slides/2011-03-16-Amsterdam/3Profiling.pdf
+
+% -------------------------------------------------------------------------------------------- %
+
+The method of constructing confidence regions based on the generalised likelihood ratio statistic is well 
+known for parameter vectors. A similar construction of a confidence interval for a single entry of a vector 
+can be implemented by repeatedly maximising over the other parameters. 
+
+We present an algorithm for finding these confidence interval endpoints that requires less computation. 
+It employs a modified Newton-Raphson iteration to solve a system of equations that defines the endpoints.
+
+% -------------------------------------------------------------------------------------------- %
+Parameter estimates and conﬁdence intervals for linear mixed-effects models
+Hani Nakhoul
+http://stat.ethz.ch/education/semesters/ss2010/seminar/04_slides.pdf
+
+% -------------------------------------------------------------------------------------------- %
+
 	\section{Two-tailed testing} A test for equality of variances, based on the likelihood Ratio test, is very simple to implement using existing methodologies. All that is required it to specify the reference model and the relevant nested mode as arguments to the command \texttt{anova()}. The output can be interpreted in the usual way.
 	
 	\section{One Tailed Testing}
