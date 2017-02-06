@@ -211,116 +211,9 @@
 	where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
 	
 	
-	%------------------------------------------------------------------------------------%
-	\newpage                                                                    % - Section 4
+                                                                   % - Section 4
 	%----------------------------------------------------------------------------------------%
-	\section{Repeated measurements in LME models}
-	
-	In many statistical analyzes, the need to determine parameter estimates where multiple measurements are available on each of a set of variables often arises. Further to \citet{lam}, \citet{hamlett} performs an analysis of the correlation of replicate measurements, for two variables of interest, using LME models.
-	
-	Let $y_{Aij}$ and $y_{Bij}$ be the $j$th repeated observations of the variables of interest $A$ and $B$ taken on the $i$th subject. The number of repeated measurements for each variable may differ for each individual.
-	Both variables are measured on each time points. Let $n_{i}$ be the number of observations for each variable, hence $2\times n_{i}$ observations in total.
-	
-	It is assumed that the pair $y_{Aij}$ and $y_{Bij}$ follow a bivariate normal distribution.
-	\begin{eqnarray*}
-		\left(
-		\begin{array}{c}
-			y_{Aij} \\
-			y_{Bij} \\
-		\end{array}
-		\right) \sim \mathcal{N}(
-		\boldsymbol{\mu}, \boldsymbol{\Sigma})\mbox{   where } \boldsymbol{\mu} = \left(
-		\begin{array}{c}
-			\mu_{A} \\
-			\mu_{B} \\
-		\end{array}
-		\right)
-	\end{eqnarray*}
-	
-	The matrix $\Sigma$ represents the variance component matrix between response variables at a given time point $j$.
-	
-	\[
-	\boldsymbol{\Sigma} = \left( \begin{array}{cc}
-	\sigma^2_{A} & \sigma_{AB} \\
-	\sigma_{AB} & \sigma^2_{B}\\
-	\end{array}   \right)
-	\]
-	
-	$\sigma^2_{A}$ is the variance of variable $A$, $\sigma^2_{B}$ is the variance of variable $B$ and $\sigma_{AB}$ is the covariance of the two variable. It is assumed that $\boldsymbol{\Sigma}$ does not depend on a particular time point, and is the same over all time points.
-	
-	%------------------------------------------------------------------------------%
-	\subsection{Formulation of the Response Vector}
-	Information of individual $i$ is recorded in a response vector $\boldsymbol{y}_{i}$. The response vector is constructed by stacking the response of the $2$ responses at the first instance, then the $2$ responses at the second instance, and so on. Therefore the response vector is a $2n_{i} \times 1$ column vector.
-	The covariance matrix of $\boldsymbol{y_{i}}$ is a $2n_{i} \times 2n_{i}$ positive definite matrix $\boldsymbol{\Omega}_{i}$.
-	
-	Consider the case where three measurements are taken by both methods $A$ and $B$, $\boldsymbol{y}_{i}$ is a $6 \times 1$ random vector describing the $i$th subject.
-	\[
-	\boldsymbol{y}_{i} = (y_{i}^{A1},y_{i}^{B1},y_{i}^{A2},y_{i}^{B2},y_{i}^{A3},y_{i}^{B3}) \prime
-	\]
-	
-	The response vector $\boldsymbol{y_{i}}$ can be formulated as an LME model according to Laird-Ware form.
-	\begin{eqnarray*}
-		\boldsymbol{y_{i}} = \boldsymbol{X_{i}\beta}  + \boldsymbol{Z_{i}b_{i}} + \boldsymbol{\epsilon_{i}}\\
-		\boldsymbol{b_{i}} \sim \mathcal{N}(\boldsymbol{0,D})\\
-		\boldsymbol{\epsilon_{i}} \sim \mathcal{N}(\boldsymbol{0,R_{i}})
-	\end{eqnarray*}
-	
-	Information on the fixed effects are contained in a three dimensional vector $\boldsymbol{\beta} = (\beta_{0},\beta_{1},\beta_{2})\prime$. For computational purposes $\beta_{2}$ is conventionally set to zero. Consequently $\boldsymbol{\beta}$ is the solutions of the means of the two methods, i.e. $E(\boldsymbol{y}_{i})  = \boldsymbol{X}_{i}\boldsymbol{\beta}$. The variance covariance matrix $\boldsymbol{D}$ is a general $2 \times 2$ matrix, while $\boldsymbol{R}_{i}$ is a $2n_{i} \times 2n_{i}$ matrix.
-	
-	%------------------------------------------------------------------------------%
-	\subsection{Decomposition of the response covariance matrix}
-	
-	The variance covariance structure can be re-expressed in the following form,
-	\[
-	\mbox{Cov}(\mbox{y}_{i}) = \boldsymbol{\Omega_{i}} = \boldsymbol{Z}_{i}\boldsymbol{D}\boldsymbol{Z}_{i}^\prime + \boldsymbol{R_{i}}.
-	\]
-	
-	$\boldsymbol{R_{i}}$ can be shown to be the Kronecker product of a correlation matrix $\boldsymbol{V}$ and $\boldsymbol{\Lambda}$. The correlation matrix $\boldsymbol{V}$ of the repeated measures on a given response variable is assumed to be the same for all response variables. Both \citet{hamlett} and \citet{lam} use the identity matrix, with dimensions $n_{i} \times n_{i}$ as the formulation for $\boldsymbol{V}$. \citet{roy} remarks that, with repeated measures, the response for each subject is correlated for each variable, and that such correlation must be taken into account in order to produce a valid inference on correlation estimates.  \citet{roy2006} proposes various correlation structures may be assumed for repeated measure correlations, such as the compound symmetry and autoregressive structures, as alternative to the identity matrix.
-	
-	However, for the purposes of method comparison studies, the necessary estimates are currently only determinable when the identity matrix is specified, and the results in \citet{roy} indicate its use.
-	
-	For the response vector described, \citet{hamlett} presents a detailed covariance matrix. A brief summary shall be presented here only. The overall variance matrix is a $6 \times 6$ matrix composed of two types of $2 \times 2$ blocks. Each block represents one separate time of measurement.
-	
-	\[
-	\boldsymbol{\Omega}_{i} = \left(
-	\begin{array}{ccc}
-	\boldsymbol{\Sigma} & \boldsymbol{D} & \boldsymbol{D}\\
-	\boldsymbol{D} & \boldsymbol{\Sigma} & \boldsymbol{D}\\
-	\boldsymbol{D} & \boldsymbol{D} & \boldsymbol{\Sigma}\\
-	\end{array}\right)
-	\]
-	
-	The diagonal blocks are $\Sigma$, as described previously. The $2 \times 2$ block diagonal matrix in $\boldsymbol{\Omega}$ gives $\boldsymbol{\Sigma}$. $\boldsymbol{\Sigma}$ is the sum of the between-subject variability $\boldsymbol{D}$ and the within subject variability $\boldsymbol{\Lambda}$.
-	
-	$\boldsymbol{\Omega_{i}}$ can be expressed as
-	\[
-	\boldsymbol{\Omega_{i}} = \boldsymbol{Z}_{i}\boldsymbol{D}\boldsymbol{Z}_{i}^\prime + ({\boldsymbol{I_{n_{i}}} \otimes \boldsymbol{\Lambda}}).
-	\]
-	The notation $\mbox{dim}_{n_{i}}$ means an $n_{i} \times n_{i}$ diagonal block.
-	
-	\subsection{Correlation terms}
-	\citet{hamlett} demonstrated how the between-subject and within subject variabilities can be expressed in terms of
-	correlation terms.
-	
-	\[
-	\boldsymbol{D} = \left( \begin{array}{cc}
-	\sigma^2_{A}\rho_{A} & \sigma_{A}\sigma_{b}\rho_{AB}\delta \\
-	\sigma_{A}\sigma_{b}\rho_{AB}\delta & \sigma^2_{B}\rho_{B}\\
-	
-	\end{array}\right)
-	\]
-	
-	\[
-	\boldsymbol{\Lambda} = \left(
-	\begin{array}{cc}
-	\sigma^2_{A}(1-\rho_{A}) & \sigma_{AB}(1-\delta)  \\
-	\sigma_{AB}(1-\delta) & \sigma^2_{B}(1-\rho_{B}) \\
-	\end{array}\right).
-	\]
-	
-	$\rho_{A}$ describe the correlations of measurements made by the method $A$ at different times. Similarly $\rho_{B}$ describe the correlation of measurements made by the method $B$ at different times. Correlations among repeated measures within the same method are known as intra-class correlation coefficients. $\rho_{AB}$ describes the correlation of measurements taken at the same same time by both methods. The coefficient $\delta$ is added for when the measurements are taken at different times, and is a constant of less than $1$ for linked replicates. This is based on the assumption that linked replicates measurements taken at the same time would have greater correlation than those taken at different times. For unlinked replicates $\delta$ is simply $1$. \citet{hamlett} provides a useful graphical depiction of the role of each correlation coefficients.
-	
-	\newpage
+
 	\section{Using LME for method comparison}
 	Due to the prevalence of modern statistical software, \citet{BXC2008} advocates the adoption of computer based approaches, such as LME models, to method comparison studies. \citet{BXC2008} remarks upon `by-hand' approaches advocated in \citet{BA99} discouragingly, describing them as tedious, unnecessary and `outdated'. Rather than using the `by hand' methods, estimates for required LME parameters can be read directly from program output. Furthermore, using computer approaches removes constraints associated with `by-hand' approaches, such as the need for the design to be perfectly balanced.
 	
@@ -552,69 +445,7 @@
 	
 	Finally, to complement the blood pressure (i.e.`J vs S') method comparison from the previous section (i.e.`J vs S'), the limits of agreement are $15.62 \pm 1.96 \times 20.33 = (-24.22, 55.46)$.)
 	\newpage
-	\section{Implementation in R}
-	To implement an LME model in \texttt{R}, the \texttt{nlme} package is used. This package is loaded into the \texttt{R} environment using the library command, (i.e.\ \texttt{library(nlme)}). The \texttt{lme} command is used to fit LME models. The first two arguments to the \texttt{lme} function specify the fixed effect component of the model, and the data set to which the model is to be fitted. The first candidate model (`MCS1') fits an LME model on the data set `dat'. The variable `method' is assigned as the fixed effect, with the response variable `BP' (i.e.\ blood pressure).
-	
-	The third argument contain the random effects component of the formulation, describing the random effects, and their grouping structure. The \texttt{nlme} package provides a set of positive-definite matrices , the \texttt{pdMat} class, that can be used to specify a structure for the between-subject variance-covariance matrix for the random effects. For Roy's methodology, we will use the \texttt{pdSymm} and \texttt{pdCompSymm} to specify a symmetric structure and a compound symmetry structure respectively. A full discussion of these structures can be found in \citet[pg. 158]{PB}.
-	
-	Similarly a variety of structures for the with-subject variance-covariance matrix can be implemented using \texttt{nlme}. To implement a particular matrix structure, one must specify both a variance function and correlation structure accordingly. Variance functions are used to model the variance structure of the within-subject errors. \texttt{varIdent} is a variance function object used to allow different variances according to the levels of a classification factor in the data. A compound symmetry structure is implemented using the \texttt{corCompSymm} class, while the symmetric form is specified by \texttt{corSymm} class. Finally, the estimation methods is specified as ``ML" or ``REML".
-	\newpage
-	The first of Roy's candidate model can be implemented using the following code;\\
-	
-	\begin{framed}
-		\begin{verbatim}
-		MCS1 = lme(BP ~ method-1, data = dat,
-		random =  list(subject=pdSymm(~ method-1)),
-		weights=varIdent(form=~1|method),
-		correlation = corSymm(form=~1 | subject/obs), method="ML")
-		\end{verbatim}
-	\end{framed}
-	
-	For the blood pressure data used in \citet{roy}, all four candidate models are implemented by slight variations of this piece of code, specifying either \texttt{pdSymm} or \texttt{pdCompSymm} in the second line, and either \texttt{corSymm} or \texttt{corCompSymm} in the fourth line.
-	For example, the second candidate model `MCS2' is implemented with the same code as MCS1, except for the term \texttt{pdCompSymm} in the second line, rather than \texttt{pdSymm}.
-	\\
-	
-	
-	\begin{framed}
-		\begin{verbatim}
-		MCS2 = lme(BP ~ method-1, data = dat,
-		random = list(subject=pdCompSymm(~ method-1)),
-		weights = varIdent(form=~1|method),
-		correlation = corSymm(form=~1 | subject/obs), method="ML")
-		\end{verbatim}
-	\end{framed}
-	\vspace{1cm}
-	Using this \texttt{R} implementation for other data sets requires that the data set is structured appropriately (i.e.\ each case of observation records the index, response, method and replicate). Once formatted properly, implementation is simply a case of re-writing the first line of code, and computing the four candidate models accordingly.
-	\newpage
-	To perform a likelihood ratio test for two candidate models, simply use the \texttt{anova} command with the names of the candidate models as arguments. The following piece of code implement the first of Roy's variability tests.
-	\\
-	\begin{framed}
-		\begin{verbatim}
-		> anova(MCS1,MCS2)
-		Model df    AIC    BIC  logLik   Test L.Ratio p-value
-		MCS1     1  8 4077.5 4111.3 -2030.7
-		MCS2     2  7 4075.6 4105.3 -2030.8 1 vs 2 0.15291  0.6958
-		>
-		\end{verbatim}
-	\end{framed}
-	\vspace{1cm}
-	The fixed effects estimates are the same for all four candidate models. The inter-method bias can be easily determined by inspecting a summary of any model. The summary presents estimates for all of the important parameters, but not the complete variance-covariance matrices (although some simple \texttt{R} functions can be written to overcome this). The variance estimates for the random effects for MCS2 is presented below.
-	\\
-	\begin{framed}
-		\begin{verbatim}
-		Random effects:
-		Formula: ~method - 1 | subject
-		Structure: Compound Symmetry
-		StdDev Corr
-		methodJ  30.765
-		methodS  30.765 0.829
-		Residual  6.115
-		\end{verbatim}
-	\end{framed}
-	\vspace{1cm}
-	Similarly, for computing the limits of agreement the standard deviation of the differences is not explicitly given. Again, A simple \texttt{R} function can be written to calculate the limits of agreement directly.
-	
-	%------------------------------------------------------------------------------------%
+
 \section{Introduction to Mixed Models}
 
 %\citet{BrownPrescott} defines random effects as realizations of
@@ -770,18 +601,26 @@ The linear mixed effects model is given by
 \begin{equation}
 Y = X\beta + Zu + \epsilon
 \end{equation}
-\section{Standard Deviation of Differences}
-In computing limits of agreement, it is first necessary to have an estimate for the standard deviations of the differences. When the agreement of two methods is analyzed using LME models, a clear method of how to compute the standard deviation is required. As the estimate for inter-method bias and the quantile would be the same for both methodologies, the focus hereon is solely on the variance of differences.
 
-The standard deviation of the differences of methods $x$ and $y$ is computed using values from the overall VC matrix.
-\[
-\mbox{Var}(x - y ) = \mbox{Var} ( x )  + \mbox{Var} ( y ) - 2\mbox{Cov} ( x ,y )
-\]
+\section{Estimation of random effects}
+
+Estimation of random effects for LME models in the NLME package is accomplished through use
+of both EM (Expectation-Maximization) algorithms and Newton-Raphson algorithms.
+\begin{itemize}
+	\item EM iterations bring estimates of the parameters into the region of the optimum very quickly, but
+	convergence to the optimum is slow when near the optimum.
+	\item Newton-Raphson iterations are computationally intensive and can be unstable when far from the
+	optimum. However, close to the optimum they converge quickly.
+	\item The LME function implements a hybrid approach, using 25 EM iterations to quickly get near the
+	optimum, then switching to Newton-Raphson iterations to quickly converge to the optimum. \item If
+	convergence problems occur, the ``control-argument in LME can be used to change the way the
+	model arrives at the optimum.
+\end{itemize}
 
 
 
 
-
+%--Marginal and Conditional Residuals
 
 \section{Restricted Likelihood Estimation}
 
@@ -839,15 +678,41 @@ estimate the model. Therefore models derived using ML must be used instead.
 
 
 
-\section{nlme - Variance functions}
+\section{Algorithms : ML v REML}
+Maximum likelihood estimation is a method of obtaining estimates of unknown parameters by optimizing a likelihood function. The ML
+parameter estimates are the values of the argument that maximise the likelihood function, i.e. the estimates that make the observed
+values of the dependent variable most likely, given the distributional assumptions
 
-Variance functions are applied to LME models through the \texttt{`weights'} argument. $R$ supports several variance functions.
+The most common iterative algorithms used for the optimization
+problem in the context of LMEs are the EM algoritm, fisher scoring
+algorithm and NR algorithm, which [cite:West] commends as the
+preferred method.
 
-`\texttt{varIdent}' cosntructs a model with different variances per stratum.
+A mixed model is an extension of the general linear models that
+can specify additional random effects terms.
 
-\subsection{Diagnostic plots}
-[Pinheiro Bates Page 391] Diagnostic plots for identifying within-group heteroscedascity and assessing the adequacy of a variance function can also be used with `nlme' objects.
+Parameter of the mixed model can be estimated using either ML or
+REML, while the AIC and the BIC can be used as measures of
+"goodness of fit" for particular models, where smaller values are
+considered preferable.
 
+%--------------------------------------------------------------------%
+
+(\textbf{\emph{Wikipedia}})The restricted (or residual, or reduced) maximum likelihood (REML) approach is a particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
+
+In contrast to the earlier maximum likelihood estimation, REML can produce unbiased estimates of variance and covariance parameters.
+
+%-----------------------------------------------------------------------------------------%
+
+\noindent \textbf{ML procedures for LME}
+
+The maximum likelihood procedure of Hartley and Rao yields
+simultaneous estimates for both the fixed effects and the random
+effect, by maximising the likelihood of $\boldsymbol{y}$ with
+respect to each element of $\boldsymbol{\beta}$ and
+$\boldsymbol{b}$.
+
+%-----------------------------------------------------------------------------------------%
 
 
 
@@ -1022,140 +887,7 @@ $\boldsymbol{\Omega_{i}}$ can be expressed as
 \]
 The notation $\mbox{dim}_{n_{i}}$ means an $n_{i} \times n_{i}$ diagonal block.
 
-\subsection{Correlation terms}
-\citet{hamlett} demonstrated how the between-subject and within subject variabilities can be expressed in terms of
-correlation terms.
 
-\[
-\boldsymbol{D} = \left( \begin{array}{cc}
-\sigma^2_{A}\rho_{A} & \sigma_{A}\sigma_{b}\rho_{AB}\delta \\
-\sigma_{A}\sigma_{b}\rho_{AB}\delta & \sigma^2_{B}\rho_{B}\\
-
-\end{array}\right)
-\]
-
-\[
-\boldsymbol{\Lambda} = \left(
-\begin{array}{cc}
-\sigma^2_{A}(1-\rho_{A}) & \sigma_{AB}(1-\delta)  \\
-\sigma_{AB}(1-\delta) & \sigma^2_{B}(1-\rho_{B}) \\
-\end{array}\right).
-\]
-
-$\rho_{A}$ describe the correlations of measurements made by the method $A$ at different times. Similarly $\rho_{B}$ describe the correlation of measurements made by the method $B$ at different times. Correlations among repeated measures within the same method are known as intra-class correlation coefficients. $\rho_{AB}$ describes the correlation of measurements taken at the same same time by both methods. The coefficient $\delta$ is added for when the measurements are taken at different times, and is a constant of less than $1$ for linked replicates. This is based on the assumption that linked replicates measurements taken at the same time would have greater correlation than those taken at different times. For unlinked replicates $\delta$ is simply $1$. \citet{hamlett} provides a useful graphical depiction of the role of each correlation coefficients.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{For Expository Purposes}
-
-
-
-For expository purposes consider the case where each item provides three replicates by each method. Then in matrix notation the model has the structure
-\[
-\boldsymbol{y}_{i} =
-\left(
-\begin{array}{c}
-y_{1i1} \\
-y_{2i1} \\
-y_{1i2} \\
-y_{2i2} \\
-y_{1i3} \\
-y_{2i3} \\
-\end{array}
-\right) = 
-\left(
-\begin{array}{ccc}
-1 & 1 & 0 \\
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-1 & 0 & 1 \\
-1 & 1 & 0 \\
-1 & 0 & 1 \\
-\end{array}
-\right)
-\left(
-\begin{array}{c}
-\beta_0 \\ \beta_1 \\ \beta_2 \\
-\end{array}
-\right)
-+
-\left(
-\begin{array}{cc}
-1 & 0 \\
-0 & 1 \\
-1 & 0 \\
-0 & 1 \\
-1 & 0 \\
-0 & 1 \\
-\end{array}
-\right)\left(
-\begin{array}{c}
-b_{1i} \\   b_{2i} \\
-\end{array}
-\right)
-+
-\left(
-\begin{array}{c}
-\epsilon_{1i1} \\
-\epsilon_{2i1} \\
-\epsilon_{1i2} \\
-\epsilon_{2i2} \\
-\epsilon_{1i3} \\
-\epsilon_{2i3} \\
-\end{array}
-\right).
-\]
-The between item variance covariance $\boldsymbol{G}$ is as before, while the within item variance covariance is given as
-%------Specification of within item VC matrix R---%
-\[ \boldsymbol{G} =\left(
-\begin{array}{cc}
-g^2_1  & g_{12} \\
-g_{12} & g^2_2 \\
-\end{array}
-\right) \]
-
-\[
-\boldsymbol{R}_i = \left(
-\begin{array}{cccccc}
-\sigma^2_{1} & \sigma_{12} & 0 & 0 & 0 & 0 \\
-\sigma_{12} & \sigma^2_{2} & 0 & 0 & 0 & 0 \\
-0 & 0 & \sigma^2_{1} & \sigma_{12} & 0 & 0 \\
-0 & 0 & \sigma_{12} & \sigma^2_{2} & 0 & 0 \\
-0 & 0 & 0 & 0 & \sigma^2_{1} & \sigma_{12} \\
-0 & 0 & 0 & 0 & \sigma_{12} & \sigma^2_{2} \\
-\end{array} \right)
-\]
-Assumptions made on the structures of $\boldsymbol{G}$ and $\boldsymbol{R}_i$ will be discussed in due course.
-
-
-
-
-
-
-
-
-
-
-
-
-%-----------------------------------------------------------------------------------------------------%
-
-
-
-\newpage
 
 \section{Linear mixed effects models}
 
@@ -1173,6 +905,113 @@ As such, linear mixed effects models treat the error for fixed effects different
 
 
 
+	\section{Repeated measurements in LME models}
+	
+	In many statistical analyzes, the need to determine parameter estimates where multiple measurements are available on each of a set of variables often arises. Further to \citet{lam}, \citet{hamlett} performs an analysis of the correlation of replicate measurements, for two variables of interest, using LME models.
+	
+	Let $y_{Aij}$ and $y_{Bij}$ be the $j$th repeated observations of the variables of interest $A$ and $B$ taken on the $i$th subject. The number of repeated measurements for each variable may differ for each individual.
+	Both variables are measured on each time points. Let $n_{i}$ be the number of observations for each variable, hence $2\times n_{i}$ observations in total.
+	
+	It is assumed that the pair $y_{Aij}$ and $y_{Bij}$ follow a bivariate normal distribution.
+	\begin{eqnarray*}
+		\left(
+		\begin{array}{c}
+			y_{Aij} \\
+			y_{Bij} \\
+		\end{array}
+		\right) \sim \mathcal{N}(
+		\boldsymbol{\mu}, \boldsymbol{\Sigma})\mbox{   where } \boldsymbol{\mu} = \left(
+		\begin{array}{c}
+			\mu_{A} \\
+			\mu_{B} \\
+		\end{array}
+		\right)
+	\end{eqnarray*}
+	
+	The matrix $\Sigma$ represents the variance component matrix between response variables at a given time point $j$.
+	
+	\[
+	\boldsymbol{\Sigma} = \left( \begin{array}{cc}
+	\sigma^2_{A} & \sigma_{AB} \\
+	\sigma_{AB} & \sigma^2_{B}\\
+	\end{array}   \right)
+	\]
+	
+	$\sigma^2_{A}$ is the variance of variable $A$, $\sigma^2_{B}$ is the variance of variable $B$ and $\sigma_{AB}$ is the covariance of the two variable. It is assumed that $\boldsymbol{\Sigma}$ does not depend on a particular time point, and is the same over all time points.
+	
+	%------------------------------------------------------------------------------%
+	\subsection{Formulation of the Response Vector}
+	Information of individual $i$ is recorded in a response vector $\boldsymbol{y}_{i}$. The response vector is constructed by stacking the response of the $2$ responses at the first instance, then the $2$ responses at the second instance, and so on. Therefore the response vector is a $2n_{i} \times 1$ column vector.
+	The covariance matrix of $\boldsymbol{y_{i}}$ is a $2n_{i} \times 2n_{i}$ positive definite matrix $\boldsymbol{\Omega}_{i}$.
+	
+	Consider the case where three measurements are taken by both methods $A$ and $B$, $\boldsymbol{y}_{i}$ is a $6 \times 1$ random vector describing the $i$th subject.
+	\[
+	\boldsymbol{y}_{i} = (y_{i}^{A1},y_{i}^{B1},y_{i}^{A2},y_{i}^{B2},y_{i}^{A3},y_{i}^{B3}) \prime
+	\]
+	
+	The response vector $\boldsymbol{y_{i}}$ can be formulated as an LME model according to Laird-Ware form.
+	\begin{eqnarray*}
+		\boldsymbol{y_{i}} = \boldsymbol{X_{i}\beta}  + \boldsymbol{Z_{i}b_{i}} + \boldsymbol{\epsilon_{i}}\\
+		\boldsymbol{b_{i}} \sim \mathcal{N}(\boldsymbol{0,D})\\
+		\boldsymbol{\epsilon_{i}} \sim \mathcal{N}(\boldsymbol{0,R_{i}})
+	\end{eqnarray*}
+	
+	Information on the fixed effects are contained in a three dimensional vector $\boldsymbol{\beta} = (\beta_{0},\beta_{1},\beta_{2})\prime$. For computational purposes $\beta_{2}$ is conventionally set to zero. Consequently $\boldsymbol{\beta}$ is the solutions of the means of the two methods, i.e. $E(\boldsymbol{y}_{i})  = \boldsymbol{X}_{i}\boldsymbol{\beta}$. The variance covariance matrix $\boldsymbol{D}$ is a general $2 \times 2$ matrix, while $\boldsymbol{R}_{i}$ is a $2n_{i} \times 2n_{i}$ matrix.
+	
+	%------------------------------------------------------------------------------%
+	\subsection{Decomposition of the response covariance matrix}
+	
+	The variance covariance structure can be re-expressed in the following form,
+	\[
+	\mbox{Cov}(\mbox{y}_{i}) = \boldsymbol{\Omega_{i}} = \boldsymbol{Z}_{i}\boldsymbol{D}\boldsymbol{Z}_{i}^\prime + \boldsymbol{R_{i}}.
+	\]
+	
+	$\boldsymbol{R_{i}}$ can be shown to be the Kronecker product of a correlation matrix $\boldsymbol{V}$ and $\boldsymbol{\Lambda}$. The correlation matrix $\boldsymbol{V}$ of the repeated measures on a given response variable is assumed to be the same for all response variables. Both \citet{hamlett} and \citet{lam} use the identity matrix, with dimensions $n_{i} \times n_{i}$ as the formulation for $\boldsymbol{V}$. \citet{roy} remarks that, with repeated measures, the response for each subject is correlated for each variable, and that such correlation must be taken into account in order to produce a valid inference on correlation estimates.  \citet{roy2006} proposes various correlation structures may be assumed for repeated measure correlations, such as the compound symmetry and autoregressive structures, as alternative to the identity matrix.
+	
+	However, for the purposes of method comparison studies, the necessary estimates are currently only determinable when the identity matrix is specified, and the results in \citet{roy} indicate its use.
+	
+	For the response vector described, \citet{hamlett} presents a detailed covariance matrix. A brief summary shall be presented here only. The overall variance matrix is a $6 \times 6$ matrix composed of two types of $2 \times 2$ blocks. Each block represents one separate time of measurement.
+	
+	\[
+	\boldsymbol{\Omega}_{i} = \left(
+	\begin{array}{ccc}
+	\boldsymbol{\Sigma} & \boldsymbol{D} & \boldsymbol{D}\\
+	\boldsymbol{D} & \boldsymbol{\Sigma} & \boldsymbol{D}\\
+	\boldsymbol{D} & \boldsymbol{D} & \boldsymbol{\Sigma}\\
+	\end{array}\right)
+	\]
+	
+	The diagonal blocks are $\Sigma$, as described previously. The $2 \times 2$ block diagonal matrix in $\boldsymbol{\Omega}$ gives $\boldsymbol{\Sigma}$. $\boldsymbol{\Sigma}$ is the sum of the between-subject variability $\boldsymbol{D}$ and the within subject variability $\boldsymbol{\Lambda}$.
+	
+	$\boldsymbol{\Omega_{i}}$ can be expressed as
+	\[
+	\boldsymbol{\Omega_{i}} = \boldsymbol{Z}_{i}\boldsymbol{D}\boldsymbol{Z}_{i}^\prime + ({\boldsymbol{I_{n_{i}}} \otimes \boldsymbol{\Lambda}}).
+	\]
+	The notation $\mbox{dim}_{n_{i}}$ means an $n_{i} \times n_{i}$ diagonal block.
+	
+	\subsection{Correlation terms}
+	\citet{hamlett} demonstrated how the between-subject and within subject variabilities can be expressed in terms of
+	correlation terms.
+	
+	\[
+	\boldsymbol{D} = \left( \begin{array}{cc}
+	\sigma^2_{A}\rho_{A} & \sigma_{A}\sigma_{b}\rho_{AB}\delta \\
+	\sigma_{A}\sigma_{b}\rho_{AB}\delta & \sigma^2_{B}\rho_{B}\\
+	
+	\end{array}\right)
+	\]
+	
+	\[
+	\boldsymbol{\Lambda} = \left(
+	\begin{array}{cc}
+	\sigma^2_{A}(1-\rho_{A}) & \sigma_{AB}(1-\delta)  \\
+	\sigma_{AB}(1-\delta) & \sigma^2_{B}(1-\rho_{B}) \\
+	\end{array}\right).
+	\]
+	
+	$\rho_{A}$ describe the correlations of measurements made by the method $A$ at different times. Similarly $\rho_{B}$ describe the correlation of measurements made by the method $B$ at different times. Correlations among repeated measures within the same method are known as intra-class correlation coefficients. $\rho_{AB}$ describes the correlation of measurements taken at the same same time by both methods. The coefficient $\delta$ is added for when the measurements are taken at different times, and is a constant of less than $1$ for linked replicates. This is based on the assumption that linked replicates measurements taken at the same time would have greater correlation than those taken at different times. For unlinked replicates $\delta$ is simply $1$. \citet{hamlett} provides a useful graphical depiction of the role of each correlation coefficients.
+	
+	\newpage
 \section{Extended LME model}
 % Pinheiro Bates Page 202
 The extended single level LME model relaxes the independence assumption, allowing heteroscedastic and correlated within group errors.
@@ -1185,62 +1024,84 @@ The extended single level LME model relaxes the independence assumption, allowin
 $\Lambda_{i}$ are positive definite matrices. $\sigma^2$ is factored out of the matrix for computational reasons.
 
 
-\section{Algorithms : ML v REML}
-Maximum likelihood estimation is a method of obtaining estimates of unknown parameters by optimizing a likelihood function. The ML
-parameter estimates are the values of the argument that maximise the likelihood function, i.e. the estimates that make the observed
-values of the dependent variable most likely, given the distributional assumptions
+\section{Standard Deviation of Differences}
+In computing limits of agreement, it is first necessary to have an estimate for the standard deviations of the differences. When the agreement of two methods is analyzed using LME models, a clear method of how to compute the standard deviation is required. As the estimate for inter-method bias and the quantile would be the same for both methodologies, the focus hereon is solely on the variance of differences.
 
-The most common iterative algorithms used for the optimization
-problem in the context of LMEs are the EM algoritm, fisher scoring
-algorithm and NR algorithm, which [cite:West] commends as the
-preferred method.
-
-A mixed model is an extension of the general linear models that
-can specify additional random effects terms.
-
-Parameter of the mixed model can be estimated using either ML or
-REML, while the AIC and the BIC can be used as measures of
-"goodness of fit" for particular models, where smaller values are
-considered preferable.
-
-%--------------------------------------------------------------------%
-
-(\textbf{\emph{Wikipedia}})The restricted (or residual, or reduced) maximum likelihood (REML) approach is a particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
-
-In contrast to the earlier maximum likelihood estimation, REML can produce unbiased estimates of variance and covariance parameters.
-
-%-----------------------------------------------------------------------------------------%
-
-\noindent \textbf{ML procedures for LME}
-
-The maximum likelihood procedure of Hartley and Rao yields
-simultaneous estimates for both the fixed effects and the random
-effect, by maximising the likelihood of $\boldsymbol{y}$ with
-respect to each element of $\boldsymbol{\beta}$ and
-$\boldsymbol{b}$.
-
-%-----------------------------------------------------------------------------------------%
-
-\section{Estimation of random effects}
-
-Estimation of random effects for LME models in the NLME package is accomplished through use
-of both EM (Expectation-Maximization) algorithms and Newton-Raphson algorithms.
-\begin{itemize}
-	\item EM iterations bring estimates of the parameters into the region of the optimum very quickly, but
-	convergence to the optimum is slow when near the optimum.
-	\item Newton-Raphson iterations are computationally intensive and can be unstable when far from the
-	optimum. However, close to the optimum they converge quickly.
-	\item The LME function implements a hybrid approach, using 25 EM iterations to quickly get near the
-	optimum, then switching to Newton-Raphson iterations to quickly converge to the optimum. \item If
-	convergence problems occur, the ``control-argument in LME can be used to change the way the
-	model arrives at the optimum.
-\end{itemize}
+The standard deviation of the differences of methods $x$ and $y$ is computed using values from the overall VC matrix.
+\[
+\mbox{Var}(x - y ) = \mbox{Var} ( x )  + \mbox{Var} ( y ) - 2\mbox{Cov} ( x ,y )
+\]
 
 
 
 
-%--Marginal and Conditional Residuals
 
+
+
+	\section{Implementation in R}
+	To implement an LME model in \texttt{R}, the \texttt{nlme} package is used. This package is loaded into the \texttt{R} environment using the library command, (i.e.\ \texttt{library(nlme)}). The \texttt{lme} command is used to fit LME models. The first two arguments to the \texttt{lme} function specify the fixed effect component of the model, and the data set to which the model is to be fitted. The first candidate model (`MCS1') fits an LME model on the data set `dat'. The variable `method' is assigned as the fixed effect, with the response variable `BP' (i.e.\ blood pressure).
+	
+	The third argument contain the random effects component of the formulation, describing the random effects, and their grouping structure. The \texttt{nlme} package provides a set of positive-definite matrices , the \texttt{pdMat} class, that can be used to specify a structure for the between-subject variance-covariance matrix for the random effects. For Roy's methodology, we will use the \texttt{pdSymm} and \texttt{pdCompSymm} to specify a symmetric structure and a compound symmetry structure respectively. A full discussion of these structures can be found in \citet[pg. 158]{PB}.
+	
+	Similarly a variety of structures for the with-subject variance-covariance matrix can be implemented using \texttt{nlme}. To implement a particular matrix structure, one must specify both a variance function and correlation structure accordingly. Variance functions are used to model the variance structure of the within-subject errors. \texttt{varIdent} is a variance function object used to allow different variances according to the levels of a classification factor in the data. A compound symmetry structure is implemented using the \texttt{corCompSymm} class, while the symmetric form is specified by \texttt{corSymm} class. Finally, the estimation methods is specified as ``ML" or ``REML".
+	\newpage
+	The first of Roy's candidate model can be implemented using the following code;\\
+	
+%	\begin{framed}
+		\begin{verbatim}
+		MCS1 = lme(BP ~ method-1, data = dat,
+		random =  list(subject=pdSymm(~ method-1)),
+		weights=varIdent(form=~1|method),
+		correlation = corSymm(form=~1 | subject/obs), method="ML")
+		\end{verbatim}
+%	\end{framed}
+	
+	For the blood pressure data used in \citet{roy}, all four candidate models are implemented by slight variations of this piece of code, specifying either \texttt{pdSymm} or \texttt{pdCompSymm} in the second line, and either \texttt{corSymm} or \texttt{corCompSymm} in the fourth line.
+	For example, the second candidate model `MCS2' is implemented with the same code as MCS1, except for the term \texttt{pdCompSymm} in the second line, rather than \texttt{pdSymm}.
+	\\
+	
+	
+
+%	\begin{framed}
+		\begin{verbatim}
+		MCS2 = lme(BP ~ method-1, data = dat,
+		random = list(subject=pdCompSymm(~ method-1)),
+		weights = varIdent(form=~1|method),
+		correlation = corSymm(form=~1 | subject/obs), method="ML")
+		\end{verbatim}
+%	\end{framed}
+	\vspace{1cm}
+	Using this \texttt{R} implementation for other data sets requires that the data set is structured appropriately (i.e.\ each case of observation records the index, response, method and replicate). Once formatted properly, implementation is simply a case of re-writing the first line of code, and computing the four candidate models accordingly.
+	\newpage
+	To perform a likelihood ratio test for two candidate models, simply use the \texttt{anova} command with the names of the candidate models as arguments. The following piece of code implement the first of Roy's variability tests.
+	\\
+%	\begin{framed}
+		\begin{verbatim}
+		> anova(MCS1,MCS2)
+		Model df    AIC    BIC  logLik   Test L.Ratio p-value
+		MCS1     1  8 4077.5 4111.3 -2030.7
+		MCS2     2  7 4075.6 4105.3 -2030.8 1 vs 2 0.15291  0.6958
+		>
+		\end{verbatim}
+%	\end{framed}
+	\vspace{1cm}
+	The fixed effects estimates are the same for all four candidate models. The inter-method bias can be easily determined by inspecting a summary of any model. The summary presents estimates for all of the important parameters, but not the complete variance-covariance matrices (although some simple \texttt{R} functions can be written to overcome this). The variance estimates for the random effects for MCS2 is presented below.
+	\\
+%	\begin{framed}
+		\begin{verbatim}
+		Random effects:
+		Formula: ~method - 1 | subject
+		Structure: Compound Symmetry
+		StdDev Corr
+		methodJ  30.765
+		methodS  30.765 0.829
+		Residual  6.115
+		\end{verbatim}
+%	\end{framed}
+	\vspace{1cm}
+	Similarly, for computing the limits of agreement the standard deviation of the differences is not explicitly given. Again, A simple \texttt{R} function can be written to calculate the limits of agreement directly.
+	
+	%------------------------------------------------------------------------------------%
 \section{Covariance Parameters} %1.5
 The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
 % - where is this coming from?

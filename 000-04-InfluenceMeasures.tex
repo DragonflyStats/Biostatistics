@@ -35,6 +35,12 @@ The basic procedure for quantifying influence is simple as follows:
 \end{itemize}
 
 Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.	
+%===================================================================== %
+\subsection{Well Known Influence Measures}
+
+\textit{``Regression Diagnostics: Identifying Influential Data
+	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
+provides a foundation for much of the subsequent work.
 
 \subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
 
@@ -73,39 +79,46 @@ The key to making deletion diagnostics useable is the development of efficient c
 \end{itemize}
 
 
-%===================================================================== %
-\subsection{Well Known Influence Measures}
-
-\textit{``Regression Diagnostics: Identifying Influential Data
-	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
-provides a foundation for much of the subsequent work.
 
 \begin{description}
-	\item[Cook's Distance] Cook’s Distance is a measure indicating to what extent model parameters are influenced by (a set
-	of) influential data on which the model is based.
-	\item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
+\item[Cook's Distance] Cook’s Distance is a measure indicating to what extent model parameters are influenced by (a setof) influential data on which the model is based.
+				\\
+				Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
+				a new regression coefficient each time an observation is deleted.
+				\\
+\item[Cook’s D] – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
+				
+\item[DFFITS] – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
+\\
+%1.16.1
+DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+\begin{displaymath} DFFITS = {\widehat{y_i} -
+	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+\item[DFBETAS] – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
+
+The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
+
+\item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
 	in parameter estimates between a (mixed effects) regression model based on a full set of
 	data, and a model from which a (potentially influential) subset of data is removed. A value for
 	DFBETAS is calculated for each parameter in the model separately.
-\end{description}
+\begin{eqnarray}
+DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+&=& B(Y-Y_{\bar{a}}
+\end{eqnarray}
+
+
+\item[Studentized Residuals] – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
+
+\item[Leverage Values (Hat Diag)] – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
 			
 
 
-%===================================================================== %
 
 
 
-\subsection{Summary of Influence Statistics}
-\begin{itemize}
-\item	\textbf{Studentized Residuals} – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
-\item	\textbf{Leverage Values (Hat Diag)} – Measure of how far an observation is from the others in terms of the levels of the independent variables (not the dependent variable). Observations with values larger than $2(k+1)/n$ are considered to be potentially highly influential, where k is the number of predictors and n is the sample size.
-\item	\textbf{DFFITS} – Measure of how much an observation has effected its fitted value from the regression model. Values larger than $2\sqrt{(k+1)/n}$ in absolute value are considered highly influential. %Use standardized DFFITS in SPSS.
-\item	\textbf{DFBETAS} – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
-				\\
-				The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
-				
-\item	\textbf{Cook’s D} – Measure of aggregate impact of each observation on the group of regression coefficients, as well as the group of fitted values. Values larger than 4/n are considered highly influential.
-\end{itemize}
+
+\end{description}
 			
 \section{Measures of Influence} %1.13
 
@@ -114,26 +127,10 @@ The impact of an observation on a regression fitting can be determined by the di
 Influence arises at two stages of the linear model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
 estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
 
-\subsection{Cook's Distance}%1.13.1 
-Cooks Distance ($D_{i}$) is an overall measure of the combined impact of the $i$th case of all estimated regression coefficients. It uses the same structure for measuring the combined impact of the differences in the estimated regression coefficients when the $k$th case is deleted. $D_{(k)}$ can be calculated without fitting
-a new regression coefficient each time an observation is deleted.
 
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
-
-%---------------------------------------------------------------------------%
-
-
-	
 
 
 \subsection{DFBETA} %1.16.3
-\begin{eqnarray}
-DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-&=& B(Y-Y_{\bar{a}}
-\end{eqnarray}
 
 %---------------------------------------------------------------------------%
 
@@ -164,18 +161,8 @@ PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
 % http://stats.stackexchange.com/questions/22161/how-to-read-cooks-distance-plots
 Cook's distance refers to how far, on average, predicted y-values will move if the observation in question is dropped from the data set. dfbeta refers to how much a parameter estimate changes if the observation in question is dropped from the data set. Note that with k covariates, there will be k+1 dfbetas (the intercept,$\beta_0$, and 1 $\beta$ for each covariate). Cook's distance is presumably more important to you if you are doing predictive modeling, whereas dfbeta is more important in explanatory modeling.
 
-\section{Measures of Influence} %1.16
 
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
 
-Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-%=========================================%
-
-\subsection{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-	
 
 
 
