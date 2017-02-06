@@ -19,10 +19,16 @@ In leave-one-out cross validation, each observation is omitted in turn, and a re
 
 Evidently leave-one-out cross validation has similarities with `jackknifing', a well known statistical technique. However cross validation is used to estimate generalization error, whereas the jackknife technique is used to estimate bias.
 
-
-
+	\subsection{The Hat Matrix} %5.1
 	
-	\section{The Hat Matrix}
+	The projection matrix $H$ (also known as the hat matrix), is a
+	well known identity that maps the fitted values $\hat{Y}$ to the
+	observed values $Y$, i.e. $\hat{Y} = HY$.
+	
+	\begin{equation}
+	H =\quad X(X^{T}X)^{-1}X^{T}
+	\end{equation}
+
 	The hat matrix, also known as the projection matrix, is well known in classical linear models. The diagonal elements $h_{ii}$ are known as `leverages'. The properties of $\boldsymbol{H}$  ,such as symmetry and idempotency, are well known.
 	
 	
@@ -51,16 +57,7 @@ Evidently leave-one-out cross validation has similarities with `jackknifing', a 
 	\right]
 	\end{equation*}
 	
-	\subsection{The Hat Matrix} %5.1
-	
-	The projection matrix $H$ (also known as the hat matrix), is a
-	well known identity that maps the fitted values $\hat{Y}$ to the
-	observed values $Y$, i.e. $\hat{Y} = HY$.
-	
-	\begin{equation}
-	H =\quad X(X^{T}X)^{-1}X^{T}
-	\end{equation}
-	
+
 	$H$ describes the influence each observed value has on each fitted
 	value. The diagonal elements of the $H$ are the `leverages', which
 	describe the influence each observed value has on the fitted value
@@ -162,22 +159,6 @@ The updated intercept estimate is therefore
 \section{Updating Estimates} %5.5
 
 
-\subsection{Updating of Regression Estimates}
-Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the
-observation associated with that row. In time series problems, there will be scientific interest in the changing relationship
-between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric
-rotation of a plane.
-
-Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
-is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
-$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
-
-\begin{equation}
-(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
-\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
-\end{equation}
-
-
 
 
 
@@ -200,19 +181,6 @@ $a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
 	
 	This approach is known for numerical instability in the case of
 	downdating.
-\subsection{Updating of Regression Estimates}
-Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row. In time series problems, there will be scientific interest in the changing relationship between variables. In cases where there a single row is to be added or deleted, the procedure used is equivalent to a geometric rotation of a plane.
-
-Updating techniques are used in regression analysis to add or delete rows from a model, allowing the analyst the effect of the observation associated with that row.
-
-Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
-is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
-$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
-
-\begin{equation}
-(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
-\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
-\end{equation}
 
 
 
@@ -260,91 +228,7 @@ The updated intercept estimate is therefore
 
 
 
-\subsection{Updating Regression Estimates}
-Let the observation $j$ be omitted from the data set. The
-estimates for the variance identities can be updating using minor
-adjustments to the full sample estimates. Where $(j)$ denotes that
-the $j$th has been omitted, these identities are
 
-\begin{equation}
-Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-\end{equation}
-\begin{equation}
-Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-\end{equation}
-
-The updated estimate for the slope is therefore
-\begin{equation}
-\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-\end{equation}
-
-It is necessary to determine the mean for $x$ and $y$ of the
-remaining $n-1$ terms
-\begin{equation}
-\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-\end{equation}
-
-\begin{equation}
-\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-\end{equation}
-
-The updated intercept estimate is therefore
-
-\begin{equation}
-\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-\end{equation}
-
-
-Consider a $p \times p$ matrix $X$, from which a row $x_{i}^{T}$
-is to be added or deleted. \citet{CookWeisberg} sets $A = X^{T}X$,
-$a=-x_{i}^{T}$ and $b=x_{i}^{T}$, and writes the above equation as
-
-\begin{equation}
-(X^{T}X \pm x_{i}x_{i}^{T})^{-1} = \quad(X^{T}X )^{-1} \mp \quad
-\frac{(X^{T}X)^{-1}(x_{i}x_{i}^{T}(X^{T}X)^{-1}}{1-x_{i}^{T}(X^{T}X)^{-1}x_{i}}
-\end{equation}
-
-
-
-
-	\subsection{Updating Regression Estimates}
-	Let the observation $j$ be omitted from the data set. The estimates for the variance identities can be updating using minor adjustments to the full sample estimates. Where $(j)$ denotes that the $j$th has been omitted, these identities are
-	
-	\begin{equation}
-	Sxx^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-(x_{j})^{2}-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})^{2}}{n-1}}{n-2}
-	\end{equation}
-	\begin{equation}
-	Syy^{(j)}=\frac{\sum_{i=1}^{n}(y_{i}^{2})-(y_{j})^{2}-\frac{((\sum_{i=1}^{n}y_{i})-y_{j})^{2}}{n-1}}{n-2}
-	\end{equation}
-	\begin{equation}
-	Sxy^{(j)}=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-(y_{j}x_{j})-\frac{((\sum_{i=1}^{n}x_{i})-x_{j})(\sum_{i=1}^{n}y_{i})-y_{k})}{n-1}}{n-2}
-	\end{equation}
-	
-	The updated estimate for the slope is therefore
-	\begin{equation}
-	\hat{\beta}_{1}^{(j)}=\frac{Sxy^{(j)}}{Sxx^{(j)}}
-	\end{equation}
-	
-	It is necessary to determine the mean for $x$ and $y$ of the remaining $n-1$ terms
-	\begin{equation}
-	\bar{x}^{(j)}=\frac{(\sum_{i=1}^{n}x_{i})-(x_{j})}{n-1},
-	\end{equation}
-	
-	\begin{equation}
-	\bar{y}^{(j)}=\frac{(\sum_{i=1}^{n}y_{i})-(y_{j})}{n-1}.
-	\end{equation}
-	
-	The updated intercept estimate is therefore
-	
-	\begin{equation}
-	\hat{\beta}_{0}^{(j)}=\bar{y}^{(j)}-\hat{\beta}_{1}^{(j)}\bar{x}^{(j)}.
-	\end{equation}
-	
-	
-	
 	
 
 
@@ -422,55 +306,6 @@ S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
 
 While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
 
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
-\end{equation}
-
-
-
-
-
-
-
-\subsection{Updating Standard deviation}
-A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-
-\begin{equation}
-Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
-\end{equation}
-
-
-\newpage
-	\subsection{Updating Standard deviation}
-	A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
-	\begin{equation}
-	S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-	\end{equation}
-	
-	While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
-	
-	\begin{equation}
-	Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.
-	\end{equation}
-	
-	
-	
-	
-	
-
-\subsection{Updating Standard deviation}
-A simple, but useful, example of updating is the updating of the standard deviation when an observation is omitted, as practised in statistical process control analyzes. From first principles, the variance of a data set can be calculated using the following formula.
-\begin{equation}
-S^{2}=\frac{\sum_{i=1}^{n}(x_{i}^{2})-\frac{(\sum_{i=1}^{n}x_{i})^{2}}{n}}{n-1}
-\end{equation}
-
-While using bivariate data, the notation $Sxx$ and $Syy$ shall apply hither to the variance of $x$ and of $y$ respectively. The covariance term $Sxy$ is given by
 
 \begin{equation}
 Sxy=\frac{\sum_{i=1}^{n}(x_{i}y_{i})-\frac{(\sum_{i=1}^{n}x_{i})(\sum_{i=1}^{n}y_{i})}{n}}{n-1}.

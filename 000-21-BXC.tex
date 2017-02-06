@@ -2,77 +2,6 @@
 \begin{document}
 \chapter{BXC2010}
 
-\section{1. Introduction}
-
-\section{2. Model for LoA}
-
-$95\%$ prediction interval
-
-\[ \bar{D} \pm 1.96 \times s.d.(D_i) \sqrt{\frac{n+1}{n}} \]
-
-The correct factor is $\sigma^2_1 + \sigma^2_2 \frac{n+1}{n}$
-
-\section{3.Non constant difference}
-
-3.1 Model
-
-$D_i = (\alpha_1 - \alpha_2) + (\beta_1 + \beta_2)\mu_i +(e_{1i} + e_{2i})$
-
-3.2 Regression of differences on averages
-
-$\beta_{2|1} = \frac{1-b/2}{1+b/2} \geq 1-b $
-
-$Y_{2|1} = -a +(1-b)y_1  \pm 2 \tau $
-
-\section{4. Worked Examples}
-4.1 Blood Glucose (Plasma and Capillary)
-
-\begin{itemize}
-	\item 46 non diabetic obese people at 120 minutes after a 75g oral glucose challenge
-	\item $D = -2.24 + 0.33A$ with residual standard deviation of 1.08
-	\item Prediction  interval for the difference of sizes.
-	\item $Y_{C|P}  = 1.92 + 0.71Y_N \pm 1.86$ and $Y_{P|C}  =2.69 +1.40Y_N \pm 2.60$
-\end{itemize}
-4.2 Plasma volume (Nadler Hurley)
-
-\section{5. Why is it wrong to use the regression of the differences on the averages.}
-
-5.1 Substantially wrong
-
-5.2 Statistically wrong
-It is assumed that the averages are independent of the error terms.
-
-\[
-\frac{\sigma_1 - \sigma_2}
-{\sigma_1 + \sigma_2}
-=
-\frac{\beta_1 - \beta_2}
-{\beta_1 + \beta_2}
-\] 
-\[ \therefore  \frac{\sigma_1 - \sigma_2}
-{\sigma_1 + \sigma_2}
-=
-\frac{\beta_1 - \beta_2}
-{\beta_1 + \beta_2}
-\]
-5.3 Why are the limits straight lines
-The prediction limits are straight lines because the estimation variance $\sigma2,1$ and $\beta2,1$ is ignored.
-
-5.4 What is the relation to Standard regression
-The model (2) is not a standard model
-
-Classical regression models are based on the conditional distribution of one method given another.
-\subsection{5.5 What is the relation to Deming Regression}
-Deming Regression does not solve the prediction problem
-unless we are willing to assume a known value for the ratio of the variances.
-In studies without replicates, there is no information about the variance ratio for the two methods.
-6. How wrong is it to do it anyway?
-%========================================================= %
-
-
-
-
-
 	\chapter{BXC}	
 	\section{2004 Model}
 	\cite{BXC2004} also advocates the use of linear mixed models in the study of method comparisons. 
@@ -97,12 +26,12 @@ In studies without replicates, there is no information about the variance ratio 
 	
 	
 	\citet{BXC2008} presents a methodology to compute the limits of
-	agreement based on LME models. Importantly, Carstensen's underlying model differs from ARoy2009's model in some key respects, and therefore a prior discussion of Carstensen's model is required. The method of computation is the
-	same as ARoy2009's model, but with the covariance estimates set to zero.
+	agreement based on LME models. Importantly, Carstensen's underlying model differs from Roy's model in some key respects, and therefore a prior discussion of Carstensen's model is required. The method of computation is the
+	same as Roy's model, but with the covariance estimates set to zero.
 	
-	In cases where there is negligible covariance between methods, the limits of agreement computed using ARoy2009's model accord with those computed using Carstensen's model. In cases where some degree of
+	In cases where there is negligible covariance between methods, the limits of agreement computed using roy's model accord with those computed using Carstensen's model. In cases where some degree of
 	covariance is present between the two methods, the limits of agreement computed using models will differ. In the presented
-	example, it is shown that ARoy2009's LoAs are lower than those of Carstensen, when covariance is present.
+	example, it is shown that roy's LoAs are lower than those of Carstensen, when covariance is present.
 	
 	Importantly, estimates required to calculate the limits of agreement are not extractable, and therefore the calculation must
 	be done by hand.
@@ -118,53 +47,34 @@ In studies without replicates, there is no information about the variance ratio 
 	\sim \mathcal{N}(0,\sigma^{2}_{m}), \quad c_{mi} \sim \mathcal{N}(0,\tau^{2}_{m}).
 	\end{equation}
 	
-	
-	The above formulation doesn't require the data set to be balanced.
-	However, it does require a sufficient large number of replicates
-	and measurements to overcome the problem of identifiability. The
-	import of which is that more than two methods of measurement may
-	be required to carry out the analysis. There is also the
-	assumptions that observations of measurements by particular
-	methods are exchangeable within subjects. (Exchangeability means
-	that future samples from a population behaves like earlier
-	samples).
+The above formulation doesn't require the data set to be balanced. 	However, it does require a sufficient large number of replicates and measurements to overcome the problem of identifiability. The import of which is that more than two methods of measurement may be required to carry out the analysis. There is also the assumptions that observations of measurements by particular methods are exchangeable within subjects. (Exchangeability means that future samples from a population behaves like earlier samples).
 	
 	%\citet{BXC2004} describes the above model as a `functional model',
 	%similar to models described by \citet{Kimura}, but without any
 	%assumptions on variance ratios. A functional model is . An
 	%alternative to functional models is structural modelling
 	
-	\citet{BXC2004} uses the above formula to predict observations for
+\citet{BXC2004} uses the above formula to predict observations for
 	a specific individual $i$ by method $m$;
 	
-	\begin{equation}BLUP_{mir} = \hat{\alpha_{m}} + \hat{\beta_{m}}\mu_{i} +
+\begin{equation}BLUP_{mir} = \hat{\alpha_{m}} + \hat{\beta_{m}}\mu_{i} +
 	c_{mi} \end{equation}. Under the assumption that the $\mu$s are
-	the true item values, this would be sufficient to estimate
-	parameters. When that assumption doesn't hold, regression
-	techniques (known as updating techniques) can be used additionally
-	to determine the estimates. The assumption of exchangeability can
-	be unrealistic in certain situations. \citet{BXC2004} provides an
-	amended formulation which includes an extra interaction term ($
+	the true item values, this would be sufficient to estimate parameters. When that assumption doesn't hold, regression techniques (known as updating techniques) can be used additionally to determine the estimates. The assumption of exchangeability can be unrealistic in certain situations. \citet{BXC2004} provides an amended formulation which includes an extra interaction term ($
 	d_{mr} \sim N(0,\omega^{2}_{m}$)to account for this.
 	
-	%======================================================== %
+%======================================================== %
 	
 	
-	\citet{BXC2004} presents a model to describe the relationship between a value of measurement and its
+\citet{BXC2004} presents a model to describe the relationship between a value of measurement and its
 	real value. The non-replicate case is considered first, as it is the context of the Bland Altman plots. This model assumes that inter-method bias is the only difference between the two methods.
 	
+Of particular importance is terms of the model, a true value for item $i$ ($\mu_{i}$).  The fixed effect of Roy's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. A distinction can be made between the two models: Roy's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
 	
-	%----
-	
-	Of particular importance is terms of the model, a true value for item $i$ ($\mu_{i}$).  The fixed effect of ARoy2009's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. A distinction can be made between the two models: ARoy2009's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
-	
-	
-	
-	Let $y_{mir} $ denote the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2$ ; $i=1,\ldots,N;$ and $r = 1,\ldots,n_i.$ When the design is balanced and there is no ambiguity we can set $n_i=n.$ The LME model underpinning ARoy2009's approach can be written
+Let $y_{mir} $ denote the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2$ ; $i=1,\ldots,N;$ and $r = 1,\ldots,n_i.$ When the design is balanced and there is no ambiguity we can set $n_i=n.$ The LME model underpinning roy's approach can be written
 	\begin{equation}\label{ARoy2009-model}
 	y_{mir} = \beta_{0} + \beta_{m} + b_{mi} + \epsilon_{mir}.
 	\end{equation}
-	Here $\beta_0$ and $\beta_m$ are fixed-effect terms representing, respectively, a model intercept and an overall effect for method $m.$ The model can be reparameterized by gathering the $\beta$ terms together into (fixed effect) intercept terms $\alpha_m=\beta_0+\beta_m.$ The $b_{1i}$ and $b_{2i}$ terms are correlated random effect parameters having $\mathrm{E}(b_{mi})=0$ with $\mathrm{Var}(b_{mi})=g^2_m$ and $\mathrm{Cov}(b_{1i}, b_{2 i})=g_{12}.$ The random error term for each response is denoted $\epsilon_{mir}$ having $\mathrm{E}(\epsilon_{mir})=0$, $\mathrm{Var}(\epsilon_{mir})=\sigma^2_m$, $\mathrm{Cov}(\epsilon_{1ir}, \epsilon_{2 ir})=\sigma_{12}$, $\mathrm{Cov}(\epsilon_{mir}, \epsilon_{mir^\prime})= 0$ and $\mathrm{Cov}(\epsilon_{1ir}, \epsilon_{2 ir^\prime})= 0.$ Additionally these parameter are assumed to have Gaussian distribution. Two methods of measurement are in complete agreement if the null hypotheses $\mathrm{H}_1\colon \alpha_1 = \alpha_2$ and $\mathrm{H}_2\colon \sigma^2_1 = \sigma^2_2 $ and $\mathrm{H}_3\colon g^2_1= g^2_2$ hold simultaneously. \citet{ARoy2009} uses a Bonferroni correction to control the familywise error rate for tests of $\{\mathrm{H}_1, \mathrm{H}_2, \mathrm{H}_3\}$ and account for difficulties arising due to multiple testing. Additionally, ARoy2009 combines $\mathrm{H}_2$ and $\mathrm{H}_3$ into a single testable hypothesis $\mathrm{H}_4\colon \omega^2_1=\omega^2_2,$ where $\omega^2_m = \sigma^2_m + g^2_m$ represent the overall variability of method $m.$
+Here $\beta_0$ and $\beta_m$ are fixed-effect terms representing, respectively, a model intercept and an overall effect for method $m.$ The model can be reparameterized by gathering the $\beta$ terms together into (fixed effect) intercept terms $\alpha_m=\beta_0+\beta_m.$ The $b_{1i}$ and $b_{2i}$ terms are correlated random effect parameters having $\mathrm{E}(b_{mi})=0$ with $\mathrm{Var}(b_{mi})=g^2_m$ and $\mathrm{Cov}(b_{1i}, b_{2 i})=g_{12}.$ The random error term for each response is denoted $\epsilon_{mir}$ having $\mathrm{E}(\epsilon_{mir})=0$, $\mathrm{Var}(\epsilon_{mir})=\sigma^2_m$, $\mathrm{Cov}(\epsilon_{1ir}, \epsilon_{2 ir})=\sigma_{12}$, $\mathrm{Cov}(\epsilon_{mir}, \epsilon_{mir^\prime})= 0$ and $\mathrm{Cov}(\epsilon_{1ir}, \epsilon_{2 ir^\prime})= 0.$ Additionally these parameter are assumed to have Gaussian distribution. Two methods of measurement are in complete agreement if the null hypotheses $\mathrm{H}_1\colon \alpha_1 = \alpha_2$ and $\mathrm{H}_2\colon \sigma^2_1 = \sigma^2_2 $ and $\mathrm{H}_3\colon g^2_1= g^2_2$ hold simultaneously. \citet{ARoy2009} uses a Bonferroni correction to control the familywise error rate for tests of $\{\mathrm{H}_1, \mathrm{H}_2, \mathrm{H}_3\}$ and account for difficulties arising due to multiple testing. Additionally, Roy combines $\mathrm{H}_2$ and $\mathrm{H}_3$ into a single testable hypothesis $\mathrm{H}_4\colon \omega^2_1=\omega^2_2,$ where $\omega^2_m = \sigma^2_m + g^2_m$ represent the overall variability of method $m.$
 	%Disagreement in overall variability may be caused by different between-item variabilities, by different within-item variabilities, or by both.
 	
 	%If the exact cause of disagreement between the two methods is not of interest, then the overall variability test $H_4$ %is an alternative to testing $H_2$ and $H_3$ separately.
@@ -227,22 +137,15 @@ In studies without replicates, there is no information about the variance ratio 
 	y_{mir}  = \alpha_{m} + \beta_{m}\mu_{i} + c_{mi} + e_{mir} \qquad
 	( e_{mi} \sim N(0,\sigma^{2}_{m}), c_{mi} \sim N(0,\tau^{2}_{m}))
 	\end{equation}
-	The intercept term $\alpha$ and the $\beta_{m}\mu_{i}$ term follow
-	from \citet{DunnSEME}, expressing constant and proportional bias
-	respectively , in the presence of a real value $\mu_{i}.$
-	$c_{mi}$ is a interaction term to account for replicate, and
-	$e_{mir}$ is the residual associated with each observation.
-	Since variances are specific to each method, this model can be
+	The intercept term $\alpha$ and the $\beta_{m}\mu_{i}$ term follow from \citet{DunnSEME}, expressing constant and proportional bias
+	respectively , in the presence of a real value $\mu_{i}.$ $c_{mi}$ is a interaction term to account for replicate, and
+	$e_{mir}$ is the residual associated with each observation.	Since variances are specific to each method, this model can be
 	fitted separately for each method.
 	
 	The above formulation doesn't require the data set to be balanced.
-	However, it does require a sufficient large number of replicates
-	and measurements to overcome the problem of identifiability. The
-	import of which is that more than two methods of measurement may
-	be required to carry out the analysis. There is also the
-	assumptions that mobservations of measurements by particular
-	methods are exchangeable within subjects. (Exchangeability means
-	that future samples from a population behaves like earlier
+	However, it does require a sufficient large number of replicates and measurements to overcome the problem of identifiability. The import of which is that more than two methods of measurement may
+	be required to carry out the analysis. There is also the assumptions that mobservations of measurements by particular
+	methods are exchangeable within subjects. (Exchangeability means that future samples from a population behaves like earlier
 	samples).
 	
 	Using Carstensen's notation, a measurement $y_{mi}$ by method $m$ on individual $i$ the measurement $y_{mir} $ is the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2,\ldots,M$ $i=1,\ldots,N,$ and $r = 1,\ldots,n_i$ is formulated as follows;
@@ -265,7 +168,7 @@ In studies without replicates, there is no information about the variance ratio 
 	Carstensen's approach is that of a standard two-way mixed effects ANOVA with replicate measurements. With regards to the specification of the variance terms, Carstensen remarks that using his approach is common, remarking that \emph{
 		The only slightly non-standard (meaning "not often used") feature is the differing residual variances between methods }\citep{BXC2010}.
 	
-	In contrast to ARoy2009's model, Carstensen's model requires that commonly used assumptions be applied, specifically that the off-diagonal elements of the between-item and within-item variability matrices are zero. By
+	In contrast to roy's model, Carstensen's model requires that commonly used assumptions be applied, specifically that the off-diagonal elements of the between-item and within-item variability matrices are zero. By
 	extension the overall variability off-diagonal elements are also zero. Also, implementation requires that the between-item variances are estimated as the same value: $\tau^2_1 = \tau^2_2 = \tau^2$.
 	Also, implementation requires that the between-item variances are estimated as the same value: $g^2_1 = g^2_2 = g^2$.
 	As a consequence, Carstensen's method does not allow for a formal test of the between-item variability.
@@ -305,7 +208,7 @@ In studies without replicates, there is no information about the variance ratio 
 	
 	%---Key difference 1---The True Value
 	%---Colollary -- Difference in model types
-	The presence of the true value term $\mu_i$ gives rise to an important difference between Carstensen's and ARoy2009's models. The fixed effect of ARoy2009's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. In other words, ARoy2009 considers the group of items being measured as a sample taken from a population. Therefore a distinction can be made between the two models: ARoy2009's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
+	The presence of the true value term $\mu_i$ gives rise to an important difference between Carstensen's and ARoy2009's models. The fixed effect of ARoy2009's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. In other words, Roy considers the group of items being measured as a sample taken from a population. Therefore a distinction can be made between the two models: ARoy's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
 	
 	%---Carstensen's limits of agreement
 	%---The between item variances are not individually computed. An estimate for their sum is used.
@@ -447,7 +350,7 @@ In studies without replicates, there is no information about the variance ratio 
 	%
 	% \frametitle{Carstensen's Mixed Models}
 	
-	Carstensen et al [5] sets out a methodology of computing the limits of
+	Carstensen et al sets out a methodology of computing the limits of
 	agreement based upon variance component estimates derived using
 	linear mixed effects models. 
 	Measures of repeatability, a
@@ -509,14 +412,13 @@ In studies without replicates, there is no information about the variance ratio 
 	y_{mir}  = \alpha_{m} + \mu_{i} + c_{mi} + e_{mir} 
 	\end{eqnarray}
 	
-	%------------------------------------------------------------------------------ %
-	
+
 	
 	The following model (in the authors own notation) is
 	formulated as follows, where $y_{mir}$ is the $r$th replicate
 	measurement on subject $i$ with method $m$.
 	
-	{
+
 		
 		\begin{equation}
 		y_{mir}  = \alpha_{m} + \mu_{i} + c_{mi} + e_{mir} \qquad ( e_{mi}
@@ -527,16 +429,11 @@ In studies without replicates, there is no information about the variance ratio 
 		\begin{equation}
 		y_{mir}  = \alpha_{m} + \beta_{m}\mu_{i} + c_{mi} + e_{mir} 
 		\end{equation}
-	}
-	
-	{
+
 		
 		\[ e_{mi} \sim N(0,\sigma^{2}_{m}), c_{mi} \sim N(0,\tau^{2}_{m})\]
-	}
-	
-	%------------------------------------------------------- %
-	%SLIDE 3
-	%[fragile]
+
+
 	% \frametitle{Carstensen's Mixed Models}
 	
 	The intercept term $\alpha$ and the $\beta_{m}\mu_{i}$ term follow
@@ -650,15 +547,7 @@ In studies without replicates, there is no information about the variance ratio 
 	( e_{mi} \sim N(0,\sigma^{2}_{m}), c_{mi} \sim N(0,\tau^{2}_{m}))
 	\end{equation}
 	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%
-	The intercept term $\alpha$ and the $\beta_{m}\mu_{i}$ term follow
-	from Dunn[7], expressing constant and proportional bias
-	respectively , in the presence of a real value $\mu_{i}.$
-	$c_{mi}$ is a interaction term to account for replicate, and
-	$e_{mir}$ is the residual associated with each observation.
-	Since variances are specific to each method, this model can be
-	fitted separately for each method.
+
 	
 	%-----------------------------------------------------------------------%
 	%
@@ -706,13 +595,7 @@ In studies without replicates, there is no information about the variance ratio 
 	\subsection{Computing LoAs from LME models}
 	
 	
-	One important feature of replicate observations is that they should be independent
-	of each other. In essence, this is achieved by ensuring that the observer makes each
-	measurement independent of knowledge of the previous value(s). This may be difficult
-	to achieve in practice.
-	
-	
-	
+
 	
 	%-------------------------------------------------------------------------------------%
 	
@@ -744,7 +627,7 @@ In studies without replicates, there is no information about the variance ratio 
 	
 	%---Key difference 1---The True Value
 	%---Colollary -- Difference in model types
-	The presence of the true value term $\mu_i$ gives rise to an important difference between Carstensen's and ARoy2009's models. The fixed effect of ARoy2009's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. In other words, ARoy2009 considers the group of items being measured as a sample taken from a population. Therefore a distinction can be made between the two models: ARoy2009's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
+	The presence of the true value term $\mu_i$ gives rise to an important difference between Carstensen's and ARoy2009's models. The fixed effect of Roy's model comprise of an intercept term and fixed effect terms for both methods, with no reference to the true value of any individual item. In other words, Roy considers the group of items being measured as a sample taken from a population. Therefore a distinction can be made between the two models: Roy's model is a standard LME model, whereas Carstensen's model is a more complex additive model.
 	
 	%---Carstensen's limits of agreement
 	%---The between item variances are not individually computed. An estimate for their sum is used.
@@ -756,7 +639,7 @@ In studies without replicates, there is no information about the variance ratio 
 	%---When there is negligible covariance between the two methods, ARoy2009s LoA and Carstensen's LoA are roughly the same.
 	%---When there is covariance between the two methods, ARoy2009's LoA and Carstensen's LoA differ, ARoy2009s usually narrower.
 	
-	\section{Carstensen 2004 's Mixed Models}
+	\section{Carstensen 2004's Mixed Models}
 	
 	
 	%\citet{BXC2004} describes the above model as a `functional model',
@@ -792,29 +675,7 @@ In studies without replicates, there is no information about the variance ratio 
 	\citet{BXC2008} proposes the addition of an random effects term to their model when the replicates are linked. This term is used to describe the `item by replicate' interaction, which is independent of the methods. This interaction is a source of variability independent of the methods. Therefore failure to account for it will result in variability being wrongly attributed to the methods.
 	
 	
-	\section{Intervals}
-	
-	\subsection{Purpose of Limits of Agreement} It must be established
-	clearly the specific purpose of the limits of agreement.
-	\citet*{BA95} comment that the limits of agreement \emph{how far
-		apart measurements by the two methods were likely to be for most
-		individuals.}, a definition echoed in their 1999 paper:
-	\begin{quote} We can then say that nearly all pairs
-		of measurements by the two methods will be closer together than
-		these extreme values, which we call 95\% limits of agreement.
-		These values define the range within which most differences
-		between measurements by the two methods will lie\citep{BA99}.
-	\end{quote}
-	\citet{BXC} offers an alternative, more specific,  definition of
-	the limits of agreement \emph{"a prediction interval for the
-		difference between future measurements with the two methods on a
-		new individual."} \citet{luiz} describes them as tolerance limits.
-	
-	Importantly they have the same construction as Shewhart Control
-	limits.
-	
-	
-	
+
 	
 	
 	
@@ -988,25 +849,10 @@ In studies without replicates, there is no information about the variance ratio 
 	
 	For the `Fat' data set, the inter-method bias is shown to be $0.045$. The limits of agreement are $(-0.23 , 0.32)$
 	
-	For Carstensen's `fat' data, the limits of agreement computed using ARoy2009's
+	For Carstensen's `fat' data, the limits of agreement computed using Roy's
 	method are consistent with the estimates given by \citet{BXC2008}; $0.044884  \pm 1.96 \times  0.1373979 = (-0.224,  0.314).$
-	
-	
-	
-	For Carstensen's `fat' data, the limits of agreement computed using ARoy2009's
-	method are consistent with the estimates given by \citet{BXC2008}; $0.044884  \pm 1.96 \times  0.1373979 = (-0.224,  0.314).$
-	
-	
-	
-	
-	\subsection{Limits of agreement for Carstensen's data}
-	
-	
-	\citet{BXC2008} describes the calculation of the limits of agreement (with the inter-method bias implicit) for both data sets, based on his formulation;
-	
-	\[\hat{\alpha}_1 - \hat{\alpha}_2 \pm 2\sqrt{2\hat{\tau}^2 +\hat{\sigma}_1^2 +\hat{\sigma}_2^2 }.\]
-	
-	For the `Fat' data set, the inter-method bias is shown to be $0.045$. The limits of agreement are $(-0.23 , 0.32)$
+
+
 	
 	%=========================================================================== %
 	\section{Oxymetry Data}	
@@ -1061,59 +907,24 @@ In studies without replicates, there is no information about the variance ratio 
 	
 	
 	Finally, to complement the blood pressure (i.e.`J vs S') method comparison from the previous section (i.e.`J vs S'), the limits of agreement are $15.62 \pm 1.96 \times 20.33 = (-24.22, 55.46)$.)
-	\newpage	
+
 	%=========================================================================== %
 	
 	\section{Oxymetry Data}
 	\citet{BXC2008} proposes the addition of an random effects term to their model when the replicates are linked. This term is used to describe the `\textit{item by replicate}' interaction, which is independent of the methods. This interaction is a source of variability independent of the methods. Therefore failure to account for it will result in variability being wrongly attributed to the methods.
 	
-	\citet{BXC2008} introduces a second data set; the oximetry study. This study done at the ARoy2009al Children�s Hospital in
+	\citet{BXC2008} introduces a second data set; the oximetry study. This study done at the Royal Children's Hospital in
 	Melbourne to assess the agreement between co-oximetry and pulse oximetry in small babies.
 	
 	In most cases, measurements were taken by both method at three different times. In some cases there are either one or two pairs of measurements, hence the data is unbalanced. \citet{BXC2008} describes many of the children as being very sick, and with very low oxygen saturations levels. Therefore it must be assumed that a biological change can occur in interim periods, and measurements are not true replicates.
-	
-	\citet{BXC2008} proposes the addition of an random effects term to their model when the replicates are linked. This term is used to describe the `item by replicate' interaction, which is independent of the methods. This interaction is a source of variability independent of the methods. Therefore failure to account for it will result in variability being wrongly attributed to the methods.
-	
-	
+
 	\citet{BXC2008} demonstrate the necessity of accounting for linked replicated by comparing the limits of agreement from the `oximetry' data set using a model with the additional term, and one without. When the interaction is accounted for the limits of agreement are (-9.62,14.56). When the interaction is not accounted for, the limits of agreement are (-11.88,16.83). It is shown that the failure to include this additional term results in an over-estimation of the standard deviations of differences.
 	
 	
 	\citet{BXC2008} demonstrates the use of the interaction term when computing the limits of agreement for the `Oximetry' data set. When the interaction term is omitted, the limits of agreement are $(-9.97, 14.81)$. Carstensen advises the inclusion of the interaction term for linked replicates, and hence the limits of agreement are recomputed as $(-12.18,17.12)$.
 	
 	
-	Limits of agreement are determined using ARoy2009's methodology, without adding any additional terms, are found to be consistent with the `interaction' model; $(-9.562, 14.504 )$. ARoy2009's methodology assumes that replicates are linked. However, following Carstensen's example, an addition interaction term is added to the implementation of ARoy2009's model to assess the effect, the limits of agreement estimates do not change. However there is a conspicuous difference in within-subject matrices of ARoy2009's model and the modified model (denoted $1$ and $2$ respectively);
-	\begin{equation}
-	\hat{\boldsymbol{\Lambda}}_{1}= \left(\begin{array}{cc}
-	16.61 &	11.67\\
-	11.67 & 27.65 \end{array}\right) \qquad
-	\boldsymbol{\hat{\Lambda}}_{2}= \left( \begin{array}{cc}
-	7.55 & 2.60 \\
-	2.60 & 18.59 \end{array} \right).
-	\end{equation}
-	
-	\noindent (The variance of the additional random effect in model $2$ is $3.01$.)
-	
-	\citet{akaike} introduces the Akaike information criterion ($AIC$), a model
-	selection tool based on the likelihood function. Given a data set, candidate models
-	are ranked according to their AIC values, with the model having the lowest AIC being considered the best fit.Two candidate models can said to be equally good if there is a difference of less than $2$ in their AIC values.
-	
-	The Akaike information criterion (AIC) for both models are $AIC_{1} = 2304.226$ and $AIC_{2} = 2306.226$ , indicating little difference in models. The AIC values for the Carstensen `unlinked' and `linked' models are $1994.66$ and $1955.48$ respectively, indicating an improvement by adding the interaction term.
-	
-	The $\boldsymbol{\hat{\Lambda}}$ matrices are informative as to the difference between Carstensen's unlinked and linked models. For the oximetry data, the covariance terms (given above as 11.67 and 2.6 respectively ) are of similar magnitudes to the variance terms. Conversely for the `fat' data the covariance term ($-0.00032$) is negligible. When the interaction term is added to the model, the covariance term remains negligible. (For the `fat' data, the difference in AIC values is also approximately $2$).
-	
-	To conclude, Carstensen's models provided a rigorous way to determine limits of agreement, but don't provide for the computation of $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$. Therefore the test's proposed by \citet{ARoy2009} can not be implemented. Conversely, accurate limits of agreement as determined by Carstensen's model may also be found using ARoy2009's method. Addition of the interaction term erodes the capability of ARoy2009's methodology to compare candidate models, and therefore shall not be adopted.
-	
-	Finally, to complement the blood pressure (i.e.`J vs S') method comparison from the previous section (i.e.`J vs S'), the limits of agreement are $15.62 \pm 1.96 \times 20.33 = (-24.22, 55.46)$.)
-	
-	
-	%========================================================== %
-	
-	
-	
-	
-	
-	
-	
+	Limits of agreement are determined using ARoy2009's methodology, without adding any additional terms, are found to be consistent with the `interaction' model; $(-9.562, 14.504 )$. 
 	\section{RV-IV}
 	For the the RV-IC comparison, $\hat{D}$ is given by
 	
