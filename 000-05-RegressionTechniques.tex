@@ -105,6 +105,18 @@
 	
 	
 	
+\section*{Bartko's Discussion of BB}
+
+Let $y = X_1 - X_2$ and $x= (X_1 - X_2)/2$.
+The Bradley-Blackwood procedure fits $y$ on $x$, such that
+\[ y = \beta_0 + \beta_1x \]
+
+The slope and intercepte are given bu
+
+\[beta_1 =  \frac{(\sigma^2_1 = \sigma^2_2)}{2\sigma^2_x}\]
+%------------------------------------------------%
+
+
 	\section{Bradley-Blackwood Test (Kevin Hayes Talk)}
 	%--------------------------------------------------------------------%
 	% KH - UW
@@ -131,34 +143,7 @@
 	
 	
 	
-	\section*{Deming Regression}
-	
-	\begin{itemize}
-		\item Informative analysis for the purposes of method comparison, Deming Regression is a regression technique taking into account uncertainty in both the independent and dependent variables.
-		
-		\item Deming’s method always results in one regression fit, regardless of which variable takes the place of the predictor variables.
-		
-		%Significant error in the least-squares slope estimation occurs when the ratio of the standard deviation of measurement of a single x value to the standard deviation of the indepedent variable data set exceeds 0.2.
-		
-		%Errors in the least-squares coefficients attributable to outliers can be avoided by eliminating data points whose vertical distance from the regression line exceed four times the standard error the estimate.
-		
-		\item The measurement error (lambda or $\lambda$) is specified with measurement error variance related as 
-		\[\lambda = \sigma^2_y/\sigma^2_x\]
-		
-		(where $\sigma^2_x$ and $\sigma^2_y$ is the measurement error variance of the $x$ and $y$ variables, respectively).
-		
-		\item In the case where $\lambda$ is equal to one, (i.e. equal error variances), the methodology is equivalent to \textit{\textbf{orthogonal regression}}.
-		
-		\item Deming approaches the matter by simultaneously minimizing the sum of the square of the residuals of both variables. This derivation results in the best fit to minimize the sum of the squares of the perpendicular distances from the data points.
-		
-		\item To compute the slope by Deming’s formula,  normally distributed error of both variables  is assumed, as well as a constant level of imprecision throughout the range of measurements.
-		
-	\end{itemize}
-	
-	
-	
-	
-	
+
 	\section{Conclusions about Existing Methodologies}
 	
 	The Bland Altman methodology is well noted for its ease of use,
@@ -224,18 +209,7 @@
 	%------------------------------------------------%
 	
 	
-	section*{Remarks}
-	\begin{itemize}
-		\item Pearson's Correlation of (x,y) is the same as Pitman's correlation of sums and differences.
-		
-		\item Techniques for plotting an ellipse can be found in Douglas Altman's book.
-	\end{itemize}
-	%------------------------------------------------%
-	\newpage
-	%----------------------------------------------------------------------------------------------------------------------%
-	
-	
-	
+
 	\section{A regression based approach based on Bland Altman Analysis}
 	Bland and Altman have stated that regression analysis offers insights into method comparison studies. Regression methods can determine the presence of bias, and the levels of constant bias and proportional bias thereof \cite{ludbrook97,ludbrook02}.
 	While they are informative about inter-method bias, Regression methods offer the analyst no insights into the relative precision of both methods. These methods can be employed in conversion problems, however errors are
@@ -250,7 +224,6 @@
 		\item Techniques for plotting an ellipse can be found in Douglas Altman's book.
 	\end{itemize}
 	%------------------------------------------------%
-	
 	\section{The MCR R pacakge - Regression Techniques for MCS}
 	
 	The \textbf{\textit{mcr}} packages provides a set of regression techniques to quantify the relation between two measurement methods.
@@ -284,18 +257,7 @@
 	\end{framed}
 	
 	
-	\section{Implementation of Deming Regression with \texttt{R}s}
-	Thus far, one of the few \texttt{R} implementations of Deming regression is contained in the `MethComp' package. \citep{BXC2008}.
-	
-	Unless specified otherwise, the variance ratio $\lambda$ has a default value of one. A means of computing likelihood functions would potentially allow for an algorithm for estimating the true variance ratio.
-	
-	
-	
-	
-	%\citet{linnet93} defines analytical standard deviation as the standard deviation of measures values around the target value.\citet{linnet93} defines analytical standard deviation as the standard deviation of measures values around the target value.
-	
-	
-	
+
 	\section{KP}
 	Most residual covariance structures are design for one
 	within-subject factor. However two or more may be present. For
@@ -358,17 +320,6 @@ Constant or proportional bias in method comparison studies using linear regressi
 
 
 
-\section*{Bartko's Discussion of BB}
-
-Let $y = X_1 - X_2$ and $x= (X_1 - X_2)/2$.
-The Bradley-Blackwood procedure fits $y$ on $x$, such that
-\[ y = \beta_0 + \beta_1x \]
-
-The slope and intercepte are given bu
-
-\[beta_1 =  \frac{(\sigma^2_1 = \sigma^2_2)}{2\sigma^2_x}\]
-%------------------------------------------------%
-
 
 \section*{Pitman's Test on Correlated variances}
 %Bartko Page 741
@@ -383,126 +334,9 @@ Pitman's test is identical to the slope equal to zero in the regression of $y$ o
 %------------------------------------------------%
 
 
-\section{Model II Regression}
-\subsection{Simple Linear Regression} Simple Linear Regression is  well
-known statistical technique , wherein estimates for slope and
-intercept of the line of best fit are derived according to the
-Ordinary Least Square (OLS) principle.This method is known to
-Cornbleet and Cochrane as Model I regression.
-\\
-\\
-In Model I regression, the independent variable is assumed to be
-measured without error. For method comparison studies, both sets
-of measurement must be assumed to be measured with imprecision and
-neither case can be taken to be a reference method. Arbitrarily
-selecting either method as the reference will yield two
-conflicting outcomes. A fitting based on '$X$ on $Y$' will give
-inconsistent results with a fitting based on '$Y$ on $X$'.
-Consequently model I regression is inappropriate for such cases.
-\\
-\\
-Conversely, Cornbleet Cochrane state that when the independent
-variable $X$ is a precisely measured reference method, Model I
-regression may be considered suitable. They qualify this statement
-by referring the $X$ as \emph{the 'correct' value}, tacitly
-implying that there must still be some measurement error present.
-The validity of this approach has been disputed elsewhere.
 
-
-
-
-\subsection{Model II regression}
-Cochrane and Cornbleet argue for the use of methods that based on
-the assumption that both methods are imprecisely measured ,and
-that yield a fitting that is consistent with both '$X$ on $Y$' and
-'$Y$ on $X$' formulations. These methods uses alternatives to the
-OLS approach to determine the slope and intercept.
-\\
-They describe three such alternative methods of regression; Deming
-, Mandel, and Bartlett regression. Collectively the authors refer
-to these approaches as Model II regression techniques.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\subsection{Contention }
-Several papers have commented that this approach is undermined
-when the basic assumptions underlying linear regression are not
-met, the regression equation, and consequently the estimations of
-bias are undermined. Outliers are a source of error in regression
-estimates.In method comparison studies, the X variable is a
-precisely measured reference method. Cornbleet Gochman (1979)
-argued that criterion may be regarded as the correct value. Other
-papers dispute this.
-\subsection{Least Product Regression}
-Least Product Regression , also known as 'Model II regression'
-caters for cases in which random error is attached to both
-dependent and independent variables. Ludbrook cites this
-methodology as being pertinent to Method comparison studies.
-\\
-\\
-The sum of the products of the vertical and horizontal deviations
-of the x,y values from the line is minimized.
-\\
-\\
-Least products regression analysis is considered suitable for
-calibrating one method against another.Ludbrook comments that it
-is also a sensitive technique for detecting and distinguishing
-fixed and proportional bias between methods.
-\\
-\\
-Proposed as an alternative to Bland \& Altman methodology ,this
-method is also known as 'Geometric Mean Regression' and 'Reduced
-Major Axis Regression'.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Evaluation of Regression Procedures for Methods Comparison Studies
-Kristian Linnet
-
-%-------------------------------------------------------------------%
-Comparison of Two Clinical Chemistry Methods by Regression Analysis
-
-\[ x_i = X_i + \varepsilon_i \]
-\[ y_i = Y_i + \delta_i \]
-
-%-------------------------------------------------------------------%
-
-% OLR
-% Deming Regresssion
-% Weighted Deming Regression
-
-%-------------------------------------------------------------------%
-
-Passing and Bablok
-Performance of Regression Methods
-RMSE
-
-%-------------------------------------------------------------------%
-Outliers and Non-Gaussian Error Distributions
-
-%-------------------------------------------------------------------%
-% Linnet 1998
-
-Application of Deming Regression
-Squared Analytical Error Ratio $\lambda$
-
-Bias of the Slope Estimate
-
-Estimation of the Deming Regression Line
-
-\[ \beta_{OLR} =  \frac{\beta}{1 + \frac{SD^2_{ax}}{SD^2_{X}}}\]
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Difference with Least Squares Regression}
-Least-products regression can lead to inflated SEEs and estimates
-that do not tend to their true values an N approaches infinity
-(Draper and Smith, 1998).
-
-\newpage
-Regression Approaches to MCS
-============================================
+\section{Regression Approaches to MCS}
+%============================================ %
 - This section of the paper will discuss several regression-based techniques for method comparison study, 
 such as *Deming Regression*. 
 - This section will highlight several useful characteristics of the data that 
@@ -525,37 +359,45 @@ types of bias
 	\item proportionl bias
 \end{itemize}
 
-\section{Passing and bablok}
-proposed an linear regression procedure with no special assumptions regarding the distribution of the data.
-This non parametric method is based on ranking the observatons so it is computationally intensive.
-The result is independent of the assignment of the reference method (X) and the reference method (Y).
+\subsection{Passing and Bablok (1983) }
+Passing \& Bablok have described a linear regression model that are without the usual assumptions regarding the distribution of
+the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope and intercept  are calculated with their 95\% confidence interval.Hypothesis tests on the slope and intercept maybe then
+carried out.\\
 
-%" a new biometric method procedure for testing the equality of measurements from two different analytical methods"
-%J Clin. Chem Clin.BioChem. [21], 709-720 (1983)
-	
-	\subsection{Passing and Bablok (1983) }
-	Passing \& Bablok have described a linear regression model that
-	are without the usual assumptions regarding the distribution of
-	the samples and the measurement errors. The result does not depend
-	on the assignment of the methods (or instruments) to X and Y. The
-	slope and intercept  are calculated with their 95\% confidence
-	interval.Hypothesis tests on the slope and intercept maybe then
-	carried out.
+If the hypothesis of the intercept is rejected, then it is concluded that it is significant different from $0$ and both
+raters differ at least by a constant amount.
 	\\
-	If the hypothesis of the intercept is rejected, then it is
-	concluded that it is significant different from $0$ and both
-	raters differ at least by a constant amount.
-	\\
-	If the hypothesis of the slope is rejected, then it is concluded
-	that the slope is significant different from $1$ and there is at
-	least a proportional difference between the two raters.%-----------------------------------------------------------%
-\section{Passing-Bablok Regression}
+If the hypothesis of the slope is rejected, then it is concluded that the slope is significant different from $1$ and there is at
+least a proportional difference between the two raters.
+%-----------------------------------------------------------%
+\subsection{Passing-Bablok Regression}
 
 % www.medcalc.be
 % MCR package
 
 Passing \& Bablok (1983) have described a linear regression procedure with no special assumptions regarding the distribution of the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope B and intercept A are calculated with their 95\% confidence interval. These confidence intervals are used to determine whether there is only a chance difference between B and 1 and between A and 0.
 
+
+\subsection{Passing and Bablok ( 1983) }
+Passing \& Bablok have described a linear regression model that are without the usual assumptions regarding the distribution of
+the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The
+slope and intercept  are calculated with their 95\% confidence interval.Hypothesis tests on the slope and intercept maybe then
+carried out.
+\\
+If the hypothesis of the intercept is rejected, then it is concluded that it is significant different from $0$ and both
+raters differ at least by a constant amount.
+\\
+If the hypothesis of the slope is rejected, then it is concluded that the slope is significant different from $1$ and there is at
+least a proportional difference between the two raters.
+
+\subsection{Passing and bablok}
+proposed an linear regression procedure with no special assumptions regarding the distribution of the data.
+This non parametric method is based on ranking the observatons so it is computationally intensive.
+The result is independent of the assignment of the reference method (X) and the reference method (Y).
+
+" a new biometric method procedure for testing the equality of measurements from two different analytical methods"
+J Clin. Chem Clin.BioChem. [21], 709-720 (1983)
+%-----------------------------------------------------------%
 \subsection{Implementation with \texttt{R}}
 
 %--------------%
@@ -577,51 +419,6 @@ types of bias
 	\item proportionl bias
 \end{itemize}
 %-------------------------------------------------------------------------------%
-
-\subsection{Passing and Bablok ( 1983) }
-Passing \& Bablok have described a linear regression model that
-are without the usual assumptions regarding the distribution of
-the samples and the measurement errors. The result does not depend
-on the assignment of the methods (or instruments) to X and Y. The
-slope and intercept  are calculated with their 95\% confidence
-interval.Hypothesis tests on the slope and intercept maybe then
-carried out.
-\\
-If the hypothesis of the intercept is rejected, then it is
-concluded that it is significant different from $0$ and both
-raters differ at least by a constant amount.
-\\
-If the hypothesis of the slope is rejected, then it is concluded
-that the slope is significant different from $1$ and there is at
-least a proportional difference between the two raters.
-\subsection{Passing and bablok}
-proposed an linear regression procedure with no special assumptions regarding the distribution of the data.
-This non parametric method is based on ranking the observatons so it is computationally intensive.
-The result is independent of the assignment of the reference method (X) and the reference method (Y).
-
-" a new biometric method procedure for testing the equality of measurements from two different analytical methods"
-J Clin. Chem Clin.BioChem. [21], 709-720 (1983)
-%-----------------------------------------------------------%
-\section{Passing-Bablok Regression}
-
-% www.medcalc.be
-% MCR package
-
-Passing \& Bablok (1983) have described a linear regression procedure with no special assumptions regarding the distribution of the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope B and intercept A are calculated with their 95\% confidence interval. These confidence intervals are used to determine whether there is only a chance difference between B and 1 and between A and 0.
-
-\subsection{Implementation with \texttt{R}}
-
-%--------------%
-\begin{framed}
-	\begin{verbatim}
-	
-	library(mcr)
-	
-	\end{verbatim}
-\end{framed}
-%--------------%
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 
 

@@ -59,302 +59,24 @@
 	% The likelihood function ($L(\theta)$)is a fundamental concept in statistical inference. It indicates how likely a particular population is to produce an observed sample. The set of values that maximize the likelihood function are considered to be optimal, and are used as the estimates of the parameters. For computational ease, it is common to use the logarithm of the likelihood function, known simply as the log-likelihood ($\ell(\theta)$).
 	
 	
-	\subsection{Estimation}
-	Estimation of LME models involve two complementary estimation issues'; estimating the vectors of the fixed and random effects estimates $\hat{\beta}$ and $\hat{b}$ and estimating the variance covariance matrices $D$ and $\Sigma$.
-	Inference about fixed effects have become known as `estimates', while inferences about random effects have become known as `predictions'. The most common approach to obtain estimators are Best Linear Unbiased Estimator (BLUE) and Best Linear Unbiased Predictor (BLUP). For an LME model given by (\ref{LW}), the BLUE of $\hat{\beta}$ is given by
-	\[\hat{\beta} = (X^\prime V^{-1}X)^{-1}X^\prime V^{-1}y,\]whereas the BLUP of $\hat{b}$ is given by
-	\[\hat{b} = DZ^{\prime} V^{-1} (y-X\hat{\beta}).\]
-	
-	\subsubsection{Henderson's equations}
-	Because of the dimensionality of V (i.e. $n \times n$) computing the inverse of V can be difficult. As a way around the this problem \citet{Henderson53, Henderson59,Henderson63,Henderson73,Henderson84a} offered a more simpler approach of jointly estimating $\hat{\beta}$ and $\hat{b}$.
-	\cite{Henderson:1950} made the (ad-hoc) distributional assumptions $y|b \sim \mathrm{N} (X \beta + Zb, \Sigma)$ and $b \sim \mathrm{N}(0,D),$ and proceeded to maximize the joint density of $y$ and $b$
-	\begin{equation}
-	\left|
-	\begin{array}{cc}
-	D & 0 \\
-	0 & \Sigma \\
-	\end{array}
-	\right|^{-\frac{1}{2}}
-	\exp
-	\left\{ -\frac{1}{2}
-	\left(
-	\begin{array}{c}
-	b \\
-	y - X \beta -Zb \\
-	\end{array}
-	\right)^\prime
-	\left( \begin{array}{cc}
-	D & 0 \\
-	0 & \Sigma \\
-	\end{array}\right)^{-1}
-	\left(
-	\begin{array}{c}
-	b \\
-	y - X \beta -Zb \\
-	\end{array}
-	\right)
-	\right\},
-	\label{u&beta:JointDensity}
-	\end{equation}
-	with respect to $\beta$ and $b,$ which ultimately requires minimizing the criterion
-	\begin{equation}
-	(y - X \beta -Zb)'\Sigma^{-1}(y - X \beta -Zb) + b^\prime D^{-1}b.
-	\label{Henderson:Criterion}
-	\end{equation}
-	This leads to the mixed model equations
-	\begin{equation}
-	\left(\begin{array}{cc}
-	X^\prime\Sigma^{-1}X & X^\prime\Sigma^{-1}Z
-	\\
-	Z^\prime\Sigma^{-1}X & X^\prime\Sigma^{-1}X + D^{-1}
-	\end{array}\right)
-	\left(\begin{array}{c}
-	\beta \\
-	b
-	\end{array}\right)
-	=
-	\left(\begin{array}{c}
-	X^\prime\Sigma^{-1}y \\
-	Z^\prime\Sigma^{-1}y
-	\end{array}\right).
-	\label{Henderson:Equations}
-	\end{equation}
-	Using these equations, obtaining the estimates requires the inversion of a matrix
-	of dimension $p+q \times p+q$, considerably smaller in size than $V$. \citet{Henderson1963} shows that these mixed model equations do not depend on normality and that $\hat{\beta}$ and $\hat{b}$ are the BLUE and BLUP under general conditions, provided $D$ and $\Sigma$ are known.
-	
-	\cite{Robi:BLUP:1991} points out that although \cite{Henderson:1950} initially referred to the estimates $\hat{\beta}$ and $\hat{b}$ from (\ref{Henderson:Equations}) as ``joint maximum likelihood estimates", \cite{Henderson:1973} later advised that these estimates should not be referred to as ``maximum likelihood" as the function being maximized in (\ref{Henderson:Criterion}) is a joint density rather than a likelihood function. \cite{Lee:Neld:Pawi:2006} remarks that it is clear that Henderson used joint estimation for computational purposes, without recognizing the theoretical implications.
-	
-	\subsubsection{Estimation of the fixed parameters}
-	
-	The vector $y$ has marginal density $y \sim \mathrm{N}(X \beta,V),$ where $V = \Sigma + ZDZ^\prime$ is specified through the variance component parameters $\theta.$ The log-likelihood of the fixed parameters $(\beta, \theta)$ is
-	\begin{equation}
-	\ell (\beta, \theta|y) =
-	-\frac{1}{2} \log |V| -\frac{1}{2}(y -
-	X \beta)'V^{-1}(y -
-	X \beta), \label{Likelihood:MarginalModel}
-	\end{equation}
-	and for fixed $\theta$ the estimate $\hat{\beta}$ of $\beta$ is obtained as the solution of
-	\begin{equation}
-	(X^\prime V^{-1}X) {\beta} = X^\prime V^{-1}y.
-	\label{mle:beta:hat}
-	\end{equation}
-	
-	Substituting $\hat{\beta}$ from (\ref{mle:beta:hat}) into $\ell(\beta, \theta|y)$ from (\ref{Likelihood:MarginalModel}) returns the \emph{profile} log-likelihood
-	\begin{eqnarray*}
-		\ell_P(\theta \mid y) &=& \ell(\hat{\beta}, \theta \mid y) \\
-		&=& -\frac{1}{2} \log |V| -\frac{1}{2}(y - X \hat{\beta})'V^{-1}(y - X \hat{\beta})
-	\end{eqnarray*}
-	of the variance parameter $\theta.$ Estimates of the parameters $\theta$ specifying $V$ can be found by maximizing $\ell_P(\theta \mid y)$ over $\theta.$ These are the ML estimates.
-	
-	For REML estimation the \emph{restricted} log-likelihood is defined as
-	\[
-	\ell_R(\theta \mid y) =
-	\ell_P(\theta \mid y) -\frac{1}{2} \log |X^\prime VX |.
-	\]
-	%\subsubsection{Likelihood estimation techniques}
-	%Maximum likelihood and restricted maximum likelihood have become the most common strategies
-	%for estimating the variance component parameter $\theta.$ Maximum likelihood estimation obtains
-	%parameter estimates by optimizing the likelihood function.
-	%To obtain ML estimate the likelihood is constructed as a function of the parameters in the specified LME model.
-	% The maximum likelihood estimates (MLEs) of the parameters are the values of the arguments that maximize the likelihood function.
-	
-	The REML approach does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function derived from a data set, transformed to remove the irrelevant influences \citep{REMLDefine}.
-	Restricted maximum likelihood is often preferred to maximum likelihood because REML estimation reduces the bias in the variance component by taking into account the loss of degrees of freedom that results
-	from estimating the fixed effects in $\boldsymbol{\beta}$. Restricted maximum likelihood also handles high correlations more effectively, and is less sensitive to outliers than maximum likelihood.  The problem with REML for model building is that the likelihoods obtained for different fixed effects are not comparable. Hence it is not valid to compare models with different fixed effects using a likelihood ratio test or AIC when REML is used to
-	estimate the model. Therefore models derived using ML must be used instead.
-	
-	\subsubsection{Estimation of the random effects}
-	
-	The established approach for estimating the random effects is to use the best linear predictor of $b$ from $y,$ which for a given $\beta$ equals $DZ^\prime V^{-1}(y - X \beta).$ In practice $\beta$ is replaced by an estimator such as $\hat{\beta}$ from (\ref{mle:beta:hat}) so that $\hat{b} = DZ^\prime V^{-1}(y - X \hat{\beta}).$ Pre-multiplying by the appropriate matrices it is straightforward to show that these estimates $\hat{\beta}$ and $\hat{b}$ satisfy the equations in (\ref{Henderson:Equations}).
-	
-	\subsubsection{Algorithms for likelihood function optimization}Iterative numerical techniques are used to optimize the log-likelihood function and estimate the covariance parameters $\theta$. The procedure is subject to the constraint that $R$ and $D$ are both positive definite. The most common iterative algorithms for optimizing the likelihood function are the Newton-Raphson method, which is the preferred method, the expectation maximization (EM) algorithm and the Fisher scoring methods.
-	
-	The EM algorithm, introduced by \citet{EM}, is an iterative technique for maximizing complicated likelihood functions. The algorithm alternates between performing an expectation (E) step
-	and the maximization (M) step. The `E' step computes the expectation of the log-likelihood evaluated using the current
-	estimate for the variables. In the `M' step, parameters that maximize the expected log-likelihood, found on the previous `E' step, are computed. These parameter estimates are then used to determine the distribution of the variables in the next `E' step. The algorithm alternatives between these two steps until convergence is reached.
-	
-	The main drawback of the EM algorithm is its slow rate of
-	convergence. Consequently the EM algorithm is rarely used entirely in LME estimation,
-	instead providing an initial set of values that can be passed to
-	other optimization techniques.
-	
-	The Newton Raphson (NR) method is the most common, and recommended technique for ML and
-	REML estimation. The NR algorithm minimizes an objective function defines as $-2$ times the log likelihood for the covariance parameters $\theta$. At every iteration the NR algorithm requires the
-	calculation of a vector of partial derivatives, known as the gradient, and the second derivative matrix with respect to the covariance parameters. This is known as the observed Hessian matrix. Due to the Hessian matrix, the NR algorithm is more time-consuming, but convergence is reached with fewer iterations compared to the EM algorithm. The Fisher scoring algorithm is an variant of the NR algorithm that is more numerically stable and likely to converge, but not recommended to obtain final estimates.
-	
-	\subsubsection{The extended likelihood}
-	
-	The desire to have an entirely likelihood-based justification for estimates of random effects, in contrast to Henderson's equation, has motivated \citet[page 429]{Pawi:in:2001} to define the \emph{extended likelihood}. He remarks ``In mixed effects modelling the extended likelihood has been called \emph{h-likelihood} (for hierarchical  likelihood) by \cite{Lee:Neld:hier:1996}, while in smoothing literature it is known as the \emph{penalized likelihood} (e.g.\ \citeauthor{Gree:Silv:nonp:1994} \citeyear{Gree:Silv:nonp:1994})." The extended likelihood can be written $L(\beta,\theta,b|y) = p(y|b;\beta,\theta) p(b;\theta)$ and adopting the same distributional assumptions used by \cite{Henderson:1950} yields the log-likelihood function
-	
-	\begin{eqnarray*}
-		\ell_h(\beta,\theta,b|y)
-		& = \displaystyle -\frac{1}{2} \left\{ \log|\Sigma| + (y - X \beta -Zb)'\Sigma^{-1}( y - X \beta -Zb) \right.\\
-		&  \hspace{0.5in} \left. + \log|D| + b^\prime D^{-1}b \right\}.
-	\end{eqnarray*}
-	Given $\theta$, differentiating with respect to $\beta$ and $b$ returns Henderson's equations in (\ref{Henderson:Equations}).
-	
-	\subsubsection{The LME model as a general linear model}
-	Henderson's equations in (\ref{Henderson:Equations}) can be rewritten $( T^\prime W^{-1} T ) \delta = T^\prime W^{-1} y_{a} $ using
-	\[
-	\delta = \left(\begin{array}{c}\beta \\ b \end{array}\right),
-	\ y_{a} = \left(\begin{array}{c}
-	y \cr \psi
-	\end{array}\right),
-	\ T = \left(\begin{array}{cc}
-	X & Z  \\
-	0 & I
-	\end{array}\right),
-	\ \textrm{and} \ W = \left(\begin{array}{cc}
-	\Sigma & 0  \cr
-	0 &  D \end{array}\right),
-	\]
-	where \cite{Lee:Neld:Pawi:2006} describe $\psi = 0$ as quasi-data with mean $\mathrm{E}(\psi) = b.$ Their formulation suggests that the joint estimation of the coefficients $\beta$ and $b$ of the linear mixed effects model can be derived via a classical augmented general linear model $y_{a} = T\delta + \varepsilon$ where $\mathrm{E}(\varepsilon) = 0$ and $\mathrm{var}(\varepsilon) = W,$ with \emph{both} $\beta$ and $b$ appearing as fixed parameters. The usefulness of this reformulation of an LME as a general linear model will be revisited.
-	
-	
-                                                                   % - Section 4
-	%----------------------------------------------------------------------------------------%
 
-	\section{Using LME for method comparison}
-	Due to the prevalence of modern statistical software, \citet{BXC2008} advocates the adoption of computer based approaches, such as LME models, to method comparison studies. \citet{BXC2008} remarks upon `by-hand' approaches advocated in \citet{BA99} discouragingly, describing them as tedious, unnecessary and `outdated'. Rather than using the `by hand' methods, estimates for required LME parameters can be read directly from program output. Furthermore, using computer approaches removes constraints associated with `by-hand' approaches, such as the need for the design to be perfectly balanced.
-	
-	\subsection{Roy's Approach}
-	
-	For the purposes of comparing two methods of measurement, \citet{roy} presents a framework that utilizes linear mixed effects model. This methodology provides for the formal testing of inter-method bias, between-subject variability and within-subject variability of two methods. The formulation contains a Kronecker product covariance structure in a doubly multivariate setup. By doubly multivariate set up, Roy means that the information on each patient or item is multivariate at two levels, the number of methods and number of replicated measurements. Further to \citet{lam}, it is assumed that the replicates are linked over time. However it is easy to modify to the unlinked case.
-	
-	\citet{roy} sets out three criteria for two methods to be considered in agreement. Firstly that there be no significant bias. Second that there is no difference in the between-subject variabilities, and lastly that there is no significant difference in the within-subject variabilities. Roy further proposes examination of the the overall variability by considering the second and third criteria be examined jointly. Should both the second and third criteria be fulfilled, then the overall variabilities of both methods would be equal.
-	
-	A formal test for inter-method bias can be implemented by examining the fixed effects of the model. This is common to well known classical linear model methodologies. The null hypotheses, that both methods have the same mean, which is tested against the alternative hypothesis, that both methods have different means.
-	The inter-method bias and necessary $t-$value and $p-$value are presented in computer output. A decision on whether the first of Roy's criteria is fulfilled can be based on these values.
-	
-	Importantly \citet{roy} further proposes a series of three tests on the variance components of an LME model, which allow decisions on the second and third of Roy's criteria. For these tests, four candidate LME models are constructed. The differences in the models are specifically in how the the $D$ and $\Lambda$ matrices are constructed, using either an unstructured form or a compound symmetry form. To illustrate these differences, consider a generic matrix $A$,
-	
-	\[
-	\boldsymbol{A} = \left( \begin{array}{cc}
-	a_{11} & a_{12}  \\
-	a_{21} & a_{22}  \\
-	\end{array}\right).
-	\]
-	
-	A symmetric matrix allows the diagonal terms $a_{11}$ and $a_{22}$ to differ. The compound symmetry structure requires that both of these terms be equal, i.e $a_{11} = a_{22}$.
-	
-	The first model acts as an alternative hypothesis to be compared against each of three other models, acting as null hypothesis models, successively. The models are compared using the likelihood ratio test. Likelihood ratio tests are a class of tests based on the comparison of the values of the likelihood functions of two candidate models. 
-	
-	
-	
-	
-	
-	
-	\subsection{Correlation}
-	In addition to the variability tests, Roy advises that it is preferable that a correlation of greater than $0.82$ exist for two methods to be considered interchangeable. However if two methods fulfil all the other conditions for agreement, failure to comply with this one can be overlooked. Indeed Roy demonstrates that placing undue importance to it can lead to incorrect conclusions. \citet{roy} remarks that current computer implementations only gives overall correlation coefficients, but not their variances. Consequently it is not possible to carry out inferences based on all overall correlation coefficients.
-	
-	%--------------------------------------------------%
-	\subsection{Variability test 1}
-	The first test determines whether or not both methods $A$ and $B$ have the same between-subject variability, further to the second of Roy's criteria.
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }d_{A}  = d_{B} \\
-		H_{A}: \mbox{ }d_{A}  \neq d_{B}
-	\end{eqnarray*}
-	This test is facilitated by constructing a model specifying a symmetric form for $D$ (i.e. the alternative model) and comparing it with a model that has compound symmetric form for $D$ (i.e. the null model). For this test $\boldsymbol{\hat{\Lambda}}$ has a symmetric form for both models, and will be the same for both.
-	
-	%---------------------------------------------%
-	\subsection{Variability test 2}
-	
-	This test determines whether or not both methods $A$ and $B$ have the same within-subject variability, thus enabling a decision on the third of Roy's criteria.
-	
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }\lambda_{A}  = \lambda_{B} \\
-		H_{A}: \mbox{ }\lambda_{A}  = \lambda_{B}
-	\end{eqnarray*}
-	
-	This model is performed in the same manner as the first test, only reversing the roles of $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$. The null model is constructed a symmetric form for $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form. This time $\boldsymbol{\hat{D}}$ has a symmetric form for both models, and will be the same for both.
-	
-	As the within-subject variabilities are fundamental to the coefficient of repeatability, this variability test likelihood ratio test is equivalent to testing the equality of two coefficients of repeatability of two methods. In presenting the results of this test, \citet{roy} includes the coefficients of repeatability for both methods.
-	
-	%-----------------------------------------------%
-	\subsection{Variability test 3}
-	The last of the variability test examines whether or not methods $A$ and $B$ have the same overall variability. This enables the joint consideration of second and third criteria.
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }\sigma_{A}  = \sigma_{B} \\
-		H_{A}: \mbox{ }\sigma_{A}  = \sigma_{B}
-	\end{eqnarray*}
-	
-	The null model is constructed a symmetric form for both $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form for both.
-	
-	\subsection{Demonstration of Roy's testing}
-	Roy provides three case studies, using data sets well known in method comparison studies, to demonstrate how the methodology should be used. The first two examples used are from the `blood pressure' data set introduced by \citet{BA99}. The data set is a tabulation of simultaneous measurements of systolic blood pressure were made by each of two experienced observers (denoted `J' and `R') using a sphygmomanometer and by a semi-automatic blood pressure monitor (denoted `S'). Three sets of readings were made in quick succession. Roy compares the `J' and `S' methods in the first of her examples.
-	
-	The inter-method bias between the two method is found to be $15.62$ , with a $t-$value of $-7.64$, with a $p-$value of less than $0.0001$. Consequently there is a significant inter-method bias present between methods $J$ and $S$, and the first of the Roy's three agreement criteria is unfulfilled.
-	
-	Next, the first variability test is carried out, yielding maximum likelihood estimates of the between-subject variance covariance matrix, for both the null model, in compound symmetry (CS) form, and the alternative model in symmetric (symm) form. These matrices are determined to be as follows;
-	\[
-	\boldsymbol{\hat{D}}_{CS} = \left( \begin{array}{cc}
-	946.50 & 784.32  \\
-	784.32 & 946.50  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{D}}_{Symm} = \left( \begin{array}{cc}
-	923.98 & 785.24  \\
-	785.24 & 971.30  \\
-	\end{array}\right).
-	\]
-	
-	A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the null model is $-2030.7$, and for the alternative model $-2030.8$. The test statistic, presented with greater precision than the log-likelihoods, is $0.1592$. The $p-$value is $0.6958$. Consequently we fail to reject the null model, and by extension, conclude that the hypothesis that methods $J$ and $S$ have the same between-subject variability. Thus the second of the criteria is fulfilled.
-	
-	The second variability test determines maximum likelihood estimates of the within-subject variance covariance matrix, for both the null model, in CS form, and the alternative model in symmetric form.
-	
-	\[
-	\boldsymbol{\hat{\Lambda}_{CS}} = \left( \begin{array}{cc}
-	60.27  & 16.06  \\
-	16.06  & 60.27  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{\Lambda}}_{Symm} = \left( \begin{array}{cc}
-	37.40 & 16.06  \\
-	16.06 & 83.14  \\
-	\end{array}\right).
-	\]
-	
-	Again, A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the alternative model model is $-2045.0$. As before, the null model has a log-likelihood of $-2030.7$. The test statistic is computed as $28.617$, again presented with greater precision. The $p-$value is less than $0.0001$. In this case we reject the null hypothesis of equal within-subject variability. Consequently the third of Roy's criteria is unfulfilled.
-	The coefficient of repeatability for methods $J$ and $S$ are found to be 16.95 mmHg and 25.28 mmHg respectively.
-	
-	The last of the three variability tests is carried out to compare the overall variabilities of both methods.
-	With the null model the MLE of the within-subject variance covariance matrix is given below. The overall variabilities for the null and alternative models, respectively, are determined to be as follows;
-	\[
-	\boldsymbol{\hat{\Sigma}}_{CS} = \left( \begin{array}{cc}
-	1007.92  & 801.65  \\
-	801.65  & 1007.92  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{\Sigma}}_{Symm} = \left( \begin{array}{cc}
-	961.38 & 801.40  \\
-	801.40 & 1054.43  \\
-	\end{array}\right),
-	\]
-	
-	The log-likelihood of the alternative model model is $-2045.2$, and again, the null model has a log-likelihood of $-2030.7$. The test statistic is $28.884$, and the $p-$value is less than $0.0001$. The null hypothesis, that both methods have equal overall variability, is rejected. Further to the second variability test, it is known that this difference is specifically due to the difference of within-subject variabilities.
-	
-	Lastly, Roy considers the overall correlation coefficient. The diagonal blocks $\boldsymbol{\hat{r}_{\Omega}}_{ii}$ of the correlation matrix indicate an overall coefficient of $0.7959$. This is less than the threshold of 0.82 that Roy recommends.
-	
-	\[
-	\boldsymbol{\hat{r}_{\Omega}}_{ii} = \left( \begin{array}{cc}
-	1  & 0.7959  \\
-	0.7959  & 1  \\
-	\end{array}\right)
-	\]
-	
-	The off-diagonal blocks of the overall correlation matrix $\boldsymbol{\hat{r}_{\Omega}}_{ii'}$ present the correlation coefficients further to \citet{hamlett}.
-	\[
-	\boldsymbol{\hat{r}_{\Omega}}_{ii'} = \left( \begin{array}{cc}
-	0.9611  & 0.7799  \\
-	0.7799  & 0.9212  \\
-	\end{array}\right).
-	\]
-	
-	The overall conclusion of the procedure is that method $J$ and $S$ are not in agreement, specifically due to the within-subject variability, and the inter-method bias. The repeatability coefficients are substantially different, with the coefficient for method $S$ being 49\% larger than for method $J$. Additionally the overall correlation coefficient did not exceed the recommended threshold of $0.82$.
-	
-	
-	%------------------------------------------------------------------------------------%
-	\newpage
+
+\section{Linear mixed effects models}
+
+% http://www.artifex.org/~meiercl/R_statistics_guide.pdf
+These models are used when there are both fixed and random effects that need to be incorporated into a model.
+
+Fixed effects usually correspond to experimental treatments for which one has data for the entire population of samples corresponding to that treatment.
+
+Random effects,on the other hand, are assigned in the case where we have measurements on a group of samples, and those
+samples are taken from some larger sample pool, and are presumed to be representative.
+
+As such, linear mixed effects models treat the error for fixed effects differently than the error for random effects.
+
+
+
+
+
 	\section{Limits of agreement in LME models}
 	
 	Limits of agreement are used extensively for assessing agreement, because they are intuitive and easy to use.
@@ -502,229 +224,7 @@ chronometer $j$. (Also, no interaction term is used).
 
 
 
-\section{Matrix Formulation} There are matrix (i.e multivariate)
-formulations of both fixed effects models and random effects
-models. \citet{BrownPrescott} remarks that the matrix notation
-makes the underlying theory of mixed effects models much easier to
-work with. The fixed effects models can be specified as follows;
 
-\begin{equation}
-\textbf{Y} = \textbf{Xb} + \textbf{e}
-\end{equation}
-
-\textbf{Y} is the vector of $n$ observations, with dimension $n
-\times 1$. \textbf{b} is a vector of fixed $p$ effects, and has
-dimension $p \times 1$. It is composed of coefficients, with the
-first element being the population mean. For the skin tumour
-example, with the three specified fixed effects, $p=4$. \textbf{X}
-is known as the design `matrix', model matrix for fixed effects,
-and comprises $0$s or $1$s, depending on whether the relevant
-fixed effects have any effect on the observation is question.
-\textbf{X} has dimension $n \times p$. \textbf{e} is the vector of
-residuals with dimension $n \times 1$.
-
-The random effects models can be specified similarly. \textbf{Z}
-is known as the `model matrix for random effects', and also
-comprises $0$s or $1$s. It has dimension $n \times q$. \textbf{u}
-is a vector of random $q$ effects, and has dimension $q \times 1$.
-
-\begin{equation}
-\textbf{Y} = \textbf{Zu} + \textbf{e}
-\end{equation}
-
-Again, once the component fixed effects and random effects
-components are considered, progression to a mixed model
-formulation is a simple step. Further to \citet{LW82}, it is
-conventional to formulate a mixed effects model in matrix form as
-follows:
-
-\begin{equation}
-\textbf{Y} = \textbf{Xb} + \textbf{Zu} + \textbf{e}
-\end{equation}
-
-($E(\textbf{u})=0$, $E(\textbf{e})=0 $ and $E(\textbf{y}) =
-\textbf{Xb}$)
-
-\subsection{Stating the LME Model}
-The general linear mixed
-model is
-\[
-Y = X\beta + Zu + \varepsilon\]
-where Y is a $(n\times1)$ vector of observed data, X is an $(n\times p)$ fixed-effects design or regressor matrix of rank
-k, Z is a $(n \times g)$ random-effects design or regressor matrix, $u$ is a $(g \times 1)$ vector of random effects, and $\varepsilon$ is
-an $(n\times1)$ vector of model errors (also random effects). The distributional assumptions made by the MIXED
-procedure are as follows: γ is normal with mean 0 and variance G; $\varepsilon$ is normal with mean 0 and variance
-R; the random components $u$ and $\varepsilon$ are independent. Parameters of this model are the fixed-effects β and
-all unknowns in the variance matrices G and R. The unknown variance elements are referred to as the
-covariance parameters and collected in the vector $theta$.
-%===========================================================================%
-
-The concept of critiquing the model-data agreement applies in mixed models in the same way as in linear
-fixed-effects models. In fact, because of the more complex model structure, you can argue that model and
-data diagnostics are even more important. For example, you are not only concerned with capturing the
-important variables in the model. You are also concerned with “distributing” them correctly between the
-fixed and random components of the model. The mixed model structure presents unique and interesting
-challenges that prompt us to reexamine the traditional ideas of influence and residual analysis.
-%==========================================================================%
-This paper presents the extension of traditional tools and statistical measures for influence and residual
-analysis to the linear mixed model and demonstrates their implementation in the MIXED procedure (experimental
-features in SAS 9.1). The remainder of this paper is organized as follows. The “Background” section
-briefly discusses some mixed model estimation theory and the challenges to model diagnosis that result
-from it.
-
-%	 The diagnostics implemented in the MIXED procedure are discussed in the “Residual Diagnostics
-%	in the MIXED Procedure” section (page 3) and the “Influence Diagnostics in the MIXED Procedure” section
-%	(page 5). The syntax options and suboptions you use to request the various diagnostics are briefly sketched
-%	in the “Syntax” section (page 9). The presentation concludes with an example.
-%	
-%	
-%--------------------------------------------------------------------------------------%
-\section{Statement of the LME model}
-A linear mixed effects model is a linear mdoel that combined fixed and random effect terms formulated by \citet{LW82} as follows;
-
-\begin{displaymath}
-Y_{i} =X_{i}\beta + Z_{i}b_{i} + \epsilon_{i}
-\end{displaymath}
-\begin{itemize}
-	
-	\item $Y_{i}$ is the $n \times 1$ response vector \item $X_{i}$ is
-	the $n \times p$ Model matrix for fixed effects \item $\beta$ is
-	the $p \times 1$ vector of fixed effects coefficients \item
-	$Z_{i}$ is the $n \times q$ Model matrix for random effects \item
-	$b_{i}$ is the $q \times 1$ vector of random effects coefficients,
-	sometimes denoted as $u_{i}$ \item $\epsilon$ is the $n \times 1$
-	vector of observation errors
-\end{itemize}
-
-
-The linear mixed effects model is given by
-\begin{equation}
-Y = X\beta + Zu + \epsilon
-\end{equation}
-
-\section{Estimation of random effects}
-
-Estimation of random effects for LME models in the NLME package is accomplished through use
-of both EM (Expectation-Maximization) algorithms and Newton-Raphson algorithms.
-\begin{itemize}
-	\item EM iterations bring estimates of the parameters into the region of the optimum very quickly, but
-	convergence to the optimum is slow when near the optimum.
-	\item Newton-Raphson iterations are computationally intensive and can be unstable when far from the
-	optimum. However, close to the optimum they converge quickly.
-	\item The LME function implements a hybrid approach, using 25 EM iterations to quickly get near the
-	optimum, then switching to Newton-Raphson iterations to quickly converge to the optimum. \item If
-	convergence problems occur, the ``control-argument in LME can be used to change the way the
-	model arrives at the optimum.
-\end{itemize}
-
-
-
-
-%--Marginal and Conditional Residuals
-
-\section{Restricted Likelihood Estimation}
-
-Restricted maximum likelihood (REML) is an alternative methods of
-computing parameter estimated, developed by \citet*{PT71} and
-\citet{Harville} to provide unbiased estimates of variance and
-covariance parameters. The REML approach does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function derived from a data set, transformed to remove the irrelevant influences \citep{REMLDefine}.
-%		This particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
-%		
-
-REML obtains estimates of the fixed effects using non-likelihoodlike methods, such as ordinary least squares or generalized least squares, and then using these estimates it
-maximizes the likelihood of the residuals (subtracting off the
-fixed effects) to obtain estimates of the variance parameters. In
-most software packages REML is the default algorithm used to
-compute coefficients for the predictor variables. REML estimation
-reduces the bias in the variance component, and also handles high
-correlations more effectively, and is less sensitive to outliers
-than ML.
-
-The variance components in the LME model may be estimated by ML or REML. Maximum Likelihood estimates do not take into account the estimation of fixed effects and so
-are biased downwards. REML estimates accounts for the presence of these nuisance parameters by maximising the linearly independent error contrasts to obtain more unbiased estimates.
-
-
-
-
-%The log likelihood $\emph{l}(\theta)$
-
-
-
-\citet{McCullSearle} describes two important outcomes of using
-REML. Firstly variance components can be estimated without being
-affected by fixed effects. Secondly in estimating variance
-components with REML, degrees of freedom for the fixed effects can
-be taken into account implicitly, whereas with ML they are not.
-%	When estimating variance from normally distributed data, the ML
-%	estimator for $\sigma^{2}$ is $\frac{S_{yy}}{n}$ whereas the REML
-%	estimator is $\frac{S_{yy}}{n-1}$. $S_{yy}$ is the sum of square
-%	identity;
-%	\begin{equation}
-%	S_{yy} = \Sigma_{i=i}^{N} (y-\bar{y})^{2}
-%	\end{equation}
-
-Restricted maximum likelihood is often preferred to maximum likelihood because REML estimation reduces the bias in the variance component by taking into account the loss of degrees of freedom that results
-from estimating the fixed effects in $\boldsymbol{\beta}$. Restricted maximum likelihood also handles high correlations more effectively, and is less sensitive to outliers than maximum likelihood.  The problem with REML for model building is that the likelihoods obtained for different fixed effects are not comparable. Hence it is not valid to compare models with different fixed effects using a likelihood ratio test or AIC when REML is used to
-estimate the model. Therefore models derived using ML must be used instead.
-
-
-%\subsection{Model Selection} The previous section on estimation assumes the specification of a mixed model in terms of X, Z, D, and R. Even though $X$ and $Z$ have known elements, there is some
-%flexibility is specifying the form and construction is flexible, and for a particular data set, there are numerous possibilities	that can be considered. Similarly, various potential covariance 	structures for \textbf{D} and \textbf{R} may be considered.
-
-
-%------------------------------------------------------------------------------%
-
-
-
-
-
-\section{Algorithms : ML v REML}
-Maximum likelihood estimation is a method of obtaining estimates of unknown parameters by optimizing a likelihood function. The ML
-parameter estimates are the values of the argument that maximise the likelihood function, i.e. the estimates that make the observed
-values of the dependent variable most likely, given the distributional assumptions
-
-The most common iterative algorithms used for the optimization
-problem in the context of LMEs are the EM algoritm, fisher scoring
-algorithm and NR algorithm, which [cite:West] commends as the
-preferred method.
-
-A mixed model is an extension of the general linear models that
-can specify additional random effects terms.
-
-Parameter of the mixed model can be estimated using either ML or
-REML, while the AIC and the BIC can be used as measures of
-"goodness of fit" for particular models, where smaller values are
-considered preferable.
-
-%--------------------------------------------------------------------%
-
-(\textbf{\emph{Wikipedia}})The restricted (or residual, or reduced) maximum likelihood (REML) approach is a particular form of maximum likelihood estimation which does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function calculated from a transformed set of data, so that nuisance parameters have no effect.
-
-In contrast to the earlier maximum likelihood estimation, REML can produce unbiased estimates of variance and covariance parameters.
-
-%-----------------------------------------------------------------------------------------%
-
-\noindent \textbf{ML procedures for LME}
-
-The maximum likelihood procedure of Hartley and Rao yields
-simultaneous estimates for both the fixed effects and the random
-effect, by maximising the likelihood of $\boldsymbol{y}$ with
-respect to each element of $\boldsymbol{\beta}$ and
-$\boldsymbol{b}$.
-
-%-----------------------------------------------------------------------------------------%
-
-
-
-\section{Likelihood and estimation}
-
-Likelihood is the hypothetical probability that an event that has already occurred would yield a specific outcome. Likelihood differs from probability in that probability refers to future occurrences, while likelihood refers to past known outcomes.
-
-The likelihood function ($L(\theta)$)is a fundamental concept in statistical inference. It indicates how likely a particular population is to produce an observed sample. The set of values that maximize the likelihood function are considered to be optimal, and are used as the estimates of the parameters. For computational ease, it is common to use the logarithm of the likelihood function, known simply as the log-likelihood ($\ell(\theta)$).
-
-%========================================================= %
-
-\newpage
 
 \section{Linear Mixed effects Models}
 A linear mixed effects (LME) model is a statistical model containing both fixed effects and random effects (random effects are also known as variance components). LME models are a generalization of the classical linear model, which contain fixed effects only. When the levels of factors are considered to be sampled from a population,
@@ -770,74 +270,7 @@ where $D$ and $\Sigma$ are positive definite matrices parameterized by an unknow
 % The likelihood function ($L(\theta)$)is a fundamental concept in statistical inference. It indicates how likely a particular population is to produce an observed sample. The set of values that maximize the likelihood function are considered to be optimal, and are used as the estimates of the parameters. For computational ease, it is common to use the logarithm of the likelihood function, known simply as the log-likelihood ($\ell(\theta)$).
 
 
-\subsection{Estimation}
-Estimation of LME models involve two complementary estimation issues'; estimating the vectors of the fixed and random effects estimates $\hat{\beta}$ and $\hat{b}$ and estimating the variance covariance matrices $D$ and $\Sigma$.
-Inference about fixed effects have become known as `estimates', while inferences about random effects have become known as `predictions'. The most common approach to obtain estimators are Best Linear Unbiased Estimator (BLUE) and Best Linear Unbiased Predictor (BLUP). For an LME model given by (\ref{LW}), the BLUE of $\hat{\beta}$ is given by
-\[\hat{\beta} = (X^\prime V^{-1}X)^{-1}X^\prime V^{-1}y,\]whereas the BLUP of $\hat{b}$ is given by
-\[\hat{b} = DZ^{\prime} V^{-1} (y-X\hat{\beta}).\]
 
-
-
-\subsubsection{Estimation of the fixed parameters}
-
-The vector $y$ has marginal density $y \sim \mathrm{N}(X \beta,V),$ where $V = \Sigma + ZDZ^\prime$ is specified through the variance component parameters $\theta.$ The log-likelihood of the fixed parameters $(\beta, \theta)$ is
-\begin{equation}
-\ell (\beta, \theta|y) =
--\frac{1}{2} \log |V| -\frac{1}{2}(y -
-X \beta)'V^{-1}(y -
-X \beta), \label{Likelihood:MarginalModel}
-\end{equation}
-and for fixed $\theta$ the estimate $\hat{\beta}$ of $\beta$ is obtained as the solution of
-\begin{equation}
-(X^\prime V^{-1}X) {\beta} = X^\prime V^{-1}y.
-\label{mle:beta:hat}
-\end{equation}
-
-Substituting $\hat{\beta}$ from (\ref{mle:beta:hat}) into $\ell(\beta, \theta|y)$ from (\ref{Likelihood:MarginalModel}) returns the \emph{profile} log-likelihood
-\begin{eqnarray*}
-	\ell_P(\theta \mid y) &=& \ell(\hat{\beta}, \theta \mid y) \\
-	&=& -\frac{1}{2} \log |V| -\frac{1}{2}(y - X \hat{\beta})'V^{-1}(y - X \hat{\beta})
-\end{eqnarray*}
-of the variance parameter $\theta.$ Estimates of the parameters $\theta$ specifying $V$ can be found by maximizing $\ell_P(\theta \mid y)$ over $\theta.$ These are the ML estimates.
-
-For REML estimation the \emph{restricted} log-likelihood is defined as
-\[
-\ell_R(\theta \mid y) =
-\ell_P(\theta \mid y) -\frac{1}{2} \log |X^\prime VX |.
-\]
-%\subsubsection{Likelihood estimation techniques}
-%Maximum likelihood and restricted maximum likelihood have become the most common strategies
-%for estimating the variance component parameter $\theta.$ Maximum likelihood estimation obtains
-%parameter estimates by optimizing the likelihood function.
-%To obtain ML estimate the likelihood is constructed as a function of the parameters in the specified LME model.
-% The maximum likelihood estimates (MLEs) of the parameters are the values of the arguments that maximize the likelihood function.
-
-The REML approach does not base estimates on a maximum likelihood fit of all the information, but instead uses a likelihood function derived from a data set, transformed to remove the irrelevant influences \citep{REMLDefine}.
-Restricted maximum likelihood is often preferred to maximum likelihood because REML estimation reduces the bias in the variance component by taking into account the loss of degrees of freedom that results
-from estimating the fixed effects in $\boldsymbol{\beta}$. Restricted maximum likelihood also handles high correlations more effectively, and is less sensitive to outliers than maximum likelihood.  The problem with REML for model building is that the likelihoods obtained for different fixed effects are not comparable. Hence it is not valid to compare models with different fixed effects using a likelihood ratio test or AIC when REML is used to
-estimate the model. Therefore models derived using ML must be used instead.
-
-\subsubsection{Estimation of the random effects}
-
-The established approach for estimating the random effects is to use the best linear predictor of $b$ from $y,$ which for a given $\beta$ equals $DZ^\prime V^{-1}(y - X \beta).$ In practice $\beta$ is replaced by an estimator such as $\hat{\beta}$ from (\ref{mle:beta:hat}) so that $\hat{b} = DZ^\prime V^{-1}(y - X \hat{\beta}).$ Pre-multiplying by the appropriate matrices it is straightforward to show that these estimates $\hat{\beta}$ and $\hat{b}$ satisfy the equations in (\ref{Henderson:Equations}).
-
-\subsubsection{Algorithms for likelihood function optimization}Iterative numerical techniques are used to optimize the log-likelihood function and estimate the covariance parameters $\theta$. The procedure is subject to the constraint that $R$ and $D$ are both positive definite. The most common iterative algorithms for optimizing the likelihood function are the Newton-Raphson method, which is the preferred method, the expectation maximization (EM) algorithm and the Fisher scoring methods.
-
-The EM algorithm, introduced by \citet{EM}, is an iterative technique for maximizing complicated likelihood functions. The algorithm alternates between performing an expectation (E) step
-and the maximization (M) step. The `E' step computes the expectation of the log-likelihood evaluated using the current
-estimate for the variables. In the `M' step, parameters that maximize the expected log-likelihood, found on the previous `E' step, are computed. These parameter estimates are then used to determine the distribution of the variables in the next `E' step. The algorithm alternatives between these two steps until convergence is reached.
-
-The main drawback of the EM algorithm is its slow rate of
-convergence. Consequently the EM algorithm is rarely used entirely in LME estimation,
-instead providing an initial set of values that can be passed to
-other optimization techniques.
-
-The Newton Raphson (NR) method is the most common, and recommended technique for ML and
-REML estimation. The NR algorithm minimizes an objective function defines as $-2$ times the log likelihood for the covariance parameters $\theta$. At every iteration the NR algorithm requires the
-calculation of a vector of partial derivatives, known as the gradient, and the second derivative matrix with respect to the covariance parameters. This is known as the observed Hessian matrix. Due to the Hessian matrix, the NR algorithm is more time-consuming, but convergence is reached with fewer iterations compared to the EM algorithm. The Fisher scoring algorithm is an variant of the NR algorithm that is more numerically stable and likely to converge, but not recommended to obtain final estimates.
-
-
-%------------------------------------------------------------------------------%
 \subsection{Formulation of the response vector}
 Information of individual $i$ is recorded in a response vector $\boldsymbol{y}_{i}$. The response vector is constructed by stacking the response of the $2$ responses at the first instance, then the $2$ responses at the second instance, and so on. Therefore the response vector is a $2n_{i} \times 1$ column vector.
 The covariance matrix of $\boldsymbol{y_{i}}$ is a $2n_{i} \times 2n_{i}$ positive definite matrix $\boldsymbol{\Omega}_{i}$.
@@ -886,21 +319,6 @@ $\boldsymbol{\Omega_{i}}$ can be expressed as
 \boldsymbol{\Omega_{i}} = \boldsymbol{Z}_{i}\boldsymbol{D}\boldsymbol{Z}_{i}^\prime + ({\boldsymbol{I_{n_{i}}} \otimes \boldsymbol{\Lambda}}).
 \]
 The notation $\mbox{dim}_{n_{i}}$ means an $n_{i} \times n_{i}$ diagonal block.
-
-
-
-\section{Linear mixed effects models}
-
-% http://www.artifex.org/~meiercl/R_statistics_guide.pdf
-These models are used when there are both fixed and random effects that need to be incorporated into a model.
-
-Fixed effects usually correspond to experimental treatments for which one has data for the entire population of samples corresponding to that treatment.
-
-Random effects,on the other hand, are assigned in the case where we have measurements on a group of samples, and those
-samples are taken from some larger sample pool, and are presumed to be representative.
-
-As such, linear mixed effects models treat the error for fixed effects differently than the error for random effects.
-
 
 
 
@@ -1024,6 +442,147 @@ The extended single level LME model relaxes the independence assumption, allowin
 $\Lambda_{i}$ are positive definite matrices. $\sigma^2$ is factored out of the matrix for computational reasons.
 
 
+	\section{Using LME for method comparison}
+	Due to the prevalence of modern statistical software, \citet{BXC2008} advocates the adoption of computer based approaches, such as LME models, to method comparison studies. \citet{BXC2008} remarks upon `by-hand' approaches advocated in \citet{BA99} discouragingly, describing them as tedious, unnecessary and `outdated'. Rather than using the `by hand' methods, estimates for required LME parameters can be read directly from program output. Furthermore, using computer approaches removes constraints associated with `by-hand' approaches, such as the need for the design to be perfectly balanced.
+	
+	\subsection{Roy's Approach}
+	
+	For the purposes of comparing two methods of measurement, \citet{roy} presents a framework that utilizes linear mixed effects model. This methodology provides for the formal testing of inter-method bias, between-subject variability and within-subject variability of two methods. The formulation contains a Kronecker product covariance structure in a doubly multivariate setup. By doubly multivariate set up, Roy means that the information on each patient or item is multivariate at two levels, the number of methods and number of replicated measurements. Further to \citet{lam}, it is assumed that the replicates are linked over time. However it is easy to modify to the unlinked case.
+	
+	\citet{roy} sets out three criteria for two methods to be considered in agreement. Firstly that there be no significant bias. Second that there is no difference in the between-subject variabilities, and lastly that there is no significant difference in the within-subject variabilities. Roy further proposes examination of the the overall variability by considering the second and third criteria be examined jointly. Should both the second and third criteria be fulfilled, then the overall variabilities of both methods would be equal.
+	
+	A formal test for inter-method bias can be implemented by examining the fixed effects of the model. This is common to well known classical linear model methodologies. The null hypotheses, that both methods have the same mean, which is tested against the alternative hypothesis, that both methods have different means.
+	The inter-method bias and necessary $t-$value and $p-$value are presented in computer output. A decision on whether the first of Roy's criteria is fulfilled can be based on these values.
+	
+	Importantly \citet{roy} further proposes a series of three tests on the variance components of an LME model, which allow decisions on the second and third of Roy's criteria. For these tests, four candidate LME models are constructed. The differences in the models are specifically in how the the $D$ and $\Lambda$ matrices are constructed, using either an unstructured form or a compound symmetry form. To illustrate these differences, consider a generic matrix $A$,
+	
+	\[
+	\boldsymbol{A} = \left( \begin{array}{cc}
+	a_{11} & a_{12}  \\
+	a_{21} & a_{22}  \\
+	\end{array}\right).
+	\]
+	
+	A symmetric matrix allows the diagonal terms $a_{11}$ and $a_{22}$ to differ. The compound symmetry structure requires that both of these terms be equal, i.e $a_{11} = a_{22}$.
+	
+	The first model acts as an alternative hypothesis to be compared against each of three other models, acting as null hypothesis models, successively. The models are compared using the likelihood ratio test. Likelihood ratio tests are a class of tests based on the comparison of the values of the likelihood functions of two candidate models. 
+	
+	
+	
+	
+	
+	
+	\subsection{Correlation}
+	In addition to the variability tests, Roy advises that it is preferable that a correlation of greater than $0.82$ exist for two methods to be considered interchangeable. However if two methods fulfil all the other conditions for agreement, failure to comply with this one can be overlooked. Indeed Roy demonstrates that placing undue importance to it can lead to incorrect conclusions. \citet{roy} remarks that current computer implementations only gives overall correlation coefficients, but not their variances. Consequently it is not possible to carry out inferences based on all overall correlation coefficients.
+	
+	%--------------------------------------------------%
+	\subsection{Variability test 1}
+	The first test determines whether or not both methods $A$ and $B$ have the same between-subject variability, further to the second of Roy's criteria.
+	\begin{eqnarray*}
+		H_{0}: \mbox{ }d_{A}  = d_{B} \\
+		H_{A}: \mbox{ }d_{A}  \neq d_{B}
+	\end{eqnarray*}
+	This test is facilitated by constructing a model specifying a symmetric form for $D$ (i.e. the alternative model) and comparing it with a model that has compound symmetric form for $D$ (i.e. the null model). For this test $\boldsymbol{\hat{\Lambda}}$ has a symmetric form for both models, and will be the same for both.
+	
+	%---------------------------------------------%
+	\subsection{Variability test 2}
+	
+	This test determines whether or not both methods $A$ and $B$ have the same within-subject variability, thus enabling a decision on the third of Roy's criteria.
+	
+	\begin{eqnarray*}
+		H_{0}: \mbox{ }\lambda_{A}  = \lambda_{B} \\
+		H_{A}: \mbox{ }\lambda_{A}  = \lambda_{B}
+	\end{eqnarray*}
+	
+	This model is performed in the same manner as the first test, only reversing the roles of $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$. The null model is constructed a symmetric form for $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form. This time $\boldsymbol{\hat{D}}$ has a symmetric form for both models, and will be the same for both.
+	
+	As the within-subject variabilities are fundamental to the coefficient of repeatability, this variability test likelihood ratio test is equivalent to testing the equality of two coefficients of repeatability of two methods. In presenting the results of this test, \citet{roy} includes the coefficients of repeatability for both methods.
+	
+	%-----------------------------------------------%
+	\subsection{Variability test 3}
+	The last of the variability test examines whether or not methods $A$ and $B$ have the same overall variability. This enables the joint consideration of second and third criteria.
+	\begin{eqnarray*}
+		H_{0}: \mbox{ }\sigma_{A}  = \sigma_{B} \\
+		H_{A}: \mbox{ }\sigma_{A}  = \sigma_{B}
+	\end{eqnarray*}
+	
+	The null model is constructed a symmetric form for both $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form for both.
+	
+	\subsection{Demonstration of Roy's testing}
+	Roy provides three case studies, using data sets well known in method comparison studies, to demonstrate how the methodology should be used. The first two examples used are from the `blood pressure' data set introduced by \citet{BA99}. The data set is a tabulation of simultaneous measurements of systolic blood pressure were made by each of two experienced observers (denoted `J' and `R') using a sphygmomanometer and by a semi-automatic blood pressure monitor (denoted `S'). Three sets of readings were made in quick succession. Roy compares the `J' and `S' methods in the first of her examples.
+	
+	The inter-method bias between the two method is found to be $15.62$ , with a $t-$value of $-7.64$, with a $p-$value of less than $0.0001$. Consequently there is a significant inter-method bias present between methods $J$ and $S$, and the first of the Roy's three agreement criteria is unfulfilled.
+	
+	Next, the first variability test is carried out, yielding maximum likelihood estimates of the between-subject variance covariance matrix, for both the null model, in compound symmetry (CS) form, and the alternative model in symmetric (symm) form. These matrices are determined to be as follows;
+	\[
+	\boldsymbol{\hat{D}}_{CS} = \left( \begin{array}{cc}
+	946.50 & 784.32  \\
+	784.32 & 946.50  \\
+	\end{array}\right),
+	\hspace{1.5cm}
+	\boldsymbol{\hat{D}}_{Symm} = \left( \begin{array}{cc}
+	923.98 & 785.24  \\
+	785.24 & 971.30  \\
+	\end{array}\right).
+	\]
+	
+	A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the null model is $-2030.7$, and for the alternative model $-2030.8$. The test statistic, presented with greater precision than the log-likelihoods, is $0.1592$. The $p-$value is $0.6958$. Consequently we fail to reject the null model, and by extension, conclude that the hypothesis that methods $J$ and $S$ have the same between-subject variability. Thus the second of the criteria is fulfilled.
+	
+	The second variability test determines maximum likelihood estimates of the within-subject variance covariance matrix, for both the null model, in CS form, and the alternative model in symmetric form.
+	
+	\[
+	\boldsymbol{\hat{\Lambda}_{CS}} = \left( \begin{array}{cc}
+	60.27  & 16.06  \\
+	16.06  & 60.27  \\
+	\end{array}\right),
+	\hspace{1.5cm}
+	\boldsymbol{\hat{\Lambda}}_{Symm} = \left( \begin{array}{cc}
+	37.40 & 16.06  \\
+	16.06 & 83.14  \\
+	\end{array}\right).
+	\]
+	
+	Again, A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the alternative model model is $-2045.0$. As before, the null model has a log-likelihood of $-2030.7$. The test statistic is computed as $28.617$, again presented with greater precision. The $p-$value is less than $0.0001$. In this case we reject the null hypothesis of equal within-subject variability. Consequently the third of Roy's criteria is unfulfilled.
+	The coefficient of repeatability for methods $J$ and $S$ are found to be 16.95 mmHg and 25.28 mmHg respectively.
+	
+	The last of the three variability tests is carried out to compare the overall variabilities of both methods.
+	With the null model the MLE of the within-subject variance covariance matrix is given below. The overall variabilities for the null and alternative models, respectively, are determined to be as follows;
+	\[
+	\boldsymbol{\hat{\Sigma}}_{CS} = \left( \begin{array}{cc}
+	1007.92  & 801.65  \\
+	801.65  & 1007.92  \\
+	\end{array}\right),
+	\hspace{1.5cm}
+	\boldsymbol{\hat{\Sigma}}_{Symm} = \left( \begin{array}{cc}
+	961.38 & 801.40  \\
+	801.40 & 1054.43  \\
+	\end{array}\right),
+	\]
+	
+	The log-likelihood of the alternative model model is $-2045.2$, and again, the null model has a log-likelihood of $-2030.7$. The test statistic is $28.884$, and the $p-$value is less than $0.0001$. The null hypothesis, that both methods have equal overall variability, is rejected. Further to the second variability test, it is known that this difference is specifically due to the difference of within-subject variabilities.
+	
+	Lastly, Roy considers the overall correlation coefficient. The diagonal blocks $\boldsymbol{\hat{r}_{\Omega}}_{ii}$ of the correlation matrix indicate an overall coefficient of $0.7959$. This is less than the threshold of 0.82 that Roy recommends.
+	
+	\[
+	\boldsymbol{\hat{r}_{\Omega}}_{ii} = \left( \begin{array}{cc}
+	1  & 0.7959  \\
+	0.7959  & 1  \\
+	\end{array}\right)
+	\]
+	
+	The off-diagonal blocks of the overall correlation matrix $\boldsymbol{\hat{r}_{\Omega}}_{ii'}$ present the correlation coefficients further to \citet{hamlett}.
+	\[
+	\boldsymbol{\hat{r}_{\Omega}}_{ii'} = \left( \begin{array}{cc}
+	0.9611  & 0.7799  \\
+	0.7799  & 0.9212  \\
+	\end{array}\right).
+	\]
+	
+	The overall conclusion of the procedure is that method $J$ and $S$ are not in agreement, specifically due to the within-subject variability, and the inter-method bias. The repeatability coefficients are substantially different, with the coefficient for method $S$ being 49\% larger than for method $J$. Additionally the overall correlation coefficient did not exceed the recommended threshold of $0.82$.
+	
+	
+	%------------------------------------------------------------------------------------%
+	\newpage
 \section{Standard Deviation of Differences}
 In computing limits of agreement, it is first necessary to have an estimate for the standard deviations of the differences. When the agreement of two methods is analyzed using LME models, a clear method of how to compute the standard deviation is required. As the estimate for inter-method bias and the quantile would be the same for both methodologies, the focus hereon is solely on the variance of differences.
 
