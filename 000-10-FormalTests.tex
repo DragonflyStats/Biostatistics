@@ -144,6 +144,18 @@ assessing the magnitude of the bias.
 t^{*} = \frac{\bar{d}}{s_{d}/\sqrt{n}}
 \end{eqnarray}
 
+	\subsection{Bland-Altman correlation test}
+	
+	The approach proposed by \citet{BA83} is a formal test on the
+	Pearson correlation coefficient of case-wise differences and means ($\rho_{AD}$). According to the authors, this test is equivalent
+	to the `Pitman Morgan Test'. For the Grubbs data, the correlation coefficient estimate ($r_{AD}$) is 0.2625, with a 95\% confidence
+	interval of (-0.366, 0.726) estimated by Fishers `$r$ to $z$' transformation \citep*{Cohen}. The null hypothesis ($\rho_{AD}$ =0)
+	fail to be rejected. Consequently the null hypothesis of equal variances of each method would also fail to be rejected. There has
+	no been no further mention of this particular test in \citet{BA86}, although \citet{BA99} refers to Spearman's rank
+	correlation coefficient. \citet{BA99} state that they ` do not see a place for methods of analysis based on hypothesis testing'.
+	\citet{BA99} also states that consider structural equation models to be inappropriate.
+	
+
 \subsection{Bland-Altman correlation test}
 
 The approach proposed by \citet{BA83} is a formal test on the
@@ -161,6 +173,74 @@ correlation coefficient. \citet{BA99} comments `we do not see a
 place for methods of analysis based on hypothesis testing'.
 \citet{BA99} also states that consider structural equation models
 to be inappropriate.
+
+	\subsection{Identifiability}
+	\citet{DunnSEME} highlights an important issue regarding using models such as structural equation modelling, which is the identifiability problem. This comes as a
+	result of there being too many parameters to be estimated. Therefore assumptions about some parameters, or estimators used, must be made so that others can be estimated. For example, in the literature, the variance ratio $\lambda=\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}}$
+	must often be assumed to be equal to $1$ \citep{linnet98}. \citet{DunnSEME} considers approaches based on two methods with single measurements on each subject as inadequate for a serious
+	study on the measurement characteristics of the methods. This is because there would not be enough data to allow for a meaningful
+	analysis. There is, however, a counter-argument that in many practical settings it is very difficult to get replicate observations when, for example, the measurement method requires invasive medical
+	procedure.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Bartko's BB
+	\citet{BB89} offer a formal simultaneous hypothesis test for the mean and variance of paired data sets. This approach is based upon regressing the differences of each pair on the sum of each pair, a
+	line is fitted to the model, with estimates for intercept and
+	slope ($\hat{\beta}_{0}$ and $\hat{\beta}_{1}$). The null
+	hypothesis of this test is that the mean ($\mu$) and variance
+	($\sigma^{2}$) of both data sets are equal if the slope and
+	intercept estimates are equal to zero (i.e $\sigma^{2}_{1} =
+	\sigma^{2}_{2}$ and $\mu_{1}=\mu_{2}$ if and only if $\beta_{0}=
+	\beta_{1}=0$ )
+	
+	A test statistic is then calculated from the regression analysis
+	of variance values \citep{BB89} and is distributed as `$F$' random
+	variable. The degrees of freedom are $\nu_{1}=2$ and $\nu_{2}=n-2$
+	(where $n$ is the number of pairs). 
+	\citet{Bartko} amends this approach for use in method
+	comparison studies, using the averages of the pairs, as opposed to
+	the sums, and their differences. This approach can facilitate
+	simultaneous usage of test with the Bland-Altman approach.
+	Bartko's test statistic take the form:
+	\[ F.test = \frac{(\Sigma d^{2})-SSReg}{2MSReg}
+	\]
+	% latex table generated in R 2.6.0 by xtable 1.5-5 package
+	% Mon Aug 31 15:53:51 2009
+	\begin{table}[ht]
+		\begin{center}
+			\begin{tabular}{lrrrrr}
+				\hline
+				& Df & Sum Sq & Mean Sq & F value & Pr($>$F) \\
+				\hline
+				Averages & 1 & 0.04 & 0.04 & 0.74 & 0.4097 \\
+				Residuals & 10 & 0.60 & 0.06 &  &  \\
+				\hline
+			\end{tabular}
+			\caption{Regression ANOVA of case-wise differences and averages
+				for Grubbs Data}
+		\end{center}
+	\end{table}
+	%(calculate using R code $qf(0.95,2,10)$).
+	
+	For the Grubbs data, $\Sigma d^{2}=5.09 $, $SSReg = 0.60$ and $MSreg=0.06$. Therefore the test statistic is $3.742$, with a critical value of $4.10$. Hence the means and variance of the
+	Fotobalk and Counter chronometers are assumed to be simultaneously equal.
+	
+	Importantly, this methodology determines whether there is both inter-method bias and precision present, or alternatively if there
+	is neither present. It has previously been demonstrated that there is a inter-method bias present, but as this procedure does not allow for separate testing, no conclusion can be drawn on the comparative precision of both methods.
+	
+	
+	
+	%This application of the
+	%Grubbs method presumes the existence of this condition, and necessitates
+	%replication of observations by means external to and independent of the first
+	%means. The Grubbs estimators method is based on the laws of propagation of
+	%error. By making three independent simultaneous measurements on the same
+	%physical material, it is possible by appropriate mathematical manipulation of
+	%the sums and differences of the associated variances to obtain a valid
+	%estimate of the precision of the primary means. Application of the Grubbs
+	%estimators procedure to estimation of the precision of an apparatus uses
+	%the results of a physical test conducted in such a way as to obtain a series
+	%of sets of three independent observations.
+	
 
 \subsection{Identifiability}
 \citet{DunnSEME} highlights an important issue regarding using
