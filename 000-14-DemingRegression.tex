@@ -25,6 +25,11 @@
 	variable. With Model I regression,the models fitted in both cases
 	will entirely different and inconsistent. However with Model II
 	regression, they will be consistent and complementary.
+%---------------------------------------------------------------------------------------------------%
+
+\section*{Deming regression}
+The Deming regression line is estimated by minimizing the sums of squared deviations in both the x and y directions at an angle determined by the ratio of the analytical standard deviations for the two methods.
+This ratio can be estimated if multiple measurements were taken with each method, but if only one measurement was taken with each method, it can be assumed to be equal to one.
 	
 	\subsection{Deming's Regression}
 	The most commonly known Model II methodology is known as Deming's
@@ -77,7 +82,7 @@
 	data set features in the discussion of method comparison studies
 	in \citet[p.398]{images/AltmanBook} .
 	
-	\newpage
+
 	% latex table generated in R 2.6.0 by xtable 1.5-5 package
 	% Tue Sep 01 13:31:17 2009
 	\begin{table}[h!]
@@ -102,7 +107,7 @@
 				stroke volume (SV) in 21 patients. (Zhang et al 1986)}
 		\end{center}
 	\end{table}
-	\newpage
+
 	\begin{figure}[h!]
 		% Requires \usepackage{graphicx}
 		\includegraphics[width=130mm]{images/ZhangDeming.jpeg}
@@ -144,27 +149,6 @@ estimated either from duplicate sets of measurements or, in the case of single m
 quality-control data. However, even with a misspecified error ratio, Deming regression analysis is likely to perform 
 better than least-squares regression analysis.
 
-
-\newpage
-Performance of Deming regression analysis in case of misspecified analytical error ratio in method comparison studies
-
-%-----------------------------------------------------------------------------------------------%
-Application of Deming regression analysis to interpret method comparison data presupposes specification of the 
-squared analytical error ratio ($\lambda$, but in cases involving only single measurements by each method, this 
-ratio may be unknown and is often assigned a default value of one. 
-
-On the basis of simulations, this practice was evaluated in situations with real error ratios deviating from one. 
-Comparisons of two electrolyte methods and two glucose methods were simulated. 
-
-In the first case, misspecification of $\lambda$ produced a bias that amounted to two-thirds of the maximum bias of the 
-ordinary least-squares regression method. Standard errors and the results of hypothesis-testing also became misleading. 
-In the second situation, a misspecified error ratio resulted only in a negligible bias. 
-
-Thus, given a short range of values in relation to the measurement errors, it is important that $\lambda$ is correctly 
-estimated either from duplicate sets of measurements or, in the case of single measurement sets, specified from 
-quality-control data. However, even with a misspecified error ratio, Deming regression analysis is likely to perform 
-better than least-squares regression analysis.
-
 \newpage
 \begin{verbatim}
 Fiducial approach for assessing agreement between two instruments
@@ -183,7 +167,7 @@ two instruments. Computer codes for performing these calculations, written using
 software, are listed.
 %-----------------------------------------------------------------------------------------------%
 
-%EQUIVALENCE REGION
+\subsection*{EQUIVALENCE REGION}
 The equivalence region is specified by the user. It can be an ellipse, parallelogram,
 rectangle, or a region of some other appropriate shape. The way we use the fiducial region in this method is as follows. If
 the $1−\gamma$ fiducial region that we construct is completely inside the equivalence region then we have established agreement.
@@ -199,11 +183,6 @@ fiducial inference.
 
 
 %-----------------------------------------------------------------------------------------------%
-%---------------------------------------------------------------------------------------------------%
-
-\section*{Deming regression}
-The Deming regression line is estimated by minimizing the sums of squared deviations in both the x and y directions at an angle determined by the ratio of the analytical standard deviations for the two methods.
-This ratio can be estimated if multiple measurements were taken with each method, but if only one measurement was taken with each method, it can be assumed to be equal to one.
 
 %---------------------------------------------------------------------------------------------------%
 
@@ -213,13 +192,16 @@ http://www.springerlink.com/content/r1063462u618q483/
 Use of deming regression in method comparison studies.
 Henk Konings
 
-Accuracy is closeness to the true value, or alternatively, having a low measurement error.
+\begin{itemize}
+\item Accuracy is closeness to the true value, or alternatively, having a low measurement error.
 
-The determination of a true value for a biological specimen is difficult and sometimes impossible.
+\item The determination of a true value for a biological specimen is difficult and sometimes impossible.
 
-Precision is expressed in terms of standard deviation, coefficient of variance or variance.
+\item Precision is expressed in terms of standard deviation, coefficient of variance or variance.
 
-In Deming regression, the errors between methods are assigned to both methods in proportion to the variances of the methods.
+\item In Deming regression, the errors between methods are assigned to both methods in proportion to the variances of the methods.
+\end{itemize}
+
 
 	\section{Linnet - References}
 	The statistical procedures are described in:
@@ -240,14 +222,6 @@ In Deming regression, the errors between methods are assigned to both methods in
 	
 	%-------------------------------------------------------------%
 	Latent variables are variables that are not measured (i.e. not observed) but whose values is observed from other observed variables. One advantage of using latent variables is that it reduces the dimensionality of data. A large number of observable variables can be aggregated in a model to represent an underlying concept, making it easier for humans to understand the data.	[wikipedia]
-
-\section*{Linnet}
-The statistical procedures are described in:
-Linnet K. Necessary sample size for method comparison studies based on regression analysis. Clin Chem 1999; 45: 882-94.
-Linnet K. Performance of Deming regression analysis in case of misspecified analytical error ratio in method comparison studies. Clin Chem 1998; 44: 1024-1031.
-Linnet K. Evaluation of regression procedures for methods comparison studies. Clin Chem 1993; 39. 424-432.
-Linnet K. Estimation of the linear relationship between measurements of two methods with proportional errors. Stat Med 1990; 9: 1463-1473.
-
 
 \bibliographystyle{chicago}
 \bibliography{DB-txfrbib}

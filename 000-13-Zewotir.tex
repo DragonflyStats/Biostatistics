@@ -56,12 +56,6 @@ If the global measure suggests that the points in $U$ are influential, the natur
 
 
 
-\subsection{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
-
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-
 
 %--------------------------------------------------%
 \subsection{Residual Analysis for Linear Models, LME models and GLMs}
@@ -79,13 +73,6 @@ To alleviate the problem caused by inconstant variance, the residuals are scaled
 \end{itemize}
 
 
-%http://www.artifex.org/~meiercl/R_statistics_guide.pdf
-\subsection{Identifying outliers with a LME model object}
-
-The process is slightly different than with standard LME model objects, since the \textbf{\emph{influence}}
-function does not work on lme model objects. Given \textbf{\emph{mod.lme}}, we can use the plot function to
-identify outliers.
-%----------------------%
 \subsection{Diagnostics for Random Effects}
 Empirical best linear unbiased predictors EBLUPS provide the a useful way of diagnosing random effects.
 
@@ -116,14 +103,7 @@ The key to making deletion diagnostics useable is the development of efficient c
 
 
 
-
-\section{Demidenko's I Influence} %2.6
-The concept of I Influence is generalized  to the non linea regression model.
-
-
-
-
-Zewotir Notepad
+\section{Zewotir Notepad}
 
 \begin{quote}
 	Abstract: Linear mixed models are extremely sensitive to outlying responses and extreme points in the fixed and random effect design spaces. Few diagnostics are available in standard computing packages. We provide routine diagnostic tools, which are computationally inexpensive. The diagnostics
@@ -143,13 +123,23 @@ and provide information on the influence of the data on different aspects of the
 
 
 %-------------------------------------------------------------------------------------------------------%
+\bigskip 
+
 Residual standard deviation.
+
 Roy Subject effects, replicate in subject,
+
 Cardiac data PEFR data from BLand
+
+
 Royal Melbourne Hospital.
+
+
 Roy demonstrates that correlation can be described under the model formulation.
 
-\[Y_i = x.\beta + Z.u + epsilon]\]
+\[Y_i = x.\beta + Z.u + \epsilon]\]
+
+
 Laird Ware form (litte et al)
 
 
@@ -163,13 +153,10 @@ well known data sets.
 %-------------------------------------------------------------------------------------------------------%
 
 % Zewotir
-$\epsilon$ is an $n times 1$ vector of error terms
+$\epsilon$ is an $n \times 1$ vector of error terms
 Zewotir provides routine diagnostics tools that are computationally inexpensive.
 $\boldsymbol{u}_i$ is a $q_i \times 1$  vector of random variables from $\mathcal{N}(0 \sigma^2.I)$
 
-
-Christensen Petersen and Johnson studied case deletion diagnostics. 
-%-------------------------------------------------------------------------------------------------------% 
 
 % 2. Model Definiton and Estimation 
 
@@ -177,39 +164,8 @@ Christensen Petersen and Johnson studied case deletion diagnostics.
 % 3. Background, Notation and Update Formulae
 
 
-\section{The Hat Matrix} %5.1
-
-The projection matrix $H$ (also known as the hat matrix), is a
-well known identity that maps the fitted values $\hat{Y}$ to the
-observed values $Y$, i.e. $\hat{Y} = HY$.
-
-\begin{equation}
-H =\quad X(X^{T}X)^{-1}X^{T}
-\end{equation}
-
-$H$ describes the influence each observed value has on each fitted
-value. The diagonal elements of the $H$ are the `leverages', which
-describe the influence each observed value has on the fitted value
-for that same observation. The residuals ($R$) are related to the
-observed values by the following formula:
-\begin{equation}
-R = (I-H)Y
-\end{equation}
-
-The variances of $Y$ and $R$ can be expressed as:
-\begin{eqnarray}
-\mbox{var}(Y) = H\sigma^{2} \nonumber\\
-\mbox{var}(R) = (I-H)\sigma^{2}
-\end{eqnarray}
-
-Updating techniques allow an economic approach to recalculating
-the projection matrix, $H$, by removing the necessity to refit the
-model each time it is updated. However this approach is known for
-numerical instability in the case of down-dating.
 
 
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
 \section{Zewotir Measures of Influence in LME Models}%2.2
 %Zewotir page 161
 \citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
@@ -237,154 +193,6 @@ A large value for $CD(u)_i$ indicates that the $i-$th observation is influential
 
 $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
-
-\subsection{Information Ratio}
-
-
-
-	\section{Zewotir Measures of Influence in LME Models}
-	%Zewotir page 161
-	\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-	\begin{itemize}
-		\item Variance components
-		\item Fixed effects parameters
-		\item Prediction of the response variable and of random effects
-		\item likelihood function
-	\end{itemize}
-	
-	\subsection{Cook's Distance}
-	\begin{itemize}
-		\item For variance components $\gamma$: $CD(\gamma)_i$,
-		\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-		\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-		\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-	\end{itemize}
-	
-
-	\subsubsection{Random Effects}
-	
-	A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-	
-	\subsubsection{linear functions}
-	
-	$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-	
-	
-
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-\subsection{Cook's Distance}
-\begin{itemize}
-	\item For variance components $\gamma$: $CD(\gamma)_i$,
-	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-\end{itemize}
-
-\subsubsection{Random Effects}
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-
-\subsubsection{linear functions}
-
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-
-
-\subsection{Information Ratio}
-
-
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-
-
-
-\section{Efficient Updating Theorem} %2.1
-\citet{Zewotir} describes the basic theorem of efficient updating.
-\begin{itemize}
-	\item \[ m_i = {1 \over c_{ii}}\]
-	%\item
-	%item
-	%\item
-\end{itemize}
-
-
-
-
-
-\subsubsection{linear functions}
-
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-
-
-
-
-
-\section{Efficient Updating Theorem} %2.1
-\citet{Zewotir} describes the basic theorem of efficient updating.
-\begin{itemize}
-	\item \[ m_i = {1 \over c_{ii}}\]
-	%\item
-	%item
-	%\item
-\end{itemize}
-
-
-\subsubsection{Random Effects}
-
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-\subsubsection{linear functions}
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 
 
@@ -434,44 +242,6 @@ compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $
 
 
 
-
-\section{Haslett's Analysis} %2.5
-For fixed effect linear models with correlated error structure Haslett (1999) showed that the effects on
-the fixed effects estimate of deleting each observation in turn could be cheaply computed from the fixed effects model predicted residuals.
-
-
-
-A general theory is presented for residuals from the general linear model with correlated errors.
-It is demonstrated that there are two fundamental types of residual associated with this model,
-referred to here as the marginal and the conditional residual.
-
-
-These measure respectively the distance to the global aspects of the model as represented by the expected value
-and the local aspects as represented by the conditional expected value.
-
-
-These residuals may be multivariate.
-
-
-\citet{HaslettHayes} developes some important dualities which have simple implications for diagnostics.
-
-
-%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-
-%-------------------------------------------------------------------------------------------------Chapter 2	------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
 
 
 \section{Zewotir: Computation and Notation } %2.3
@@ -526,7 +296,7 @@ Information Ratio
 %-------------------------------------------------------------------------------------------------------%
 
 4.2. Influence on fixed effects parameter estimates
-4.2.1 Analogue of Cook’s Distance
+\subsubsection*{4.2.1 Analogue of Cook’s Distance}
 The Cook’s distance can be extended to measure influence on the fixed effects in the mixed models.
 Large values of $CD_i(\beta$) indicates points for further consideration
 %------------------------------------%
@@ -536,7 +306,7 @@ The variance ratio measures the change of the determinant of the variance of the
 
 %------------------------------------%
 %Page 163
-4.2.3 Analogue of the Cook-Weisberg statistic
+\subsubsection*{4.2.3 Analogue of the Cook-Weisberg statistic}
 
 This statistic is used to measure the change of the confidence ellipsoid value of $\beta$.
 \[ \boldsymbol{y} \sim N ( boldsymbol{X}\beta , \sigma^2_epsilon boldsymbol{H})\]
@@ -549,16 +319,16 @@ Cook and Weisberg proposed the logarithm of the ratio $E_{(i)}$ to E as a measur
 %-------------------------------------------------------------------------------------------------------%
 
 
-4.2.4 Analogue of the Andrews Pregibons statistic
+\subsubsection*{4.2.4 Analogue of the Andrews Pregibons statistic}
 This is another measure based on the volume of the confidence ellipsoid. AP$_i$
 %-------------------------------------------------------------------------------------------------------%
 
-4.3 Influence on random effects prediction.
+\subsubsection*{4.3 Influence on random effects prediction.}
 Analogue of Cook’s Distance
 A large $CD_i(u)$ indicates that the i-th observation is influential in predicting random effects.
 %-------------------------------------------------------------------------------------------------------%
 
-4.4 Influence on the likelihood function
+\subsubsection*{4.4 Influence on the likelihood function}
 Likelihood Distance ($LD_i$)
 %-------------------------------------------------------------------------------------------------------%
 

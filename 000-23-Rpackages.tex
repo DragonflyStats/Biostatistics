@@ -152,6 +152,14 @@ The \texttt{influence()} function was known as the \texttt{estex()} command in p
 
 
 
+%http://www.artifex.org/~meiercl/R_statistics_guide.pdf
+\subsection{Identifying outliers with a LME model object}
+
+The process is slightly different than with standard LME model objects, since the \textbf{\emph{influence}}
+function does not work on lme model objects. Given \textbf{\emph{mod.lme}}, we can use the plot function to
+identify outliers.
+%----------------------%
+
 \section{Leave-One-Out Diagnostics with \texttt{lmeU}}
 Galecki et al discuss the matter of LME influence diagnostics in their book, although not into great detail.
 

@@ -217,16 +217,44 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 
 
-\section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-Zewotir describes a number of approaches to model diagnostics, investigating each of the following;
+\section{Measures 2} %2.4
+
+\subsection{Cook's Distance} %2.4.1
 \begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
+	\item For variance components $\gamma$
 \end{itemize}
 
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+\subsection{Variance Ratio} %2.4.2
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Cook-Weisberg statistic} %2.4.3
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+
+\subsection{Andrews-Pregibon statistic} %2.4.4
+\begin{itemize}
+	\item For fixed effect parameters $\beta$.
+\end{itemize}
+The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
+
+%The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
 
 \addcontentsline{toc}{section}{Bibliography}
 
