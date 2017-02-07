@@ -88,38 +88,6 @@ F(±0) = ©(du) ¡ ©(dl): (3)
 A high value of F(±0) implies a good agreement between the methods.
 
 
-%-----------------------------------------------------------------------------------------%
-\section{Coverage Probability and Tolerance Deviation Index}
-
-Individual agreement between two measurement methods may be
-assessed using the the coverage probability (CP) criteria or the
-total deviation index (TDI) as proposed by \citet{lin2000} and
-\citet{lin2002}.
-
-If $d_{0}$ is predetermined as the maximum acceptable absolute
-difference between two methods of measurement, the probability
-that the absolute difference of two measures being less than
-$d_{0}$ can be computed. This is known as the coverage probability
-(CP).
-
-\begin{equation}
-CP = P(|x_{i} - y_{i}| \leq d_{0})
-\end{equation}
-
-If $\pi_{0}$ is set as the predetermined coverage probability, the
-boundary under which the proportion of absolute differences is
-$\pi_{0}$ may be determined. his boundary is known as the `total
-deviation index' (TDI). Hence the TDI is the $100\pi_{0}$
-percentile of the absolute difference of paired observations.
-
-
-The CP is the most intuitively clear approach; it mirrors the information provided by the TDI. 
-Both TDI and CP depend on the normality assumption and offer better power
-for inference than the CCC. The CP would have difficulty discriminating among instruments or 
-assays that have excellent agreement, all because the CP values would be very close to
-1. In this case, the TDI can be used to discriminate among these. When a meaningful clinical range is known and the study is conducted over that range, the CCC offers a meaningful geo- metric interpretation and is unit free. Furthermore, the accuracy and precision components of the CCC offer more insight. Therefore, the CCC, accuracy, and precision remain very useful tools. Note that when Y and X are not linearly related, the CCC will capture the total deviation. However, it will treat the nonlinear deviation as imprecision rather than inaccuracy. The CCC, ICC, and Pearson correlation coef cient depend
-largely on the analytical range and the intrasample variation.
-
 \subsection*{Total Deviation Index}
 
 
@@ -135,37 +103,19 @@ Lin LI.
 %%====================%%
 In areas of inter-laboratory quality control, method comparisons, assay validation and individual bioequivalence, etc., the agreement between observations and target (reference) values is of interest. The mean of the squared difference between observations and target values (MSD) is a good measure of the total deviation. A new user-friendly statistic, the total deviation index (TDI(1-p)), is introduced that translates the MSD into an index that can be directly compared to a predetermined criterion. 
 
+\bigskip 
+
 The TDI(1-p) describes a boundary such that a majority, 100(1-p) per cent, of the observations are within the boundary (measurement unit and/or per cent) from their target values. Statistical inference using the sample counter part (estimate) is presented. A Monte Carlo experiment with 5000 runs was performed to confirm the estimate's validity. Applications in laboratory performance and validation, as well as individual bioequivalence, are presented.
 %%====================%%
 %- http://www.tandfonline.com/doi/abs/10.1080/10543400802622576#.U5f-GnJdXw0
 %- 
+
+\bigskip
+
 Individual agreement between two measurement systems is determined using the total deviation index (TDI) or the coverage probability (CP) criteria as proposed by Lin (2000) and Lin et al. (2002). We used a variance component model as proposed by Choudhary (2007). Using the bootstrap approach, Choudhary (2007), and generalized confidence intervals, we construct bounds on TDI and CP. A simulation study was conducted to assess whether the bounds maintain the stated type I error probability of the test. We also present a computational example to demonstrate the statistical methods described in the paper.
 
 %%====================%%
 - http://artax.karlin.mff.cuni.cz/r-help/library/MethComp/html/TDI.html
-
-
-\subsection*{Total Deviation Index}
-%%====================%%
-\textit{Total deviation index for measuring individual agreement with applications in laboratory performance and bioequivalence.
-Lin LI.}
-\textit{*Stat Med. 2000 Jan 30;19(2):255-70*
-*http://www.ncbi.nlm.nih.gov/pubmed/10641028*}
-%%====================%%
-- In areas of inter-laboratory quality control, method comparisons, assay validation and individual bioequivalence, etc., 
-the agreement between observations and target (reference) values is of interest. 
-
-- The mean of the squared difference between observations and target values (MSD) is a good measure of the total deviation. 
-A new user-friendly statistic, the total deviation index (TDI(1-p)), is introduced that translates the MSD into an index
-that can be directly compared to a predetermined criterion. 
-
-- The TDI(1-p) describes a boundary such that a majority, 100(1-p) per cent, of the observations are within the boundary
-(measurement unit and/or per cent) from their target values. Statistical inference using the sample counter part
-(estimate) is presented. 
-
-- A Monte Carlo experiment with 5000 runs was performed to confirm the estimate's validity.
-Applications in laboratory performance and validation, as well as individual bioequivalence, are presented.
-
 
 	\chapter{Alternative agreement indices}
 	
@@ -237,29 +187,7 @@ Applications in laboratory performance and validation, as well as individual bio
 	
 	
 	\section{Coverage Probability and Tolerance Deviation Index}
-	
-	Individual agreement between two measurement methods may be
-	assessed using the the coverage probability (CP) criteria or the
-	total deviation index (TDI) as proposed by \citet{lin2000} and
-	\citet{lin2002}.
-	
-	If $d_{0}$ is predetermined as the maximum acceptable absolute
-	difference between two methods of measurement, the probability
-	that the absolute difference of two measures being less than
-	$d_{0}$ can be computed. This is known as the coverage probability
-	(CP).
-	
-	\begin{equation}
-	CP = P(|x_{i} - y_{i}| \leq d_{0})
-	\end{equation}
-	
-	If $\pi_{0}$ is set as the predetermined coverage probability, the
-	boundary under which the proportion of absolute differences is
-	$\pi_{0}$ may be determined. his boundary is known as the `total
-	deviation index' (TDI). Hence the TDI is the $100\pi_{0}$
-	percentile of the absolute difference of paired observations.
-	
-	
+
 	The CP is the most intuitively clear approach; it mirrors the information provided by the TDI. 
 	Both TDI and CP depend on the normality assumption and offer better power
 	for inference than the CCC. The CP would have difficulty discriminating among instruments or 
@@ -301,11 +229,7 @@ Smaller values of $q$ indicate better agreement. $P_{0}$ is specified by the pra
 	\[\Theta \left( \frac{ TDI - \mu_d}{\sigma_d} \right) - \Theta \left(  \frac{ -TDI - \mu_d}{\sigma_d} \right) = 1-p\]
 	
 	Again, the assumption of the normality of the case-wise differences is relied upon.
-	%------------------------------------------------------------------------------%
 	
-	The approach is illustrated in a real case example where the agreement between two instruments, a handle mercury sphygmomanometer device and an OMRON 711 automatic device, is assessed in a sample of 384 subjects where measures of systolic blood pressure were taken twice by each device. A simulation study procedure is implemented to evaluate and compare the accuracy of the approach to two already established methods, showing that the TI approximation produces accurate empirical confidence levels which are reasonably close to the nominal confidence level.
-
-
 \subsection*{Total Deviation Index - TDI - Escaramis}
 
 
