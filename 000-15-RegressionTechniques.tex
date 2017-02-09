@@ -64,6 +64,47 @@
 \begin{document}
 	\chapter{Bradley Blackwood}
 	%----------------------------------------------------------------------------------------------------------------------%
+\section{Simple Linear Regression}
+
+% 1.A. Use of SLR, description of SLR as Model I
+% 1.B. Inappropriate for MCS
+% 1.C  Calibration and Conversion problems
+
+Simple linear regression is defined as such with the name `Model I regression' by Cornbleet Gochman (1979), in contrast to 'Model II regression'.
+
+On account of the fact that one set of measurements are linearly related to another, one could surmise that Linear Regression is the most suitable approach to analyzing comparisons. This approach is unsuitable on two counts. Firstly one of the assumptions of Regression analysis is that the independent variable values are without error. In method comparison studies one must assume the opposite; that there is error present in the measurements. Secondly a regression of X on Y would yield and entirely different result from Y on X.
+
+
+Simple linear regression calculates a line of best fit for two
+sets of data, n which the independent variable, X, is measured without error, with y as the dependent variable.  
+
+SLR (Model I) regression is considered by many \citet{BA83,CornCoch,ludbrook97} to be wholly unsuitable for
+method comparison studies, although recommended for use in calibration studies [Corncoch]. Even in the case where one
+method is a gold standard , it is disputed as to whether it is a valid approach. Model II regression is more suitable for method comparison studies, but it is more difficult to execute. Both Model I and II regression models are unduly influenced by outliers. Regression Models can not be used to analyze repeated measurements
+
+\subsubsection{Regression Analysis}
+Another inappropriate approach is the regressing one set of measurements against the other. According to this methodology the measurement methods could considered equivalent if the confidence interval for
+the regression coefficient included $1$. Analysts sometimes use least squares (referred to by Ludbrook as Model I) regression analysis to calibrate one method of measurement against another. In this technique, the sum of the squares of the vertical deviations of y values from the line is minimized. This approach is invalid, because both y and x values are attended by random error.
+
+
+\subsubsection{The Identity Plot} This is a simple graphical approach, advocated by \citet{BA86}, that yields a cursory examination of how well the measurement methods agree. In the case of good agreement, the co-variates of the plot accord closely with the $X=Y$ line.
+
+\subsubsection{Advantages of Regression Approaches for MCS}
+\begin{itemize}
+	\item These methods can be employed in conversion problems.
+	\item Bland and Altman have stated that regression analysis offers insights into MCS problems.
+\end{itemize}
+\subsubsection{Disadvantages}
+\begin{itemize}
+	\item Regression methods are uninformative about the variability of the differences.
+\end{itemize}
+
+\begin{itemize}\item
+	Regression methods can determine the presence of bias, and the levels of constant bias and proportional bias thereof \cite{ludbrook97,ludbrook02}.
+\end{itemize}
+
+%------------------------------------------------------------------------%
+
 	\section{Bartko's Bradley-Blackwood Test}
 	This is a regression based
 	approach that performs a simultaneous test for the equivalence of
@@ -217,6 +258,29 @@ The slope and intercepte are given bu
 	\emph{\textbf{Lu et al}} used such a technique in their comparison of DXA scanners. They also used the Blackwood Bradley test. However it was shown that, for particular comparisons, agreement between methods was indicated according to one test, but lack of agreement was indicated by the other.
 	
 	
+	\section{Regression Methods for Method Comparison}
+	Conventional regression models are estimated using the ordinary
+	least squares (OLS) technique, and are referred to as `Model I
+	regression' \citep{CornCoch,ludbrook97}. A key feature of Model I
+	models is that the independent variable is assumed to be measured
+	without error. However this assumption invalidates simple linear
+	regression for use in method comparison studies, as both methods
+	must be assumed to be measured with error \citep{BA83,ludbrook97}.
+	
+	The use of regression models that assumes the presence of error in both variables $X$ and $Y$ have been proposed for use instead
+	\citep{CornCoch,ludbrook97}. These methodologies are collectively known as `Model II regression'. They differ in the method used to
+	estimate the parameters of the regression.
+	
+	Regression estimates depend on formulation of the model. A formulation with one method considered as the $X$ variable will yield different estimates for a formulation where it is the $Y$
+	variable. With Model I regression, the models fitted in both cases will entirely different and inconsistent. However with Model II
+	regression, they will be consistent and complementary.
+	
+	Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias.
+	Fixed bias describes the case where one method gives values that are consistently different to the other across the whole range. Proportional
+	bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook97}. Determination of these biases shall be discussed in due course.
+	
+	
+	
 	\section*{Remarks}
 	\begin{itemize}
 		\item Pearson's Correlation of (x,y) is the same as Pitman's correlation of sums and differences.
@@ -267,47 +331,32 @@ The slope and intercepte are given bu
 	
 	
 
+\section{Bartko and Blackwood Bradley}
+
+The Bradley Blackwood procedure is a simultaneous test for equality of the variance and mean of a pair of data sets. 
+A linear regression is fitted according to the sums and differences.
+The null hypothesis is that mean and variance of both methods equal.
+%The test statistic is provided in \BB89
+%The critical value is an F value at \alpha % significance, withdegrees of freedom 2 and n-2, where n is the number of paired values.
+
+
+
+
+
+It was amended by Bartko to be uses in the Method comparison study.
+
+It is noticeably a simultaneous test for bias and precision. If I It is uninformative about either both of these properties on their own.
+
+\newpage
+How Bland and Altman have extended the Difference Plot (with Limits of agreement) to the case of replicate measurements.
+When replicate measurements are taken with each method on each item, more complex methodologies are required. Bland \& Altman(1999) describe a number of approaches to adopt in such a case. The first approach is to take the average measurement over the replicates measurements on each subject by each method.
+The second approach is to simply treat these replicate measurements as independent measurements in their own right, and use the pre-existing Bland-Altman approach for single measurements.
+The proposed approach shares the same overall structure as their earlier work. However complex calculations are now required to compute the variance of case-wise differences. This is compounded by the fact that different approaches are required depending on whether or not there are equal or unequal numbers of replicates.
+What have they missed? Carstensen et al discuss in depth the shortfalls in this approach.
+Carstensen et al (2008) address the flaws in both approaches, demonstrating how the first approach would lead to an underestimation of the variance of case-wise differences. The second case would also lead to incorrect estimates, although it is pointed out that the second approach is much better than the first.
+
+
 \chapter{REGRESSION}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Regression
-\section{Simple Linear Regression}
-
-% 1.A. Use of SLR, description of SLR as Model I
-% 1.B. Inappropriate for MCS
-% 1.C  Calibration and Conversion problems
-
-Simple linear regression is defined as such with the name `Model I regression' by Cornbleet Gochman (1979), in contrast to 'Model II regression'.
-
-On account of the fact that one set of measurements are linearly related to another, one could surmise that Linear Regression is the most suitable approach to analyzing comparisons. This approach is unsuitable on two counts. Firstly one of the assumptions of Regression analysis is that the independent variable values are without error. In method comparison studies one must assume the opposite; that there is error present in the measurements. Secondly a regression of X on Y would yield and entirely different result from Y on X.
-
-
-Simple linear regression calculates a line of best fit for two
-sets of data, n which the independent variable, X, is measured without error, with y as the dependent variable.  
-
-SLR (Model I) regression is considered by many \citet{BA83,CornCoch,ludbrook97} to be wholly unsuitable for
-method comparison studies, although recommended for use in calibration studies [Corncoch]. Even in the case where one
-method is a gold standard , it is disputed as to whether it is a valid approach. Model II regression is more suitable for method comparison studies, but it is more difficult to execute. Both Model I and II regression models are unduly influenced by outliers. Regression Models can not be used to analyze repeated measurements
-
-\subsubsection{Regression Analysis}
-Another inappropriate approach is the regressing one set of measurements against the other. According to this methodology the measurement methods could considered equivalent if the confidence interval for
-the regression coefficient included $1$. Analysts sometimes use least squares (referred to by Ludbrook as Model I) regression analysis to calibrate one method of measurement against another. In this technique, the sum of the squares of the vertical deviations of y values from the line is minimized. This approach is invalid, because both y and x values are attended by random error.
-
-
-\subsubsection{The Identity Plot} This is a simple graphical approach, advocated by \citet{BA86}, that yields a cursory examination of how well the measurement methods agree. In the case of good agreement, the co-variates of the plot accord closely with the $X=Y$ line.
-
-\subsubsection{Advantages of Regression Approaches for MCS}
-\begin{itemize}
-	\item These methods can be employed in conversion problems.
-	\item Bland and Altman have stated that regression analysis offers insights into MCS problems.
-\end{itemize}
-\subsubsection{Disadvantages}
-\begin{itemize}
-	\item Regression methods are uninformative about the variability of the differences.
-\end{itemize}
-
-\begin{itemize}\item
-	Regression methods can determine the presence of bias, and the levels of constant bias and proportional bias thereof \cite{ludbrook97,ludbrook02}.
-\end{itemize}
-
-%------------------------------------------------------------------------%
 
 \section{Constant and Proportional Bias}
 
@@ -319,19 +368,6 @@ Constant or proportional bias in method comparison studies using linear regressi
 
 
 
-
-
-\section*{Pitman's Test on Correlated variances}
-%Bartko Page 741
-\begin{description}
-	\item[$H_0$] : $\sigma^2_1 = \sigma^2_2$
-	\item[$H_0$] : $\sigma^2_1 = \sigma^2_2$
-\end{description}
-
-
-Pitman's test is identical to the slope equal to zero in the regression of $y$ on $x$.
-
-%------------------------------------------------%
 
 
 
@@ -377,18 +413,6 @@ least a proportional difference between the two raters.
 
 Passing \& Bablok (1983) have described a linear regression procedure with no special assumptions regarding the distribution of the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope B and intercept A are calculated with their 95\% confidence interval. These confidence intervals are used to determine whether there is only a chance difference between B and 1 and between A and 0.
 
-
-\subsection{Passing and Bablok ( 1983) }
-Passing \& Bablok have described a linear regression model that are without the usual assumptions regarding the distribution of
-the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The
-slope and intercept  are calculated with their 95\% confidence interval.Hypothesis tests on the slope and intercept maybe then
-carried out.
-\\
-If the hypothesis of the intercept is rejected, then it is concluded that it is significant different from $0$ and both
-raters differ at least by a constant amount.
-\\
-If the hypothesis of the slope is rejected, then it is concluded that the slope is significant different from $1$ and there is at
-least a proportional difference between the two raters.
 
 \subsection{Passing and bablok}
 proposed an linear regression procedure with no special assumptions regarding the distribution of the data.

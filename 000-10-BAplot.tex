@@ -870,28 +870,6 @@ observations. \citet*{BA99} do not recommend excluding outliers from analyzes, b
 	comparative precision of both methods.
 	
 	
-	\section{Regression Methods for Method Comparison}
-	Conventional regression models are estimated using the ordinary
-	least squares (OLS) technique, and are referred to as `Model I
-	regression' \citep{CornCoch,ludbrook97}. A key feature of Model I
-	models is that the independent variable is assumed to be measured
-	without error. However this assumption invalidates simple linear
-	regression for use in method comparison studies, as both methods
-	must be assumed to be measured with error \citep{BA83,ludbrook97}.
-	
-	The use of regression models that assumes the presence of error in both variables $X$ and $Y$ have been proposed for use instead
-	\citep{CornCoch,ludbrook97}. These methodologies are collectively known as `Model II regression'. They differ in the method used to
-	estimate the parameters of the regression.
-	
-	Regression estimates depend on formulation of the model. A formulation with one method considered as the $X$ variable will yield different estimates for a formulation where it is the $Y$
-	variable. With Model I regression, the models fitted in both cases will entirely different and inconsistent. However with Model II
-	regression, they will be consistent and complementary.
-	
-	Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias.
-	Fixed bias describes the case where one method gives values that are consistently different to the other across the whole range. Proportional
-	bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook97}. Determination of these biases shall be discussed in due course.
-	
-	
 
 \section{Bland-Altman methodology}
 The issue of whether two measurement methods comparable to the extent that they can be used interchangeably with sufficient
@@ -911,147 +889,7 @@ Notwithstanding previous remarks about linear regression, the first step recomme
 \citet{Dewitte} notes that scatter plots were very seldom presented in the Annals of Clinical Biochemistry. This apparently results from the fact that the `Instructions for Authors' dissuade the use of regression analysis, which conventionally is accompanied by a scatter plot.
 	
 
-	\subsection{Inferences on Bland-Altman estimates}
-	\citet*{BA99}advises on how to calculate confidence intervals for the inter-method bias and limits of agreement.
-	For the inter-method bias, the confidence interval is a simply that of a mean: $\bar{d} \pm t_{(0.5\alpha,n-1)} S_{d}/\sqrt{n}$.
-	The confidence
-	intervals and standard error for the limits of agreement follow from the variance of the limits of agreement, which is shown to be
-	
-	\[
-	\mbox{Var}(LoA) = (\frac{1}{n}+\frac{1.96^{2}}{2(n-1)})s_{d}^{2}.
-	\]
-	
-	If $n$ is sufficiently large this can be following approximation
-	can be used
-	\[
-	\mbox{Var}(LoA) \approx 1.71^{2}\frac{s_{d}^{2}}{n}.
-	\]
-	Consequently the standard errors of both limits can be
-	approximated as $1.71$ times the standard error of the
-	differences.
-	
-	A $95\%$ confidence interval can be determined, by means of the
-	\emph{t} distribution with $n-1$ degrees of freedom. However \citet*{BA99} comment that such calculations  may be `somewhat optimistic' on account of the associated assumptions not being realized.
-	
-	%\subsubsection{Small Sample Sizes} The limits of agreement are
-	%estimates derived from the sample studied, and will differ from
-	%values relevant to the whole population, hence the importance of a
-	%suitably large sample size. A different sample would give
-	%different limits of agreement. Student's t-distribution is a well
-	%known probability distribution used in statistical inference for
-	%normally distributed populations when the sample size is small
-	%\citep{student,Fisher3}. Consequently, using 't' quantiles , as
-	%opposed to standard normal quantiles, may give a more appropriate
-	%calculation for limits of agreement when the sample size is small.
-	%For sample size $n=12$ the `t' quantile is 2.2 and the limits of
-	%agreement are (-0.074,-1.143).
-	
-	
-	\subsection{Formal definition of limits of agreement}
-	\citet{BA99} note the similarity of limits of agreement to
-	confidence intervals, but are clear that they are not the same
-	thing. Interestingly, they describe the limits as `being like a
-	reference interval'.
-	
-	Limits of agreement have very similar construction to Shewhart
-	control limits. The Shewhart chart is a well known graphical
-	methodology used in statistical process control. Consequently
-	there is potential for misinterpreting the limits of agreement as
-	if equivalent to Shewhart control limits. Importantly the
-	parameters used to determine the Shewhart limits are not based on any sample used for an analysis, but
-	on the process's historical values, a key difference with
-	Bland-Altman limits of agreement.
-	
-	\citet{BXC2008} regards the limits of agreement as a prediction
-	interval for the difference between future measurements with the
-	two methods on a new individual, but states that it does not fit
-	the formal definition of a prediction interval, since the
-	definition does not consider the errors in estimation of the
-	parameters. Prediction intervals, which are often used in
-	regression analysis, are estimates of an interval in which future
-	observations will fall, with a certain probability, given what has
-	already been observed. \citet{BXC2008} offers an alternative
-	formulation, a $95\%$ prediction interval for the difference
-	\[
-	\bar{d} \pm t_{(0.975, n-1)}s_{d} \sqrt{1+\frac{1}{n}}
-	\]
-	
-	\noindent where $n$ is the number of subjects. Carstensen is
-	careful to consider the effect of the sample size on the interval
-	width, adding that only for 61 or more subjects is there a
-	quantile less than 2.
-	
-	\citet{luiz} offers an alternative description of limits of
-	agreement, this time as tolerance limits. A tolerance interval for
-	a measured quantity is the interval in which a specified fraction
-	of the population's values lie, with a specified level of
-	confidence. \citet{Barnhart} describes them as a probability
-	interval, and offers a clear description of how they should be
-	used;`if the absolute limit is less than an acceptable difference
-	$d_{0}$, then the agreement between the two methods is deemed
-	satisfactory'.
-	
-	The prevalence of contradictory definitions of what limits of agreement strictly are will inevitably attenuate the poor standard of reporting using limits of agreement, as mentioned by \citet{mantha}.
-	
-	%At least 100 historical
-	%values must be used to determine the acceptable value (i.e the
-	%process mean) and the process standard deviation. The principle
-	%that the mean and variance of a large sample of a homogeneous
-	%population is a close approximation of the population's mean and
-	%variance justifies this.
-	
-	%\begin{figure}[h!]
-	%\begin{center}
-	%  \includegraphics[width=125mm]{GrubbsLOAwCIs.jpeg}
-	%  \caption{Limits of agreement with confidence intervals}\label{LOAwCIs}
-	%\end{center}
-	%\end{figure}
-	
-	%\newpage
-	%\section{Agreement Indices}
-	%\citet{Barnhart} provided an overview of several agreement
-	%indices, including the limits of agreement. Other approaches, such
-	%as mean squared deviation, the tolerance deviation index and
-	%coverage probability are also discussed.
-	
-	
-	
-	
-	\subsection{Replicate Measurements}
-	
-	Thus far, the formulation for comparison of two measurement
-	methods is one where one measurement by each method is taken on	each subject. Should there be two or more measurements by each methods, these measurement are known as `replicate measurements'.
-	\citet{BXC2008} recommends the use of replicate measurements, but acknowledges the additional computational complexity.
-	
-	\citet*{BA86} address this problem by offering two different
-	approaches. The premise of the first approach is that replicate
-	measurements can be treated as independent measurements. The
-	second approach is based upon using the mean of the each group of
-	replicates as a representative value of that group. Using either
-	of these approaches will allow an analyst to estimate the inter
-	method bias.
-	
-	%\subsubsection{Mean of Replicates Limits of Agreement}
-	
-	However, because of the removal of the effects of the replicate
-	measurements error, this would cause the estimation of the
-	standard deviation of the differences to be unduly small.
-	\citet*{BA86} propose a correction for this.
-	
-	\citet{BXC2008} takes issue with the limits of agreement based on
-	mean values of replicate measurements, in that they can only be interpreted as prediction
-	limits for difference between means of repeated measurements by
-	both methods, as opposed to the difference of all measurements.
-	Incorrect conclusions would be caused by such a misinterpretation.
-	\citet{BXC2008} demonstrates how the limits of agreement
-	calculated using the mean of replicates are `much too narrow as
-	prediction limits for differences between future single
-	measurements'. This paper also comments that, while treating the
-	replicate measurements as independent will cause a downward bias
-	on the limits of agreement calculation, this method is preferable
-	to the `mean of replicates' approach.
-	
-	
+
 	
 	
 	\chapter{The Bland Altman Plot}
@@ -2921,6 +2759,34 @@ compared to a clinically acceptable difference in measurements.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %4 Inappropriate assessment of Agreement       %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Replicate Measurements}
+	
+	Thus far, the formulation for comparison of two measurement
+	methods is one where one measurement by each method is taken on	each subject. Should there be two or more measurements by each methods, these measurement are known as `replicate measurements'.
+	\citet{BXC2008} recommends the use of replicate measurements, but acknowledges the additional computational complexity.
+	
+	\citet*{BA86} address this problem by offering two different
+	approaches. The premise of the first approach is that replicate
+	measurements can be treated as independent measurements. The
+	second approach is based upon using the mean of the each group of
+	replicates as a representative value of that group. Using either
+	of these approaches will allow an analyst to estimate the inter
+	method bias.
+	
+	%\subsubsection{Mean of Replicates Limits of Agreement}
+	
+	However, because of the removal of the effects of the replicate
+	measurements error, this would cause the estimation of the
+	standard deviation of the differences to be unduly small.
+	\citet*{BA86} propose a correction for this.
+	
+	\citet{BXC2008} takes issue with the limits of agreement based on
+	mean values of replicate measurements, in that they can only be interpreted as prediction
+	limits for difference between means of repeated measurements by
+	both methods, as opposed to the difference of all measurements.
+	Incorrect conclusions would be caused by such a misinterpretation.
+
+\citet{BXC2008} demonstrates how the limits of agreement calculated using the mean of replicates are `much too narrow as prediction limits for differences between future single measurements'. This paper also comments that, while treating the replicate measurements as independent will cause a downward bias on the limits of agreement calculation, this method is preferable to the `mean of replicates' approach.
 
 
 \subsection{Gold Standard} This is considered to be the most
