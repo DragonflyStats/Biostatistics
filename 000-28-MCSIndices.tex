@@ -1,72 +1,5 @@
 \documentclass[MAIN.tex]{subfiles}
 \begin{document}
-
-\subsection{Alternative agreement indices}
-As an alternative to limits of agreement, \citet{lin2002} proposes the use of
-the mean square deviation is assessing agreement. The mean square
-deviation is defined as the expectation of the squared differences
-of two readings . The MSD is usually used for the case of two
-measurement methods $X$ and $Y$ , each making one measurement for
-the same subject, and is given by
-\[
-MSDxy = E[(x - y)^2]  = (\mu_{x} - \mu_{y})^2 + (\sigma_{x} -
-\sigma_{y})^2 + 2\sigma_{x}\sigma_{y}(1-\rho_{xy}).
-\]
-
-
-\citet{Barnhart} advises the use of a predetermined upper limit
-for the MSD value, $MSD_{ul}$, to define satisfactory agreement.
-However, a satisfactory upper limit may not be properly
-determinable, thus creating a drawback to this methodology.
-
-
-\citet{Barnhart} proposes both the use of the square root of the
-MSD or the expected absolute difference (EAD) as an alternative agreement indices. Both of these indices can be interpreted intuitively, being denominated in the same units of measurements as the original
-measurements. Also they can be compare to the maximum acceptable
-absolute difference between two methods of measurement $d_{0}$.
-\[
-EAD = E(|x - y|) = \frac{\sum |x_{i}- y_{i}|}{n}
-\]
-
-The EAD can be used to supplement the inter-method bias in an
-initial comparison study, as the EAD is informative as a measure
-of dispersion, is easy to calculate and requires no distributional
-assumptions.
-
-\citet{Barnhart} remarks that a comparison of EAD and MSD , using
-simulation studies, would be interesting, while further adding
-that `It will be of interest to investigate the benefits of these
-possible new unscaled agreement indices'. For the Grubbs' `F vs C' and `F vs T' comparisons, the inter-method bias, difference variances, limits of agreement and EADs are shown
-in Table 1.5. The corresponding Bland-Altman plots for `F vs C' and `F vs T' comparisons were depicted previously on Figure 1.3. While the inter-method bias for the `F vs T' comparison is smaller, the EAD penalizes the comparison for having a greater variance of differences. Hence the EAD values for both comparisons are much closer.
-\begin{table}[ht]
-	\begin{center}
-		\begin{tabular}{|c|c|c|}
-			\hline
-			& F vs C & F vs T  \\
-			\hline
-			Inter-method bias & -0.61 & 0.12 3 \\
-			Difference variances & 0.06 & 0.22  \\
-			Limits of agreement & (-1.08,	-0.13) & (-0.81,1.04) \\
-			EAD & 0.61 & 0.35  \\
-			\hline
-		\end{tabular}
-		\caption{Agreement indices for Grubbs' data comparisons.}
-	\end{center}
-\end{table}
-
-Further to  \citet{lin2000} and \citet{lin2002}, individual agreement between two measurement methods may be
-assessed using the the coverage probability (CP) criteria or the total deviation index (TDI). If $d_{0}$ is predetermined as the maximum acceptable absolute difference between two methods of measurement, the probability that the absolute difference of two measures being less than $d_{0}$ can be computed. This is known as the coverage probability (CP).
-
-\begin{equation}
-CP = P(|x_{i} - y_{i}| \leq d_{0})
-\end{equation}
-
-If $\pi_{0}$ is set as the predetermined coverage probability, the
-boundary under which the proportion of absolute differences is
-$\pi_{0}$ may be determined. This boundary is known as the `total
-deviation index' (TDI). Hence the TDI is the $100\pi_{0}$
-percentile of the absolute difference of paired observations.
-
 	\section{Alternative agreement indices}
 	As an alternative to limits of agreement, \citet{lin2002} proposes the use of the mean square deviation is assessing agreement. The mean square deviation is defined as the expectation of the squared differences	of two readings. 
 	
@@ -134,22 +67,7 @@ percentile of the absolute difference of paired observations.
 	
 
 \section{Alternative Agreement Indices}
-As an alternative to limits of agreement, \citet{lin2002} proposes the use of
-the mean square deviation in assessing agreement. The mean square
-deviation is defined as the expectation of the squared differences
-of two readings. The MSD is usually used for the case of two
-measurement methods $X$ and $Y$, each making one measurement for
-the same subject, and is given by
-\[
-MSDxy = E[(x - y)^2]  = (\mu_{x} - \mu_{y})^2 + (\sigma_{x} -
-\sigma_{y})^2 + 2\sigma_{x}\sigma_{y}(1-\rho_{xy}).
-\]
 
-
-\citet{Barnhart} advises the use of a predetermined upper limit
-for the MSD value, $MSD_{ul}$, to define satisfactory agreement.
-However, a satisfactory upper limit may not be easily
-determinable, thus creating a drawback to this methodology.
 
 
 Alternative indices, proposed by \citet{Barnhart}, are the square root of the MSD and the expected absolute difference (EAD). 
@@ -158,9 +76,6 @@ EAD = E(|x - y|) = \frac{\sum |x_{i}- y_{i}|}{n}
 \]
 
 
-Both of these indices can be interpreted intuitively, since their units are the same as that of the original
-measurements. Also they can be compared to the maximum acceptable
-absolute difference between two methods of measurement $d_{0}$. 
 
 The EAD can be used to supplement the inter-method bias in an
 initial comparison study, as the EAD is informative as a measure
@@ -300,8 +215,50 @@ difference between any two observers’ readings less than d0.
 
 
 	
+	\section{Total Deviation Index and Coverage Probability}
+	%------------------------------------------------------------------------------%
+	
+	%http://statistics.unl.edu/faculty/yang/agreement.pdf
+	%http://www.biomedcentral.com/content/pdf/1471-2288-10-31.pdf
+	%------------------------------------------------------------------------------%
+	
+	\citet{lin2002} proposes a measure called the `Total Deviation Index'. 
+	This assumes that the differences of paired measurements are a random sample from a normal distribution, 
+	and consequently the approach is to construct a probability interval, known as a tolerance interval, 
+	for these differences. A tolerance interval is a statistical range within which a specified proportion 
+	of the population lies.
+	%------------------------------------------------------------------------------%
+	Smaller values of $q$ indicate better agreement. $P_{0}$ is specified by the practitioner.
+	
+	\citet{pkcng} generalize this approach to account for situations where the distributions are not identical, which is commonly the case.
+	The TDI is not consistent and may not preserve its asymptotic nominal level, and that the coverage probability approach of \citet{lin2002} is overly conservative for moderate sample sizes.
+	This approach proposed by \citet{pkcng} is a regression based approach that models the mean and the variance of differences as functions of observed values of the average of the paired measurements.
+	These techniques have been adopted by Mayo Clinic (Research Section).
+	
+	% Link: http://mayoresearch.mayo.edu/mayo/research/biostat/sasmacros.cfm
+	
+	
+	
+	\section{Coverage Probability and Tolerance Deviation Index}
+	
+	The CP is the most intuitively clear approach; it mirrors the information provided by the TDI. 
+	Both TDI and CP depend on the normality assumption and offer better power for inference than the CCC. The CP would have difficulty discriminating among instruments or 
+	assays that have excellent agreement, all because the CP values would be very close to 1. In this case, the TDI can be used to discriminate among these. When a meaningful clinical range is known and the study is conducted over that range, the CCC offers a meaningful geo- metric interpretation and is unit free. Furthermore, the accuracy and precision components of the CCC offer more insight. 
+	
+Therefore, the CCC, accuracy, and precision remain very useful tools. Note that when Y and X are not linearly related, the CCC will capture the total deviation. However, it will treat the nonlinear deviation as imprecision rather than inaccuracy. The CCC, ICC, and Pearson correlation coefficient depend largely on the analytical range and the intrasample variation.
+	
+%CoverageProbability
+	
+\section{Coverage probability}
+
+This term refers to the probability that a procedure for constructing random regions will produce an interval containing, or covering, the true value. It is a property of the interval producing procedure, and is independent of the particular sample to which such a procedure is applied. We can think of this quantity as the chance that the interval constructed by such a procedure will contain the parameter of interest.
+	
+	% http://en.wikipedia.org/wiki/Coverage_probability
+	% http://www.stats.ox.ac.uk/pub/bdr/IAUL/Course1Notes5.pdf	
+	
+	
 	\section*{Coverage probability (CP)}
-	Another user friendly measure of agreement which is related to the computation of the TDI is the so called coverage probability (CP) [11,12]. 
+	Another user friendly measure of agreement which is related to the computation of the TDI is the so called coverage probability (CP) . 
 	The CP describes the proportion captured within a pre-specified boundary of the absolute paired-measurement differences from two devices, i.e., the value of p$\kappa$ such that $P(|D| < \kappa$) = $p_\kappa$. Therefore one can find p$\kappa$ for a specified boundary $\kappa$ using standard methods for computing probability quantities under normal assumptions [11]:
 	
 	(13)
@@ -335,32 +292,6 @@ difference between any two observers’ readings less than d0.
 		
 		\item repeat steps 2-3 until convergence, i.e. until d satisfies .
 	\end{enumerate}
-\newpage
-\section{Probability-based Measures of Agreement}
-There are two measures of agreement based on the probability criteria. The first is the
-$p_0$-th percentile of jDj, say Q($p_0$), where $p_0$ (> 0.5) is a specified large probability (usually ¸ 0:80). 
-It was introduced by Lin (2000) who called it the total deviation index (TDI). Its
-small value indicates a good agreement between (X; Y ). The TDI can be expressed as,
-
-! EQUATION HERE
--distribution with a single degree of freedom and non-centrality parameter \textbf{\textit{Del}}.
-
-%-----------------------------------------------------------------------------------------%
-%Coverarge Probability
-
-The second measure, introduced by Lin et al. (2002), is the \textbf{coverage probability} (CP) of
-the interval [¡±0; ±0], where a difference under §±0 is considered practically equivalent to
-zero. There is no loss of generality in taking this interval to be symmetric around zero as it
-can be achieved by a location shift. 
-
-Letting,
-dl = (¡±0 ¡ ¹)=¾; du = (±0 ¡ ¹)=¾; (2)
-
-
-the CP can be expressed as
-F(±0) = ©(du) ¡ ©(dl): (3)
-
-A high value of F(±0) implies a good agreement between the methods.
 
 
 \section*{Total Deviation Index}
@@ -393,50 +324,7 @@ Individual agreement between two measurement systems is determined using the tot
 - http://artax.karlin.mff.cuni.cz/r-help/library/MethComp/html/TDI.html
 
 	
-	\section{Coverage Probability and Tolerance Deviation Index}
 
-	The CP is the most intuitively clear approach; it mirrors the information provided by the TDI. 
-	Both TDI and CP depend on the normality assumption and offer better power
-	for inference than the CCC. The CP would have difficulty discriminating among instruments or 
-	assays that have excellent agreement, all because the CP values would be very close to
-	1. In this case, the TDI can be used to discriminate among these. When a meaningful clinical range is known and the study is conducted over that range, the CCC offers a meaningful geo- metric interpretation and is unit free. Furthermore, the accuracy and precision components of the CCC offer more insight. Therefore, the CCC, accuracy, and precision remain very useful tools. Note that when Y and X are not linearly related, the CCC will capture the total deviation. However, it will treat the nonlinear deviation as imprecision rather than inaccuracy. The CCC, ICC, and Pearson correlation coef cient depend
-	largely on the analytical range and the intrasample variation.
-	
-
-
-	
-\section{Total Deviation Index and Coverage Probability}
-%------------------------------------------------------------------------------%
-	
-	%http://statistics.unl.edu/faculty/yang/agreement.pdf
-	%http://www.biomedcentral.com/content/pdf/1471-2288-10-31.pdf
-
-%------------------------------------------------------------------------------%
-
-\citet{lin2002} proposes a measure called the `Total Deviation Index'. 
-This assumes that the differences of paired measurements are a random sample from a normal distribution, and consequently the approach is to construct a probability interval, known as a tolerance interval, for these differences. A tolerance interval is a statistical range within which a specified proportion of the population lies.
-
-%------------------------------------------------------------------------------%
-
-Smaller values of $q$ indicate better agreement. $P_{0}$ is specified by the practitioner.
-	
-\citet{pkcng} generalize this approach to account for situations where the distributions are not identical, which is commonly the case.
-	The TDI is not consistent and may not preserve its asymptotic nominal level, and that the coverage probability approach of \citet{lin2002} is overly conservative for moderate sample sizes.
-	This methodology proposed by \citet{pkcng} is a regression based approach that models the mean and the variance of differences as functions of observed values of the average of the paired measurements.
-	These methodologies have been adopted by Mayo Clinic (Research Section).
-	
-	% Link: http://mayoresearch.mayo.edu/mayo/research/biostat/sasmacros.cfm
-	
-	%------------------------------------------------------------------------------%
-	This measure was coined by Lin as the value \[TDI_{1-p} = \kappa\] that a given fraction (1-p) of the differences between two measurement methods will be in a symmetric interval $[-\kappa,\kappa]$.
-	This is roughly equivalently to the numerically largest of the 1-p limits of agreement.
-	The measure clearly has its main applicability in equivalence testing. 
-	
-	Lin gives an approximate formula for the calculations.
-	\[\Theta \left( \frac{ TDI - \mu_d}{\sigma_d} \right) - \Theta \left(  \frac{ -TDI - \mu_d}{\sigma_d} \right) = 1-p\]
-	
-	Again, the assumption of the normality of the case-wise differences is relied upon.
-	
 \section*{Total Deviation Index - TDI - Escaramis}
 
 
@@ -444,9 +332,10 @@ Smaller values of $q$ indicate better agreement. $P_{0}$ is specified by the pra
 %%http://www.biomedcentral.com/1471-2288/10/31/
 
 %% Paper
-The Total Deviation Index estimated by Tolerance Intervals to evaluate the concordance of measurement devices.  
-Geòrgia Escaramís1, Carlos Ascaso1 and Josep L Carrasco1.  
-
+\begin{framed}
+The Total Deviation Index estimated by Tolerance Intervals to evaluate the concordance of measurement devices.  \\
+\textit{Geòrgia Escaramís1, Carlos Ascaso1 and Josep L Carrasco1.}  
+\end{framed}
 %% Background
 In an agreement assay, it is of interest to evaluate the degree of agreement between the different methods (devices, instruments or observers) used to measure the same characteristic. We propose in this study a technical simplification for inference about the total deviation index (TDI) estimate to assess agreement between two devices of normally-distributed measurements and describe its utility to evaluate inter- and intra-rater agreement if more than one reading per subject is available for each device.
 
@@ -462,30 +351,7 @@ The method proposed is straightforward since the TDI estimate is derived directl
 	
 
 	
-	\section{Total Deviation Index and Coverage Probability}
-	%------------------------------------------------------------------------------%
-	
-	%http://statistics.unl.edu/faculty/yang/agreement.pdf
-	%http://www.biomedcentral.com/content/pdf/1471-2288-10-31.pdf
-	%------------------------------------------------------------------------------%
-	
-	\citet{lin2002} proposes a measure called the `Total Deviation Index'. 
-	This assumes that the differences of paired measurements are a random sample from a normal distribution, 
-	and consequently the approach is to construct a probability interval, known as a tolerance interval, 
-	for these differences. A tolerance interval is a statistical range within which a specified proportion 
-	of the population lies.
-	%------------------------------------------------------------------------------%
-	Smaller values of $q$ indicate better agreement. $P_{0}$ is specified by the practitioner.
-	
-	\citet{pkcng} generalize this approach to account for situations where the distributions are not identical, which is commonly the case.
-	The TDI is not consistent and may not preserve its asymptotic nominal level, and that the coverage probability approach of \citet{lin2002} is overly conservative for moderate sample sizes.
-	This methodology proposed by \citet{pkcng} is a regression based approach that models the mean and the variance of differences as functions of observed values of the average of the paired measurements.
-	These methodologies have been adopted by Mayo Clinic (Research Section).
-	
-	% Link: http://mayoresearch.mayo.edu/mayo/research/biostat/sasmacros.cfm
-	
-	
-	
+
 	\section{Unscaled Agreement Indices}
 	\begin{itemize}
 		\item Summary agreement indices based on the absolute difference of readings by observers are
@@ -514,8 +380,12 @@ The method proposed is straightforward since the TDI estimate is derived directl
 	%---------------------------------------------------------------------------------%
 	
 	\subsection{Example: Systolic Blood Pressure}
-	Bland and Altman (19) present the example of measurements of systolic blood pressure of 85 individuals, by two observers (observer J and observer R) with sphygmomanometer, and one other measurement, by a semiautomatic device (device S). Luiz et al. (16) re-analyze the data and also observe, with a graphical approach, a greater agreement between the two observers than between the observers and the semiautomatic device. Using our information-based measure of disagreement; we also obtained a significantly more
-	disagreement between each observer and the semiautomatic device than between the two observers (Table 1).
+\citet{BA99} present the example of measurements of systolic blood pressure of 85 individuals, by two observers (observer J and observer R) with sphygmomanometer, and one other measurement, by a semiautomatic device (device S). 
+
+
+Luiz et al. (16) re-analyze the data and also observe, with a graphical approach, a greater agreement between the two observers than between the observers and the semiautomatic device. 
+
+Using our information-based measure of disagreement; we also obtained a significantly more disagreement between each observer and the semiautomatic device than between the two observers (Table 1).
 	
 	%---------------------------------------------------------------------------------%
 	
@@ -542,22 +412,37 @@ The method proposed is straightforward since the TDI estimate is derived directl
 	\end{itemize}
 	
 	
-	%CoverageProbability
-	
-	\subsection{Coverage probability}
-	This term refers to the probability that a procedure for 
-	constructing random regions will produce an interval containing, or covering, the 
-	true value. It is a property of the interval producing procedure, and is 
-	independent of the particular sample to which such a procedure is applied. We 
-	can think of this quantity as the chance that the interval constructed by such a 
-	procedure will contain the parameter of interest.
-	
-	% http://en.wikipedia.org/wiki/Coverage_probability
-	% http://www.stats.ox.ac.uk/pub/bdr/IAUL/Course1Notes5.pdf
+
 	
 
 	
 	
+\section{Probability-based Measures of Agreement}
+There are two measures of agreement based on the probability criteria. The first is the
+$p_0$-th percentile of jDj, say Q($p_0$), where $p_0$ (> 0.5) is a specified large probability (usually ¸ 0:80). 
+It was introduced by Lin (2000) who called it the total deviation index (TDI). Its
+small value indicates a good agreement between (X; Y ). The TDI can be expressed as,
+
+! EQUATION HERE
+-distribution with a single degree of freedom and non-centrality parameter \textbf{\textit{Del}}.
+
+%-----------------------------------------------------------------------------------------%
+%Coverarge Probability
+
+The second measure, introduced by Lin et al. (2002), is the \textbf{coverage probability} (CP) of
+the interval [¡±0; ±0], where a difference under §±0 is considered practically equivalent to
+zero. There is no loss of generality in taking this interval to be symmetric around zero as it
+can be achieved by a location shift. 
+
+%Letting,
+%dl = (¡±0 ¡ ¹)=¾; du = (±0 ¡ ¹)=¾; (2)
+%
+%
+%the CP can be expressed as
+%F(±0) = ©(du) ¡ ©(dl): (3)
+
+A high value of F(±0) implies a good agreement between the methods.
+
 	
 	\section{LME - Pankaj Choudhury}
 	Consistent with the conventions of mixed models, \citep{pkc}
@@ -596,19 +481,8 @@ The method proposed is straightforward since the TDI estimate is derived directl
 	This formulation has seperate distributional assumption from the
 	model stated previously.
 	
-	This agreement covariate $x$ is the key step in how this
-	methodology assesses agreement.
+This agreement covariate $x$ is the key step in how this approach assesses agreement.
 	
-	\citet{pkcng} generalize this approach to account for situations
-	where the distributions are not identical, which is commonly the
-	case. The TDI is not consistent and may not preserve its
-	asymptotic nominal level, and that the coverage probability
-	approach of \citet{lin2002} is overly conservative for moderate
-	sample sizes. This methodology proposed by \citet{pkcng} is a
-	regression based approach that models the mean and the variance of
-	differences as functions of observed values of the average of the
-	paired measurements.
-
 \addcontentsline{toc}{section}{Bibliography}
 
 %--------------------------------------------------------------------------------------%
