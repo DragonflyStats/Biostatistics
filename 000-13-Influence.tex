@@ -63,6 +63,20 @@ The basic procedure for quantifying influence is simple as follows:
 
 \citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.
 
+
+\bigskip
+
+
+
+Basic procedure for quantifying influence is simple
+
+\begin{enumerate}
+	\item  	Fit the model to the data
+	\item   	Remove one or more data points from the analysis and compute updated estimates of model parameters
+	\item  	Based on the full and reduced data estimates, contrast quantities of interest to determine how the absence of the observations changed the analysis.
+\end{enumerate}
+The likelihood distance is a global summary measure expressing the joint influence of the observations in the set U on all parameters in $\Psi$ that were subject to updating.
+
 	\subsection{Influence}
 
 	
@@ -473,6 +487,27 @@ OLS regression, the residual sums of squares serves that purpose. In linear mixe
 		
 
 	
+\section{Iterative and non-iterative influence analysis} %1.13
+\textbf{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
+
+A measure of total influence requires updates of all model parameters.
+
+however, this doesnt increase the procedures execution time by the same degree.
+\subsection{Iterative Influence Analysis}
+
+%----schabenberger page 8
+For linear models, the implementation of influence analysis is straightforward.
+However, for LME models, the process is more complex. Update formulas for the fixed effects are available only when the covariance parameters are assumed to be known. A measure of total influence requires updates of all model parameters.
+This can only be achieved in general is by omitting observations, then refitting the model.
+
+\textbf{schabenberger} describes the choice between \index{iterative influence analysis} iterative influence analysis and \index{non-iterative influence analysis} non-iterative influence analysis.
+
+
+%----------------------------------------------------------------------------------------%
+
+
+
+
 \section{Iterative and non-iterative influence analysis} %1.13
 \citet{schabenberger} highlights some of the issue regarding implementing mixed model diagnostics.
 

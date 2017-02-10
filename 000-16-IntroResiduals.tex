@@ -3,6 +3,42 @@
 
 \chapter{Residual Analysis}
 %=========================================%
+\section{Framework for Model Validation using Residual Diagnostics}
+In statistical modelling, the process of model validation is a critical step, but also a step that is too often overlooked. A very simple procedure is to examine commonly encountered
+metrics, such as the $R^2$ value. However, using a small handful of simple measures and methods is insufficient to properly assess the quality of a fitted model. To do so properly, a full and comprehensive
+analysis that tests of all of the assumptions, as far as possible, must be carried out. A statistical model, whether of the fixed-effects or mixed-effects variety, represents how you think your data
+were generated. Following model specification and estimation, it is of interest to explore the model-data
+agreement by raising questions such as
+\begin{itemize}
+	\item Does the model-data agreement support the model assumptions?
+	\item Should model components be refined, and if so, which components? For example, should regressors
+	be added or removed, and is the covariation of the observations modeled properly?
+	\item Are the results sensitive to model and/or data? Are individual data points or groups of cases particularly
+	influential on the analysis?
+\end{itemize}
+
+
+\subsection{Residual Analysis}
+
+In classical linear models, an examination of model-data agreement has traditionally revolved around
+
+The second part of the chapter looks at diagnostics techniques for LME models, firsly covering the theory, then proceeding to a discussion on 
+implementing these using \texttt{R} code.
+
+While a substantial body of work has been developed in this area, there is still areas worth exploring. 
+In particular the development of graphical techniques pertinent to LME models should be looked at.
+
+
+
+\subsection{Introduction}
+In statistics and optimization, statistical errors and residuals are two closely related and easily confused measures of the deviation of an observed value of an element of a statistical sample from its "theoretical value". The error (or disturbance) of an observed value is the deviation of the observed value from the (unobservable) true function value, while the residual of an observed value is the difference between the observed value and the estimated function value.
+
+The distinction is most important in regression analysis, where it leads to the concept of studentized residuals.
+
+%--Marginal and Conditional Residuals
+%---------------------------------------------------------------------------%
+\newpage
+
 \section{Introduction to Residual Analysis}
 Residual analysis is a widely used model validation technique. A residual is simply the difference between an observed value and the corresponding fitted value, as predicted by the model. The rationale is that, if the model is properly fitted to the model, then the residuals would approximate the random errors that one should expect.
 that is to say, if the residuals behave randomly, with no discernible trend, the model has fitted the data well. If some sort of non-random trend is evident in the model, then the model can be considered to be poorly fitted.
@@ -173,44 +209,44 @@ Externally \index{studentized residual} studentized residual require iterative i
 
 
 
-\section{Framework for Model Validation using Residual Diagnostics}
-In statistical modelling, the process of model validation is a critical step, but also a step that is too often overlooked. A very simple procedure is to examine commonly encountered
-metrics, such as the $R^2$ value. However, using a small handful of simple measures and methods is insufficient to properly assess the quality of a fitted model. To do so properly, a full and comprehensive
-analysis that tests of all of the assumptions, as far as possible, must be carried out. A statistical model, whether of the fixed-effects or mixed-effects variety, represents how you think your data
-were generated. Following model specification and estimation, it is of interest to explore the model-data
-agreement by raising questions such as
-\begin{itemize}
-	\item Does the model-data agreement support the model assumptions?
-	\item Should model components be refined, and if so, which components? For example, should regressors
-	be added or removed, and is the covariation of the observations modeled properly?
-	\item Are the results sensitive to model and/or data? Are individual data points or groups of cases particularly
-	influential on the analysis?
-\end{itemize}
+
+\section{Standardized and studentized residuals} %1.4
+%--Studentized and Standardized Residuals
+
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
 
 
-\subsection{Residual Analysis}
+\subsection{Studentization}
+In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
 
-In classical linear models, an examination of model-data agreement has traditionally revolved around
+This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
 
-The second part of the chapter looks at diagnostics techniques for LME models, firsly covering the theory, then proceeding to a discussion on 
-implementing these using \texttt{R} code.
+\subsection{Studentization} %1.4.2
+Instead, you can compute studentized residuals by dividing a residual by an estimate of its standard deviation. 
 
-While a substantial body of work has been developed in this area, there is still areas worth exploring. 
-In particular the development of graphical techniques pertinent to LME models should be looked at.
+\subsection{Internal and External Studentization} %1.4.3
+If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+standard error computation, the residual is said to be \index{internally studentization}internally studentized.
 
-	
-
-\subsection{Introduction}
-In statistics and optimization, statistical errors and residuals are two closely related and easily confused measures of the deviation of an observed value of an element of a statistical sample from its "theoretical value". The error (or disturbance) of an observed value is the deviation of the observed value from the (unobservable) true function value, while the residual of an observed value is the difference between the observed value and the estimated function value.
-
-The distinction is most important in regression analysis, where it leads to the concept of studentized residuals.
-
-%--Marginal and Conditional Residuals
-%---------------------------------------------------------------------------%
-\newpage
+Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
 
 \section{Standardized and studentized residuals} %1.6
 To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+\subsection{Standardized and studentized residuals} %1.4
+%--Studentized and Standardized Residuals
+
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+
+
+
+\subsection{Standardized and studentized residuals} %1.4
+%--Studentized and Standardized Residuals
+
+To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
+
+
 
 Another possible scaled residual is the \index{Pearson residual} `Pearson residual' whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
 
@@ -227,15 +263,12 @@ $i-$th observation when computing the estimate of its standard error. If the obs
 standard error computation, the residual is said to be \textbf{\emph{internally studentized}}.
 %---------------------------------------------------------------------------%
 \newpage
-\subsection{Residuals diagnostics in mixed models}
+\subsection{Studentization}
+In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
 
-%schabenberger
-The marginal and conditional means in the linear mixed model are
-$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
-$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
+This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
 
-A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. 
+
 
 
 \subsection{Residual}
@@ -277,12 +310,10 @@ The use of the term "error" as discussed in the sections above is in the sense o
 	
 	A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
 	
-\subsection{Studentization}
-In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
+\subsection{Standardization} %1.4.1
 
-This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
+A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
 
-	
 
 	\subsection{Computation}%1.4.4
 	
@@ -299,11 +330,7 @@ Externally \index{studentized residual} studentized residual require iterative i
 
 
 
-	\subsection{Standardized and studentized residuals} %1.4
-	%--Studentized and Standardized Residuals
-	
-	To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-	
+
 	
 	\subsection{Internal and External Studentization} %1.4.3
 	If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
@@ -338,15 +365,8 @@ The unknown variance elements are referred to as the covariance parameters and c
 % - Has this got anything to do with CovTrace etc?
 %---------------------------------------------------------------------------%
 
+\addcontentsline{toc}{section}{Bibliography}
 
-\subsection{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
+\bibliography{DB-txfrbib}
 
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-
-
-	\addcontentsline{toc}{section}{Bibliography}
-	
-	\bibliography{DB-txfrbib}
 \end{document}

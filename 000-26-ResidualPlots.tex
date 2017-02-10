@@ -1,5 +1,29 @@
 \documentclass[Main.tex]{subfiles}
 \begin{document}
+
+%=================================================== %
+% http://www.ime.usp.br/~jmsinger/MAE0610/Mixedmodelresiduals.pdf
+\subsection{Residual Plots}
+A residual plot is a graph that shows the residuals on the vertical axis and the independent variable on the horizontal axis. If the points in a residual plot are randomly dispersed around the horizontal axis, a linear regression model is appropriate for the data; otherwise, a non-linear model is more appropriate.
+
+Below the table on the left shows inputs and outputs from a simple linear regression analysis, and the chart on the right displays the residual (e) and independent variable (X) as a residual plot.
+
+%x	60	70	80	85	95
+%y	70	65	70	95	85
+%ŷ	65.411	71.849	78.288	81.507	87.945
+%e	4.589	-6.849	-8.288	13.493	-2.945
+% Image of residual plot
+
+The residual plot shows a fairly random pattern - the first residual is positive, the next two are negative, the fourth is positive, and the last residual is negative. This random pattern indicates that a linear model provides a decent fit to the data.
+
+Below, the residual plots show three typical patterns. The first plot shows a random pattern, indicating a good fit for a linear model. The other plot patterns are non-random (U-shaped and inverted U), suggesting a better fit for a non-linear model.
+
+
+%Random pattern	Non-random: U-shaped	Non-random: Inverted U
+In the next lesson, we will work on a problem, where the residual plot shows a non-random pattern. And we will show how to "transform" the data to use a linear model with nonlinear data.
+
+
+
 \section{Diagnostic Plots for Linear Models with \texttt{R}}
 Plot Diagnostics for an \texttt{lm} Object
 
