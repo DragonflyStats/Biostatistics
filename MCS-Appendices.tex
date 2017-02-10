@@ -202,7 +202,6 @@ they can not be considered to be in agreement. Hence, method comparison studies 
 \chapter{Introduction to Method Comparison Studies}
 
 
-\newpage
 % latex table generated in R 2.6.0 by xtable 1.5-5 package
 % Wed Aug 26 15:22:41 2009
 \begin{table}[h!]
@@ -233,45 +232,6 @@ they can not be considered to be in agreement. Hence, method comparison studies 
 
 \bigskip
 
-\newpage
-
-
-\section{Replicate Measurements}
-
-Thus far, the formulation for comparison of two measurement
-methods is one where one measurement by each method is taken on
-each subject. Should there be two or more measurements by each
-methods, these measurement are known as `replicate measurements'.
-\citet{BXC2008} recommends the use of replicate measurements, but
-acknowledges the additional computational complexity.
-
-\citet*{BA86} address this problem by offering two different
-approaches. The premise of the first approach is that replicate
-measurements can be treated as independent measurements. The
-second approach is based upon using the mean of the each group of
-replicates as a representative value of that group. Using either
-of these approaches will allow an analyst to estimate the inter
-method bias.
-
-%\subsubsection{Mean of Replicates Limits of Agreement}
-
-However, because of the removal of the effects of the replicate
-measurements error, this would cause the estimation of the
-standard deviation of the differences to be unduly small.
-\citet*{BA86} propose a correction for this.
-
-\citet{BXC2008} takes issue with the limits of agreement based on
-mean values of replicate measurements, in that they can only be interpreted as prediction
-limits for difference between means of repeated measurements by
-both methods, as opposed to the difference of all measurements.
-Incorrect conclusions would be caused by such a misinterpretation.
-\citet{BXC2008} demonstrates how the limits of agreement
-calculated using the mean of replicates are `much too narrow as
-prediction limits for differences between future single
-measurements'. This paper also comments that, while treating the
-replicate measurements as independent will cause a downward bias
-on the limits of agreement calculation, this method is preferable
-to the `mean of replicates' approach.
 
 
 
@@ -290,79 +250,7 @@ Roy's methodology is not suitable for the case of single measurements because it
 \section{Conclusion}
 \citet{BXC2008} and \citet{roy} highlight the need for method comparison methodologies suitable for use in the presence of replicate measurements. \citet{roy} presents a comprehensive methodology for assessing the agreement of two methods, for replicate measurements. This methodology has the added benefit of overcoming the problems of unbalanced data and unequal numbers of replicates. Implementation of the methodology, and interpretation of the results, is relatively easy for practitioners who have only basic statistical training. Furthermore, it can be shown that widely used existing methodologies, such as the limits of agreement, can be incorporated into Roy's methodology.
 
-
-\newpage
-
-
-	\chapter{Linear Mixed effects Models}
 		
-		\section{Case Deletion Diagnostics for LME models}
-		
-		
-		
-		\citet{Christensen} describes three propositions that are required
-		for efficient case-deletion in LME models. The first proposition
-		decribes how to efficiently update $V$ when the $i$th element is
-		deleted.
-		\begin{equation}
-		V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-			\lambda\prime}{\nu^{}ii}
-		\end{equation}
-		
-		The second of christensen's propostions is the following set of
-		equations, which are variants of the Sherman Wood bury updating
-		formula.
-		\begin{eqnarray}
-		X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-		\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-		(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-		\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-			(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-		X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-		\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-		\end{eqnarray}
-		
-		
-		
-		
-		
-		
-		% In LME models, fitted by either ML or REML, an important overall
-		% influence measure is the likelihood distance \citep{cook82}. The
-		% procedure requires the calculation of the full data estimates
-		% $\hat{\psi}$ and estimates based on the reduced data set
-		% $\hat{\psi}_{(U)}$. The likelihood distance is given by
-		% determining
-		%
-		%
-		% \begin{eqnarray}
-		% 	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
-		% 	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
-		% \end{eqnarray}
-		
-	\subsubsection{Influence on measure component ratios}               %-Case Deletion section 6.2.2
-	The general diagnostic tools for variance component ratios are the analogues of the Cook's distance and the Information Ratio.
-	
-	
-	\begin{eqnarray*}
-		CD_{U}(\gamma) = (\hat{\gamma}_{(U)} - \hat{\gamma})^{\prime}[\mbox{var}(\hat{\gamma})]^{-1}(\hat{\gamma}_{(U)} - \hat{\gamma})\\
-		&= -\boldsymbol{g^{\prime}}_{(U)} (\boldsymbol{Q}-\boldsymbol{G})^{-1}\boldsymbol{Q}(\boldsymbol{Q}-\boldsymbol{G})\boldsymbol{g}_{(U)} \\
-		&= \boldsymbol{g^{\prime}}_{(U)} (\boldsymbol{I}_{r}  \mbox{var}(\hat{\gamma})\boldsymbol{G})^{-2}\mbox{var}(\hat{\gamma})\boldsymbol{g}_{(U)}
-	\end{eqnarray*}
-	
-	Large values of $CD(\gamma)$ highlight observation groups for closer attentions
-	
-	
-	\begin{eqnarray*}
-		IR{\gamma}  = \frac{\mbox{det}(\boldsymbol{Q} - \boldsymbol{G})}{\mbox{det}(\boldsymbol{Q})}
-	\end{eqnarray*}
-	
-	Ideally when all observations have the same influence on the information matrix $IR{\gamma}$ is approximately one.
-	Deviations from one indicate the group $U$ is influential. Since $\mbox{var}(\hat{\gamma})$ and $\boldsymbol{I}_{r}$ are fixed for all observations, $IR{\gamma}$ is a function of $\boldsymbol{G}$, in turn a function of $\boldsymbol{C}_{i}$ and $c_{ii}$.
-	
-		
-		
-
 
 \section{BXC - Model Terms}
 
@@ -636,58 +524,7 @@ in Nobre and Singer (2007).
 	\chapter{General Appendices}
 	$\Lambda = \frac{\mbox{max}_{H_{0}}L}{\mbox{max}_{H_{1}}L}$
 	
-	\subsection{Extending deletion diagnostics to LMEs}
-	
-	
-	\citet{Christensen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{Christensen} develops these techniques in the context of REML
-	
-	% www.jds-online.com/file_download/70/JDS-205.pdf
-	
-	\begin{eqnarray*}
-		X= \left[%
-		\begin{array}{c}
-			x^\prime_{i} \\
-			X(i) \\
-		\end{array}%
-		\right],
-		Z= \left[%
-		\begin{array}{c}
-			z^\prime_{ij} \\
-			Z_{j(i)} \\
-		\end{array}%
-		\right] ,
-		Z = \left[%
-		\begin{array}{c}
-			z^\prime_{ij} \\
-			Z_{j(i)} \\
-		\end{array}%
-		\right], \\
-		y = \left[%
-		\begin{array}{c}
-			y^\prime_{ij} \\
-			y_{j(i)} \\
-		\end{array}%
-		\right]
-		\mbox{ and } H = \left[%
-		\begin{array}{cc}
-			h_{ii}& h\\
-			h_{j(i)} & h\\
-		\end{array}%
-		\right]
-	\end{eqnarray*}
-	
-	For notational simplicity, $\boldsymbol{A}_{(i)}$ denotes an $n
-	\times m$ matrix  $\boldsymbol{A}$ with the $i$-th row removed,
-	$\boldsymbol{a}_{i}$ denotes the $i$-th row of $\boldsymbol{A}$,
-	and $a_{ij}$ denotes the $(i, j)$-th element of $\boldsymbol{A}$.
-	
-	$\boldsymbol{a}_{(i)}$ denotes a vector $\boldsymbol{a}$ with the $i$-th element, $a_{i}$, removed.
-	
-	\begin{equation}
-	\breve{a_{i}} =  \boldsymbol{a}_{i} -
-	\boldsymbol{A}_{(i)}\boldsymbol{H}_{[i]}\boldsymbol{h}_{i}
-	\end{equation}
-%=======================================================%
+
 \section{Unknown Material}
 
 
@@ -859,30 +696,6 @@ Given this procedure, the PRESS statistic can be calculated for a number of cand
 
 	
 
-	%-------------------------------------------------------------------------------%
-
-	\section{Repeated Measurements}
-	
-	In cases where there are repeated measurements by each of the two
-	methods on the same subjects , Bland Altman suggest calculating
-	the mean for each method on each subject and use these pairs of
-	means to compare the two methods.
-	The estimate of bias will be unaffected using this approach, but
-	the estimate of the standard deviation of the differences will be
-	too small, because of the reduction of the effect of repeated
-	measurement error. Bland Altman propose a correction for this.
-	Carstensen attends to this issue also, adding that another
-	approach would be to treat each repeated measurement separately.
-	
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	In this model , the variances of the random effects must depend on
-	$m$, since the different methods do not necessarily measure on the
-	same scale, and different methods naturally must be assumed to
-	have different variances. \citet{BXC2004} attends to the issue of
-	comparative variances.
-	%----------------------------------------------------------------------------%
 
 
 
@@ -909,128 +722,6 @@ Given this procedure, the PRESS statistic can be calculated for a number of cand
 		\end{quote}
 	\end{framed}
 	
-	\section{Remarks on the Multivariate Normal Distribution}
-	
-	Diligence is required when considering the models. Carstensen specifies his models in terms of the univariate normal distribution. ARoy2009's model is specified using the bivariate normal distribution.
-	This gives rises to a key difference between the two model, in that a bivariate model accounts for covariance between the variables of interest.
-	The multivariate normal distribution of a $k$-dimensional random vector $X = [X_1, X_2, \ldots, X_k]$
-	can be written in the following notation:
-	\[
-	X\ \sim\ \mathcal{N}(\mu,\, \Sigma),
-	\]
-	or to make it explicitly known that $X$ is $k$-dimensional,
-	\[
-	X\ \sim\ \mathcal{N}_k(\mu,\, \Sigma).
-	\]
-	with $k$-dimensional mean vector
-	\[ \mu = [ \operatorname{E}[X_1], \operatorname{E}[X_2], \ldots, \operatorname{E}[X_k]] \]
-	and $k \times k$ covariance matrix
-	\[ \Sigma = [\operatorname{Cov}[X_i, X_j]], \; i=1,2,\ldots,k; \; j=1,2,\ldots,k \]
-	
-	\bigskip
-	
-	\begin{enumerate}
-		\item Univariate Normal Distribution
-		
-		\[
-		X\ \sim\ \mathcal{N}(\mu,\, \sigma^2),
-		\]
-		
-		\item Bivariate Normal Distribution
-		
-		\begin{itemize}
-			\item[(a)] \[  X\ \sim\ \mathcal{N}_2(\mu,\, \Sigma), \vspace{1cm}\]
-			\item[(b)] \[    \mu = \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \quad
-			\Sigma = \begin{pmatrix} \sigma_x^2 & \rho \sigma_x \sigma_y \\
-			\rho \sigma_x \sigma_y  & \sigma_y^2 \end{pmatrix}.\]
-		\end{itemize}
-	\end{enumerate}
-	
-	
-	
-	\subsection{Lin's Reproducibility Index} Lin proposes the use of a
-	reproducibility index, called the Concordance Correlation
-	Coefficent (CCC).While it is not strictly a measure of agreement
-	as such, it can form part of an overall method comparision
-	methodology.
-\section{Measurement Error Models}
-
-\citet{DunnSEME} proposes a measurement error model for use in
-method comparison studies. Consider n pairs of measurements
-$X_{i}$ and $Y_{i}$ for $i=1,2,...n$.
-\begin{equation}
-X_{i} = \tau_{i}+\delta_{i}\\
-\end{equation}
-\begin{equation}
-Y_{i} = \alpha +\beta\tau_{i}+\epsilon_{i} \nonumber
-\end{equation}
-
-In the above formulation is in the form of a linear structural
-relationship, with $\tau_{i}$ and $\beta\tau_{i}$ as the true
-values , and $\delta_{i}$ and $\epsilon_{i}$ as the corresponding
-measurement errors. In the case where the units of measurement are
-the same, then $\beta =1$.
-
-\begin{equation}
-E(X_{i}) = \tau_{i}\\
-\end{equation}
-\begin{equation}
-E(Y_{i}) = \alpha +\beta\tau_{i} \nonumber
-\end{equation}
-\begin{equation}
-E(\delta_{i}) = E(\epsilon_{i}) = 0 \nonumber
-\end{equation}
-
-The value $\alpha$ is the inter-method bias between the two
-methods.
-
-
-\begin{eqnarray}
-z_0 &=& d = 0 \\
-z_{n+1} &=& z_n^2+c
-\end{eqnarray}
-
-
-	
-\subsection{The Problem of Identifiability}
-\citet{DunnSEME} highlights an important issue regarding using
-models such as these, the identifiability problem. This comes as a
-result of there being too many parameters to be estimated.
-Therefore assumptions about some parameters, or estimators used,
-must be made so that others can be estimated. 
-
-For example $\alpha$
-may take the value of the inter-method bias estimate from Bland -
-Altman methodology. 
-
-
-For example in literature the variance
-ratio $\lambda=\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}}$
-must often be assumed to be equal to $1$ \citep{linnet98}.\citet{DunnSEME} considers methodologies based on two methods with single measurements on each subject as inadequate for a serious
-study on the measurement characteristics of the methods. This is
-because there would not be enough data to allow for a meaningful
-analysis. There is, however, a contrary argument that in many
-practical settings it is very difficult to get replicate
-observations when the measurement method requires invasive medical
-procedure.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Bartko's BB
-
-\subsection{Identifiability}
-In many models,  naïve assumptions are required to overcome issues of identifiabilty.
-Precision is defined by the reciprocal of the variance of the random errors. 
-Also it is assumed that the error variance is independent of the amount of material being measured. However, in practice, this is often not the case. Variability increases over the scale of measurements over many cases.
-Estimators of scale parameters are estimable only if the analyst is prepared to make naïve, if not unacceptable, assumptions.
-
-Equation 4 
-$\psi$  and $\varepsilon$ are statistically independent of each other.
-Contamination effect that arises from non-specificity /  specimen specific bias.
-Random error is measured by ε. Homogenity of variances is assumed.
-If there are no replicate measures,  both variances are completely confounded, and there is no way of telling them apart.
-Scaling of new measurements is measured by β.
-
-
-
 
 	\chapter{Residual Diagnostics}
 
@@ -2532,22 +2223,6 @@ figure out from that how to write an 'influence' method for an 'lme' object.
 
 %============================================================================%
 
-\section{Paired T tests}
-This method can be applied to test for statisitcally significant
-deviations in bias. This method can be potentially misused for
-method comparison studies.
-\\It is a poor measure of agreement when the rater's measurements
-are perpendicular to the line of equality[Hutson et al]. In this
-context, an average difference of zero between the two raters, yet
-the scatter plot displays strong negative correlation.
-
-\subsection*{Components in assessing agreement}
-
-\begin{enumerate}
-	\item The degree of linear relationship between the two sets \item
-	The amount of bias as represented by the difference in the
-	means\item The Differences in the two variances.
-\end{enumerate}
 
 \section{Methods of assessing agreement}
 
@@ -2644,49 +2319,6 @@ For the fourth chapter, important linear mixed effects model diagnostic methods 
 The last chapter shall focus on robust measures of important parameters such as agreement.
 
 %======================================================================%
-
-
-\section{Extension of technique to LME Models} %1.4
-
-Model diagnostic techniques , well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
-
-Beckman, Nachtsheim and Cook (1987) applied the \index{local influence}local influence method of Cook (1986)
-to the analysis of the linear mixed model.
-
-
-While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
-
-
-If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect
-\begin{itemize}
-	\item the estimates of fixed effects
-	\item the estimates of the precision of the fixed effects
-	\item the estimates of the covariance parameters
-	\item the estimates of the precision of the covariance parameters
-	\item fitted and predicted values
-\end{itemize}
-
-
-
-
-
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient
-computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by
-making use of basic building blocks, computed only once for the full model.
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-
-
-
-
 
 
 
@@ -3529,6 +3161,46 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 
 
 
+	\section{Remarks on the Multivariate Normal Distribution}
+	
+	Diligence is required when considering the models. Carstensen specifies his models in terms of the univariate normal distribution. ARoy2009's model is specified using the bivariate normal distribution.
+	This gives rises to a key difference between the two model, in that a bivariate model accounts for covariance between the variables of interest.
+	The multivariate normal distribution of a $k$-dimensional random vector $X = [X_1, X_2, \ldots, X_k]$
+	can be written in the following notation:
+	\[
+	X\ \sim\ \mathcal{N}(\mu,\, \Sigma),
+	\]
+	or to make it explicitly known that $X$ is $k$-dimensional,
+	\[
+	X\ \sim\ \mathcal{N}_k(\mu,\, \Sigma).
+	\]
+	with $k$-dimensional mean vector
+	\[ \mu = [ \operatorname{E}[X_1], \operatorname{E}[X_2], \ldots, \operatorname{E}[X_k]] \]
+	and $k \times k$ covariance matrix
+	\[ \Sigma = [\operatorname{Cov}[X_i, X_j]], \; i=1,2,\ldots,k; \; j=1,2,\ldots,k \]
+	
+	\bigskip
+	
+	\begin{enumerate}
+		\item Univariate Normal Distribution
+		
+		\[
+		X\ \sim\ \mathcal{N}(\mu,\, \sigma^2),
+		\]
+		
+		\item Bivariate Normal Distribution
+		
+		\begin{itemize}
+			\item[(a)] \[  X\ \sim\ \mathcal{N}_2(\mu,\, \Sigma), \vspace{1cm}\]
+			\item[(b)] \[    \mu = \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \quad
+			\Sigma = \begin{pmatrix} \sigma_x^2 & \rho \sigma_x \sigma_y \\
+			\rho \sigma_x \sigma_y  & \sigma_y^2 \end{pmatrix}.\]
+		\end{itemize}
+	\end{enumerate}
+	
+	
+	
+
 \subsection{Remarks on the Multivariate Normal Distribution}
 
 Diligence is required when considering the models. Carstensen specifies his models in terms of the univariate normal distribution. Roy's model is specified using the bivariate normal distribution.
@@ -3565,55 +3237,15 @@ and $k \times k$ covariance matrix
 		\rho \sigma_x \sigma_y  & \sigma_y^2 \end{pmatrix}.\]
 	\end{itemize}
 \end{enumerate}
-\newpage
-
-\section{Repeated measurements in LME models}
-
-In many statistical analyzes, the need to determine parameter estimates where multiple measurements are available on each of a set of variables often arises. Further to \citet{lam}, \citet{hamlett} performs an analysis of the correlation of replicate measurements, for two variables of interest, using LME models.
-
-Let $y_{Aij}$ and $y_{Bij}$ be the $j$th repeated observations of the variables of interest $A$ and $B$ taken on the $i$th subject. The number of repeated measurements for each variable may differ for each individual.
-Both variables are measured on each time points. Let $n_{i}$ be the number of observations for each variable, hence $2\times n_{i}$ observations in total.
-
-It is assumed that the pair $y_{Aij}$ and $y_{Bij}$ follow a bivariate normal distribution.
-\begin{eqnarray*}
-	\left(
-	\begin{array}{c}
-		y_{Aij} \\
-		y_{Bij} \\
-	\end{array}
-	\right) \sim \mathcal{N}(
-	\boldsymbol{\mu}, \boldsymbol{\Sigma})\mbox{   where } \boldsymbol{\mu} = \left(
-	\begin{array}{c}
-		\mu_{A} \\
-		\mu_{B} \\
-	\end{array}
-	\right)
-\end{eqnarray*}
-
-The matrix $\Sigma$ represents the variance component matrix between response variables at a given time point $j$.
-
-\[
-\boldsymbol{\Sigma} = \left( \begin{array}{cc}
-\sigma^2_{A} & \sigma_{AB} \\
-\sigma_{AB} & \sigma^2_{B}\\
-\end{array}   \right)
-\]
-
-$\sigma^2_{A}$ is the variance of variable $A$, $\sigma^2_{B}$ is the variance of variable $B$ and $\sigma_{AB}$ is the covariance of the two variable. It is assumed that $\boldsymbol{\Sigma}$ does not depend on a particular time point, and is the same over all time points.
-
-%-------------------------------------------------------------------------------------------------------------------------------------%
-
-	
-
-
-
 
 \addcontentsline{toc}{section}{Bibliography}
 
-	%--------------------------------------------------------------------------------------%
-	
+%--------------------------------------------------------------------------------------%
+
 \bibliographystyle{chicago}
 \bibliography{DB-txfrbib}
+
+
 \end{document}
 
 

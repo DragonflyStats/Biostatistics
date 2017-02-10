@@ -19,15 +19,31 @@
 	known as `Model II regression'. They differ in the method used to
 	estimate the parameters of the regression.
 	
-	Regression estimates depend on formulation of the model. A
-	formulation with one method considered as the $X$ variable will
-	yield different estimates for a formulation where it is the $Y$
-	variable. With Model I regression,the models fitted in both cases
-	will entirely different and inconsistent. However with Model II
-	regression, they will be consistent and complementary.
+	Regression estimates depend on formulation of the model. A formulation with one method considered as the $X$ variable will 	yield different estimates for a formulation where it is the $Y$ variable. With Model I regression,the models fitted in both cases
+	will entirely different and inconsistent. However with Model II	regression, they will be consistent and complementary.
 
 	
 Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias. Fixed bias describes the case where one method gives values that are consistently different	to the other across the whole range. Proportional bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook}. Determination of these biases shall be discussed in due course.
+
+\subsection{Simple Linear Regression} Simple Linear Regression is  well
+known statistical technique , wherein estimates for slope and intercept of the line of best fit are derived according to the
+Ordinary Least Square (OLS) principle.This method is known to Cornbleet and Cochrane as Model I regression.
+\\
+\\
+In Model I regression, the independent variable is assumed to be
+measured without error. For method comparison studies, both sets of measurement must be assumed to be measured with imprecision and
+neither case can be taken to be a reference method. Arbitrarily selecting either method as the reference will yield two
+conflicting outcomes. A fitting based on '$X$ on $Y$' will give inconsistent results with a fitting based on '$Y$ on $X$'.
+Consequently model I regression is inappropriate for such cases.
+\\
+\\
+Conversely, Cornbleet Cochrane state that when the independent variable $X$ is a precisely measured reference method, Model I
+regression may be considered suitable. They qualify this statement
+by referring the $X$ as \emph{the 'correct' value}, tacitly implying that there must still be some measurement error present.
+The validity of this approach has been disputed elsewhere.
+
+
+
 
 
 	\subsection{Deming Regression}
@@ -116,104 +132,103 @@ For a given $\lambda$, \citet{Kummel} derived the following estimate that would 
 	this is often not the case, with the $\lambda$ being
 	underestimated.
 	\newpage
-\subsection{Deming Regression}
 
-As stated previously, the fundamental flaw of simple linear regression is that it allows for measurement error in one variable only. This causes a downward biased slope estimate.
-
-Deming regression is a regression fitting approach that assumes error in both variables. Deming regression is recommended by \citet*{CornCoch} as the
-preferred Model II regression for use in method comparison
-studies.
-The sum of squared distances from measured sets of values to the regression line is minimized at an angles specified by the ratio $\lambda$ of the residual variance of both variables. I
-When $\lambda$ is one, the angle is 45 degrees. In ordinary linear regression, the distances are minimized in the vertical directions \citep{linnet99}.
-In cases involving only single measurements by each method, $\lambda$ may be unknown and is therefore assumes a value of one. While this will bias the estimates, it is less biased than ordinary linear regression.
-
-The Bland Altman Plot is
-uninformative about the comparative influence of proportional bias
-and fixed bias. Model II approaches, such as Deming regression,  can provide independent tests for
-both types of bias.
-
-For a given $\lambda$, \citet{Kummel} derived the following
-estimate that would later be used for the Deming regression slope
-parameter. The intercept estimate $\alpha$
-is simply estimated in the same way as in conventional linear
-regression, by using the identity $\bar{Y}-\hat{\beta}\bar{X}$;
-\begin{equation}
-\hat{\beta} =\quad \frac{S_{yy} - \lambda S_{xx}+[(S_{yy} -
-	\lambda S_{xx})^{2}+ 4\lambda S^{2}_{xy}]^{1/2}}{2S_{xy}}
-\end{equation},
-with $\lambda$ as the variance ratio. As stated previously $\lambda$ is often unknown, and therefore must be assumed to equal one. \citet{CarollRupert} states that Deming
-regression is acceptable only when the precision ratio ($\lambda$,in their paper as $\eta$) is correctly specified, but in practice this is often not the case, with the $\lambda$ being underestimated. Several candidate models, with varying variance ratios may be fitted, and estimates of the slope and intercept are produced. However no model selection information is available to determine the best fitting model.
-
-As with conventional regression methodologies, Deming regression
-calculates an estimate for both the slope and intercept for the
-fitted line, and standard errors thereof. Therefore there is
-sufficient information to carry out hypothesis tests on both
-estimates, that are informative about presence of fixed and
-proportional bias.
-
-A $95\%$ confidence interval for the intercept estimate can be
-used to test the intercept, and hence fixed bias, is equal to
-zero. This hypothesis is accepted if the confidence interval for
-the estimate contains the value $0$ in its range. Should this be,
-it can be concluded that fixed bias is not present. Conversely, if
-the hypothesis is rejected, then it is concluded that the
-intercept is non zero, and that fixed bias is present.
-
-Testing for proportional bias is a very similar procedure. The
-$95\%$ confidence interval for the slope estimate can be used to
-test the hypothesis that the slope is equal to $1$. This
-hypothesis is accepted if the confidence interval for the estimate
-contains the value $1$ in its range. If the hypothesis is
-rejected, then it is concluded that the slope is significant
-different from $1$ and that a proportional bias exists.
-
-For convenience, a new data set shall be introduced to demonstrate
-Deming regression. Measurements of transmitral volumetric flow
-(MF) by doppler echocardiography, and left ventricular stroke
-volume (SV) by cross sectional echocardiography in 21 patients
-with aortic valve disease are tabulated in \citet{zhang}. This
-data set features in the discussion of method comparison studies
-in \citet[p.398]{AltmanBook} .
-
-
-% latex table generated in R 2.6.0 by xtable 1.5-5 package
-% Tue Sep 01 13:31:17 2009
-\begin{table}[h!]
-	\begin{center}
-		\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
-			\hline
-			Patient & MF  & SV  & Patient & MF  & SV  & Patient & MF  & SV \\
-			&($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$)
-			\\
-			\hline
-			1 & 47 & 43 &  8 & 75 & 72 &  15 & 90 & 82 \\
-			2 & 66 & 70 & 9 & 79 & 92 &  16 & 100 & 100 \\
-			3 & 68 & 72 & 10 & 81 & 76 & 17 & 104 & 94 \\
-			4 & 69 & 81 & 11 & 85 & 85 &  18 & 105 & 98 \\
-			5 & 70 & 60 & 12 & 87 & 82 & 19 & 112 & 108 \\
-			6 & 70 & 67 & 13 & 87 & 90 & 20 & 120 & 131 \\
-			7 & 73 & 72 & 14 & 87 & 96 &  21 & 132 & 131 \\
-			
-			\hline
-		\end{tabular}
-		\caption{Transmitral volumetric flow(MF) and left ventricular
-			stroke volume (SV) in 21 patients. (Zhang et al 1986)}
-	\end{center}
-\end{table}
-
-\begin{figure}[h!]
-	% Requires \usepackage{graphicx}
-	\includegraphics[width=130mm]{images/ZhangDeming.jpeg}
-	\caption{Deming Regression For Zhang's Data}\label{ZhangDeming}
-\end{figure}
-
-
-\citet{CarollRupert} states that Deming's
-regression is acceptable only when the precision ratio ($\lambda$,
-in their paper as $\eta$) is correctly specified, but in practice
-this is often not the case, with the $\lambda$ being
-underestimated.
-\newpage
+	\subsection{Deming's Regression}
+	The most commonly known Model II methodology is known as Deming's
+	Regression, (also known an Ordinary Least Product regression).
+	Deming regression is recommended by \citet*{CornCoch} as the
+	preferred Model II regression for use in method comparison
+	studies. As previously noted, the Bland Altman Plot is
+	uninformative about the comparative influence of proportional bias
+	and fixed bias. Deming's regression provides independent tests for
+	both types of bias.
+	
+	For a given $\lambda$, \citet{Kummel} derived the following
+	estimate for the Demimg regression slope parameter. ($\alpha$ is
+	simply estimated by using the identity
+	$\bar{Y}-\hat{\beta}\bar{X}$.)
+	\begin{equation}
+	\hat{\beta} =\quad \frac{S_{YY} - \lambda S_{XX}+[(S_{YY} -
+		\lambda S_{XX})^{2}+ 4\lambda S^{2}_{XY}]^{1/2}}{2S_{XY}}
+	\end{equation}
+	
+	
+	As with conventional regression methodologies, Deming's regression
+	calculates an estimate for both the slope and intercept for the
+	fitted line, and standard errors thereof. Therefore there is
+	sufficient information to carry out hypothesis tests on both
+	estimates, that are informative about presence of fixed and
+	proportional bias.
+	
+	A $95\%$ confidence interval for the intercept estimate can be
+	used to test the intercept, and hence fixed bias, is equal to
+	zero. This hypothesis is accepted if the confidence interval for
+	the estimate contains the value $0$ in its range. Should this be,
+	it can be concluded that fixed bias is not present. Conversely, if
+	the hypothesis is rejected, then it is concluded that the
+	intercept is non zero, and that fixed bias is present.
+	
+	Testing for proportional bias is a very similar procedure. The
+	$95\%$ confidence interval for the slope estimate can be used to
+	test the hypothesis that the slope is equal to $1$. This
+	hypothesis is accepted if the confidence interval for the estimate
+	contains the value $1$ in its range. If the hypothesis is
+	rejected, then it is concluded that the slope is significant
+	different from $1$ and that a proportional bias exists.
+	
+	For convenience, a new data set shall be introduced to demonstrate
+	Demings regression. Measurements of transmitral volumetric flow
+	(MF) by doppler echocardiography, and left ventricular stroke
+	volume (SV) by cross sectional echocardiography in 21 patients
+	withour aortic valve disease are tabulated in \citet{zhang}. This
+	data set features in the discussion of method comparison studies
+	in \citet[p.398]{images/AltmanBook} .
+	
+	
+	% latex table generated in R 2.6.0 by xtable 1.5-5 package
+	% Tue Sep 01 13:31:17 2009
+	\begin{table}[h!]
+		\begin{center}
+			\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
+				\hline
+				Patient & MF  & SV  & Patient & MF  & SV  & Patient & MF  & SV \\
+				&($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$)
+				\\
+				\hline
+				1 & 47 & 43 &  8 & 75 & 72 &  15 & 90 & 82 \\
+				2 & 66 & 70 & 9 & 79 & 92 &  16 & 100 & 100 \\
+				3 & 68 & 72 & 10 & 81 & 76 & 17 & 104 & 94 \\
+				4 & 69 & 81 & 11 & 85 & 85 &  18 & 105 & 98 \\
+				5 & 70 & 60 & 12 & 87 & 82 & 19 & 112 & 108 \\
+				6 & 70 & 67 & 13 & 87 & 90 & 20 & 120 & 131 \\
+				7 & 73 & 72 & 14 & 87 & 96 &  21 & 132 & 131 \\
+				
+				\hline
+			\end{tabular}
+			\caption{Transmitral volumetric flow(MF) and left ventricular
+				stroke volume (SV) in 21 patients. (Zhang et al 1986)}
+		\end{center}
+	\end{table}
+	
+	\begin{figure}[h!]
+		% Requires \usepackage{graphicx}
+		\includegraphics[width=130mm]{images/ZhangDeming.jpeg}
+		\caption{Deming Regression For Zhang's Data}\label{ZhangDeming}
+	\end{figure}
+	
+	Deming's Regression suffers from some crucial drawback. Firstly it
+	is computationally complex, and it requires specific software
+	packages to perform calculations.Secondly it is uninformative
+	about the comparative precision of two methods of measurement.
+	Most importantly \citet{CarollRupert} states that Deming's
+	regression is acceptable only when the precision ratio ($\lambda$,
+	in their paper as $\eta$) is correctly specified ,but in practice
+	this is often not the case, with the $\lambda$ being
+	underestimated.
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
 
 	\section*{Deming Regression}
 	
@@ -240,32 +255,6 @@ underestimated.
 	\end{itemize}
 	
 \section{Model II Regression}
-\subsection{Simple Linear Regression} Simple Linear Regression is  well
-known statistical technique , wherein estimates for slope and
-intercept of the line of best fit are derived according to the
-Ordinary Least Square (OLS) principle.This method is known to
-Cornbleet and Cochrane as Model I regression.
-\\
-\\
-In Model I regression, the independent variable is assumed to be
-measured without error. For method comparison studies, both sets
-of measurement must be assumed to be measured with imprecision and
-neither case can be taken to be a reference method. Arbitrarily
-selecting either method as the reference will yield two
-conflicting outcomes. A fitting based on '$X$ on $Y$' will give
-inconsistent results with a fitting based on '$Y$ on $X$'.
-Consequently model I regression is inappropriate for such cases.
-\\
-\\
-Conversely, Cornbleet Cochrane state that when the independent
-variable $X$ is a precisely measured reference method, Model I
-regression may be considered suitable. They qualify this statement
-by referring the $X$ as \emph{the 'correct' value}, tacitly
-implying that there must still be some measurement error present.
-The validity of this approach has been disputed elsewhere.
-
-
-
 
 \subsection{Model II regression}
 Cochrane and Cornbleet argue for the use of methods that based on
@@ -296,18 +285,16 @@ Least Product Regression , also known as 'Model II regression'
 caters for cases in which random error is attached to both
 dependent and independent variables. Ludbrook cites this
 methodology as being pertinent to Method comparison studies.
-\\
-\\
+
+
 The sum of the products of the vertical and horizontal deviations
 of the x,y values from the line is minimized.
-\\
-\\
+
 Least products regression analysis is considered suitable for
 calibrating one method against another.Ludbrook comments that it
 is also a sensitive technique for detecting and distinguishing
 fixed and proportional bias between methods.
-\\
-\\
+
 Proposed as an alternative to Bland \& Altman methodology ,this
 method is also known as 'Geometric Mean Regression' and 'Reduced
 Major Axis Regression'.
@@ -363,102 +350,6 @@ that do not tend to their true values an N approaches infinity
 The Deming regression line is estimated by minimizing the sums of squared deviations in both the x and y directions at an angle determined by the ratio of the analytical standard deviations for the two methods.
 This ratio can be estimated if multiple measurements were taken with each method, but if only one measurement was taken with each method, it can be assumed to be equal to one.
 	
-	\subsection{Deming's Regression}
-	The most commonly known Model II methodology is known as Deming's
-	Regression, (also known an Ordinary Least Product regression).
-	Deming regression is recommended by \citet*{CornCoch} as the
-	preferred Model II regression for use in method comparison
-	studies. As previously noted, the Bland Altman Plot is
-	uninformative about the comparative influence of proportional bias
-	and fixed bias. Deming's regression provides independent tests for
-	both types of bias.
-	
-	For a given $\lambda$, \citet{Kummel} derived the following
-	estimate for the Demimg regression slope parameter. ($\alpha$ is
-	simply estimated by using the identity
-	$\bar{Y}-\hat{\beta}\bar{X}$.)
-	\begin{equation}
-	\hat{\beta} =\quad \frac{S_{YY} - \lambda S_{XX}+[(S_{YY} -
-		\lambda S_{XX})^{2}+ 4\lambda S^{2}_{XY}]^{1/2}}{2S_{XY}}
-	\end{equation}
-	
-	
-	As with conventional regression methodologies, Deming's regression
-	calculates an estimate for both the slope and intercept for the
-	fitted line, and standard errors thereof. Therefore there is
-	sufficient information to carry out hypothesis tests on both
-	estimates, that are informative about presence of fixed and
-	proportional bias.
-	
-	A $95\%$ confidence interval for the intercept estimate can be
-	used to test the intercept, and hence fixed bias, is equal to
-	zero. This hypothesis is accepted if the confidence interval for
-	the estimate contains the value $0$ in its range. Should this be,
-	it can be concluded that fixed bias is not present. Conversely, if
-	the hypothesis is rejected, then it is concluded that the
-	intercept is non zero, and that fixed bias is present.
-	
-	Testing for proportional bias is a very similar procedure. The
-	$95\%$ confidence interval for the slope estimate can be used to
-	test the hypothesis that the slope is equal to $1$. This
-	hypothesis is accepted if the confidence interval for the estimate
-	contains the value $1$ in its range. If the hypothesis is
-	rejected, then it is concluded that the slope is significant
-	different from $1$ and that a proportional bias exists.
-	
-	For convenience, a new data set shall be introduced to demonstrate
-	Demings regression. Measurements of transmitral volumetric flow
-	(MF) by doppler echocardiography, and left ventricular stroke
-	volume (SV) by cross sectional echocardiography in 21 patients
-	withour aortic valve disease are tabulated in \citet{zhang}. This
-	data set features in the discussion of method comparison studies
-	in \citet[p.398]{images/AltmanBook} .
-	
-
-	% latex table generated in R 2.6.0 by xtable 1.5-5 package
-	% Tue Sep 01 13:31:17 2009
-	\begin{table}[h!]
-		\begin{center}
-			\begin{tabular}{|c|c|c||c|c|c||c|c|c|}
-				\hline
-				Patient & MF  & SV  & Patient & MF  & SV  & Patient & MF  & SV \\
-				&($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$) & &($cm^{3}$)&  ($cm^{3}$)
-				\\
-				\hline
-				1 & 47 & 43 &  8 & 75 & 72 &  15 & 90 & 82 \\
-				2 & 66 & 70 & 9 & 79 & 92 &  16 & 100 & 100 \\
-				3 & 68 & 72 & 10 & 81 & 76 & 17 & 104 & 94 \\
-				4 & 69 & 81 & 11 & 85 & 85 &  18 & 105 & 98 \\
-				5 & 70 & 60 & 12 & 87 & 82 & 19 & 112 & 108 \\
-				6 & 70 & 67 & 13 & 87 & 90 & 20 & 120 & 131 \\
-				7 & 73 & 72 & 14 & 87 & 96 &  21 & 132 & 131 \\
-				
-				\hline
-			\end{tabular}
-			\caption{Transmitral volumetric flow(MF) and left ventricular
-				stroke volume (SV) in 21 patients. (Zhang et al 1986)}
-		\end{center}
-	\end{table}
-
-	\begin{figure}[h!]
-		% Requires \usepackage{graphicx}
-		\includegraphics[width=130mm]{images/ZhangDeming.jpeg}
-		\caption{Deming Regression For Zhang's Data}\label{ZhangDeming}
-	\end{figure}
-	
-	Deming's Regression suffers from some crucial drawback. Firstly it
-	is computationally complex, and it requires specific software
-	packages to perform calculations.Secondly it is uninformative
-	about the comparative precision of two methods of measurement.
-	Most importantly \citet{CarollRupert} states that Deming's
-	regression is acceptable only when the precision ratio ($\lambda$,
-	in their paper as $\eta$) is correctly specified ,but in practice
-	this is often not the case, with the $\lambda$ being
-	underestimated.
-	\newpage
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	
 
 \section*{Deming Regression}
 
@@ -499,7 +390,7 @@ two instruments. Computer codes for performing these calculations, written using
 software, are listed.
 %-----------------------------------------------------------------------------------------------%
 
-\subsection*{EQUIVALENCE REGION}
+\section*{EQUIVALENCE REGION}
 The equivalence region is specified by the user. It can be an ellipse, parallelogram,
 rectangle, or a region of some other appropriate shape. The way we use the fiducial region in this method is as follows. If
 the $1−\gamma$ fiducial region that we construct is completely inside the equivalence region then we have established agreement.
@@ -554,163 +445,7 @@ Henk Konings
 	%\citet{linnet93} defines analytical standard deviation as the standard deviation of measures values around the target value.\citet{linnet93} defines analytical standard deviation as the standard deviation of measures values around the target value.
 	
 	
-	\newpage
-	
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	
-	
-	\section{Other Types of Studies}
-	\citet{lewis} categorize method comparison studies into three
-	different types.  The key difference between the first two is
-	whether or not a `gold standard' method is used. In situations
-	where one instrument or method is known to be `accurate and
-	precise', it is considered as the`gold standard' \citep{lewis}. A
-	method that is not considered to be a gold standard is referred to
-	as an `approximate method'. In calibration studies they are
-	referred to a criterion methods and test methods respectively.
-	
-	
-	\textbf{1. Calibration problems}. The purpose is to establish a
-	relationship between methods, one of which is an approximate
-	method, the other a gold standard. The results of the approximate
-	method can be mapped to a known probability distribution of the
-	results of the gold standard \citep{lewis}. (In such studies, the
-	gold standard method and corresponding approximate method are
-	generally referred to a criterion method and test method
-	respectively.) \citet*{BA83} make clear that their methodology is
-	not intended for calibration problems.
-	
-	\bigskip \textbf{2. Comparison problems}. When two approximate
-	methods, that use the same units of measurement, are to be
-	compared. This is the case which the Bland-Altman methodology is
-	specfically intended for, and therefore it is the most relevant of
-	the three.
-	
-	\bigskip \textbf{3. Conversion problems}. When two approximate
-	methods, that use different units of measurement, are to be
-	compared. This situation would arise when the measurement methods
-	use 'different proxies', i.e different mechanisms of measurement.
-	\citet{lewis} deals specifically with this issue. In the context
-	of this study, it is the least relevant of the three.
-	
-	\citet[p.47]{DunnSEME} cautions that`gold standards' should not be
-	assumed to be error free. `It is of necessity a subjective
-	decision when we come to decide that a particular method or
-	instrument can be treated as if it was a gold standard'. The
-	clinician gold standard , the sphygmomanometer, is used as an
-	example thereof.  The sphygmomanometer `leaves considerable room
-	for improvement' \citep{DunnSEME}. \citet{pizzi} similarly
-	addresses the issue of glod standards, `well-established gold
-	standard may itself be imprecise or even unreliable'.
-	
-	
-	The NIST F1 Caesium fountain atomic clock is considered to be the
-	gold standard when measuring time, and is the primary time and
-	frequency standard for the United States. The NIST F1 is accurate
-	to within one second per 60 million years \citep{NIST}.
-	
-	Measurements of the interior of the human body are, by definition,
-	invasive medical procedures. The design of method must balance the
-	need for accuracy of measurement with the well-being of the
-	patient. This will inevitably lead to the measurement error as
-	described by \citet{DunnSEME}. The magnetic resonance angiogram,
-	used to measure internal anatomy,  is considered to the gold
-	standard for measuring aortic dissection. Medical test based upon
-	the angiogram is reported to have a false positive reporting rate
-	of 5\% and a false negative reporting rate of 8\%. This is
-	reported as sensitivity of 95\% and a specificity of 92\%
-	\citep{ACR}.
-	
-	In literature they are, perhaps more accurately, referred to as
-	`fuzzy gold standards' \citep{phelps}. Consequently when one of the methods is
-	essentially a fuzzy gold standard, as opposed to a `true' gold
-	standard, the comparison of the criterion and test methods should
-	be consider in the context of a comparison study, as well as of a
-	calibration study.
-
-	\section{Other Types of Studies}
-	\citet{lewis} categorize method comparison studies into three
-	different types.  The key difference between the first two is
-	whether or not a `gold standard' method is used. In situations
-	where one instrument or method is known to be `accurate and
-	precise', it is considered as the`gold standard' \citep{lewis}. A
-	method that is not considered to be a gold standard is referred to
-	as an `approximate method'. In calibration studies they are
-	referred to a criterion methods and test methods respectively.
-	
-	
-	\textbf{1. Calibration problems}. The purpose is to establish a
-	relationship between methods, one of which is an approximate
-	method, the other a gold standard. The results of the approximate
-	method can be mapped to a known probability distribution of the
-	results of the gold standard \citep{lewis}. (In such studies, the
-	gold standard method and corresponding approximate method are
-	generally referred to a criterion method and test method
-	respectively.) \citet*{BA83} make clear that their methodology is
-	not intended for calibration problems.
-	
-\bigskip \textbf{2. Comparison problems}. When two approximate
-	methods, that use the same units of measurement, are to be compared. This is the case which the Bland-Altman methodology is specfically intended for, and therefore it is the most relevant of
-	the three.
-	
-\bigskip \textbf{3. Conversion problems}. When two approximate methods, that use different units of measurement, are to be compared. This situation would arise when the measurement methods use 'different proxies', i.e different mechanisms of measurement. \citet{lewis} deals specifically with this issue. In the context	of this study, it is the least relevant of the three.
-	
-\citet[p.47]{DunnSEME} cautions that`gold standards' should not be
-	assumed to be error free. `It is of necessity a subjective
-	decision when we come to decide that a particular method or
-	instrument can be treated as if it was a gold standard'. The
-	clinician gold standard , the sphygmomanometer, is used as an
-	example thereof.  The sphygmomanometer `leaves considerable room
-	for improvement' \citep{DunnSEME}. \citet{pizzi} similarly
-	addresses the issue of glod standards, `well-established gold
-	standard may itself be imprecise or even unreliable'.
-	
-	
-	The NIST F1 Caesium fountain atomic clock is considered to be the
-	gold standard when measuring time, and is the primary time and
-	frequency standard for the United States. The NIST F1 is accurate
-	to within one second per 60 million years \citep{NIST}.
-	
-Measurements of the interior of the human body are, by definition,
-	invasive medical procedures. The design of method must balance the
-	need for accuracy of measurement with the well-being of the
-	patient. This will inevitably lead to the measurement error as
-	described by \citet{DunnSEME}. The magnetic resonance angiogram,
-	used to measure internal anatomy,  is considered to the gold
-	standard for measuring aortic dissection. Medical test based upon
-	the angiogram is reported to have a false positive reporting rate
-	of 5\% and a false negative reporting rate of 8\%. This is
-	reported as sensitivity of 95\% and a specificity of 92\%
-	\citep{ACR}.
-	
-In literature they are, perhaps more accurately, referred to as
-	`fuzzy gold standards' \citep{phelps}. Consequently when one of the methods is
-	essentially a fuzzy gold standard, as opposed to a `true' gold
-	standard, the comparison of the criterion and test methods should
-	be consider in the context of a comparison study, as well as of a
-	calibration study.
-	
-	
-	
-	
-\newpage
-	
-
-	\section{Lewis Conversion} 
-	While regarding a comparison of two pump meters under operational conditions
-	
-	‘..It is suspected that the various assumptions made by each method are weak under operational conditions’
-	Lewis listed several sources of variation that relate to the practical aspects of each measurement method.
-	
-	‘There is little reasons to believe that the laboratory conditions of the devise provide a suitable basis for the conversion of data gathered under operational conditions.
-	
-	
-	%-------------------------------------------------------------%
-	Latent variables are variables that are not measured (i.e. not observed) but whose values is observed from other observed variables. One advantage of using latent variables is that it reduces the dimensionality of data. A large number of observable variables can be aggregated in a model to represent an underlying concept, making it easier for humans to understand the data.	[wikipedia]
-
 \bibliographystyle{chicago}
 \bibliography{DB-txfrbib}
 \end{document}
+	

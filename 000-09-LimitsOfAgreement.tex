@@ -1,5 +1,99 @@
 \documentclass[Main.tex]{subfiles}
 \begin{document}
+	\subsection{Introduction to Limits of Agreement}
+	\begin{itemize}
+		\item Comparing two methods of measurement is normally done by computing limits of agreement (LoA), i.e. prediction limits for
+		a future difference between measurements with the two methods. When the difference is not constant it is not clear what
+		this means, since the difference between the methods depends on the average; hence, unlike the case where the difference is
+		constant, LoA cannot directly be translated into a prediction interval for a measurement by one method given that of another.
+		\item The main point in the paper by Bland and Altman [1] is however different from the outlook in this paper; Bland and Altman
+		mainly discuss whether two methods of measurement can be used interchangeably and how to assess this with the help of
+		proper statistical methods to derive LoA, i.e. prediction limits for differences between two methods.
+		This paper takes as starting point that the classical LoA can be converted to a prediction interval for one method given a
+		measurement by the other (details in the next section). This sort of relationship can be shown in a plot as a line with slope 1
+		and prediction limits as lines also with slope 1; applicable for the prediction both from method 1 to method 2 and vice versa. In
+		the case of non-constant difference it would be desirable to be able to produce a similar plot, usable both ways. Thus, the aim
+		of this paper is to produce a conversion from one method to another that also applies in the case where the difference between
+		methods is not constant.
+		\item In this paper, I set up a proper model for data for method comparison studies which in the case of constant difference between
+		methods leads to the classical LoA, and in the case of linear bias gives a simple formula for the prediction. The paper only
+		addresses the situation where only one measurement by each method is available, although replicate measurements by each
+		method are desirable whenever possible [2]. Moreover, the situation with non-constant variance over the range of measurements
+		is not covered either.
+	\end{itemize}
+	\newpage
+	\subsection{Limits Of Agreement}
+	Bland and Altman proposed a pair of Limits of agreement. These
+	limits are intended to demonstrate the range in which 95\% of the
+	sample data should lie. The Limits of agreement centre on the
+	average difference line and are 1.96 times the standard deviation
+	above and below the average difference line.
+	
+	How this relates the overall population is unclear. It seems that
+	it depends on an expert to decide whether or not the range of
+	differences is acceptable. In a study A Bland-Altman plots compare
+	two assay methods. It plots the difference between the two
+	measurements on the Y axis, and the average of the two
+	measurements on the X axis.
+	
+	The bias is computed as the average of the difference of paired
+	assays.
+	
+	If one method is sometimes higher, and sometimes the other method
+	is higher, the average of the differences will be close to zero.
+	If it is not close to zero, this indicates that the two assay
+	methods are producing different results systematically.
+	
+	\subsubsection{Precision of Limits of Agreement}
+	The limits of agreement are estimates derived from the sample
+	studied, and will differ from values relevant to the whole
+	population. A different sample would give different limits of
+	agreement. \citet*{BA86} advance a formulation for confidence
+	intervals of the inter-method bias and the limits of agreement.
+	These calculations employ quantiles of the `t' distribution with
+	$n -1$ degrees of freedom.
+	
+	%This page also shows the standard deviation (SD) of the
+	%differences between the two assay methods. The SD value is used to
+	%calculate the limits of agreement, computed as the mean bias plus
+	%or minus 1.96 times its SD.
+	%----------------------------------------------------------------------------%
+	\subsection{Appropriate Use of Limits of Agreement}
+	Importantly \citet{BA99} makes the following point:
+	\begin{quote}These estimates are meaningful only if we can assume
+		bias and variability are uniform throughout the range of
+		measurement, assumptions which can be checked graphically.
+	\end{quote}
+	
+	The import of this statement is that , should the Bland Altman
+	plot indicate that these assumptions are not met, then their
+	entire methodology, as posited thus far, is inappropriate for use
+	in a method comparison study. Again, in the context of potential
+	outlier in the Grubbs data (figure 1.2), this raises the question
+	on how to correctly continue.
+	
+	Carstensen attends to the issue of repeated data, using the
+	expression replicate to express a repeated measurement on a
+	subject by the same methods. Carstensen formulates the data as
+	follows Repeated measurement - Arrangement of data into groups,
+	based on the series of results of each subject.
+	
+	%----------------------------------------------------------------------------%
+	\subsection{Appropriate Use of Limits of Agreement}
+	Importantly \citet{BA99} makes the following point:
+	\begin{quote}These estimates are meaningful only if we can assume
+		bias and variability are uniform throughout the range of
+		measurement, assumptions which can be checked graphically.
+	\end{quote}
+	
+	The import of this statement is that , should the Bland Altman
+	plot indicate that these assumptions are not met, then their
+	entire methodology, as posited thus far, is inappropriate for use
+	in a method comparison study. Again, in the context of potential
+	outlier in the Grubbs data (figure 1.2), this raises the question
+	on how to correctly continue.
+	
+	measurements
 \section{Limits of Agreement}
 % introduces
 A third element of the Bland-Altman approach, an interval known as `limits of agreement' is introduced in \citet*{BA86}
