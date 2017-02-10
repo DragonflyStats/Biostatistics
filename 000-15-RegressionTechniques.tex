@@ -103,8 +103,79 @@ the regression coefficient included $1$. Analysts sometimes use least squares (r
 	Regression methods can determine the presence of bias, and the levels of constant bias and proportional bias thereof \cite{ludbrook97,ludbrook02}.
 \end{itemize}
 
-%------------------------------------------------------------------------%
-
+	\section{Blackwood Bradley Model} 
+	
+	\citet{BB89} have developed a regression based procedure for
+	assessing the agreement. This approach performs a simultaneous test for the equivalence of
+	means and variances of the respective methods. Using simple linear
+	regression of the differences of each pair against the sums, a
+	line is fitted to the model, with estimates for intercept and
+	slope ($\hat{\beta}_{0}$ and $\hat{\beta}_{1}$).
+	%We have identified
+	%this approach  to be examined to see if it can be used as a %foundation for a test perform a test on
+	%means and variances individually.
+	\begin{equation}
+	D = (X_{1}-X_{2})
+	\end{equation}
+	\begin{equation}
+	M = (X_{1} + X_{2}) /2
+	\end{equation}
+	The Bradley Blackwood Procedure fits D on M as follows:\\
+	\begin{equation}
+	D = \beta_{0} + \beta_{1}M
+	\end{equation}
+	This technique offers a formal simultaneous hypothesis test for the
+	mean and variance of two paired data sets.  The null
+	hypothesis of this test is that the mean ($\mu$) and variance
+	($\sigma^{2}$) of both data sets are equal if the slope and
+	intercept estimates are equal to zero(i.e $\sigma^{2}_{1} =
+	\sigma^{2}_{2}$ and $\mu_{1}=\mu_{2}$ if and only if $\beta_{0}=
+	\beta_{1}=0$ )
+	
+	A test statistic is then calculated from the regression analysis
+	of variance values \citep{BB89} and is distributed as `$F$' random
+	variable. The degrees of freedom are $\nu_{1}=2$ and $\nu_{1}=n-2$
+	(where $n$ is the number of pairs). The critical value is chosen
+	for $\alpha\%$ significance with those same degrees of freedom.
+	\citet{Bartko} amends this approach for use in method
+	comparison studies, using the averages of the pairs, as opposed to
+	the sums, and their differences. This approach can facilitate
+	simultaneous usage of test with the Bland-Altman approach.
+	Bartko's test statistic take the form:
+	\[ F.test = \frac{(\Sigma d^{2})-SSReg}{2MSReg}
+	\]
+	% latex table generated in R 2.6.0 by xtable 1.5-5 package
+	% Mon Aug 31 15:53:51 2009
+	\begin{table}[h!]
+		\begin{center}
+			\begin{tabular}{lrrrrr}
+				\hline
+				& Df & Sum Sq & Mean Sq & F value & Pr($>$F) \\
+				\hline
+				Averages & 1 & 0.04 & 0.04 & 0.74 & 0.4097 \\
+				Residuals & 10 & 0.60 & 0.06 &  &  \\
+				\hline
+			\end{tabular}
+			\caption{Regression ANOVA of case-wise differences and averages
+				for Grubbs Data}
+		\end{center}
+	\end{table}
+	%(calculate using R code $qf(0.95,2,10)$).
+	
+	For the Grubbs data, $\Sigma d^{2}=5.09 $, $SSReg = 0.60$ and
+	$MSreg=0.06$ Therefore the test statistic is $37.42$, with a
+	critical value of $4.10$. Hence the means and variance of the
+	Fotobalk and Counter chronometers are assumed to be simultaneously
+	equal.
+	
+	Importantly, this approach determines whether there is both
+	inter-method bias and precision present, or alternatively if there
+	is neither present. It has previously been demonstrated that there
+	is a inter-method bias present, but as this procedure does not
+	allow for separate testing, no conclusion can be drawn on the
+	comparative precision of both methods.
+	
+	
 	\section{Bartko's Bradley-Blackwood Test}
 	This is a regression based
 	approach that performs a simultaneous test for the equivalence of
