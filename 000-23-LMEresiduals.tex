@@ -2,41 +2,7 @@
 \begin{document}
 
 
-%-------------------------------------------------------------- %
-\section{Residual}
 
-A residual (or fitting error), on the other hand, is an observable estimate of the unobservable statistical error.
-Residual (or error) represents unexplained (or residual) variation after fitting a regression model. It is the difference (or left over) between the observed value of the variable and the value suggested by the regression model.
-Consider the previous example with men's heights and suppose we have a random sample of n people. The sample mean could serve as a good estimator of the population mean. Then we have:
-
-
-The difference between the observed value of the dependent variable (y) and the predicted value (ŷ) is called the residual (e). Each data point has one residual.
-
-\[ \mbox{Residual} = \mbox{Observed value} - \mbox{Predicted value}\]
-\[e = y - \hat{y} \]
-
-Both the sum and the mean of the residuals are equal to zero. .
-
-%--------------------------------- %
-
-
-The difference between the height of each man in the sample and the unobservable population mean is a statistical error, whereas
-The difference between the height of each man in the sample and the observable sample mean is a residual.
-Note that the sum of the residuals within a random sample is necessarily zero, and thus the residuals are necessarily not independent. The statistical errors on the other hand are independent, and their sum within the random sample is almost surely not zero.
-
-%------------------------------- %
-
-\subsection{Other uses of the word "error" in statistics}
-
-The use of the term "error" as discussed in the sections above is in the sense of a deviation of a value from a hypothetical unobserved value. At least two other uses also occur in statistics, both referring to observable prediction errors:
-
-\begin{itemize}
-	\item Mean square error or mean squared error (abbreviated MSE) and root mean square error (RMSE) refer to the amount by which the values predicted by an estimator differ from the quantities being estimated (typically outside the sample from which the model was estimated).
-	
-	\item 
-	Sum of squared errors, typically abbreviated SSE or SSe, refers to the residual sum of squares (the sum of squared residuals) of a regression; this is the sum of the squares of the deviations of the actual values from the predicted values, within the sample used for estimation. Likewise, the sum of absolute errors (SAE) refers to the sum of the absolute values of the residuals, which is minimized in the least absolute deviations approach to regression.
-	
-\end{itemize}
 
 %=================================================== %
 % http://www.ime.usp.br/~jmsinger/MAE0610/Mixedmodelresiduals.pdf
@@ -216,7 +182,7 @@ $r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
 
 In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
 
-\[ \hat{epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
+\[ \hat{\epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{beta} + Z_{i}\hat{b}_{i}) \]
 
 However, using conditional residuals for diagnostics presents difficulties, as they tend to be correlated and their variances may be different for different subgroups, which can lead to erroneous conclusions.
 
@@ -238,7 +204,6 @@ r_{mi}=x^{T}_{i}\hat{\beta}
 &=& BY \nonumber
 \end{eqnarray}
 
-%-------------------------------------------------------------- %
 
 
 \subsection{Marginal and Conditional Residuals}
