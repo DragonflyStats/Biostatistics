@@ -4,7 +4,62 @@
 \begin{document}
 
 	\chapter{Linear Mixed effects Models}
-	\section{Linear Mixed effects Models}
+\section{Introduction to Mixed Models}
+
+%\citet{BrownPrescott} defines random effects as realizations of
+%samples from a normal distribution with mean equal to zero.
+
+All models are characterized by the mean $\alpha$ and the error
+terms. In addition to these terms, any model described so far will
+have either random effects terms or fixed effects terms and
+accordingly are referred to as random or fixed models. Models that
+have both fixed effects terms and random effects terms are known
+as 'mixed effects models'. Once the theory underlying fixed and
+random effects models has been fully understood, the progression
+to understanding mixed models is very simple.
+
+Elaborating on the original mice litter example, the six litters
+by each mouse were fed according to three different dietary
+treatments \citep{Searle}. Therefore a fixed effect $\phi_{j}$ has
+been added to the model, which is now formulated as follows;
+\begin{equation}
+y_{ij} = \mu + \delta_{i} + \phi_{j} + \gamma_{ij} +
+\epsilon_{ijk}
+\end{equation}
+As before, an interaction effect $\gamma_{ij}$ must also be added
+to the model. In cases where the interaction term describes the
+combined effect of fixed and random components, it should be
+treated as random effect. The variance of the above model is
+composed of the $\sigma^{2}_{\delta}$, $\sigma^{2}_{\gamma}$ and
+$\sigma^{2}_{\epsilon}$ .
+
+
+It may be shown that the interaction factors make no contribution
+to the outcome, i.e $\gamma_{ij}$ is consistently calculated as
+zero. Considering the skin tumour example, a person's age would
+bear no relation to their gender and hence there would be
+plausible interaction between the two factors. Indeed , in keeping
+with the `Law of Parsimony', factors should be specified such that
+each would convey separate information. However, interaction terms
+are extant when the model specifies repeated observations, as
+there is necessarily a relationship between observations from the
+same subject. Importantly, interaction effects, being random
+effects, are attended by variance component terms and therefore
+also contribute to the overall variance of the model.
+
+\citet{Searle} gives a mixed effects model formulation for the
+Grubbs artillery study. $y_{ij}$ is the muzzle velocity of the
+$i$th shell, as measured by the $j$th chronometer.
+\begin{equation}
+y_{ij} = \mu + \alpha_{i} + \beta_{j}  + \epsilon_{ij}
+\end{equation}
+In this formulation $\alpha_{i}$ is the random effect of round
+$i$, and the fixed effect component $\beta_{j}$ is the bias in
+chronometer $j$. (Also, no interaction term is used).
+
+
+
+\section{Linear Mixed effects Models}
 	A linear mixed effects (LME) model is a statistical model containing both fixed effects and random effects (random effects are also known as variance components). LME models are a generalization of the classical linear model, which contain fixed effects only. When the levels of factors are considered to be sampled from a population,
 	and each level is not of particular interest, they are considered random quantities with associated variances.
 	The effects of the levels, as described, are known as random effects. Random effects are represented by unobservable
@@ -20,38 +75,7 @@
 	
 	\citet{HartleyRao} demonstrated that unique estimates of the variance components could be obtained using maximum likelihood methods. However these estimates are known to be biased `downwards' (i.e.\ underestimated) , because of the assumption that the fixed estimates are known, rather than being estimated from the data. \citet{PattersonThompson} produced an alternative set of estimates, known as the restricted maximum likelihood (REML) estimates, that do not require the fixed effects to be known. Thusly there is a distinction the REML estimates and the original estimates, now commonly referred to as ML estimates.
 	
-	\citet{LW82} provides a form of notation for notation for LME models that has since become the standard form, or the basis for more complex formulations. Due to computation complexity, linear mixed effects models have not seen widespread use until many well known statistical software applications began facilitating them. SAS Institute added PROC MIXED to its software suite in 1992 \citep{singer}. \citet{PB} described how to compute LME models in the \texttt{S-plus} environment.
-	
-	Using Laird-Ware form, the LME model is commonly described in matrix form,
-	\begin{equation}
-	y = X\beta + Zb + \epsilon
-	\label{LW}
-	\end{equation}
-	
-	\noindent where $y$ is a vector of $N$ observable random variables, $\beta$ is a vector of $p$ fixed effects, $X$ and $Z$ are $N \times p$ and $N \times q$ known matrices, and $b$ and $\epsilon$  are vectors of $q$ and $N,$ respectively, random effects such that $\mathrm{E}(b)=0, \ \mathrm{E}(\epsilon)=0$
-	and
-	\[
-	\mathrm{var}
-	\left(
-	\begin{array}{c}
-	b \\
-	\epsilon \\
-	\end{array}
-	\right)
-	=
-	\left(
-	\begin{array}{cc}
-	D & 0 \\
-	0 & \Sigma \\
-	\end{array}
-	\right)
-	\]
-	
-	
-	
-	
-	where $D$ and $\Sigma$ are positive definite matrices parameterized by an unknown variance component parameter vector $ \theta.$ The variance-covariance matrix for the vector of observations $y$ is given by $V = ZDZ^{\prime}+ \Sigma.$ This implies $y \sim(X\beta, V) = (X\beta,ZDZ^{\prime}+ \Sigma)$. It is worth noting that $V$ is an $n \times n$ matrix, as the dimensionality becomes relevant later on. The notation provided here is generic, and will be adapted to accord with complex formulations that will be encountered in due course.
-	
+
 	%\subsection{Likelihood and estimation}
 	
 	% Likelihood is the hypothetical probability that an event that has already occurred would yield a specific outcome. Likelihood differs from probability in that probability refers to future occurrences, while likelihood refers to past known outcomes.
@@ -168,58 +192,6 @@ As such, linear mixed effects models treat the error for fixed effects different
 	Finally, to complement the blood pressure (i.e.`J vs S') method comparison from the previous section (i.e.`J vs S'), the limits of agreement are $15.62 \pm 1.96 \times 20.33 = (-24.22, 55.46)$.)
 	\newpage
 
-\section{Introduction to Mixed Models}
-
-%\citet{BrownPrescott} defines random effects as realizations of
-%samples from a normal distribution with mean equal to zero.
-
-All models are characterized by the mean $\alpha$ and the error
-terms. In addition to these terms, any model described so far will
-have either random effects terms or fixed effects terms and
-accordingly are referred to as random or fixed models. Models that
-have both fixed effects terms and random effects terms are known
-as 'mixed effects models'. Once the theory underlying fixed and
-random effects models has been fully understood, the progression
-to understanding mixed models is very simple.
-
-Elaborating on the original mice litter example, the six litters
-by each mouse were fed according to three different dietary
-treatments \citep{Searle}. Therefore a fixed effect $\phi_{j}$ has
-been added to the model, which is now formulated as follows;
-\begin{equation}
-y_{ij} = \mu + \delta_{i} + \phi_{j} + \gamma_{ij} +
-\epsilon_{ijk}
-\end{equation}
-As before, an interaction effect $\gamma_{ij}$ must also be added
-to the model. In cases where the interaction term describes the
-combined effect of fixed and random components, it should be
-treated as random effect. The variance of the above model is
-composed of the $\sigma^{2}_{\delta}$, $\sigma^{2}_{\gamma}$ and
-$\sigma^{2}_{\epsilon}$ .
-
-
-It may be shown that the interaction factors make no contribution
-to the outcome, i.e $\gamma_{ij}$ is consistently calculated as
-zero. Considering the skin tumour example, a person's age would
-bear no relation to their gender and hence there would be
-plausible interaction between the two factors. Indeed , in keeping
-with the `Law of Parsimony', factors should be specified such that
-each would convey separate information. However, interaction terms
-are extant when the model specifies repeated observations, as
-there is necessarily a relationship between observations from the
-same subject. Importantly, interaction effects, being random
-effects, are attended by variance component terms and therefore
-also contribute to the overall variance of the model.
-
-\citet{Searle} gives a mixed effects model formulation for the
-Grubbs artillery study. $y_{ij}$ is the muzzle velocity of the
-$i$th shell, as measured by the $j$th chronometer.
-\begin{equation}
-y_{ij} = \mu + \alpha_{i} + \beta_{j}  + \epsilon_{ij}
-\end{equation}
-In this formulation $\alpha_{i}$ is the random effect of round
-$i$, and the fixed effect component $\beta_{j}$ is the bias in
-chronometer $j$. (Also, no interaction term is used).
 
 
 
@@ -442,231 +414,7 @@ The extended single level LME model relaxes the independence assumption, allowin
 $\Lambda_{i}$ are positive definite matrices. $\sigma^2$ is factored out of the matrix for computational reasons.
 
 
-	\section{Using LME for method comparison}
-	Due to the prevalence of modern statistical software, \citet{BXC2008} advocates the adoption of computer based approaches, such as LME models, to method comparison studies. \citet{BXC2008} remarks upon `by-hand' approaches advocated in \citet{BA99} discouragingly, describing them as tedious, unnecessary and `outdated'. Rather than using the `by hand' methods, estimates for required LME parameters can be read directly from program output. Furthermore, using computer approaches removes constraints associated with `by-hand' approaches, such as the need for the design to be perfectly balanced.
-	
-	\subsection{Roy's Approach}
-	
-	For the purposes of comparing two methods of measurement, \citet{roy} presents a framework that utilizes linear mixed effects model. This methodology provides for the formal testing of inter-method bias, between-subject variability and within-subject variability of two methods. The formulation contains a Kronecker product covariance structure in a doubly multivariate setup. By doubly multivariate set up, Roy means that the information on each patient or item is multivariate at two levels, the number of methods and number of replicated measurements. Further to \citet{lam}, it is assumed that the replicates are linked over time. However it is easy to modify to the unlinked case.
-	
-	\citet{roy} sets out three criteria for two methods to be considered in agreement. Firstly that there be no significant bias. Second that there is no difference in the between-subject variabilities, and lastly that there is no significant difference in the within-subject variabilities. Roy further proposes examination of the the overall variability by considering the second and third criteria be examined jointly. Should both the second and third criteria be fulfilled, then the overall variabilities of both methods would be equal.
-	
-	A formal test for inter-method bias can be implemented by examining the fixed effects of the model. This is common to well known classical linear model methodologies. The null hypotheses, that both methods have the same mean, which is tested against the alternative hypothesis, that both methods have different means.
-	The inter-method bias and necessary $t-$value and $p-$value are presented in computer output. A decision on whether the first of Roy's criteria is fulfilled can be based on these values.
-	
-	Importantly \citet{roy} further proposes a series of three tests on the variance components of an LME model, which allow decisions on the second and third of Roy's criteria. For these tests, four candidate LME models are constructed. The differences in the models are specifically in how the the $D$ and $\Lambda$ matrices are constructed, using either an unstructured form or a compound symmetry form. To illustrate these differences, consider a generic matrix $A$,
-	
-	\[
-	\boldsymbol{A} = \left( \begin{array}{cc}
-	a_{11} & a_{12}  \\
-	a_{21} & a_{22}  \\
-	\end{array}\right).
-	\]
-	
-	A symmetric matrix allows the diagonal terms $a_{11}$ and $a_{22}$ to differ. The compound symmetry structure requires that both of these terms be equal, i.e $a_{11} = a_{22}$.
-	
-	The first model acts as an alternative hypothesis to be compared against each of three other models, acting as null hypothesis models, successively. The models are compared using the likelihood ratio test. Likelihood ratio tests are a class of tests based on the comparison of the values of the likelihood functions of two candidate models. 
-	
-	
-	
-	
-	
-	
-	\subsection{Correlation}
-	In addition to the variability tests, Roy advises that it is preferable that a correlation of greater than $0.82$ exist for two methods to be considered interchangeable. However if two methods fulfil all the other conditions for agreement, failure to comply with this one can be overlooked. Indeed Roy demonstrates that placing undue importance to it can lead to incorrect conclusions. \citet{roy} remarks that current computer implementations only gives overall correlation coefficients, but not their variances. Consequently it is not possible to carry out inferences based on all overall correlation coefficients.
-	
-	%--------------------------------------------------%
-	\subsection{Variability test 1}
-	The first test determines whether or not both methods $A$ and $B$ have the same between-subject variability, further to the second of Roy's criteria.
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }d_{A}  = d_{B} \\
-		H_{A}: \mbox{ }d_{A}  \neq d_{B}
-	\end{eqnarray*}
-	This test is facilitated by constructing a model specifying a symmetric form for $D$ (i.e. the alternative model) and comparing it with a model that has compound symmetric form for $D$ (i.e. the null model). For this test $\boldsymbol{\hat{\Lambda}}$ has a symmetric form for both models, and will be the same for both.
-	
-	%---------------------------------------------%
-	\subsection{Variability test 2}
-	
-	This test determines whether or not both methods $A$ and $B$ have the same within-subject variability, thus enabling a decision on the third of Roy's criteria.
-	
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }\lambda_{A}  = \lambda_{B} \\
-		H_{A}: \mbox{ }\lambda_{A}  = \lambda_{B}
-	\end{eqnarray*}
-	
-	This model is performed in the same manner as the first test, only reversing the roles of $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$. The null model is constructed a symmetric form for $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form. This time $\boldsymbol{\hat{D}}$ has a symmetric form for both models, and will be the same for both.
-	
-	As the within-subject variabilities are fundamental to the coefficient of repeatability, this variability test likelihood ratio test is equivalent to testing the equality of two coefficients of repeatability of two methods. In presenting the results of this test, \citet{roy} includes the coefficients of repeatability for both methods.
-	
-	%-----------------------------------------------%
-	\subsection{Variability test 3}
-	The last of the variability test examines whether or not methods $A$ and $B$ have the same overall variability. This enables the joint consideration of second and third criteria.
-	\begin{eqnarray*}
-		H_{0}: \mbox{ }\sigma_{A}  = \sigma_{B} \\
-		H_{A}: \mbox{ }\sigma_{A}  = \sigma_{B}
-	\end{eqnarray*}
-	
-	The null model is constructed a symmetric form for both $\boldsymbol{\hat{D}}$ and $\boldsymbol{\hat{\Lambda}}$ while the alternative model uses a compound symmetry form for both.
-	
-	\subsection{Demonstration of Roy's testing}
-	Roy provides three case studies, using data sets well known in method comparison studies, to demonstrate how the methodology should be used. The first two examples used are from the `blood pressure' data set introduced by \citet{BA99}. The data set is a tabulation of simultaneous measurements of systolic blood pressure were made by each of two experienced observers (denoted `J' and `R') using a sphygmomanometer and by a semi-automatic blood pressure monitor (denoted `S'). Three sets of readings were made in quick succession. Roy compares the `J' and `S' methods in the first of her examples.
-	
-	The inter-method bias between the two method is found to be $15.62$ , with a $t-$value of $-7.64$, with a $p-$value of less than $0.0001$. Consequently there is a significant inter-method bias present between methods $J$ and $S$, and the first of the Roy's three agreement criteria is unfulfilled.
-	
-	Next, the first variability test is carried out, yielding maximum likelihood estimates of the between-subject variance covariance matrix, for both the null model, in compound symmetry (CS) form, and the alternative model in symmetric (symm) form. These matrices are determined to be as follows;
-	\[
-	\boldsymbol{\hat{D}}_{CS} = \left( \begin{array}{cc}
-	946.50 & 784.32  \\
-	784.32 & 946.50  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{D}}_{Symm} = \left( \begin{array}{cc}
-	923.98 & 785.24  \\
-	785.24 & 971.30  \\
-	\end{array}\right).
-	\]
-	
-	A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the null model is $-2030.7$, and for the alternative model $-2030.8$. The test statistic, presented with greater precision than the log-likelihoods, is $0.1592$. The $p-$value is $0.6958$. Consequently we fail to reject the null model, and by extension, conclude that the hypothesis that methods $J$ and $S$ have the same between-subject variability. Thus the second of the criteria is fulfilled.
-	
-	The second variability test determines maximum likelihood estimates of the within-subject variance covariance matrix, for both the null model, in CS form, and the alternative model in symmetric form.
-	
-	\[
-	\boldsymbol{\hat{\Lambda}_{CS}} = \left( \begin{array}{cc}
-	60.27  & 16.06  \\
-	16.06  & 60.27  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{\Lambda}}_{Symm} = \left( \begin{array}{cc}
-	37.40 & 16.06  \\
-	16.06 & 83.14  \\
-	\end{array}\right).
-	\]
-	
-	Again, A likelihood ratio test is perform to compare both candidate models. The log-likelihood of the alternative model model is $-2045.0$. As before, the null model has a log-likelihood of $-2030.7$. The test statistic is computed as $28.617$, again presented with greater precision. The $p-$value is less than $0.0001$. In this case we reject the null hypothesis of equal within-subject variability. Consequently the third of Roy's criteria is unfulfilled.
-	The coefficient of repeatability for methods $J$ and $S$ are found to be 16.95 mmHg and 25.28 mmHg respectively.
-	
-	The last of the three variability tests is carried out to compare the overall variabilities of both methods.
-	With the null model the MLE of the within-subject variance covariance matrix is given below. The overall variabilities for the null and alternative models, respectively, are determined to be as follows;
-	\[
-	\boldsymbol{\hat{\Sigma}}_{CS} = \left( \begin{array}{cc}
-	1007.92  & 801.65  \\
-	801.65  & 1007.92  \\
-	\end{array}\right),
-	\hspace{1.5cm}
-	\boldsymbol{\hat{\Sigma}}_{Symm} = \left( \begin{array}{cc}
-	961.38 & 801.40  \\
-	801.40 & 1054.43  \\
-	\end{array}\right),
-	\]
-	
-	The log-likelihood of the alternative model model is $-2045.2$, and again, the null model has a log-likelihood of $-2030.7$. The test statistic is $28.884$, and the $p-$value is less than $0.0001$. The null hypothesis, that both methods have equal overall variability, is rejected. Further to the second variability test, it is known that this difference is specifically due to the difference of within-subject variabilities.
-	
-	Lastly, Roy considers the overall correlation coefficient. The diagonal blocks $\boldsymbol{\hat{r}_{\Omega}}_{ii}$ of the correlation matrix indicate an overall coefficient of $0.7959$. This is less than the threshold of 0.82 that Roy recommends.
-	
-	\[
-	\boldsymbol{\hat{r}_{\Omega}}_{ii} = \left( \begin{array}{cc}
-	1  & 0.7959  \\
-	0.7959  & 1  \\
-	\end{array}\right)
-	\]
-	
-	The off-diagonal blocks of the overall correlation matrix $\boldsymbol{\hat{r}_{\Omega}}_{ii'}$ present the correlation coefficients further to \citet{hamlett}.
-	\[
-	\boldsymbol{\hat{r}_{\Omega}}_{ii'} = \left( \begin{array}{cc}
-	0.9611  & 0.7799  \\
-	0.7799  & 0.9212  \\
-	\end{array}\right).
-	\]
-	
-	The overall conclusion of the procedure is that method $J$ and $S$ are not in agreement, specifically due to the within-subject variability, and the inter-method bias. The repeatability coefficients are substantially different, with the coefficient for method $S$ being 49\% larger than for method $J$. Additionally the overall correlation coefficient did not exceed the recommended threshold of $0.82$.
-	
-	
-	%------------------------------------------------------------------------------------%
-	\newpage
-\section{Standard Deviation of Differences}
-In computing limits of agreement, it is first necessary to have an estimate for the standard deviations of the differences. When the agreement of two methods is analyzed using LME models, a clear method of how to compute the standard deviation is required. As the estimate for inter-method bias and the quantile would be the same for both methodologies, the focus hereon is solely on the variance of differences.
 
-The standard deviation of the differences of methods $x$ and $y$ is computed using values from the overall VC matrix.
-\[
-\mbox{Var}(x - y ) = \mbox{Var} ( x )  + \mbox{Var} ( y ) - 2\mbox{Cov} ( x ,y )
-\]
-
-
-
-
-
-
-
-	\section{Implementation in R}
-	To implement an LME model in \texttt{R}, the \texttt{nlme} package is used. This package is loaded into the \texttt{R} environment using the library command, (i.e.\ \texttt{library(nlme)}). The \texttt{lme} command is used to fit LME models. The first two arguments to the \texttt{lme} function specify the fixed effect component of the model, and the data set to which the model is to be fitted. The first candidate model (`MCS1') fits an LME model on the data set `dat'. The variable `method' is assigned as the fixed effect, with the response variable `BP' (i.e.\ blood pressure).
-	
-	The third argument contain the random effects component of the formulation, describing the random effects, and their grouping structure. The \texttt{nlme} package provides a set of positive-definite matrices , the \texttt{pdMat} class, that can be used to specify a structure for the between-subject variance-covariance matrix for the random effects. For Roy's methodology, we will use the \texttt{pdSymm} and \texttt{pdCompSymm} to specify a symmetric structure and a compound symmetry structure respectively. A full discussion of these structures can be found in \citet[pg. 158]{PB}.
-	
-	Similarly a variety of structures for the with-subject variance-covariance matrix can be implemented using \texttt{nlme}. To implement a particular matrix structure, one must specify both a variance function and correlation structure accordingly. Variance functions are used to model the variance structure of the within-subject errors. \texttt{varIdent} is a variance function object used to allow different variances according to the levels of a classification factor in the data. A compound symmetry structure is implemented using the \texttt{corCompSymm} class, while the symmetric form is specified by \texttt{corSymm} class. Finally, the estimation methods is specified as ``ML" or ``REML".
-	\newpage
-	The first of Roy's candidate model can be implemented using the following code;\\
-	
-%	\begin{framed}
-		\begin{verbatim}
-		MCS1 = lme(BP ~ method-1, data = dat,
-		random =  list(subject=pdSymm(~ method-1)),
-		weights=varIdent(form=~1|method),
-		correlation = corSymm(form=~1 | subject/obs), method="ML")
-		\end{verbatim}
-%	\end{framed}
-	
-	For the blood pressure data used in \citet{roy}, all four candidate models are implemented by slight variations of this piece of code, specifying either \texttt{pdSymm} or \texttt{pdCompSymm} in the second line, and either \texttt{corSymm} or \texttt{corCompSymm} in the fourth line.
-	For example, the second candidate model `MCS2' is implemented with the same code as MCS1, except for the term \texttt{pdCompSymm} in the second line, rather than \texttt{pdSymm}.
-	\\
-	
-	
-
-%	\begin{framed}
-		\begin{verbatim}
-		MCS2 = lme(BP ~ method-1, data = dat,
-		random = list(subject=pdCompSymm(~ method-1)),
-		weights = varIdent(form=~1|method),
-		correlation = corSymm(form=~1 | subject/obs), method="ML")
-		\end{verbatim}
-%	\end{framed}
-	\vspace{1cm}
-	Using this \texttt{R} implementation for other data sets requires that the data set is structured appropriately (i.e.\ each case of observation records the index, response, method and replicate). Once formatted properly, implementation is simply a case of re-writing the first line of code, and computing the four candidate models accordingly.
-	\newpage
-	To perform a likelihood ratio test for two candidate models, simply use the \texttt{anova} command with the names of the candidate models as arguments. The following piece of code implement the first of Roy's variability tests.
-	\\
-%	\begin{framed}
-		\begin{verbatim}
-		> anova(MCS1,MCS2)
-		Model df    AIC    BIC  logLik   Test L.Ratio p-value
-		MCS1     1  8 4077.5 4111.3 -2030.7
-		MCS2     2  7 4075.6 4105.3 -2030.8 1 vs 2 0.15291  0.6958
-		>
-		\end{verbatim}
-%	\end{framed}
-	\vspace{1cm}
-	The fixed effects estimates are the same for all four candidate models. The inter-method bias can be easily determined by inspecting a summary of any model. The summary presents estimates for all of the important parameters, but not the complete variance-covariance matrices (although some simple \texttt{R} functions can be written to overcome this). The variance estimates for the random effects for MCS2 is presented below.
-	\\
-%	\begin{framed}
-		\begin{verbatim}
-		Random effects:
-		Formula: ~method - 1 | subject
-		Structure: Compound Symmetry
-		StdDev Corr
-		methodJ  30.765
-		methodS  30.765 0.829
-		Residual  6.115
-		\end{verbatim}
-%	\end{framed}
-	\vspace{1cm}
-	Similarly, for computing the limits of agreement the standard deviation of the differences is not explicitly given. Again, A simple \texttt{R} function can be written to calculate the limits of agreement directly.
-	
-	%------------------------------------------------------------------------------------%
-\section{Covariance Parameters} %1.5
-The unknown variance elements are referred to as the covariance parameters and collected in the vector $\theta$.
-% - where is this coming from?
-% - where is it used again?
-% - Has this got anything to do with CovTrace etc?
-%---------------------------------------------------------------------------%
 
 \bibliographystyle{chicago}
 \bibliography{DB-txfrbib}

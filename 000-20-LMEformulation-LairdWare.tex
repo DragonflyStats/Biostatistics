@@ -1,27 +1,39 @@
-\documentclass[12pt, a4paper]{article}
-\usepackage{natbib}
-\usepackage{vmargin}
-\usepackage{graphicx}
-\usepackage{epsfig}
-\usepackage{subfigure}
-%\usepackage{amscd}
-\usepackage{amssymb}
-\usepackage{subfiles}
-\usepackage{subfigure}
-\usepackage{framed}
-\usepackage{subfiles}
-\usepackage{amsbsy}
-\usepackage{amsthm, amsmath}
-%\usepackage[dvips]{graphicx}
-\bibliographystyle{chicago}
-\renewcommand{\baselinestretch}{1.1}
+\documentclass[MAIN.tex]{subfiles}
 
-% left top textwidth textheight headheight % headsep footheight footskip
-\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.25cm}{0cm}{0.5cm}{0.5cm}
-
-\pagenumbering{arabic}
-
+% Load any packages needed for this document
 \begin{document}
+\section{Laird Ware}
+	\citet{LW82} provides a form of notation for notation for LME models that has since become the standard form, or the basis for more complex formulations. Due to computation complexity, linear mixed effects models have not seen widespread use until many well known statistical software applications began facilitating them. SAS Institute added PROC MIXED to its software suite in 1992 \citep{singer}. \citet{PB} described how to compute LME models in the \texttt{S-plus} environment.
+	
+	Using Laird-Ware form, the LME model is commonly described in matrix form,
+	\begin{equation}
+	y = X\beta + Zb + \epsilon
+	\label{LW}
+	\end{equation}
+	
+	\noindent where $y$ is a vector of $N$ observable random variables, $\beta$ is a vector of $p$ fixed effects, $X$ and $Z$ are $N \times p$ and $N \times q$ known matrices, and $b$ and $\epsilon$  are vectors of $q$ and $N,$ respectively, random effects such that $\mathrm{E}(b)=0, \ \mathrm{E}(\epsilon)=0$
+	and
+	\[
+	\mathrm{var}
+	\left(
+	\begin{array}{c}
+	b \\
+	\epsilon \\
+	\end{array}
+	\right)
+	=
+	\left(
+	\begin{array}{cc}
+	D & 0 \\
+	0 & \Sigma \\
+	\end{array}
+	\right)
+	\]
+	
+	
+	
+	
+	where $D$ and $\Sigma$ are positive definite matrices parameterized by an unknown variance component parameter vector $ \theta.$ The variance-covariance matrix for the vector of observations $y$ is given by $V = ZDZ^{\prime}+ \Sigma.$ This implies $y \sim(X\beta, V) = (X\beta,ZDZ^{\prime}+ \Sigma)$. It is worth noting that $V$ is an $n \times n$ matrix, as the dimensionality becomes relevant later on. The notation provided here is generic, and will be adapted to accord with complex formulations that will be encountered in due course.
 
 \section{Matrix Formulation} There are matrix (i.e multivariate)
 formulations of both fixed effects models and random effects
