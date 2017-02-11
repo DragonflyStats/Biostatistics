@@ -78,6 +78,12 @@ The key to making deletion diagnostics useable is the development of efficient c
 	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
 \end{itemize}
 
+\section{Measures of Influence} %1.13
+
+
+
+Influence arises at two stages of the linear model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
+estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
 
 
 \begin{description}
@@ -96,7 +102,9 @@ DFFITS is a statistical measured designed to a show how influential an observati
 	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
 \item[DFBETAS] – Measure of how much an observation has effected the estimate of a regression coefficient (there is one DFBETA for each regression coefficient, including the intercept). Values larger than 2/sqrt(n) in absolute value are considered highly influential.
 
-The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
+\item[DFBETAS] The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
+
+\item[DFBETAS] The measure that measures how much impact each observation has on a particular predictor is DFBETAs The DFBETA for a predictor and for a particular observation is the difference between the regression coefficient calculated for all of the data and the regression coefficient calculated with the observation deleted, scaled by the standard error calculated with the observation deleted. 
 
 \item[DFBETAS] DFBETAS (standardized difference of the beta) is a measure that standardizes the absolute difference
 	in parameter estimates between a (mixed effects) regression model based on a full set of
@@ -107,6 +115,19 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 &=& B(Y-Y_{\bar{a}}
 \end{eqnarray}
 
+\item[DFFITS]
+DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
+\begin{displaymath} DFFITS = {\widehat{y_i} -
+	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
+
+
+
+
+\item[DFBETAS]
+\begin{eqnarray}
+DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
+&=& B(Y-Y_{\bar{a}}
+\end{eqnarray}
 
 \item[Studentized Residuals] – Residuals divided by their estimated standard errors (like t-statistics). Observations with values larger than 3 in absolute value are considered outliers.
 
@@ -119,20 +140,9 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 
 
 \end{description}
-			
-\section{Measures of Influence} %1.13
+	
+	
 
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
-
-Influence arises at two stages of the linear model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-
-
-
-\subsection{DFBETA} %1.16.3
-
-%---------------------------------------------------------------------------%
 
 \subsection{PRESS} %1.13.3
 The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
@@ -159,7 +169,9 @@ PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
 
 \subsection{Influential Observations : DFBeta and DFBetas}
 % http://stats.stackexchange.com/questions/22161/how-to-read-cooks-distance-plots
-Cook's distance refers to how far, on average, predicted y-values will move if the observation in question is dropped from the data set. dfbeta refers to how much a parameter estimate changes if the observation in question is dropped from the data set. Note that with k covariates, there will be k+1 dfbetas (the intercept,$\beta_0$, and 1 $\beta$ for each covariate). Cook's distance is presumably more important to you if you are doing predictive modeling, whereas dfbeta is more important in explanatory modeling.
+Cook's distance refers to how far, on average, predicted y-values will move if the observation in question is dropped from the data set. 
+
+dfbeta refers to how much a parameter estimate changes if the observation in question is dropped from the data set. Note that with k covariates, there will be k+1 dfbetas (the intercept,$\beta_0$, and 1 $\beta$ for each covariate). Cook's distance is presumably more important to you if you are doing predictive modeling, whereas dfbeta is more important in explanatory modeling.
 
 
 
@@ -180,57 +192,8 @@ The key to making deletion diagnostics useable is the development of efficient c
 	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
 \end{itemize}
 
-\section{Measures 2} %2.4
-
-\subsection{Cook's Distance} %2.4.1
-\begin{itemize}
-	\item For variance components $\gamma$
-\end{itemize}
-
-
-Diagnostic tool for variance components
-\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-
-
-
-\subsection{Variance Ratio} %2.4.2
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-
-
-\subsection{Cook-Weisberg statistic} %2.4.3
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-
-
-\subsection{Andrews-Pregibon statistic} %2.4.4
-\begin{itemize}
-	\item For fixed effect parameters $\beta$.
-\end{itemize}
-The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-
-
-
-
-\subsubsection{Random Effects}
-
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
-
-\subsubsection{linear functions}
-
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-
-\subsection{Information Ratio}
-
-
 
 \section{Measures 2} %2.4
-
 \subsection{Cook's Distance} %2.4.1
 \begin{itemize}
 	\item For variance components $\gamma$
@@ -239,10 +202,12 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 Diagnostic tool for variance components
 \[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
 
+
 \subsection{Variance Ratio} %2.4.2
 \begin{itemize}
 	\item For fixed effect parameters $\beta$.
 \end{itemize}
+
 
 \subsection{Cook-Weisberg statistic} %2.4.3
 \begin{itemize}
@@ -257,52 +222,32 @@ The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the v
 The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
 
 %The results are illustrated by reference to model diagnostics in time series and in classical multivariate analysis with independent cases.
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
 
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
+
+
+
+\subsubsection{Random Effects}
+
+A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+\subsubsection{linear functions}
+
+$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+
+
+
+
+
+
 \section{Measures of Influence} %1.16
 
-The impact of an observation on a regression fitting can be determined by the difference between the estimated regression coefficient of a model with all observations and the estimated coefficient when the particular observation is deleted. The measure DFBETA is the studentized value of this difference.
 
 Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
 estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
 
 
-\subsection{DFFITS} %1.16.1
-DFFITS is a statistical measured designed to a show how influential an observation is in a statistical model. It is closely related to the studentized residual.
-\begin{displaymath} DFFITS = {\widehat{y_i} -
-	\widehat{y_{i(k)}} \over s_{(k)} \sqrt{h_{ii}}} \end{displaymath}
 
-
-\subsection{PRESS} %1.16.2
-The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
-
-
-\begin{itemize}
-	\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-	\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-\end{itemize}
-
-\subsection{DFBETA} %1.16.3
-\begin{eqnarray}
-DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
-&=& B(Y-Y_{\bar{a}}
-\end{eqnarray}
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------------------------------------------%
-%-------------------------------------------------------------------------------------------------Chapter 2	------------------------%
-
-%--Marginal and Conditional Residuals
 
 %========================================================================================== %
 \addcontentsline{toc}{section}{Bibliography}
