@@ -64,6 +64,80 @@ Furthermore, closed-form expressions for computing the change in important model
 This section provides background material for the various influence diagnostics available with the MIXED procedure. See the section Mixed Models Theory for relevant expressions and definitions. The parameter vector  denotes all unknown parameters in the  and  matrix.
 The observations whose influence is being ascertained are represented by the set  and referred to simply as "the observations in ." The estimate of a parameter vector, such as , obtained from all observations except those in the set  is denoted . In case of a matrix , the notation  represents the matrix with the rows in  removed; these rows are collected in . If  is symmetric, then notation  implies removal of rows and columns. The vector  comprises the responses of the data points being removed, and  is the variance-covariance matrix of the remaining observations. When , lowercase notation emphasizes that single points are removed, such as .
 
+	\section{LME diagnostic measures}
+	\subsection{Andrews-Pregibon statistic} %2.4.4
+	\begin{itemize}
+		\item For fixed effect parameters $\beta$.
+	\end{itemize}
+	The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+	The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
+	
+	
+	\subsection{Cook's Distance} %2.4.1
+	\begin{itemize}
+		\item For variance components $\gamma$
+	\end{itemize}
+	
+	Diagnostic tool for variance components
+	\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+	
+	
+	%---------------------------------------------------------------------------%
+	\subsection{Variance Ratio} %2.4.2
+	\begin{itemize}
+		\item For fixed effect parameters $\beta$.
+	\end{itemize}
+	
+	
+	\subsection{Cook-Weisberg statistic} %2.4.3
+	\begin{itemize}
+		\item For fixed effect parameters $\beta$.
+	\end{itemize}
+	
+	\subsection{Andrews-Pregibon statistic} %2.4.4
+	\begin{itemize}
+		\item For fixed effect parameters $\beta$.
+	\end{itemize}
+	The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
+	The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
+
+	
+	
+	
+	
+%========================================================%
+\subsubsection{PRESS}
+\citet{schabenberger} descibes the use of the $PRESS$ and $DFFITS$ in determining influence.
+
+The $PRESS$ residual is the difference between the observed value and the predicted (marginal)value.
+\begin{equation}
+\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
+\end{equation}
+
+The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
+\begin{equation}
+PRESS = \sum(y-y^{(k)})^2
+\end{equation}
+\begin{eqnarray*}
+	e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}\\
+	PRESS = \sum(y-y^{-Q})^2\\
+	PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
+\end{eqnarray*}
+
+\subsubsection{PRESS Residuals and PRESS Statistic}
+% % - Wikipedia
+The predicted residual sum of squares (PRESS) statistic is a form of cross-validation used in regression analysis to provide a summary measure of the fit of a model to a sample of observations that were not themselves used to estimate the model. It is calculated as the sums of squares of the prediction residuals for those observations.
+
+A fitted model having been produced, each observation in turn is removed and the model is refitted using the remaining observations. The out-of-sample predicted value is calculated for the omitted observation in each case, and the PRESS statistic is calculated as the sum of the squares of all the resulting prediction errors:[4]
+\[\mbox{PRESS} =\sum_{i=1}^n (y_i - \hat{y}_{i, -i})^2 \]
+
+Given this procedure, the PRESS statistic can be calculated for a number of candidate model structures for the same dataset, with the lowest values of PRESS indicating the best structures. Models that are over-parameterised (over-fitted) would tend to give small residuals for observations included in the model-fitting but large residuals for observations that are excluded.
+
+
+
+
+
+%============================================== %	
 
 
 \subsection{Methods and Measures}

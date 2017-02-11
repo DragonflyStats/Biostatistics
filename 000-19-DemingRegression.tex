@@ -3,6 +3,28 @@
 % Load any packages needed for this document
 \begin{document}
 	
+	\section{Regression Methods for Method Comparison}
+	Conventional regression models are estimated using the ordinary
+	least squares (OLS) technique, and are referred to as `Model I
+	regression' \citep{CornCoch,ludbrook97}. A key feature of Model I
+	models is that the independent variable is assumed to be measured
+	without error. However this assumption invalidates simple linear
+	regression for use in method comparison studies, as both methods
+	must be assumed to be measured with error \citep{BA83,ludbrook97}.
+	
+	The use of regression models that assumes the presence of error in both variables $X$ and $Y$ have been proposed for use instead
+	\citep{CornCoch,ludbrook97}. These methodologies are collectively known as `Model II regression'. They differ in the method used to
+	estimate the parameters of the regression.
+	
+	Regression estimates depend on formulation of the model. A formulation with one method considered as the $X$ variable will yield different estimates for a formulation where it is the $Y$
+	variable. With Model I regression, the models fitted in both cases will entirely different and inconsistent. However with Model II
+	regression, they will be consistent and complementary.
+	
+	Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias.
+	Fixed bias describes the case where one method gives values that are consistently different to the other across the whole range. Proportional
+	bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook97}. Determination of these biases shall be discussed in due course.
+	
+\newpage	
 		\section{Regression Methods}
 	Conventional regression models are estimated using the ordinary
 	least squares (OLS) technique, and are referred to as `Model I
@@ -24,7 +46,7 @@
 
 	
 Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias. Fixed bias describes the case where one method gives values that are consistently different	to the other across the whole range. Proportional bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook}. Determination of these biases shall be discussed in due course.
-
+\newpage
 \subsection{Simple Linear Regression} Simple Linear Regression is  well
 known statistical technique , wherein estimates for slope and intercept of the line of best fit are derived according to the
 Ordinary Least Square (OLS) principle.This method is known to Cornbleet and Cochrane as Model I regression.

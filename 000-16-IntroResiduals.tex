@@ -82,9 +82,6 @@ The use of the term "error" as discussed in the sections above is in the sense o
 	
 \end{itemize}
 
-	\section{Residual diagnostics} %1.3
-	For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-	
 			\subsection{Residual Analysis}
 			A residual is the difference between an observed quantity and its
 			estimated or predicted value. 
@@ -93,15 +90,7 @@ The use of the term "error" as discussed in the sections above is in the sense o
 			Statistical software environments, such as the \texttt{R} Programming language, provides a suite of tests and graphical procedure sfor appraising a fitted linear model, with several 
 			of these procedures analysing the model residuals.
 			
-			In classical linear models, an examination of model-data agreement has traditionally revolved around
-			
-			The second part of the chapter looks at diagnostics techniques for LME models, firsly covering the theory, then proceeding to a discussion on 
-			implementing these using \texttt{R} code.
-			
-			While a substantial body of work has been developed in this area, there is still areas worth exploring. 
-			In particular the development of graphical techniques pertinent to LME models should be looked at.
-			
-			
+
 			
 			%========================================================================================================= %
 			%\subsection{Introduction}
@@ -149,15 +138,7 @@ The use of the term "error" as discussed in the sections above is in the sense o
 			%`\textit{observation-diagnostics}'. For multiple observations, Preisser describes the diagnostics as `\textit{cluster-deletion}' diagnostics. When applied to LME models, such update formulas are available only if one assumes that the covariance parameters are not affected by the removal of the observation in question. However, this is rarely a reasonable assumption.
 			%
 			%
-			%
-			%
-			%%---------------------------------------------------------------------------%
-				
-	
-	%--Marginal and Conditional Residuals
-	
-%========================================================================================================= %
-%\subsection{Introduction}
+
 %A statistical model, whether of the fixed-effects or mixed-effects variety, represents how you think your data were generated. 
 %Following model specification and estimation, it is of interest to explore the model-data
 %agreement by raising questions such as
@@ -212,6 +193,11 @@ Externally \index{studentized residual} studentized residual require iterative i
 
 
 
+\subsection{Standardization} %1.4.1
+
+A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
+
+
 
 \section{Standardized and studentized residuals} %1.4
 %--Studentized and Standardized Residuals
@@ -226,33 +212,6 @@ This is an important technique in the detection of outliers. It is named in hono
 
 \subsection{Studentization} %1.4.2
 Instead, you can compute studentized residuals by dividing a residual by an estimate of its standard deviation. 
-
-\subsection{Internal and External Studentization} %1.4.3
-If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
-standard error computation, the residual is said to be \index{internally studentization}internally studentized.
-
-Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
-
-\section{Standardized and studentized residuals} %1.6
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-\subsection{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
-
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-
-
-
-\subsection{Standardized and studentized residuals} %1.4
-%--Studentized and Standardized Residuals
-
-To alleviate the problem caused by inconstant variance, the residuals are scaled (i.e. divided) by their standard deviations. This results in a \index{standardized residual}`standardized residual'. Because true standard deviations are frequently unknown, one can instead divide a residual by the estimated standard deviation to obtain the \index{studentized residual}`studentized residual. 
-
-
-
-Another possible scaled residual is the \index{Pearson residual} `Pearson residual' whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
-
 \subsection{Studentization} %1.6.1
 
 A random variable is said to be standardized if the difference from its mean is scaled by its standard
@@ -264,12 +223,16 @@ observation, the process is termed external studentization.
 This is usually accomplished by excluding the
 $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
 standard error computation, the residual is said to be \textbf{\emph{internally studentized}}.
-%---------------------------------------------------------------------------%
-\newpage
-\subsection{Studentization}
-In statistics, a studentized residual is the quotient resulting from the division of a residual by an estimate of its standard deviation. Typically the standard deviations of residuals in a sample vary greatly from one data point to another even when the errors all have the same standard deviation, particularly in regression analysis; thus it does not make sense to compare residuals at different data points without first studentizing. It is a form of a Student's t-statistic, with the estimate of error varying between points.
 
-This is an important technique in the detection of outliers. It is named in honor of William Sealey Gosset, who wrote under the pseudonym Student, and dividing by an estimate of scale is called studentizing, in analogy with standardizing and normalizing: see Studentization.
+\subsection{Internal and External Studentization} %1.4.3
+If that estimate is independent of the $i-$th observation, the process is termed \index{external studentization}`external studentization'. This is usually accomplished by excluding the $i-$th observation when computing the estimate of its standard error. If the observation contributes to the
+standard error computation, the residual is said to be \index{internally studentization}internally studentized.
+
+Externally \index{studentized residual} studentized residual require iterative influence analysis or a profiled residuals variance.
+
+
+Another possible scaled residual is the \index{Pearson residual} `Pearson residual' whereby a residual is divided by the standard deviation of the dependent variable. The Pearson residual can be used when the variability of $\hat{\beta}$ is disregarded in the underlying assumptions.
+
 
 
 
@@ -308,11 +271,6 @@ The use of the term "error" as discussed in the sections above is in the sense o
 \end{itemize}
 
 
-
-	\subsection{Standardization} %1.4.1
-	
-	A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.
-	
 \subsection{Standardization} %1.4.1
 
 A random variable is said to be standardized if the difference from its mean is scaled by its standard deviation. The residuals above have mean zero but their variance is unknown, it depends on the true values of $\theta$. Standardization is thus not possible in practice.

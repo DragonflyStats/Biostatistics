@@ -1,3 +1,17 @@
+\documentclass[MAIN.tex]{subfiles}
+
+% Load any packages needed for this document
+\begin{document}
+	
+\subsection*{Hamlett and Lam}
+\citet{Lam} used ML estimation to estimate the true correlation between the variables when
+the measurements are linked over time. The methodology relies on the assumption that the two variables with repeated measures follow a multivariate normal distribution. The methodology currently does not extend to any more than two cases. The MLE of the correlation takes into account the dependency among repeated measures.
+
+The true correlation $\rho_{xy}$ is repeated measurements can be considered as having two components: between subject and within-subject correlation. The usefulness of estimating repeated measure correlation coefficients is the calculation of between-method and within-method variabilities are produced as by-products.
+
+
+
+
 \section{Hamlett}
 Hamlett re-analyses the data of \citet{lam} to generalize their model to cover other settings not covered by the Lam method.
 
@@ -42,3 +56,8 @@ In many cases, repeated observation are collected from each subject in sequence 
 
 
 \[ y_i = \alpha + \mu_i + \epsilon \]
+
+	
+	\bibliographystyle{chicago}
+	\bibliography{DB-txfrbib}
+\end{document}

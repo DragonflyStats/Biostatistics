@@ -199,8 +199,7 @@ they can not be considered to be in agreement. Hence, method comparison studies 
 
 
 
-\chapter{Introduction to Method Comparison Studies}
-
+\section*{Grubbs Data}
 
 % latex table generated in R 2.6.0 by xtable 1.5-5 package
 % Wed Aug 26 15:22:41 2009
@@ -230,27 +229,6 @@ they can not be considered to be in agreement. Hence, method comparison studies 
 	\end{center}
 \end{table}
 
-\bigskip
-
-
-
-
-\chapter{Extending Current Methodologies}
-\section{Extension of Roy's methodology}
-Roy's methodology is constructed to compare two methods in the presence of replicate measurements. Necessarily it is worth examining whether this methodology can be adapted for different circumstances.
-
-An implementation of Roy's methodology, whereby three or more methods are used, is not feasible due to computational restrictions. Specifically there is a failure to reach convergence before the iteration limit is reached. This may be due to the presence of additional variables, causing the problem of non-identifiability. In the case of two variables, it is required to estimate two variance terms and four correlation terms, six in all. For the case of three variabilities, three variance terms must be estimated as well as nine correlation terms, twelve in all. In general for $n$ methods has $2 \times T_{n}$ variance terms, where $T_n$ is the triangular number for $n$, i.e. the addition analogue of the factorial. Hence the computational complexity quite increases substantially for every increase in $n$.
-
-Should an implementation be feasible, further difficulty arises when interpreting the results. The fundamental question is whether two methods have close agreement so as to be interchangeable. When three methods are present in the model, the null hypothesis is that all three methods have the same variability relevant to the respective tests. The outcome of the analysis will either be that all three are interchangeable or that all three are not interchangeable.
-
-The tests would not be informative as to whether any two of those three were interchangeable, or equivalently if one method in particular disagreed with the other two. Indeed it is easier to perform three pair-wise comparisons separately and then to combine the results.
-
-Roy's methodology is not suitable for the case of single measurements because it follows from the decomposition for the covariance matrix of the response vector $y_{i}$, as presented in \citet{hamlett}. The decomposition depends on the estimation of correlation terms, which would be absent in the single measurement case. Indeed there can be no within-subject variability if there are no repeated terms for it to describe. There would only be the covariance matrix of the measurements by both methods, which doesn't require the use of LME models. To conclude, simpler existing methodologies, such as Deming regression, would be the correct approach where there only one measurements by each method.
-
-\section{Conclusion}
-\citet{BXC2008} and \citet{roy} highlight the need for method comparison methodologies suitable for use in the presence of replicate measurements. \citet{roy} presents a comprehensive methodology for assessing the agreement of two methods, for replicate measurements. This methodology has the added benefit of overcoming the problems of unbalanced data and unequal numbers of replicates. Implementation of the methodology, and interpretation of the results, is relatively easy for practitioners who have only basic statistical training. Furthermore, it can be shown that widely used existing methodologies, such as the limits of agreement, can be incorporated into Roy's methodology.
-
-		
 
 \section{BXC - Model Terms}
 
@@ -271,12 +249,6 @@ Roy's methodology is not suitable for the case of single measurements because it
 	\item $\boldsymbol{\beta}$ is the solutions of the means of the two methods. In the LME output, the bias ad corresponding
 	t-value and p-values are presented. This is relevant to Roy's first test.\end{itemize}
 %-----------------------------------------------------------------------------------%
-\subsection*{Hamlett and Lam}
-\citet{Lam} used ML estimation to estimate the true correlation between the variables when
-the measurements are linked over time. The methodology relies on the assumption that the two variables with repeated measures follow a multivariate normal distribution. The methodology currently does not extend to any more than two cases. The MLE of the correlation takes into account the dependency among repeated measures.
-
-The true correlation $\rho_{xy}$ is repeated measurements can be considered as having two components: between subject and within-subject correlation. The usefulness of estimating repeated measure correlation coefficients is the calculation of between-method and within-method variabilities are produced as by-products.
-
 
 
 
@@ -477,9 +449,7 @@ Limits of agreement are easily computable using the LME framework. While we will
 	
 	
 	
-	
-	\section{Conclusion}
-	\citet{BXC2008} and \citet{ARoy2009} highlight the need for method comparison methodologies suitable for use in the presence of replicate measurements. \citet{ARoy2009} presents a comprehensive methodology for assessing the agreement of two methods, for replicate measurements. This methodology has the added benefit of overcoming the problems of unbalanced data and unequal numbers of replicates. Implementation of the methodology, and interpretation of the results, is relatively easy for practitioners who have only basic statistical training. Furthermore, it can be shown that widely used existing methodologies, such as the limits of agreement, can be incorporated into ARoy2009's methodology.
+
 	%=========================================================================================================================================== %
 	%=========================================================================================================================================== %
 	
@@ -553,13 +523,6 @@ regression model, but also by its score(s) on the independent variable(s). The d
 
 
 
-
-
-%=========================================================%
-
-
-\newpage
-
 %\subsubsection{Deviance}
 %In statistics, deviance is a quality of fit statistic for a model that is often used for statistical hypothesis testing. It is a generalization of the idea of using the sum of squares of residuals in ordinary least squares to cases where model-fitting is achieved by maximum likelihood.
 %
@@ -620,49 +583,12 @@ If $V_{ij}$ denotes the element in row $i$, column $j$ of $\boldsymbol{V}^{-1}$,
 
 \[ h_{ii} = \frac{\sum v_{ij}}{\sum \sum v_{ij}} \]
 
-%========================================================%
-\subsubsection{PRESS}
-\citet{schabenberger} descibes the use of the $PRESS$ and $DFFITS$ in determining influence.
 
-The $PRESS$ residual is the difference between the observed value and the predicted (marginal)value.
-\begin{equation}
-\hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
-\end{equation}
-
-The prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
-\begin{eqnarray*}
-	e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}\\
-	PRESS = \sum(y-y^{-Q})^2\\
-	PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}\\
-\end{eqnarray*}
-
-\subsubsection{PRESS Residuals and PRESS Statistic}
-% % - Wikipedia
-The predicted residual sum of squares (PRESS) statistic is a form of cross-validation used in regression analysis to provide a summary measure of the fit of a model to a sample of observations that were not themselves used to estimate the model. It is calculated as the sums of squares of the prediction residuals for those observations.
-
-A fitted model having been produced, each observation in turn is removed and the model is refitted using the remaining observations. The out-of-sample predicted value is calculated for the omitted observation in each case, and the PRESS statistic is calculated as the sum of the squares of all the resulting prediction errors:[4]
-\[\mbox{PRESS} =\sum_{i=1}^n (y_i - \hat{y}_{i, -i})^2 \]
-
-Given this procedure, the PRESS statistic can be calculated for a number of candidate model structures for the same dataset, with the lowest values of PRESS indicating the best structures. Models that are over-parameterised (over-fitted) would tend to give small residuals for observations included in the model-fitting but large residuals for observations that are excluded.
-
-
-
-
-
-%============================================== %
 \subsection{Local Influence}
 
 \citet{Christensen} developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted regression problem (conditional on the estimated covariance matrix) for fixed effects.
 
-%============================================== %
-%- F:
-\bibliographystyle{chicago}
-\bibliography{DB-txfrbib}	
-	
-	%----------------------------------------------------------------------------------------------%
+
 	
 	%http://blog.minitab.com/blog/adventures-in-statistics/why-you-need-to-check-your-residual-plots-for-regression-analysis
 	In the graph above, you can predict non-zero values for the residuals based on the fitted value. For example, a fitted value of 8 has an expected residual that is negative. Conversely, a fitted value of 5 or 11 has an expected residual that is positive.
@@ -763,70 +689,8 @@ effect.
 
 
 
-\subsection{Case-Deletion Diagnostics}
-Influence diagnostics are formal techniques that assess the influence of observations on parameter estimates for $\beta$ and $\theta$. A common technique is to refit the model with an observation or group of observations omitted.
-
-Case-deletion diagnostics provide a useful tool for identifying influential observations and outliers. Since the pioneering work of Cook in 1977, deletion measures have been applied to many statistical models for identifying influential observations.
-
-% Cook's Distance for OLS models
-
-Standard statistical packages concentrate on calculating and testing parameter estimates without considering the diagnostics of the model. 
-
-The assessment of the effects of perturbations in data, on the outcome of the analysis, is known as statistical influence analysis. Influence analysis examines the robustness of the model.
-
-\section{Demidenk Case Deletion Diagnostics}
-\citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects.
-
-The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
-%==============================%
 
 
-	\section{LME diagnostic measures}
-	\subsection{Andrews-Pregibon statistic} %2.4.4
-	\begin{itemize}
-		\item For fixed effect parameters $\beta$.
-	\end{itemize}
-	The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-	The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-	
-	
-	\subsection{Cook's Distance} %2.4.1
-	\begin{itemize}
-		\item For variance components $\gamma$
-	\end{itemize}
-	
-	Diagnostic tool for variance components
-	\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
-	
-	
-	%---------------------------------------------------------------------------%
-	\subsection{Variance Ratio} %2.4.2
-	\begin{itemize}
-		\item For fixed effect parameters $\beta$.
-	\end{itemize}
-	
-	
-	\subsection{Cook-Weisberg statistic} %2.4.3
-	\begin{itemize}
-		\item For fixed effect parameters $\beta$.
-	\end{itemize}
-	
-	\subsection{Andrews-Pregibon statistic} %2.4.4
-	\begin{itemize}
-		\item For fixed effect parameters $\beta$.
-	\end{itemize}
-	The Andrews-Pregibon statistic $AP_{i}$ is a measure of influence based on the volume of the confidence ellipsoid.
-	The larger this statistic is for observation $i$, the stronger the influence that observation will have on the model fit.
-	
-	%==============================================================================================================================%
-	%--------------------------------------------------------------------------------------------%
-	
-	
-	
-	
-
-
-	
 
 
 \chapter{BA99}
@@ -2787,39 +2651,6 @@ removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes 
 
 
 
-\section{Extension of Diagnostic Methods to LME models}
-
-When similar notions of statistical influence are applied to mixed models,
-things are more complicated. Removing data points affects fixed effects and covariance parameter estimates.
-Update formulas for “\textit{leave-one-out}” estimates typically fail to account for changes in covariance
-parameters. 
-%
-%
-%In LME models, there are two types of residuals, marginal residuals and conditional residuals. A
-%marginal residual is the difference between the observed data and the estimated marginal mean. A conditional residual is the
-%difference between the observed data and the predicted value of the observation. In a model without random effects, both sets of residuals coincide \citep{schab}.
-
-\citet{Christiansen} noted the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{Christiansen} develops these techniques in the context of REML.
-
-\citet{CPJ} noted the case deletion diagnostics techniques had not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{CPJ} develops these techniques in the context of REML.
-
-%\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, a well-known metric, for diagnosing influential observations when estimating the fixed effect parameters and variance components. Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models. We shall provide a fuller discussion of Cook's distance in due course.
-
-
-\citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects. 
-
-The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
-%A simple compact matrix formula is derived to assess the local influence of the fixed-effects regression coefficients. 
-
-
-%
-%
-%\section{Case Deletion Diagnostics for LME models} %1.6
-%
-%Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. 
-
-\citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
 
 
 
@@ -2864,42 +2695,7 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 	
 	
 
-\subsection{Remarks on the Multivariate Normal Distribution}
 
-Diligence is required when considering the models. Carstensen specifies his models in terms of the univariate normal distribution. Roy's model is specified using the bivariate normal distribution.
-This gives rises to a key difference between the two model, in that a bivariate model accounts for covariance between the variables of interest.
-The multivariate normal distribution of a $k$-dimensional random vector $X = [X_1, X_2, \ldots, X_k]$
-can be written in the following notation:
-\[
-X\ \sim\ \mathcal{N}(\mu,\, \Sigma),
-\]
-or to make it explicitly known that $X$ is $k$-dimensional,
-\[
-X\ \sim\ \mathcal{N}_k(\mu,\, \Sigma).
-\]
-with $k$-dimensional mean vector
-\[ \mu = [ \operatorname{E}[X_1], \operatorname{E}[X_2], \ldots, \operatorname{E}[X_k]] \]
-and $k \times k$ covariance matrix
-\[ \Sigma = [\operatorname{Cov}[X_i, X_j]], \; i=1,2,\ldots,k; \; j=1,2,\ldots,k \]
-
-\bigskip
-
-\begin{enumerate}
-	\item Univariate Normal Distribution
-	
-	\[
-	X\ \sim\ \mathcal{N}(\mu,\, \sigma^2),
-	\]
-	
-	\item Bivariate Normal Distribution
-	
-	\begin{itemize}
-		\item[(a)] \[  X\ \sim\ \mathcal{N}_2(\mu,\, \Sigma), \vspace{1cm}\]
-		\item[(b)] \[    \mu = \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \quad
-		\Sigma = \begin{pmatrix} \sigma_x^2 & \rho \sigma_x \sigma_y \\
-		\rho \sigma_x \sigma_y  & \sigma_y^2 \end{pmatrix}.\]
-	\end{itemize}
-\end{enumerate}
 
 \addcontentsline{toc}{section}{Bibliography}
 

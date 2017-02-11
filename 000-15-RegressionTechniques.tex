@@ -1,66 +1,6 @@
-\documentclass[12pt, a4paper]{report}
+\documentclass[MAIN.tex]{subfiles}
 
-\usepackage{epsfig}
-\usepackage{subfigure}
-%\usepackage{amscd}
-\usepackage{amssymb}
-\usepackage{graphicx}
-%\usepackage{amscd}
-\usepackage{amssymb}
-\usepackage{subfiles}
-\usepackage{framed}
-\usepackage{subfiles}
-\usepackage{amsthm, amsmath}
-\usepackage{amsbsy}
-\usepackage{framed}
-\usepackage[usenames]{color}
-\usepackage{listings}
-\lstset{% general command to set parameter(s)
-	basicstyle=\small, % print whole listing small
-	keywordstyle=\color{red}\itshape,
-	% underlined bold black keywords
-	commentstyle=\color{blue}, % white comments
-	stringstyle=\ttfamily, % typewriter type for strings
-	showstringspaces=false,
-	numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, %
-	frame=shadowbox,
-	rulesepcolor=\color{black},
-	,columns=fullflexible
-} %
-%\usepackage[dvips]{graphicx}
-\usepackage{natbib}
-\bibliographystyle{chicago}
-\usepackage{vmargin}
-% left top textwidth textheight headheight
-% headsep footheight footskip
-\setmargins{1.0cm}{0.75cm}{18.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
-%\voffset=-2.5cm
-%\oddsidemargin=1cm
-%\textwidth = 520pt
-
-\renewcommand{\baselinestretch}{1.5}
-\pagenumbering{arabic}
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{ill}[theorem]{Example}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{axiom}{Axiom}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{notation}{Notation}
-\theoremstyle{remark}
-\newtheorem{remark}{Remark}[section]
-\newtheorem{example}{Example}[section]
-\renewcommand{\thenotation}{}
-\renewcommand{\thetable}{\thesection.\arabic{table}}
-\renewcommand{\thefigure}{\thesection.\arabic{figure}}
-\title{Research notes: linear mixed effects models}
-\author{ } \date{ }
-
-
+% Load any packages needed for this document
 \begin{document}
 	\chapter{Bradley Blackwood}
 	%----------------------------------------------------------------------------------------------------------------------%
@@ -177,22 +117,7 @@ the regression coefficient included $1$. Analysts sometimes use least squares (r
 	
 	
 	\section{Bartko's Bradley-Blackwood Test}
-	This is a regression based
-	approach that performs a simultaneous test for the equivalence of
-	means and variances of the respective methods.We have identified
-	this approach  to be examined to see if it can be used as a
-	foundation for a test perform a test on
-	means and variances individually.
-	\begin{equation}
-	D = (X_{1}-X_{2})
-	\end{equation}
-	\begin{equation}
-	M = (X_{1} + X_{2}) /2
-	\end{equation}
-	The Bradley Blackwood Procedure fits D on M as follows:\\
-	\begin{equation}
-	D = \beta_{0} + \beta_{1}M
-	\end{equation}
+
 	\begin{itemize}
 		\item The Bradley Blackwood test is a simultaneous test for bias and
 		precision. They propose a regression approach which fits D on M,
@@ -225,7 +150,7 @@ The Bradley-Blackwood procedure fits $y$ on $x$, such that
 
 The slope and intercepte are given bu
 
-\[beta_1 =  \frac{(\sigma^2_1 = \sigma^2_2)}{2\sigma^2_x}\]
+\[\beta_1 =  \frac{(\sigma^2_1 = \sigma^2_2)}{2\sigma^2_x}\]
 %------------------------------------------------%
 
 
@@ -328,29 +253,7 @@ The slope and intercepte are given bu
 	attended.
 	\emph{\textbf{Lu et al}} used such a technique in their comparison of DXA scanners. They also used the Blackwood Bradley test. However it was shown that, for particular comparisons, agreement between methods was indicated according to one test, but lack of agreement was indicated by the other.
 	
-	
-	\section{Regression Methods for Method Comparison}
-	Conventional regression models are estimated using the ordinary
-	least squares (OLS) technique, and are referred to as `Model I
-	regression' \citep{CornCoch,ludbrook97}. A key feature of Model I
-	models is that the independent variable is assumed to be measured
-	without error. However this assumption invalidates simple linear
-	regression for use in method comparison studies, as both methods
-	must be assumed to be measured with error \citep{BA83,ludbrook97}.
-	
-	The use of regression models that assumes the presence of error in both variables $X$ and $Y$ have been proposed for use instead
-	\citep{CornCoch,ludbrook97}. These methodologies are collectively known as `Model II regression'. They differ in the method used to
-	estimate the parameters of the regression.
-	
-	Regression estimates depend on formulation of the model. A formulation with one method considered as the $X$ variable will yield different estimates for a formulation where it is the $Y$
-	variable. With Model I regression, the models fitted in both cases will entirely different and inconsistent. However with Model II
-	regression, they will be consistent and complementary.
-	
-	Regression approaches are useful for a making a detailed examination of the biases across the range of measurements, allowing bias to be decomposed into fixed bias and proportional bias.
-	Fixed bias describes the case where one method gives values that are consistently different to the other across the whole range. Proportional
-	bias describes the difference in measurements getting progressively greater, or smaller, across the range of measurements. A measurement method may have either an attendant fixed bias or proportional bias, or both. \citep{ludbrook97}. Determination of these biases shall be discussed in due course.
-	
-	
+
 	
 	\section*{Remarks}
 	\begin{itemize}
@@ -468,7 +371,14 @@ types of bias
 
 \subsection{Passing and Bablok (1983) }
 Passing \& Bablok have described a linear regression model that are without the usual assumptions regarding the distribution of
-the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope and intercept  are calculated with their 95\% confidence interval.Hypothesis tests on the slope and intercept maybe then
+the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y.
+
+
+
+The slope B and intercept A are calculated with their 95\% confidence interval. These confidence intervals are used to determine whether there is only a chance difference between B and 1 and between A and 0.
+
+
+ The slope and intercept  are calculated with their 95\% confidence interval.Hypothesis tests on the slope and intercept maybe then
 carried out.\\
 
 If the hypothesis of the intercept is rejected, then it is concluded that it is significant different from $0$ and both
@@ -476,13 +386,10 @@ raters differ at least by a constant amount.
 	\\
 If the hypothesis of the slope is rejected, then it is concluded that the slope is significant different from $1$ and there is at
 least a proportional difference between the two raters.
-%-----------------------------------------------------------%
-\subsection{Passing-Bablok Regression}
+
 
 % www.medcalc.be
 % MCR package
-
-Passing \& Bablok (1983) have described a linear regression procedure with no special assumptions regarding the distribution of the samples and the measurement errors. The result does not depend on the assignment of the methods (or instruments) to X and Y. The slope B and intercept A are calculated with their 95\% confidence interval. These confidence intervals are used to determine whether there is only a chance difference between B and 1 and between A and 0.
 
 
 \subsection{Passing and bablok}
@@ -492,19 +399,7 @@ The result is independent of the assignment of the reference method (X) and the 
 
 " a new biometric method procedure for testing the equality of measurements from two different analytical methods"
 J Clin. Chem Clin.BioChem. [21], 709-720 (1983)
-%-----------------------------------------------------------%
-\subsection{Implementation with \texttt{R}}
 
-%--------------%
-\begin{framed}
-	\begin{verbatim}
-	
-	library(mcr)
-	
-	\end{verbatim}
-\end{framed}
-%--------------%
-% <magari>
 The presence of bias may impair agreement between the two analytical methods.
 
 types of bias
