@@ -83,6 +83,7 @@ For fixed effects parameter estimates in LME models, the \index{Cook's distance}
 \]
 
 
+
 For random effect estimates, the \index{Cook's distance} Cook's distance is
 
 
@@ -92,25 +93,6 @@ For random effect estimates, the \index{Cook's distance} Cook's distance is
 Large values for Cook's distance indicate observations for special attention.
 
 
-
-
-Cook's $D$ statistics (i.e. colloquially Cook's Distance) is a measure of the influence of observations in subset $U$ on a vector of parameter estimates \textbf{cook77}.
-
-\[ \delta_{(U)} = \hat{\beta} - \hat{\beta}_{(U)}\]
-
-If V is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \textbf{Christensen} \citep{cpj92}.
-
-
-\[
-\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
-\]
-
-For random effect estimates, the \index{Cook's distance} Cook's distance is
-
-\[
-\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
-\]
-Large values for Cook's distance indicate observations for special attention.
 
 As well as individual observations, Cook's distance can be used to analyse the influence of observations in subset $U$ on a vector of parameter estimates \citep{cook77}.
 %\subsubsection{Effects on fitted and predicted values}
@@ -127,8 +109,6 @@ For LME models, Cook's distance can be extended to model influence diagnostics b
 
 It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
 
-
-\index{Cook's distance}Cook's Distance is a well known diagnostic technique used in classical linear models, extended to LME models.  For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
 
 
 
@@ -169,11 +149,7 @@ Any diagnostic plot may constructed using Overall variability and intermethod bi
 
 %A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
 
-\subsubsection{Random Effects}
-A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
 
-\subsubsection{linear functions}
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 %---------------------------------------------------------------------------%
 
@@ -196,18 +172,8 @@ Cook's Distance is a measure indicating to what extent model parameters are infl
 Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
 Diagnostic methods for variance components are based on `one-step' methods. \citet{cook86} gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
 
-For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
 
-\[
-\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
-\]
 
-For random effect estimates, the \index{Cook's distance} Cook's distance is
-
-\[
-\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
-\]
-Large values for Cook's distance indicate observations for special attention.
 
 
 \chapter{Cook's Distance}
@@ -269,29 +235,7 @@ Plot Cook's distance:
 plot(infl, which = "cook")
 \end{verbatim}
 
-%================================================================================%
 
-
-
-
-
-\section{Cook's Distance for LMEs} %1.10
-
-
-
-For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
-
-\[
-\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
-\]
-
-
-For random effect estimates, the \index{Cook's distance} Cook's distance is
-
-\[
-\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
-\]
-Large values for Cook's distance indicate observations for special attention.
 
 
 
@@ -309,11 +253,6 @@ It is also desirable to measure the influence of the case deletions on the covar
 
 
 
-\section{Cook's Distance for LMEs} %1.10
-Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
-Diagnostic methods for variance components are based on `one-step' methods. \citet{cook86} gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
-
-
 
 
 
@@ -323,18 +262,7 @@ Diagnostic methods for variance components are based on `one-step' methods. \cit
 
 A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
 
-\subsubsection{linear functions}
 
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-%---------------------------------------------------------------------------%
-%
-
-For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
-
-%If $V$ is known, Cook's D can be calibrated according to a chi-square distribution with degrees of freedom equal to the rank of $\boldsymbol{X}$ \citep{cpj92}.
-
-%
 %%---------------------------------------------------------------------------%
 %\newpage
 %\section{Cook's Distance for LMEs} %1.10
@@ -356,7 +284,6 @@ For LME models, two formulations exist; a \index{Cook's distance}Cook's distance
 %
 
 
-
 \subsection{linear functions}
 
 $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
@@ -373,11 +300,7 @@ Cook (1986) gave a completely general method for assessing influence of local de
 assumptions in statistical models.
 
 
-\subsubsection{linear functions}
 
-$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
-
-%---------------------------------------------------------------------------%
 %
 
 For LME models, two formulations exist; a \index{Cook's distance}Cook's distance that examines the change in fixed fixed parameter estimates, and another that examines the change in random effects parameter estimates. The outcome of either Cook's distance is a scaled change in either $\beta$ or $\theta$.
@@ -388,19 +311,6 @@ For LME models, two formulations exist; a \index{Cook's distance}Cook's distance
 \section{Cook's Distance for LMEs} %1.10
 Diagnostic methods for fixed effects are generally analogues of methods used in classical linear models.
 Diagnostic methods for variance components are based on `one-step' methods. Cook (1986) gives a completely general method for assessing the influence of local departures from assumptions in statistical models.
-
-For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
-
-\[
-\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
-\]
-
-For random effect estimates, the \index{Cook's distance} Cook's distance is
-
-\[
-\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
-\]
-Large values for Cook's distance indicate observations for special attention.
 
 
 
