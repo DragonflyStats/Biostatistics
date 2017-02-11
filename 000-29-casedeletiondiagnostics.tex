@@ -38,6 +38,11 @@ Data from single individuals, or a small group of subjects may influence non-lin
 Christensen, Pearson and Johnson (1992) studied \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance}Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
 
 
+\subsection{Case Deletion Diagnostics for Mixed Models}
+
+\textbf{Christensen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+
+\textbf{Christensen} develops these techniques in the context of REML
 
 \section{Case Deletion Diagnostics for LME models}
 	
@@ -143,18 +148,10 @@ Christensen, Pearson and Johnson (1992) describes three propositions that are re
 		
 		Ideally when all observations have the same influence on the information matrix $IR{\gamma}$ is approximately one.
 		Deviations from one indicate the group $U$ is influential. Since $\mbox{var}(\hat{\gamma})$ and $\boldsymbol{I}_{r}$ are fixed for all observations, $IR{\gamma}$ is a function of $\boldsymbol{G}$, in turn a function of $\boldsymbol{C}_{i}$ and $c_{ii}$.
-		
-		
-		
-		
 
 \section{Case Deletion Diagnostics for LME models}
 
-
-
 \citet{schabenberger} examines the use and implementation of influence measures in LME models.
-
-
 
 \citet{schabenberger} describes a simple procedure for quantifying
 influence. Firstly a model should be fitted to the data, and estimates of the parameters should be obtained. The second step is that either single of multiple data points, specifically outliers, should be omitted from the analysis, with the original parameter estimates being updated. This is known as `leave one out \ leave k out' analysis. The final step of the procedure is comparing the sets of estimates computed from the entire and reduced data sets to determine whether the absence of observations changed the
@@ -181,9 +178,6 @@ several key results from \citet{HaslettHayes} on partioned matrices.
 \citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, a well-known metric, for diagnosing influential observations when estimating the fixed effect parameters and variance components. Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models. We shall provide a fuller discussion of Cook's distance in due course.
 
 
-\citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects. 
-
-The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
 %A simple compact matrix formula is derived to assess the local influence of the fixed-effects regression coefficients. 
 
 
