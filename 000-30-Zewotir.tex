@@ -6,6 +6,7 @@
 \usepackage{epsfig}
 \usepackage{subfigure}
 %\usepackage{amscd}
+\usepackage{framed}
 \usepackage{amssymb}
 \usepackage{subfigure}
 \usepackage{amsbsy}
@@ -36,7 +37,7 @@ The concept of I Influence is generalized  to the non linea regression model.
 
 Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models. Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
 
-Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
+\citet{Beckman} applied the \index{local influence}local influence method of Cook (1986) to the analysis of the linear mixed model.
 
 While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
 
@@ -86,25 +87,17 @@ EBLUPs are also known as ``shrinkage estimators" because they tend to be smaller
 
 \subsection{Case Deletion Diagnostics for Mixed Models}
 
-\citet{Christiansen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
+\citet{Christensen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
 
-\citet{Christiansen} develops these techniques in the context of REML
+\citet{Christensen} develops these techniques in the context of REML
 
 \subsection{Methods and Measures}
 The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
 
 
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-\section{Zewotir Measures of Influence in LME Models}%2.2
+\section{Tewomir - Measures of Influence in LME Models}%2.2
 %Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
+\citet{tewomir} describes a number of approaches to model diagnostics, investigating each of the following;
 \begin{itemize}
 	\item Variance components
 	\item Fixed effects parameters
@@ -112,7 +105,7 @@ The key to making deletion diagnostics useable is the development of efficient c
 	\item likelihood function
 \end{itemize}
 
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+\citet{tewomir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
 	\item Cook's distance for LME models,
 	\item \index{likelihood distance} likelihood distance,
 	\item the variance (information) ration,
@@ -120,6 +113,23 @@ The key to making deletion diagnostics useable is the development of efficient c
 	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
 \end{itemize}
 
+
+
+\subsubsection{Taxonomy of Cook's Distances for LMEs}
+\citet{tewomir} discusses a taxonomy of Cook's distance when applied to LME models. 
+\begin{itemize}
+	\item For variance components $\gamma$: $CD(\gamma)_i$,
+	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
+	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
+	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
+\end{itemize}			
+
+
+%A large value for $CD(u)_i$ indicates that the $i-$th observation is influential in predicting random effects.
+
+
+
+%---------------------------------------------------------------------------%
 
 
 
@@ -138,9 +148,9 @@ diagnostics, variance components ratios.
 
 %-------------------------------------------------------------------------------------------------------%
 
-Description: The influence of observations on statistical inference is of importance in statistical data analysis. 
+\textbf{Description:}\\ The influence of observations on statistical inference is of importance in statistical data analysis. 
 A practical and well-established approach to influence analysis is based on case deletion. 
-We provide computationally inexpensive diagnostic tools for linear mixed models. 
+We provide computationally inexpensive diagnostic tools for linear mixed models. \\
 The diagnostics are a function of basic building blocks, computed only once from the complete data analysis, 
 and provide information on the influence of the data on different aspects of the model fit.
 
@@ -163,11 +173,7 @@ Roy demonstrates that correlation can be described under the model formulation.
 \[Y_i = x.\beta + Z.u + \epsilon]\]
 
 
-Laird Ware form (litte et al)
 
-
-
-%-------------------------------------------------------------------------------------------------------%
 
 For the purpose of comparison of both approaches, we compute the limits of agreement for two methods described in 
 well known data sets.
@@ -190,22 +196,6 @@ $\boldsymbol{u}_i$ is a $q_i \times 1$  vector of random variables from $\mathca
 
 
 \section{Zewotir Measures of Influence in LME Models}%2.2
-%Zewotir page 161
-\citet{Zewotir} describes a number of approaches to model diagnostics, investigating each of the following;
-\begin{itemize}
-	\item Variance components
-	\item Fixed effects parameters
-	\item Prediction of the response variable and of random effects
-	\item likelihood function
-\end{itemize}
-
-\subsection{Cook's Distance}
-\begin{itemize}
-	\item For variance components $\gamma$: $CD(\gamma)_i$,
-	\item For fixed effect parameters $\beta$: $CD(\beta)_i$,
-	\item For random effect parameters $\boldsymbol{u}$: $CD(u)_i$,
-	\item For linear functions of $\hat{beta}$: $CD(\psi)_i$
-\end{itemize}
 
 
 \subsubsection{Random Effects}
@@ -246,34 +236,18 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 
 
-
-\subsection{Information Ratio}
-
-
-
-
-%--------------------------------------------------------------%
-\newpage
-
 \section{Computation and Notation } %2.3
 with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
 compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
 
 
-\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+\citet{tewomir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
 %--------------------------------------------------------------%
 
 
 
 
 
-\section{Zewotir: Computation and Notation } %2.3
-with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
-compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
-
-
-Zewotir remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
-%===============================================================================================================%
 
 
 \section{Section 3}
@@ -318,12 +292,12 @@ Information Ratio
 \end{itemize}
 %-------------------------------------------------------------------------------------------------------%
 
-4.2. Influence on fixed effects parameter estimates
+\subsubsection*{4.2. Influence on fixed effects parameter estimates}
 \subsubsection*{4.2.1 Analogue of Cook’s Distance}
 The Cook’s distance can be extended to measure influence on the fixed effects in the mixed models.
 Large values of $CD_i(\beta$) indicates points for further consideration
 %------------------------------------%
-4.2.2. Analogue of the variance ratio
+\subsubsection*{4.2.2. Analogue of the variance ratio}
 
 The variance ratio measures the change of the determinant of the variance of the fixed effects parameter estimates when the i-th case is deleted.
 
@@ -355,7 +329,7 @@ A large $CD_i(u)$ indicates that the i-th observation is influential in predicti
 Likelihood Distance ($LD_i$)
 %-------------------------------------------------------------------------------------------------------%
 
-4.5 influence on the linear functions of the fixed effect parameters.
+\subsubsection*{4.5 influence on the linear functions of the fixed effect parameters.}
 All the diagnostics are a function of the following basic building blocks
 1)  	Studentized residuals
 2)  	Error contrast matrix
@@ -376,6 +350,8 @@ Data set 1: Beckmans' aerosol data ( Zewotir)
 high efficiency particulate air filter.
 toxic dust, radionuclides, and mists/
 Both Beckman and CPJ rank the 14th observation as the most influential.
+
+\bigskip 
 %-------------------------------------------------------------------------------%
 Data set 2: Metal oxide analysis data ( Zewotir)
 Process and measurement variation on the properties of lots of metal oxides.
@@ -385,11 +361,30 @@ Sample 1 and 2
 Maximum likelihood variance component ratios.
 Full data and with cases removed.
 %-------------------------------------------------------------------------------%
-http://www.tandfonline.com/doi/abs/10.1080/03610910600716795
-http://www.ingentaconnect.com/content/routledg/cjas/2011/00000038/00000005/art00016
-http://www.sciencedirect.com/science/article/pii/S0047259X09001213
+\begin{framed}
+	
+A large number of statistics have been proposed to study the influence of individual 
+observations in the linear mixed model. An extensive Monte Carlo simulation study is used 
+to evaluate the appropriateness of these influence diagnostic measures. The sensitivity of 
+the diagnostic measures to outliers and leverages is examined, and helpful results are 
+obtained.
+\citep{zewotir2006}
+\end{framed}	
 
 
+\newpage
+\begin{framed}
+	We consider a generalized leverage matrix useful for the identification of influential units and observations in linear mixed models and show how a decomposition of this matrix may be employed to identify high leverage points for both the marginal fitted values and the random effect component of the conditional fitted values. We illustrate the different uses of the two components of the decomposition with a simulated example as well as with a real data set.\citet{nobresinger}
+\end{framed}	
+\begin{framed}
+In this paper, we consider subset deletion diagnostics for fixed effects (coefficient functions), 
+random effects and one variance component in varying coefficient mixed models (VCMMs). 
+Some simple updated formulas are obtained, and based on which, Cook's distance, joint 
+influence and conditional influence are also investigated. Besides, since mean shift outlier 
+models (MSOMs) are also efficient to detect outliers, we establish an equivalence ..............
+\citep{li2009influence}
+
+\end{framed}
 
 Margina Means ( population averaged)
 $E[Y_{ij}]$
@@ -401,5 +396,5 @@ $E[Y_{ij}|\gamma_{i}]$
 
 
 
-\bibliography{DB-txfrbib}
+\bibliography{2017bib}
 \end{document}
