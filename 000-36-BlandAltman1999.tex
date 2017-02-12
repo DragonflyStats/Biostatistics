@@ -2,14 +2,14 @@ Bland Altman 1999 Research Notes
 Agreement between methods of measurement can be quantified using observations upon the same subject, made simultaneously  by each measurement method.
 A lack of agreement , even to a minor degree, is inevitable between measurement methods. What matter is the degree of disagreement.
 %====================================================================%
-Limits of Agreement
+\subsection{Limits of Agreement}
 Bland and Altman’s approach is motivated by the need for a metric that is easy for medical researchers to estimate and to interpret. Furthermore they intend their approach to be implementable using basic statistical software.
 The inter-method bias (often referred to simply as “bias”) is simply the mean of the case-wise differences.
 %====================================================================%
-The 95\% limits of agreement are estimated by inter-method bias (i.e. the mean of the case-wise differences) plus or minus 1.96 ( often approximated by 2 with minimal loss of accuracy) times the standard deviation of the case-wise differences. These limits provide an interval within which 95% of the case-wise differences are expected to lie.
+The 95\% limits of agreement are estimated by inter-method bias (i.e. the mean of the case-wise differences) plus or minus 1.96 ( often approximated by 2 with minimal loss of accuracy) times the standard deviation of the case-wise differences. These limits provide an interval within which 95\% of the case-wise differences are expected to lie.
 
 %====================================================================%
-Assumption of normality of case-wise differences.
+\subsection{Assumption of normality of case-wise differences.}
 
 Confidence intervals for Limits of Agreement.
 It is unclear on how these confidence intervals aid in the decision of whether two methods of agreement.
@@ -17,10 +17,13 @@ As noted by several authors, it must be assumed that neither method can be assum
 
 %====================================================================%
 
-O’Brien Blood Data (JSR)
+\subsection{O’Brien Blood Data (JSR)}
 A data set often used for demonstration purposes  is  a tabulation of systolic  blood pressure data from a study in which simultaneous measurements were made by two experienced observers ( simply referred to as “J” and “R”) using a sphygmomanometer and by a semi-automatic blood pressure monitor (denoted as “S”).
-•	Inter-method Bias \bar{d} = -16.29 mmHg
-•	Standard deviation of Case-wise differences  S_d = 19.61 mmHg
+\begin{itemize}
+\item	Inter-method Bias $\bar{d} = -16.29$ mmHg
+\item 	Standard deviation of Case-wise differences  $S_d = 19.61$ mmHg
+\end{itemize}
+
 
 %====================================================================%
 These limits of agreement define the range within most( i.e. 95%) differences between measurements by the two methods would lie.
@@ -44,7 +47,7 @@ Logarithmic Transformation
 	Nadler Hurley Data set
 
 %====================================================================%
-Regression approach for non-uniform differences
+\subsection{Regression approach for non-uniform differences}
 
 Milk (Triglyceride /  Gerber) data
 
@@ -56,7 +59,7 @@ If b_1 is not significant, the \hat{D} is equal to \bar{d}.
 
 %====================================================================%
 
-Disjoint Regression (O’Brien 2012)
+\subsection{Disjoint Regression (O’Brien 2012)}
 
 Separating the data set into two : one set containing observations where the case-wise difference is greater than the inter-method bias, and the other containing the observations where the case-wise difference is less.
 
@@ -70,7 +73,10 @@ Importantly, as these two test are a family of tests that are test jointly, appr
 
 Non parametric variation of the Limits of Agreement  approach.
 The British Hypertension Society (BHS) protocol for evaluating these machines recommended a simple non-parametric method
+
 Inappropriate approaches to MCS
-•	Structural equation 
-•	Intraclass correlation
+\begin{itemize}
+\item	Structural equation 
+\item 	Intraclass correlation
+\end{itemize}
 

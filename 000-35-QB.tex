@@ -1,29 +1,16 @@
-
-\documentclass[12pt, a4paper]{article}
-\usepackage{natbib}
-\usepackage{vmargin}
-\usepackage{graphicx}
-\usepackage{epsfig}
-\usepackage{subfigure}
-%\usepackage{amscd}
-\usepackage{amssymb}
-\usepackage{subfigure}
-\usepackage{amsbsy}
-\usepackage{amsthm, amsmath}
-%\usepackage[dvips]{graphicx}
-\bibliographystyle{chicago}
-\renewcommand{\baselinestretch}{1.4}
-
-% left top textwidth textheight headheight % headsep footheight footskip
-\setmargins{3.0cm}{2.5cm}{15.5 cm}{23.5cm}{0.5cm}{0cm}{1cm}{1cm}
-
-\pagenumbering{arabic}
-
-
+\documentclass[MAIN.tex]{subfiles}
 \begin{document}
-	\chapter{Quiroz Burdick}
-%-------------------------------------------------------------------------%
-Assessmet of individual agreements with repeated measurements based on Generalized Confidence intervals.
+\chapter{Quiroz Burdick}
+
+Individual agreement between two measurement systems is determined using the total deviation index (TDI) or the coverage probability (CP) criteria as 
+proposed by Lin (2000) and Lin et al. (2002). We used a variance component model as proposed by Choudhary (2007 ). 
+Using the bootstrap approach, Choudhary (2007), and generalized confidence intervals, we construct bounds on TDI and CP. 
+A simulation study was conducted to assess whether the bounds maintain the stated type I error probability of the test. 
+We also present a computational example to demonstrate the statistical methods described in the paper.
+
+\bigskip
+
+Assessment of individual agreements with repeated measurements based on Generalized Confidence intervals \citep{QB}.
 
 %KEYWORDS
 \begin{itemize}
@@ -115,5 +102,5 @@ to assess whether the bounds maintain the stated test size.
 
 We present a computational example to demonstrate the method described in the paper.
 
-\bibliography{DB-txfrbib}
+\bibliography{2017bib}
 \end{document}
