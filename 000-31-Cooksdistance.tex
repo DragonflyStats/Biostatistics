@@ -292,7 +292,39 @@ For random effect estimates, the \index{Cook's distance} Cook's distance is
 \]
 Large values for Cook's distance indicate observations for special attention.
 
+\subsection{Zewotir-Cook's Distance}
 
+Diagnostic tool for variance components
+\[ C_{\theta i} =(\hat(\theta)_{[i]} - \hat(\theta))^{T}\mbox{cov}( \hat(\theta))^{-1}(\hat(\theta)_{[i]} - \hat(\theta))\]
+
+\begin{description}
+	\item[linear functions]
+	$CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+\end{description}
+
+
+It is also desirable to measure the influence of the case deletions on the covariance matrix of $\hat{\beta}$.
+% % - Fixed Effects Parameter		
+
+For fixed effects parameter estimates in LME models, the \index{Cook's distance} Cook's distance can be extended to measure influence on these fixed effects.
+
+\[
+\mbox{CD}_{i}(\beta) = \frac{(c_{ii} - r_{ii}) \times t^2_{i}}{r_{ii} \times p}
+\]
+
+
+For random effect estimates, the \index{Cook's distance} Cook's distance is
+
+\[
+\mbox{CD}_{i}(b) = g{\prime}_{(i)} (I_{r} + \mbox{var}(\hat{b})D)^{-2}\mbox{var}(\hat{b})g_{(i)}.
+\]
+
+Large values for Cook's distance indicate observations for special attention.
+
+
+For linear functions, $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
+
+%===================================================== %
 
 \bibliographystyle{chicago}
 \bibliography{2017bib}

@@ -214,6 +214,17 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 	
 
 
+\subsection{Methods and Measures}
+The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
+
+\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
+	\item Cook's distance for LME models,
+	\item \index{likelihood distance} likelihood distance,
+	\item the variance (information) ration,
+	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
+	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
+\end{itemize}
+
 \subsection{PRESS} %1.13.3
 The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
 \begin{equation}

@@ -1,6 +1,16 @@
 \documentclass[Main.tex]{subfiles}
 \begin{document}
-	
+\subsection{Leverage}
+Leverage can be defined through the projection matrix that results from a transformation of the model with the inverse of the Cholesky decomposition of $\boldsymbol{V}$, or an oblique projector:	$\boldsymbol{Y} = \boldsymbol{H}\boldsymbol{\hat{Y}}$.
+
+While $H$ is idempotent, it is generally not symmetric and thus not a projection matrix in the narrow sense.
+\[ h_{ii} = x^{\prime}_{i}(X^{\prime}X)^{-1}x_{i} \]
+The trace of $\boldsymbol{H}$ equals the rank of $\boldsymbol{X}$.
+If $V_{ij}$ denotes the element in row $i$, column $j$ of $\boldsymbol{V}^{-1}$, then for a model containing only an intercept the diagonal elements of $\boldsymbol{H}$.
+
+\[ h_{ii} = \frac{\sum v_{ij}}{\sum \sum v_{ij}} \]
+
+
 %http://www.ime.usp.br/~jmsinger/MAE0610/Mixedmodelresiduals.pdf
 
 \subsection*{Nobre Singer :  Mixed Model Residuals }
