@@ -873,7 +873,16 @@ In the study of Linear model diagnostics, Cook proposed a measure that combines 
 
 \section{Matrix Notation for Case Deletion} %1.14
 
-\subsection{Case deletion notation} %1.14.1
+%\subsection{Case deletion notation} %1.14.1
+
+For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
+removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
+%
+%\subsection{Partitioning Matrices} %1.14.2
+%Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
+
+
+\section{Case deletion notation} %1.14.1
 
 For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
 removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
@@ -943,22 +952,6 @@ tests or confidence intervals about $\beta$.
 %degrees of freedom methods and the standard error adjustment associated with the DDFM=KR option.
 
 %------------------------------------------------------------%
-\subsection{Summary of Paper}
-%Summary of Schabenberger
-Standard residual and influence diagnostics for linear models can be extended to LME models.
-The dependence of the fixed effects solutions on the covariance parameters has important ramifications on the perturbation analysis.	
-Calculating the studentized residuals-And influence statistics whereas each software procedure can calculate both conditional and marginal raw residuals, only SAs Proc Mixed is currently the only program that provide studentized residuals Which ave preferred for model diagnostics. The conditional Raw residuals ave not well suited to detecting outliers as are the studentized conditional residuals. (schabenbege r)
-
-
-LME are flexible tools for the analysis of clustered and repeated measurement data. LME extend the capabilities of standard linear models by allowing unbalanced and missing data, as long as the missing data are MAR. Structured covariance matrices for both the random effects G and the residuals R. missing at Random.
-
-A conditional residual is the difference between the observed valve and the predicted valve of a dependent variable- Influence diagnostics are formal techniques that allow the identification observation that heavily influence estimates of parameters.
-To alleviate the problems with the interpretation of conditional residuals that may have unequal variances, we consider sealing.
-Residuals obtained in this manner ave called studentized residuals.
-
-
-
-%---------------------------------------------------------------%
 
 \section*{Leave-One-Out Diagnostics with \texttt{lmeU}}
 Galecki et al provide a brief the matter of LME influence diagnostics in their book.
@@ -1141,7 +1134,7 @@ proposed in the literature require a homogeneous sample distribution and homosce
 
 
 %========================================================================================================= %
-\subsection{Outliers and Leverage}
+\section{Outliers and Leverage}
 
 
 
@@ -1176,19 +1169,6 @@ For classical linear models, residual diagnostics are typically conducted using 
 %
 %
 %%---------------------------------------------------------------------------%
-\subsection{Matrix Notation for Case Deletion} %1.14
-
-%\subsection{Case deletion notation} %1.14.1
-
-For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
-removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
-%
-%\subsection{Partitioning Matrices} %1.14.2
-%Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
-
-
-
-%--------------------------------------------------------------------
 
 \section{Extension of Diagnostic Methods to LME models}
 
@@ -1504,103 +1484,9 @@ A plot ofthe per-observation diagnostics individual subject log-likelihood contr
 
 
 
-\chapter{Model Diagnostics}
 
 
 
-
-
-
-
-
-\section{Carstensen}
-Let $y_{mir} $ be the $r$th replicate measurement on the $i$th item by the $m$th method, where $m=1,2,$ $i=1,\ldots,N,$ and $r = 1,\ldots,n_i.$ When the design is balanced and there is no ambiguity we can set $n_i=n.$ The LME model underpinning Roy's approach can be written
-\begin{equation}
-y_{mir} = \beta_{0} + \beta_{m} + b_{mi} + \epsilon_{mir}.
-\end{equation}
-Here $\beta_0$ and $\beta_m$ are fixed-effect terms representing, respectively, a model intercept and an overall effect for method $m.$
-The $\beta$ terms can be gathered together into (fixed effect) intercept terms $\alpha_m=\beta_0+\beta_m.$ The $b_{1i}$ and $b_{2i}$ terms are correlated random effect parameters having $\mathrm{E}(b_{mi})=0$ with $\mathrm{Var}(b_{mi})=g^2_m$ and $\mathrm{Cov}(b_{mi}, b_{m^\prime i})=g_{12}.$ The random error term for each response is denoted $\epsilon_{mir}$ having $\mathrm{E}(\epsilon_{mir})=0$, $\mathrm{Var}(\epsilon_{mir})=\sigma^2_m$, $\mathrm{Cov}(b_{mir}, b_{m^\prime ir})=\sigma_{12}$, $\mathrm{Cov}(\epsilon_{mir}, \epsilon_{mir^\prime})= 0$ and $\mathrm{Cov}(\epsilon_{mir}, \epsilon_{m^\prime ir^\prime})= 0.$ Two methods of measurement are in complete agreement if the null hypotheses $\mathrm{H}_1\colon \beta_1 = \beta_2$ and $\mathrm{H}_2\colon \sigma^2_1 = \sigma^2_2 $ and $\mathrm{H}_3\colon g^2_1= g^2_2$ hold simultaneously. \citet{roy} proposes a Bonferroni correction to control the familywise error rate for tests of $\{\mathrm{H}_1, \mathrm{H}_2, \mathrm{H}_3\}$ and account for difficulties arising due to multiple testing. Let $\omega^2_m = \sigma^2_m + g^2_m$ represent the overall variability of method $m.$  Roy also integrates $\mathrm{H}_2$ and $\mathrm{H}_3$ into a single testable hypothesis $\mathrm{H}_4\colon \omega^2_1=\omega^2_2.$ CONCERNS?
-
-\bigskip
-
-% Complete paragraph by specifying variances and covariances for epsilons.
-% I thing that these are your sigmas?
-% Also, state equality of the parameters in this model when each of the three hypotheses above are true.
-\citet{Roy} demonstrates how to implement a method comparison study further to model (1) using the SAS proc mixed package.
-%------------------------------------------------------------------------------------------------%
-\citet{BXC2008} demonstrates how to construct limits of agreement using SAS, STATA and R. In the case of SAS, the PROC MIXED procedure is used.
-Implementation in R is performed using the nlme package \citep{pb2000}.
-
-\citet{BXC2008} remarks that the implementation using R is quite ``arcane".
-
-As R is freely available, this paper demonstrates an implementation of Roy's model using R.
-
-The R statistical software package is freely available.
-
-%------------------------------------------------------------------------------------------------%
-The LME model is very easy to implement using PROC MIXED of SAS and the results are also easy to interpret.
-The SAS proc mixed procedure has very simple syntax.
-
-As the required code to fit the models is complex, R code necessary to fit the models is provided. 
-
-A demonstration is provided on how to use the output to perform the tests, and to compute limits of agreement.
-
-
-
-We assume the data are formatted as a dataset with four columns named:
-
-meth, method of measurement, the number of methods being M,
-item, items (persons, samples) measured by each method, of which there are I,
-repl, replicate indicating repeated measurement of the same item by the same method, and
-y, the measurement.
-
-
-
-
-
-
-
-%=======================================================================================%
-
-\subsection{Remarks on the Multivariate Normal Distribution}
-
-Diligence is required when considering the models. Carstensen specifies his models in terms of the univariate normal distribution. Roy's model is specified using the bivariate normal distribution.
-This gives rises to a key difference between the two model, in that a bivariate model accounts for covariance between the variables of interest.
-The multivariate normal distribution of a $k$-dimensional random vector $X = [X_1, X_2, \ldots, X_k]$
-can be written in the following notation:
-\[
-X\ \sim\ \mathcal{N}(\mu,\, \Sigma),
-\]
-or to make it explicitly known that $X$ is $k$-dimensional,
-\[
-X\ \sim\ \mathcal{N}_k(\mu,\, \Sigma).
-\]
-with $k$-dimensional mean vector
-\[ \mu = [ \operatorname{E}[X_1], \operatorname{E}[X_2], \ldots, \operatorname{E}[X_k]] \]
-and $k \times k$ covariance matrix
-\[ \Sigma = [\operatorname{Cov}[X_i, X_j]], \; i=1,2,\ldots,k; \; j=1,2,\ldots,k \]
-
-\bigskip
-
-\begin{enumerate}
-	\item Univariate Normal Distribution
-	
-	\[
-	X\ \sim\ \mathcal{N}(\mu,\, \sigma^2),
-	\]
-	
-	\item Bivariate Normal Distribution
-	
-	\begin{itemize}
-		\item[(a)] \[  X\ \sim\ \mathcal{N}_2(\mu,\, \Sigma), \vspace{1cm}\]
-		\item[(b)] \[    \mu = \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \quad
-		\Sigma = \begin{pmatrix} \sigma_x^2 & \rho \sigma_x \sigma_y \\
-		\rho \sigma_x \sigma_y  & \sigma_y^2 \end{pmatrix}.\]
-	\end{itemize}
-\end{enumerate}
-
-
-%\chapter{Limits of Agreement}
 
 \section{Modelling Agreement with LME Models}
 
