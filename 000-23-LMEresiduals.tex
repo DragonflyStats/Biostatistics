@@ -8,9 +8,12 @@
 \chapter{Residuals for LME Models}
 
 \section{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 
-In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
+
+
+In classical linear models model diagnostics have been become a required part of any statistical analysis, and the methods are commonly available in statistical packages and standard textbooks on applied regression. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
+
+However it has been noted by several papers that model diagnostics do not often accompany LME model analyses.
 
 \subsection{LME REsiduals}	
 Cox and Snell (1968, JRSS-B): general definition of residuals for
@@ -20,31 +23,31 @@ Hilden-Minton (1995, PhD thesis UCLA), Verbeke and Lesaffre
 define three types of residuals that accommodate the extra source of
 variability present in linear mixed models, namely:
 
-i) Marginal residuals, 
+\begin{enumerate}
+\item Marginal residuals, 
 %bξ = y − X\hat{\beta} = \hat{M}^{-1}\hat{Q}y ,
 
 predictors of marginal errors, 
 
 %ξ = y − E[y] = y − X\beta = Zb + e
 
-ii) Conditional residuals, 
+\item Conditional residuals, 
 \[be = y − X\hat{\beta} − Zbb = \hat{\sigma}Q\hat{y}\] , predictors of
 conditional errors 
 \[e = y − E[y|b] = y − X\beta − Zb\]
 
-iii) BLUP, Zbb, predictors of random effects,
+\item BLUP, Zbb, predictors of random effects,
 \[ Zb = E[y|b] − E[y]\]
 
-
+\end{enumerate}
 %=================================================== %
 
 
 \subsection{Residual Diagnostics in LME models}
 \begin{itemize}
-\item A \textbf{residual} is the difference between the observed quantity and the predicted value. In LME models a distinction is made between marginal residuals and conditional residuals.
-
-\item A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $rm$ and conditional residuals $rc$. A marginal residual is the
+\item A \textbf{residual} is the difference between the observed quantity and the predicted value. 
+\item In LME
+models you can distinguish marginal residuals $rm$ and conditional residuals $rc$. A marginal residual is the
 difference between the observed data and the estimated (marginal) mean.
 
 \item \citet{cook86} introduces powerful tools for local-influence
@@ -52,12 +55,10 @@ assessment and examining perturbations in the assumptions of a
 model. In particular the effect of local perturbations of
 parameters or observations are examined.
 
-\item The marginal and conditional means in the linear mixed model are
-$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
-$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
+\item Residuals are used to examine model assumptions and to detect outliers and potentially influential data
+point. The raw residuals $r_{mi}$ and $r_{ci}$ are usually not well suited for these purposes.
 
-\item A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. 
+
 
 
 	
@@ -77,37 +78,12 @@ $r_{ci} = y_i - x_i^{\prime} \hat{b} - z_i^{\prime} \hat{\gamma}$
 	
 \item Such update formulae are available in the mixed model only if you assume that the covariance parameters are not affect by the removal of the observation in question. Schabenberger remarks that this is not a reasonable assumption.
 	
-\item A marginal residual is the difference between the observed data and the estimated (marginal) mean, $r_{mi} = y_i - x_0^{\prime} \hat{b}$
 		
 \item The marginal and conditional means in the linear mixed model are
 	$E[\boldsymbol{Y}] = \boldsymbol{X}\boldsymbol{\beta}$ and
 	$E[\boldsymbol{Y|\boldsymbol{u}}] = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{Z}\boldsymbol{u}$, respectively.
-	%1.5
-	%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
-\end{itemize} 
-	
 
-\section{Residuals diagnostics in mixed models}
-
-
-A residual is the difference between an observed quantity and its estimated or predicted value. In the mixed
-model you can distinguish marginal residuals $r_m$ and conditional residuals $r_c$. 
-
-
-
-\begin{equation}
-r_{mi}=x^{T}_{i}\hat{\beta}
-\end{equation}
-
-
-
-%http://support.sas.com/documentation/cdl/en/statug/63033/HTML/default/viewer.htm#statug_mixed_sect024.htm
-
-
-
-\subsection{Marginal and Conditional Residuals}
-
-In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
+\item In linear mixed effects models, diagnostic techniques may consider `conditional' residuals. A conditional residual is the difference between an observed value $y_{i}$ and the conditional predicted value $\hat{y}_{i} $.
 
 \[ \hat{\epsilon}_{i} = y_{i} - \hat{y}_{i} = y_{i} - ( X_{i}\hat{\beta} + Z_{i}\hat{b}_{i}) \]
 
@@ -120,6 +96,14 @@ However, using conditional residuals for diagnostics presents difficulties, as t
 \begin{equation}
 r_{mi}=x^{T}_{i}\hat{\beta}
 \end{equation}
+
+
+\item Conditional residuals include contributions from both fixed and random effects, whereas marginal residuals include contribution from only fixed effects.
+\end{itemize} 
+	
+
+
+
 
 \subsection*{Marginal residuals}
 
@@ -194,26 +178,6 @@ Distinction From Linear Models
 
 
 
-
-
-\section*{Residuals}
-
-Residuals are used to examine model assumptions and to detect outliers and potentially influential data
-point. The raw residuals $r_{mi}$ and $r_{ci}$ are usually not well suited for these purposes.
-
-\begin{itemize}
-	\item Conditional Residuals $r_{ci}$
-	\item Marginal Residuals $r_{mi}$
-	\item 
-\end{itemize}
-
-
-
-
-%--Marginal and Conditional Residuals
-
-
-
 \subsection{Confounded Residuals}
 Hilden-Minton (1995, PhD thesis, UCLA): residual is pure for a
 specific type of error if it depends only on the fixed components and
@@ -222,7 +186,7 @@ Residuals that depend on other types of errors are called \textit{\textbf{confou
 		residuals}}
 
 \section{Conditional and Marginal Residuals}
-Conditional residuals include contributions from both fixed and random effects, whereas marginal residuals include contribution from only fixed effects.
+
 
 Suppose the linear mixed-effects model lme has an $n \times p$ fixed-effects design matrix $\boldsymbol{X}$ and an $n \times q$ random-effects design matrix $\boldsymbol{Z}$. 
 
@@ -246,7 +210,6 @@ residuals can return three types of residuals:
 \[ r_{Cond} = y - X \hat{\beta} - Z \hat{b} \]
 
 and the marginal raw residual is
-
 
 
 \[ r_{Mar} = y - X \hat{\beta} \]
@@ -280,15 +243,6 @@ and the marginal raw residual is
 \end{itemize}
 
 
-\section{Diagnostic Tools for the nlme package}
-
-
-With the nlme package, the generic function \texttt{lme()} fits a linear mixed-effects model in the formulation described in Laird and Ware (1982) but allowing for nested random effects. 
-
-The within-group errors are allowed to be correlated and/or have unequal variances, which is very important in fitting the models for Roy's Tests
-
-The nlme package has a limited set of diagnostic tools that can be used to assess the model fit. A review of the package manual is sufficient to get a sense of the package's capability in that regard.
-
 
 
 
@@ -296,8 +250,7 @@ The nlme package has a limited set of diagnostic tools that can be used to asses
 with $\boldsymbol{V}$ unknown, a standard practice for estimating $\boldsymbol{X \beta}$ is the estime the variance components $\sigma^2_j$,
 compute an estimate for $\boldsymbol{V}$ and then compute the projector matrix $A$, $\boldsymbol{X \hat{\beta}}  = \boldsymbol{AY}$.
 
-
-%\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
+\citet{zewotir} remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block being $u \boldsymbol{I}$
 
 
 
@@ -317,59 +270,7 @@ Studentization \[ \frac{\hat{e}_i}{\sqrt{\hat{v}_i}}\]
 
 
 
-
-
-
-\section{residuals.lme {nlme}- Extract lme Residuals}
-
-The residuals at level $i$ are obtained by subtracting the fitted levels at that level from the response vector (and dividing by the estimated within-group standard error, if \texttt{type="pearson"}). 
-
-The fitted values at level i are obtained by adding together the population fitted values (based only on the fixed effects estimates) and the estimated contributions of the random effects to the fitted values at grouping levels less or equal to i.
-
-%------------------------------------------------------------------------%
-
-\begin{framed}
-	\begin{verbatim}
-	
-	fm1 <- lme(distance ~ age + Sex, 
-	data = Orthodont, random = ~ 1)
-	head(residuals(fm1, level = 0:1))
-	summary(residuals(fm1) /
-	residuals(fm1, type = "p")) 
-	
-	# constant scaling factor 1.432
-	
-	\end{verbatim}
-\end{framed}
-
-
-\section{Extension of techniques to LME Models} %1.2
-
-Model diagnostic techniques, well established for classical models, have since been adapted for use with linear mixed effects models.Diagnostic techniques for LME models are inevitably more difficult to implement, due to the increased complexity.
-
-%% Beckman, Nachtsheim and Cook (1987) \citet{Beckman} applied the local influence method of Cook (1986) to the analysis of the linear mixed model.
-
-While the concept of influence analysis is straightforward, implementation in mixed models is more complex. Update formulae for fixed effects models are available only when the covariance parameters are assumed to be known.
-
-If the global measure suggests that the points in $U$ are influential, the nature of that influence should be determined. In particular, the points in $U$ can affect the following
-
-\begin{itemize}
-	\item the estimates of fixed effects,
-	\item the estimates of the precision of the fixed effects,
-	\item the estimates of the covariance parameters,
-	\item the estimates of the precision of the covariance parameters,
-	\item fitted and predicted values.
-\end{itemize}
-
-
-\section{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically implemented as a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
-
-
-
-
-
-	\subsection{Marginal Residuals}
+	\section{Marginal Residuals}
 	\begin{eqnarray}
 	\hat{\beta} &=& (X^{T}R^{-1}X)^{-1}X^{T}R^{-1}Y \nonumber \\
 	&=& BY \nonumber
@@ -394,6 +295,38 @@ Another possible scaled residual is the \index{Pearson residual} `Pearson residu
 \hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
 \end{equation}
 
+\newpage
+\section{Diagnostic Tools for the nlme package}
+
+
+With the nlme package, the generic function \texttt{lme()} fits a linear mixed-effects model in the formulation described in Laird and Ware (1982) but allowing for nested random effects. 
+
+The within-group errors are allowed to be correlated and/or have unequal variances, which is very important in fitting the models for Roy's Tests
+
+The nlme package has a limited set of diagnostic tools that can be used to assess the model fit. A review of the package manual is sufficient to get a sense of the package's capability in that regard.
+
+
+\subsection{residuals.lme {nlme}- Extract lme Residuals}
+
+The residuals at level $i$ are obtained by subtracting the fitted levels at that level from the response vector (and dividing by the estimated within-group standard error, if \texttt{type="pearson"}). 
+
+The fitted values at level i are obtained by adding together the population fitted values (based only on the fixed effects estimates) and the estimated contributions of the random effects to the fitted values at grouping levels less or equal to i.
+
+%------------------------------------------------------------------------%
+
+\begin{framed}
+	\begin{verbatim}
+	
+	fm1 <- lme(distance ~ age + Sex, 
+	data = Orthodont, random = ~ 1)
+	head(residuals(fm1, level = 0:1))
+	summary(residuals(fm1) /
+	residuals(fm1, type = "p")) 
+	
+	# constant scaling factor 1.432
+	
+	\end{verbatim}
+\end{framed}
 
 
 
@@ -404,5 +337,5 @@ Another possible scaled residual is the \index{Pearson residual} `Pearson residu
 	
 	
 	\bibliographystyle{chicago}
-	\bibliography{DB-txfrbib}
+	\bibliography{2017bib}
 \end{document} 

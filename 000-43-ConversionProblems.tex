@@ -16,15 +16,8 @@
 	The analyst may attempt to mitigate the problem by scaling the variance of one method, but even still problems remain.
 	Similarly for Deming regression, no further insights on how to properly estimate the variance ratio can be offered.
 	
-	For the case of conversion problem with replicate measurements, a framework that incorporates the ideas offered by Roy (2009) can be proposed. Estimates for between-subject and within-subject variances may be sought.
-	However Roy's tests on variability are no longer applicable, as one would not expect the method to have similar estimates. An estimate for the scaling factor $\beta$ may be sought, where $Y_i \approx \beta X$.
 	
-	
-	\[ X_i = \tau_i + \delta_i \]
-	\[ Y_i = \alpha + \beta X \tau_i + \epsilon_i\]
-	
-	
-	We will simulate a data set based in lewis conversion problems, provide three replicates values for both measurements. To acheive this we add ``jitter noise" to three copies of each original measurement.
+
 	
 	\section{Other Types of Studies}
 	\citet{lewis} categorize method comparison studies into three
@@ -60,7 +53,7 @@
 	\citet{lewis} deals specifically with this issue. In the context
 	of this study, it is the least relevant of the three.
 	
-	\citet[p.47]{DunnSEME} cautions that`gold standards' should not be
+	\citet[p.47]{DunnSEME} cautions that `gold standards' should not be
 	assumed to be error free. `It is of necessity a subjective
 	decision when we come to decide that a particular method or
 	instrument can be treated as if it was a gold standard'. The
@@ -95,7 +88,7 @@
 	be consider in the context of a comparison study, as well as of a
 	calibration study.
 
-\newpage
+
 
 	\section{Lewis Conversion} 
 	While regarding a comparison of two pump meters under operational conditions
@@ -105,10 +98,19 @@
 	
 	‘There is little reasons to believe that the laboratory conditions of the devise provide a suitable basis for the conversion of data gathered under operational conditions.
 	
-	
-	%-------------------------------------------------------------%
+	\subsection{Latent Variables}
 	Latent variables are variables that are not measured (i.e. not observed) but whose values is observed from other observed variables. One advantage of using latent variables is that it reduces the dimensionality of data. A large number of observable variables can be aggregated in a model to represent an underlying concept, making it easier for humans to understand the data.	[wikipedia]
 
+	\subsection{Using LMEs for Conversion Problems}
+	For the case of conversion problem with replicate measurements, a framework that incorporates the ideas offered by Roy (2009) can be proposed. Estimates for between-subject and within-subject variances may be sought.
+	However Roy's tests on variability are no longer applicable, as one would not expect the method to have similar estimates. An estimate for the scaling factor $\beta$ may be sought, where $Y_i \approx \beta X$.
+	
+	
+	\[ X_i = \tau_i + \delta_i \]
+	\[ Y_i = \alpha + \beta X \tau_i + \epsilon_i\]
+	
+	
+	We will simulate a data set based in lewis conversion problems, provide three replicates values for both measurements. To acheive this we add ``jitter noise" to three copies of each original measurement.
 \bibliographystyle{chicago}
 \bibliography{DB-txfrbib}
 \end{document}
