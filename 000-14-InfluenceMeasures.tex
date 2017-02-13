@@ -20,6 +20,10 @@
 
 \begin{document}
 \section*{Influence Analysis}
+
+The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation.
+
+
 The basic rationale behind measuring influential cases is that when iteratively single units are omitted
 from the data, models based on these data should not produce substantially different estimates.
 %===================================================================== %
@@ -34,12 +38,11 @@ The basic procedure for quantifying influence is simple as follows:
 	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence of the observations changes the analysis.
 \end{itemize}
 
-Cook (1986) introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.	
+\citet{cook86} introduces powerful tools for local-influence assessment and examining perturbations in the assumptions of a model. In particular the effect of local perturbations of parameters or observations are examined.	
 %===================================================================== %
 \subsection{Well Known Influence Measures}
 
-\textit{``Regression Diagnostics: Identifying Influential Data
-	and Source of Collinearity (1980)"} by Belsley,Kuh,\& Welsch is a landmark text in the field of residual diagnostics, and
+\citet{belsleywelsch} is a landmark text in the field of residual diagnostics, and
 provides a foundation for much of the subsequent work.
 
 \subsection{Influence Diagnostics: Basic Idea and Statistics} %1.1.2
@@ -48,7 +51,7 @@ provides a foundation for much of the subsequent work.
 	
 
 
-The general idea of quantifying the influence of one or more observations relies on computing parameter estimates based on all data points, removing the cases in question from the data, refitting the model, and computing statistics based on the change between full-data and reduced-data estimation. 
+ 
 
 Influence statistics can be coarsely grouped by the aspect of estimation that is their primary target:
 \begin{itemize}
@@ -210,39 +213,6 @@ DFBETA_{a} &=& \hat{\beta} - \hat{\beta}_{(a)} \\
 
 
 \end{description}
-	
-	
-
-
-\subsection{Methods and Measures}
-The key to making deletion diagnostics useable is the development of efficient computational formulas, allowing one to obtain the \index{case deletion diagnostics} case deletion diagnostics by making use of basic building blocks, computed only once for the full model.
-
-\citet{Zewotir} lists several established methods of analyzing influence in LME models. These methods include \begin{itemize}
-	\item Cook's distance for LME models,
-	\item \index{likelihood distance} likelihood distance,
-	\item the variance (information) ration,
-	\item the \index{Cook-Weisberg statistic} Cook-Weisberg statistic,
-	\item the \index{Andrews-Prebigon statistic} Andrews-Prebigon statistic.
-\end{itemize}
-
-\subsection{PRESS} %1.13.3
-The Prediction residual sum of squares (PRESS) is an value associated with this calculation. When fitting linear models, PRESS can be used as a criterion for model selection, with smaller values indicating better model fits.
-\begin{equation}
-PRESS = \sum(y-y^{(k)})^2
-\end{equation}
-\begin{itemize}
-	\item $e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}$
-	\item $PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}$
-\end{itemize}
-
-
-\begin{equation}
-e_{-Q} = y_{Q} - x_{Q}\hat{\beta}^{-Q}
-\end{equation}
-
-\begin{equation}
-PRESS_{(U)} = y_{i} - x\hat{\beta}_{(U)}
-\end{equation}
 
 
 
@@ -280,18 +250,9 @@ $CD(\psi)_i$ does not have to be calculated unless $CD(\beta)_i$ is large.
 
 
 
-\section{Measures of Influence} %1.16
-
-
-Influence arises at two stages of the LME model. Firstly when $V$ is estimated by $\hat{V}$, and subsequent
-estimations of the fixed and random regression coefficients $\beta$ and $u$, given $\hat{V}$.
-
-
-
-
 %========================================================================================== %
 \addcontentsline{toc}{section}{Bibliography}
 
-\bibliography{transferbib}
+\bibliography{2017bib}
 \end{document}
 

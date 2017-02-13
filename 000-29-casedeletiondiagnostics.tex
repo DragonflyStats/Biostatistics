@@ -10,10 +10,7 @@ The key to making deletion diagnostics useable is the development of efficient c
 The computation of case deletion diagnostics in the classical model is made simple by the fact that estimates of $\beta$ and $\sigma^2$, which exclude the ith observation, can be computed without re-fitting the model. 
 
 
-
-
-\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called
-`\textit{observation-diagnostics}'. For multiple observations, Preisser describes the diagnostics as `\textit{cluster-deletion}' diagnostics. 
+\citet{preisser} describes two type of diagnostics. When the set consists of only one observation, the type is called `\textit{observation-diagnostics}'. For multiple observations, Preisser describes the diagnostics as `\textit{cluster-deletion}' diagnostics. 
 
 When applied to LME models, such update formulas are available only if one assumes that the covariance parameters are not affected by the removal of the observation in question. However, this is rarely a reasonable assumption.
 
@@ -27,11 +24,6 @@ Such update formulas are available in the mixed model only if you assume that th
 Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models.
 
 Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
-
-
-
-%--------------------------------------%
 
 \section{Case Deletion Diagnostics} %1.7
 
@@ -423,7 +415,14 @@ This paper develops their global influences for the deletion of single observati
 \citet{Christensen} developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted resgression problem ( conditional on the estimated covariance matrix) for fixed effects. Lesaffre's approach accords with that proposed by Christensen et al when applied in a repeated measurement context, with a large
 sample size.
 
+\subsection{Preisser 2008}
 
+Preisser \& Qaqish (1996) introduced one-step deletion diagnostics for generalized estimating equations.
+In this note, we derive a different expression for DBETAm,
+and show that it is equivalent to the formula of Preisser & Qaqish (1996). We show that significant
+computational savings are possible through application of the Sherman–Morrison–Woodbury formula
+(Sherman & Morrison, 1950; Henderson & Searle, 1981) for the inverse of a matrix component in the
+diagnostic formula.
 
 \subsection{Partitioning Matrices} %1.14.2
 Without loss of generality, matrices can be partitioned as if the $i-$th omitted observation is the first row; i.e. $i=1$.
@@ -499,6 +498,6 @@ Without loss of generality, matrices can be partitioned as if the $i-$th omitted
 
 
 \bibliographystyle{chicago}
-\bibliography{DB-txfrbib}
+\bibliography{2017bib}
 
 \end{document} 
