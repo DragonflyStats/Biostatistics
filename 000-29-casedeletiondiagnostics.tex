@@ -16,6 +16,10 @@ When applied to LME models, such update formulas are available only if one assum
 
 Such update formulas are available in the mixed model only if you assume that the covariance parameters are not affected by the removal of the observation in question. This is rarely a reasonable assumption.
 
+\subsection{Local Influence}
+
+\citet{Christensen} developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted regression problem (conditional on the estimated covariance matrix) for fixed effects.
+
 
 \subsection{Deletion Diagnostics}
 
@@ -419,9 +423,9 @@ sample size.
 
 Preisser \& Qaqish (1996) introduced one-step deletion diagnostics for generalized estimating equations.
 In this note, we derive a different expression for DBETAm,
-and show that it is equivalent to the formula of Preisser & Qaqish (1996). We show that significant
+and show that it is equivalent to the formula of Preisser \& Qaqish (1996). We show that significant
 computational savings are possible through application of the Sherman–Morrison–Woodbury formula
-(Sherman & Morrison, 1950; Henderson & Searle, 1981) for the inverse of a matrix component in the
+(Sherman \& Morrison, 1950; Henderson \& Searle, 1981) for the inverse of a matrix component in the
 diagnostic formula.
 
 \subsection{Partitioning Matrices} %1.14.2

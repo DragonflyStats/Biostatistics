@@ -369,9 +369,6 @@ The difference between perturbation and residual analysis between the linear and
 The estimates of the fixed effects $\beta$ depend on the estimates of the covariance parameters.
 
 
-\subsection{Local Influence}
-
-\citet{Christensen} developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted regression problem (conditional on the estimated covariance matrix) for fixed effects.
 
 
 	
@@ -1171,19 +1168,7 @@ proposed in the literature require a homogeneous sample distribution and homosce
 
 
 %========================================================================================================= %
-\section{Outliers and Leverage}
 
-
-
-The question of whether or not a point should be considered an outlier must also be addressed. An outlier is an observation whose true value is unusual given its value on the predictor variables. The leverage of an observation is a further consideration. Leverage describes an observation with an extreme value on a predictor variable is a point with high leverage. High leverage points can have a great amount of effect on the estimate of regression coefficients.
-% - Leverage is a measure of how far an independent variable deviates from its mean.
-
-Influence can be thought of as the product of leverage and outlierness. An observation is said to be influential if removing the observation substantially changes the estimate of the regression coefficients. The \texttt{R} programming language has a variety of methods used to study each of the aspects for a linear model. While linear models and GLMS can be studied with a wide range of well-established diagnostic technqiues, the choice of methodology is much more restricted for the case of LMEs.
-
-%---------------------------------------------------------------------------%
-%\newpage
-%\section{Residual diagnostics} %1.3
-For classical linear models, residual diagnostics are typically conducted using a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 
 %\section{Case Deletion Diagnostics}
 %
@@ -1223,7 +1208,7 @@ parameters.
 \citet{Christiansen} noted the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{Christiansen} develops these techniques in the context of REML.
 
 \citet{CPJ} noted the case deletion diagnostics techniques had not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{CPJ} develops these techniques in the context of REML.
->>>>>>> origin/master
+
 
 %\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, a well-known metric, for diagnosing influential observations when estimating the fixed effect parameters and variance components. Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models. We shall provide a fuller discussion of Cook's distance in due course.
 
@@ -1243,7 +1228,7 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 \citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
 
 
-\newpage
+
 
 
 
@@ -1395,7 +1380,6 @@ For the replicate case, an interaction term $c$ is added to the model, with an a
 
 
 
-\newpage
 
 \subsection{Note 3: Model terms}
 It is important to note the following characteristics of this model.
@@ -1415,11 +1399,10 @@ It is important to note the following characteristics of this model.
 	\item The expected value is given as $\mbox{E}(\boldsymbol{y}_i) = \boldsymbol{X}_i\boldsymbol{\beta}.$ \citep{hamlett}
 	\item The variance of the response vector is given by $\mbox{Var}(\boldsymbol{y}_i)  = \boldsymbol{Z}_i \boldsymbol{G} \boldsymbol{Z}_i^{\prime} + \boldsymbol{R}_i$ \citep{hamlett}.
 \end{itemize}
-\newpage
+
 
 %\chapter{Limits of Agreement}
-
-%\section{Modelling Agreement with LME Models}
+\section{Modelling Agreement with LME Models}
 
 % Carstensen pages 22-23
 

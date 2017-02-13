@@ -1,5 +1,18 @@
 \documentclass[Main.tex]{subfiles}
 \begin{document}
+	\section{Outliers and Leverage}
+	
+	
+	
+	The question of whether or not a point should be considered an outlier must also be addressed. An outlier is an observation whose true value is unusual given its value on the predictor variables. The leverage of an observation is a further consideration. Leverage describes an observation with an extreme value on a predictor variable is a point with high leverage. High leverage points can have a great amount of effect on the estimate of regression coefficients.
+	% - Leverage is a measure of how far an independent variable deviates from its mean.
+	
+	Influence can be thought of as the product of leverage and outlierness. An observation is said to be influential if removing the observation substantially changes the estimate of the regression coefficients. The \texttt{R} programming language has a variety of methods used to study each of the aspects for a linear model. While linear models and GLMS can be studied with a wide range of well-established diagnostic technqiues, the choice of methodology is much more restricted for the case of LMEs.
+	
+	%---------------------------------------------------------------------------%
+	%\newpage
+	%\section{Residual diagnostics} %1.3
+	For classical linear models, residual diagnostics are typically conducted using a plot of the observed residuals and the predicted values. A visual inspection for the presence of trends inform the analyst on the validity of distributional assumptions, and to detect outliers and influential observations.
 \subsection{Leverage}
 Leverage can be defined through the projection matrix that results from a transformation of the model with the inverse of the Cholesky decomposition of $\boldsymbol{V}$, or an oblique projector:	$\boldsymbol{Y} = \boldsymbol{H}\boldsymbol{\hat{Y}}$.
 
@@ -49,39 +62,7 @@ Sensitivity and residual analysis of the underlying assumptions constitute impor
 %Page 1068
 
 
-%%-------------------------------------------------------------%
-%1 1.05 1.00 1.13 0.84
-%2 1.07 0.62 0.92 0.62
-%3 0.82 0.62 1.52 1.07
-%4 1.37 0.90 1.65 1.20
-%5 1.97 1.52 1.30 1.07
-%6 1.30 0.82 1.17 0.70
-%7 1.61 1.19 1.52 1.13
-%8 1.02 0.73 1.08 0.64
-%9 1.62 1.25 1.45 1.10
-%10 1.65 1.22 1.57 1.22
-%11 1.02 0.78 0.60 0.47
-%12 0.68 0.60 1.13 0.39
-%13 1.70 1.55 1.85 1.37
-%14 1.30 1.02 1.65 0.97
-%15 0.90 0.80 1.10 1.03
-%16 1.40 1.12 1.25 0.67
-%17 1.66 1.63 1.36 1.16
-%18 1.02 0.80 0.92 0.82
-%19 0.68 0.67 1.00 0.92
-%20 1.29 1.23 0.91 0.76
-%21 1.27 1.20 1.20 0.95
-%22 1.07 0.85 1.39 1.25
-%23 1.35 1.21 1.42 1.17
-%24 1.32 1.02 1.60 1.40
-%25 1.66 1.61 1.50 1.36
-%26 1.30 1.07 0.84 0.61
-%27 1.57 1.20 1.50 1.07
-%28 1.67 1.50 1.47 1.32
-%29 0.91 0.67 0.96 0.62
-%30 1.06 0.70 1.00 0.85
-%31 2.35 2.14 1.57 1.55
-%32 1.15 1.00 1.23 1.11
+
 %%-----------------------------------------------------------------%
 %
 %Comparison between the two generalized random component leverage matrics
