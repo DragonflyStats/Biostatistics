@@ -22,6 +22,14 @@ Statisticians Martin Bland and Douglas Altman recognized the inadequacies of the
 articulated quite thoroughly the basis on which of which they are unsuitable for comparing two methods of measurement \citep*{BA83}. Furthermore they proposed their simple methodology specifically constructed for method comparison studies. They acknowledge the opportunity to apply other valid, but complex, methodologies, but argue that a simple approach is preferable, especially when the results must be `explained to non-statisticians'.
 
 
+In 1986 Bland and Altman published a paper in the Lancet proposing the difference plot for use for method comparison purposes. It has
+proved highly popular ever since. This is a simple, and widely used, plot of the differences of each data pair, and the corresponding average value. An important requirement is that the two measurement methods use the same scale of measurement.
+
+Bland Altman have recommended the use of graphical techniques to assess agreement.
+Principally their method is calculating, for each pair of corresponding two methods of measurement of some underlying quantity, with no replicate measurements, the difference and mean. Differences are then plotted against the mean.
+
+Hopkins argued that the bias in a subsequent Bland-Altman plot was due, in part, to using least-squares regression at the calibration
+phase.
 
 
 \subsection{Identity Plot}
@@ -43,15 +51,17 @@ The authors advise the use of scatter plots to identify outliers, and to determi
 \citet{Dewitte} notes that scatter plots were very seldom presented in the Annals of Clinical Biochemistry. This apparently results from the fact that the `Instructions for Authors' dissuade the use of regression analysis, which conventionally is accompanied by a scatter plot.
 
 
-\subsection{Bland-Altman plots}
+
+\section{Bland-Altman Plots}
 
 
-In light of shortcomings associated with scatterplots,
-\citet*{BA83} recommend a further analysis of the data. Firstly
-case-wise differences of measurements of two methods $d_{i} =
-y_{1i}-y_{2i} \mbox{ for }i=1,2,\dots,n$ on the same subject
-should be calculated, and then the average of those measurements
-($a_{i} = (y_{1i} + y_{2i})/2 \mbox{ for }i=1,2,\dots, n$).
+
+
+In light of shortcomings associated with scatterplots, \citet*{BA83} recommend a further analysis of the data. Firstly
+case-wise differences of measurements of two methods $d_{i} = y_{1i}-y_{2i} \mbox{ for }i=1,2,..n$ on the same subject should be calculated, and then the average of those measurements ($a_{i} = (y_{1i} + y_{2i})/2 \mbox{ for }i=1,2,..n$). These differences and
+averages are then plotted. 
+
+
 
 \citet{BA83} proposes a scatterplot of the case-wise averages and differences of two methods of measurement. This scatterplot has since become widely known as the Bland-Altman plot. \citet*{BA83} express the
 motivation for this plot thusly:
@@ -63,19 +73,37 @@ motivation for this plot thusly:
 
 
 
-
-
-
 The case wise-averages capture several aspects of the data, such as expressing the range over which the values were taken, and assessing whether the assumptions of constant variance holds.
-Case-wise averages also allow the case-wise differences to be presented on a two-dimensional plot, with better data visualization qualities than a one dimensional plot. \citet{BA86}
-cautions that it would be the difference against either measurement value instead of their average, as the difference relates to both value. This methodology has proved very popular, and the Bland-Altman plots is widely regarded as powerful graphical methodology for making a visual assessment of the data.
+Case-wise averages also allow the case-wise differences to be presented on a two-dimensional plot, with better data visualization qualities than a one dimensional plot. 
+
+\citet{BA86} cautions that it would be the difference against either measurement value instead of their average, as the difference relates to both value. This methodology has proved very popular, and the Bland-Altman plots is widely regarded as powerful graphical methodology for making a visual assessment of the data.
 
 The magnitude of the inter-method bias between the two methods is simply the average of the differences $\bar{d}$. This inter-method bias is represented with a line on the Bland-Altman plot. As the objective of the Bland-Altman plot is to advise on the agreement of two methods, it is the case-wise differences that are also particularly relevant. The variances around this bias is estimated by the standard deviation of these differences $S_{d}$.
 
-
-\subsection{Bland-Altman plots for the Grubbs data}
-In the case of the Grubbs data the inter-method bias is $-0.61$ metres per second, and is indicated by the dashed line on Figure 1.2. By inspection of the plot, it is also possible to compare the precision of each method. Noticeably the differences tend to increase as the averages increase.
+The magnitude of the inter-method bias between the two methods is simply the average of the differences $\bar{d}$. The variances around this bias is estimated by the standard deviation of the
+	differences $S(d)$. 
 	
+	This inter-method bias is represented with a
+	line on the Bland-Altman plot. These estimates are only meaningful
+	if there is uniform inter-bias and variability throughout the
+	range of measurements, which can be checked by visual inspection
+	of the plot. 
+
+	The magnitude of the inter-method bias between the two methods is
+	simply the average of the differences $\bar{d}$. The variances
+	around this bias is estimated by the standard deviation of the
+	differences $S(d)$. This inter-method bias is represented with a
+	line on the Bland-Altman plot. 
+	
+
+	
+	
+\subsection{Bland-Altman plots for the Grubbs data}
+These estimates are only meaningful if there is uniform inter-bias and variability throughout the
+range of measurements, which can be checked by visual inspection of the plot. In the case of Grubbs data the inter-method bias is $-0.61$ metres per second, and is indicated by the dashed line on Figure 1.2. By inspection of the plot, it is also possible to
+compare the precision of each method. Noticeably the differences tend to increase as the averages increase.
+
+
 	
 The Bland-Altman plot for comparing the `Fotobalk' and `Counter' methods, which shall henceforth be referred to as the `F vs C'
 comparison,  is depicted in Figure 1.2, using data from Table 1.3. The presence and magnitude of the inter-method bias is indicated
@@ -165,46 +193,33 @@ comparison,  is depicted in Figure 1.2, using data from Table 1.3. The presence 
 		\end{center}
 	\end{figure}
 	
-	\subsection{Adverse features}
-	
-	Estimates for inter-method bias and variance of differences are only meaningful if there is uniform inter-bias and variability throughout the range of measurements. Fulfilment of these assumptions can be checked by visual inspection of the plot.The prototype Bland-Altman plots depicted in Figures 1.4, 1.5 and 1.6 are derived from simulated data, for the purpose of demonstrating how the plot would inform an analyst of features that would adversely affect use of the recommended methodology.
-	
-	Figure 1.4 demonstrates how the Bland-Altman plot would indicate
-	increasing variance of differences over the measurement range.
-	Fitted regression lines, for both the upper and lower half of the
-	plot, has been added to indicate the trend. Figure 1.5 is an
-	example of cases where the inter-method bias changes over the measurement range. This is known as proportional bias, and is
-	defined by \citet{ludbrook97} as meaning that `one method gives	values that are higher (or lower) than those from the other by an
-	amount that is proportional to the level of the measured variable'. In both Figures 1.4 and 1.5, the assumptions necessary
-	for further analysis using the limits of agreement are violated.
-	
-Application of regression techniques to the Bland-Altman 
-plot, and subsequent formal testing for the constant variability of differences is informative. The data set may be divided into two subsets, containing the observations wherein the difference values are less than and greater than the inter-method bias respectively.
-	For both of these fits, hypothesis tests for the respective slopes can be performed. While both tests can be considered separately, multiple comparison procedures, such as the Benjamini-Hochberg
-	\citep{BH} test, should be also be used.
-	
 
 	
-
-
-
-\section{Bland Altman Plot}
-In 1986 Bland and Altman published a paper in the Lancet proposing the difference plot for use for method comparison purposes. It has
-proved highly popular ever since. This is a simple, and widely used , plot of the differences of each data pair, and the
-	corresponding average value. An important requirement is that the two measurement methods use the same scale of measurement.
+	%	\begin{figure}[h!]
+	%		\begin{center}
+	%			\includegraphics[width=120mm]{images/GrubbsBAplot-noLOA.jpeg}
+	%			\caption{Bland-Altman plot For Fotobalk and Counter methods.}\label{GrubbsBA-noLOA}
+	%		\end{center}
+	%	\end{figure}
+	%	
+	%	
 	
-Bland Altman have
-recommended the use of graphical techniques to assess agreement.
-Principally their method is calculating, for each pair of corresponding two methods of measurement of some underlying quantity, with no replicate measurements, the difference and mean. Differences are then plotted against the mean.
-
-Hopkins argued that the bias in a subsequent Bland-Altman plot was
-due, in part, to using least-squares regression at the calibration
-phase.
-
-
-
-\subsection{Bland Altman plots using 'Gold Standard' raters}
-According to Bland and Altman, one should use the methodology previous outlined, even when one of the raters is a Gold Standard.
+	In Figure 1.3 Bland-Altman plots for the `F vs C' and `F vs T'
+	comparisons are shown, where `F vs T' refers to the comparison of
+	the `Fotobalk' and `Terma' methods. Usage of the Bland-Altman plot
+	can be demonstrate in the contrast between these comparisons.
+	
+	%	\begin{figure}[h!]
+	%		\begin{center}
+	%			\includegraphics[height=90mm]{images/GrubbsDataTwoBAplots.jpeg}
+	%			\caption{Bland-Altman plots for Grubbs' F vs C and F vs T comparisons.}\label{GrubbsDataTwoBAplots}
+	%		\end{center}
+	%	\end{figure}
+	
+	By inspection, there exists a larger inter-method bias in the `F
+	vs C' comparison than in the `F vs T' comparison. Conversely there
+	appears to be less precision in`F vs T' comparison, as indicated
+	by the greater dispersion of co-variates.
 
 
 \subsection{Bias Detection}
@@ -213,19 +228,7 @@ indicated if the average value differences is not equal to zero. Bland and Altma
 of bias does not provide sufficient information to allow a judgement as to whether or not one method can be substituted for
 another.
 
-\section{Bland Altman Plots}
 
-
-
-	
-	In light of shortcomings associated with scatterplots,
-	\citet*{BA83} recommend a further analysis of the data. Firstly
-	differences of measurements of two methods on the same subject
-	should  be calculated, and then the average of those measurements
-	(Table 2.1). These differences and averages are then plotted
-	(Figure 2.2).
-	
-	
 	
 	
 	The dashed line in Figure 2.2 alludes to the inter method bias
@@ -304,13 +307,10 @@ Figure 1.4 is an example of cases where the inter-method bias
 	\emph{"We usually find that this method of analysis is not too
 		sensitive to one or two large outlying differences."}
 
-
+	Application of regression techniques to the Bland-Altman 
+	plot, and subsequent formal testing for the constant variability of differences is informative. The data set may be divided into two subsets, containing the observations wherein the difference values are less than and greater than the inter-method bias respectively.
 	
-	Application of regression techniques to the Bland-Altman plot, and
-	subsequent formal testing for the constant variability of
-	differences is informative. The data set may be divided into two
-	subsets, containing the observations wherein the difference values
-	are less than and greater than the inter-method bias respectively.
+
 	For both of these fits, hypothesis tests for the respective slopes
 	can be performed. While both tests can be considered separately,
 	multiple comparison procedures, such as the Benjamini-Hochberg
@@ -338,6 +338,13 @@ Figure 1.4 is an example of cases where the inter-method bias
 	\end{figure}
 
 
+	\subsection{Adverse features}
+	
+	Estimates for inter-method bias and variance of differences are only meaningful if there is uniform inter-bias and variability throughout the range of measurements. Fulfilment of these assumptions can be checked by visual inspection of the plot. The prototype Bland-Altman plots depicted in Figures 1.4, 1.5 and 1.6 are derived from simulated data, for the purpose of demonstrating how the plot would inform an analyst of features that would adversely affect use of the recommended methodology.
+	
+	Figure 1.4 demonstrates how the Bland-Altman plot would indicate increasing variance of differences over the measurement range. Fitted regression lines, for both the upper and lower half of the plot, has been added to indicate the trend. Figure 1.5 is an example of cases where the inter-method bias changes over the measurement range. This is known as proportional bias, and is defined by \citet{ludbrook97} as meaning that `one method gives	values that are higher (or lower) than those from the other by an amount that is proportional to the level of the measured variable'. In both Figures 1.4 and 1.5, the assumptions necessary for further analysis using the limits of agreement are violated.
+	
+
 
 
 
@@ -356,38 +363,9 @@ Figure 1.4 is an example of cases where the inter-method bias
 	
 
 	
-	
-	\section{Bland-Altman Plots}
 
 	
 
-	
-	In light of shortcomings associated with scatterplots,
-	\citet*{BA83} recommend a further analysis of the data. Firstly
-	case-wise differences of measurements of two methods $d_{i} =
-	y_{1i}-y_{2i} \mbox{ for }i=1,2,..n$ on the same subject should be
-	calculated, and then the average of those measurements ($a_{i} =
-	(y_{1i} + y_{2i})/2 \mbox{ for }i=1,2,..n$). These differences and
-	averages are then plotted. 
-	
-	
-
-	
-	The magnitude of the inter-method bias between the two methods is
-	simply the average of the differences $\bar{d}$. The variances
-	around this bias is estimated by the standard deviation of the
-	differences $S(d)$. This inter-method bias is represented with a
-	line on the Bland-Altman plot. These estimates are only meaningful
-	if there is uniform inter-bias and variability throughout the
-	range of measurements, which can be checked by visual inspection
-	of the plot. 
-	
-	In the case of Grubbs data the inter-method bias is
-	$-0.61$ metres per second, and is indicated by the dashed line on
-	Figure 1.2. By inspection of the plot, it is also possible to
-	compare the precision of each method. Noticeably the differences
-	tend to increase as the averages increase.
-	
 	
 
 
@@ -424,38 +402,7 @@ Figure 1.4 is an example of cases where the inter-method bias
 	measurement value instead of their average , as the difference
 	relates to both value.
 	
-	The Bland-Altman plot for comparing the `Fotobalk' and `Counter'
-	methods, which shall henceforth be referred to as the `F vs C'
-	comparison,  is depicted in Figure 1.2, using data from Table 1.3.
-	The presence and magnitude of the inter-method bias is indicated
-	by the dashed line.
-	
-%	\begin{figure}[h!]
-%		\begin{center}
-%			\includegraphics[width=120mm]{images/GrubbsBAplot-noLOA.jpeg}
-%			\caption{Bland-Altman plot For Fotobalk and Counter methods.}\label{GrubbsBA-noLOA}
-%		\end{center}
-%	\end{figure}
-%	
-%	
-	
-	In Figure 1.3 Bland-Altman plots for the `F vs C' and `F vs T'
-	comparisons are shown, where `F vs T' refers to the comparison of
-	the `Fotobalk' and `Terma' methods. Usage of the Bland-Altman plot
-	can be demonstrate in the contrast between these comparisons.
-	
-%	\begin{figure}[h!]
-%		\begin{center}
-%			\includegraphics[height=90mm]{images/GrubbsDataTwoBAplots.jpeg}
-%			\caption{Bland-Altman plots for Grubbs' F vs C and F vs T comparisons.}\label{GrubbsDataTwoBAplots}
-%		\end{center}
-%	\end{figure}
-	
-	By inspection, there exists a larger inter-method bias in the `F
-	vs C' comparison than in the `F vs T' comparison. Conversely there
-	appears to be less precision in`F vs T' comparison, as indicated
-	by the greater dispersion of co-variates.
-	
+
 	
 	
 
@@ -488,26 +435,8 @@ Figure 1.4 is an example of cases where the inter-method bias
 		
 
 	
-	In light of shortcomings associated with scatterplots,
-	\citet*{BA83} recommend a further analysis of the data. Firstly
-	case-wise differences of measurements of two methods $d_{i} =
-	y_{1i}-y_{2i} \mbox{ for }i=1,2,..n$ on the same subject should be
-	calculated, and then the average of those measurements ($a_{i} =
-	(y_{1i} + y_{2i})/2 \mbox{ for }i=1,2,..n$). These differences and
-	averages are then plotted. 
-	
-	The magnitude of the inter-method bias between the two methods is
-	simply the average of the differences $\bar{d}$. The variances
-	around this bias is estimated by the standard deviation of the
-	differences $S(d)$. This inter-method bias is represented with a
-	line on the Bland-Altman plot. These estimates are only meaningful
-	if there is uniform inter-bias and variability throughout the
-	range of measurements, which can be checked by visual inspection
-	of the plot. In the case of Grubbs data the inter-method bias is
-	$-0.61$ metres per second, and is indicated by the dashed line on
-	Figure 1.2. By inspection of the plot, it is also possible to
-	compare the precision of each method. Noticeably the differences
-	tend to increase as the averages increase.
+
+
 
 	
 	
@@ -516,9 +445,6 @@ Figure 1.4 is an example of cases where the inter-method bias
 
 
 
-
-
-\newpage
 \section{Conclusions about Existing Methodologies}
 
 Scatterplots are recommended by \citet{BA83} for an initial
@@ -553,33 +479,6 @@ the practitioner opinion to judge the outcome of the methodology.
 
 
 
-
-	\section{Bland Altman Plots In Literature}
-	\citet{mantha} contains a study the use of Bland Altman plots of
-	44 articles in several named journals over a two year period. 42
-	articles used Bland Altman's limits of agreement, wit the other
-	two used correlation and regression analyses. \citet{mantha}
-	remarks that 3 papers, from 42 mention predefined maximum width
-	for limits of agreement which would not impair medical care.
-	
-	The conclusion of \citet{mantha} is that there are several
-	inadequacies and inconsistencies in the reporting of results ,and
-	that more standardization in the use of Bland Altman plots is
-	required. The authors recommend the prior determination of limits
-	of agreement before the study is carried out. This contention is
-	endorsed by \citet{lin}, which makes a similar recommendation for
-	the sample size, noting that\emph{sample sizes required either was
-		not mentioned or no rationale for its choice was given}.
-	
-	\begin{quote}
-		In order to avoid the appearance of "data dredging", both the
-		sample size and the (limits of agreement) should be specified and
-		justified before the actual conduct of the trial. \citep{lin}
-	\end{quote}
-	
-	\citet{Dewitte} remarks that the limits of agreement should be
-	compared to a clinically acceptable difference in measurements.
-	
 
 
 \section{Discussion}

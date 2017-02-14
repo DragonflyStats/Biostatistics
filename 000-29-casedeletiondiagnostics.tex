@@ -21,6 +21,9 @@ Such update formulas are available in the mixed model only if you assume that th
 \citet{Christensen} developed their global influences for the deletion of single observations in two steps: a one-step estimate for the REML (or ML) estimate of the variance components, and an ordinary case-deletion diagnostic for a weighted regression problem (conditional on the estimated covariance matrix) for fixed effects.
 
 
+Christensen, Pearson and Johnson (1992) studied \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance}Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
+
+
 \subsection{Deletion Diagnostics}
 
 
@@ -29,28 +32,13 @@ Deletion diagnostics provide a means of assessing the influence of an observatio
 
 Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. We describe two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
 
-\section{Case Deletion Diagnostics} %1.7
 
-Christensen, Pearson and Johnson (1992) studied \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance}Cook's distance, for diagnosing influential observations when estimating the fixed effect parameters and variance components.
-
-
-\subsection{Case Deletion Diagnostics for Mixed Models}
-
-\textbf{Christensen} notes the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect.
-
-\textbf{Christensen} develops these techniques in the context of REML
 
 \section{Case Deletion Diagnostics for LME models}
 	
-	\citet{HaslettDillane} remark that linear mixed effects models
-	didn't experience a corresponding growth in the use of deletion
-	diagnostics, adding that \citet{McCullSearle} makes no mention of
-	diagnostics whatsoever.
+\citet{HaslettDillane} remark that linear mixed effects models didn't experience a corresponding growth in the use of deletion	diagnostics, adding that \citet{McCullSearle} makes no mention of diagnostics whatsoever.
 	
-Christensen, Pearson and Johnson (1992) describes three propositions that are required
-	for efficient case-deletion in LME models. The first proposition
-	decribes how to efficiently update $V$ when the $i$th element is
-	deleted.
+Christensen, Pearson and Johnson (1992) describes three propositions that are required for efficient case-deletion in LME models. The first proposition	decribes how to efficiently update $V$ when the $i$th element is deleted.
 	\begin{equation}
 	V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
 		\lambda\prime}{\nu^{}ii}
@@ -70,60 +58,10 @@ Christensen, Pearson and Johnson (1992) describes three propositions that are re
 	\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
 	\end{eqnarray}
 	
-	
-	
-	
-	
-	
-	
-	
 
+		
+		
 
-
-
-\section{Case Deletion Diagnostics for LME models}
-		
-		
-		
-		\citet{Christensen} describes three propositions that are required
-		for efficient case-deletion in LME models. The first proposition
-		decribes how to efficiently update $V$ when the $i$th element is
-		deleted.
-		\begin{equation}
-		V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-			\lambda\prime}{\nu^{}ii}
-		\end{equation}
-		
-		The second of christensen's propostions is the following set of
-		equations, which are variants of the Sherman Wood bury updating
-		formula.
-		\begin{eqnarray}
-		X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-		\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-		(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-		\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-			(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-		X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-		\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-		\end{eqnarray}
-		
-		
-		
-		
-		
-		
-		% In LME models, fitted by either ML or REML, an important overall
-		% influence measure is the likelihood distance \citep{cook82}. The
-		% procedure requires the calculation of the full data estimates
-		% $\hat{\psi}$ and estimates based on the reduced data set
-		% $\hat{\psi}_{(U)}$. The likelihood distance is given by
-		% determining
-		%
-		%
-		% \begin{eqnarray}
-		% 	LD_{(U)} &=& 2\{l(\hat{\psi}) - l( \hat{\psi}_{(U)}) \}\\
-		% 	RLD_{(U)} &=& 2\{l_{R}(\hat{\psi}) - l_{R}(\hat{\psi}_{(U)})\}
-		% \end{eqnarray}
 		
 		\subsubsection{Influence on measure component ratios}               %-Case Deletion section 6.2.2
 		The general diagnostic tools for variance component ratios are the analogues of the Cook's distance and the Information Ratio.
@@ -131,7 +69,7 @@ Christensen, Pearson and Johnson (1992) describes three propositions that are re
 		
 		\begin{eqnarray*}
 			CD_{U}(\gamma) = (\hat{\gamma}_{(U)} - \hat{\gamma})^{\prime}[\mbox{var}(\hat{\gamma})]^{-1}(\hat{\gamma}_{(U)} - \hat{\gamma})\\
-			&= -\boldsymbol{g^{\prime}}_{(U)} (\boldsymbol{Q}-\boldsymbol{G})^{-1}\boldsymbol{Q}(\boldsymbol{Q}-\boldsymbol{G})\boldsymbol{g}_{(U)} \\
+			= -\boldsymbol{g^{\prime}}_{(U)} (\boldsymbol{Q}-\boldsymbol{G})^{-1}\boldsymbol{Q}(\boldsymbol{Q}-\boldsymbol{G})\boldsymbol{g}_{(U)} \\
 			&= \boldsymbol{g^{\prime}}_{(U)} (\boldsymbol{I}_{r}  \mbox{var}(\hat{\gamma})\boldsymbol{G})^{-2}\mbox{var}(\hat{\gamma})\boldsymbol{g}_{(U)}
 		\end{eqnarray*}
 		
@@ -239,33 +177,7 @@ several key results from \citet{HaslettHayes} on partioned matrices.
 	\breve{a_{i}} =  \boldsymbol{a}_{i} -
 	\boldsymbol{A}_{(i)}\boldsymbol{H}_{[i]}\boldsymbol{h}_{i}
 	\end{equation}
-	%=======================================================%
-	\section{Case Deletion Diagnostics for LME models}
-	
-	%%%\citet{christensen}
-	
-	Christensen (19XX)  describes three propositions that are required
-	for efficient case-deletion in LME models. The first proposition
-	decribes how to efficiently update $V$ when the $i$th element is
-	deleted.
-	\begin{equation}
-	V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-		\lambda\prime}{\nu^{}ii}
-	\end{equation}
-	
-	
-	The second of Christensen's propostions is the following set of
-	equations, which are variants of the Sherman Wood bury updating
-	formula.
-	\begin{eqnarray}
-	X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-	\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-	(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-	\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-		(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-	X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-	\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-	\end{eqnarray}
+
 	
 \section{Extension of Diagnostic Methods to LME models}
 
@@ -292,11 +204,8 @@ The new measures that are proposed by \citet{Demi} are explicitly defined functi
 %A simple compact matrix formula is derived to assess the local influence of the fixed-effects regression coefficients. 
 
 
-%
-%
-%\section{Case Deletion Diagnostics for LME models} %1.6
-%
-%Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. 
+\section{Case Deletion Diagnostics for LME models} %1.6
+Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. 
 
 \citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
 
@@ -436,46 +345,7 @@ Without loss of generality, matrices can be partitioned as if the $i-$th omitted
 % Lesaffre's approach accords with that proposed by Christensen et al when applied in a repeated measurement context, with a large sample size.
 
 
-\section{Matrix Notation for Case Deletion} %1.14
-
-\subsection{Case deletion notation} %1.14.1
-
-For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
-removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
-
-\citet{Christensen} describes three propositions that are required
-for efficient case-deletion in LME models. The first proposition
-decribes how to efficiently update $V$ when the $i$th element is
-deleted.
-\begin{equation}
-V_{[i]}^{-1} = \Lambda_{[i]} - \frac{\lambda
-	\lambda\prime}{\nu^{}ii}
-\end{equation}
-
-
-The second of christensen's propostions is the following set of
-equations, which are variants of the Sherman Wood bury updating
-formula.
-\begin{eqnarray}
-X'_{[i]}V_{[i]}^{-1}X_{[i]} &=& X' V^{-1}X -
-\frac{\hat{x}_{i}\hat{x}'_{i}}{s_{i}}\\
-(X'_{[i]}V_{[i]}^{-1}X_{[i]})^{-1} &=& (X' V^{-1}X)^{-1} +
-\frac{(X' V^{-1}X)^{-1}\hat{x}_{i}\hat{x}' _{i}
-	(X' V^{-1}X)^{-1}}{s_{i}- \bar{h}_{i}}\\
-X'_{[i]}V_{[i]}^{-1}Y_{[i]} &=& X\prime V^{-1}Y -
-\frac{\hat{x}_{i}\hat{y}' _{i}}{s_{i}}
-\end{eqnarray}
-
-
-
-
-
-
-
-
-\section{Notation for Case Deletion} %1.14
-
-\subsection{Case deletion notation} %1.14.1
+\section{Case deletion notation} %1.14.1
 
 For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
 removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
@@ -492,12 +362,6 @@ Without loss of generality, matrices can be partitioned as if the $i-$th omitted
 \begin{equation}
 \hat{e_{i}}_{(U)} = y_{i} - x\hat{\beta}_{(U)}
 \end{equation}
-	\subsection{Matrix Notation for Case Deletion} %1.14
-	
-
-	
-	For notational simplicity, $\boldsymbol{A}(i)$ denotes an $n \times m$ matrix $\boldsymbol{A}$ with the $i$-th row
-	removed, $a_i$ denotes the $i$-th row of $\boldsymbol{A}$, and $a_{ij}$ denotes the $(i, j)-$th element of $\boldsymbol{A}$.
 
 
 
