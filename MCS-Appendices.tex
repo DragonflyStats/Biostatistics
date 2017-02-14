@@ -126,6 +126,23 @@ The user has a reasonable amount of computer literacy. The user would have a rea
 	
 Easy to follow set of instructions to properly implement the method.
 
+\section{Outline of Thesis}
+In the first chapter the study of method comparison is introduced, while the second chapter provides a review of current methodologies. The intention of this thesis is to progress the
+study of method comparison studies, using a statistical method known as Linear mixed effects models.
+Chapter three shall describes linear mixed effects models, and how the use of the linear mixed
+effects models have so far extended to method comparison studies. Implementations of important existing work shall be presented, using the \texttt{R} programming language.
+
+Model diagnostics are an integral component of a complete statistical analysis.
+In chapter three model diagnostics shall be described in depth, with particular
+emphasis on linear mixed effects models, further to chapter two.
+
+For the fourth chapter, important linear mixed effects model diagnostic methods shall be extended to method comparison studies, and proposed methods shall be demonstrated on data sets that have become well known in literature on method comparison. The purpose is to both calibrate these methods and to demonstrate applications for them.
+The last chapter shall focus on robust measures of important parameters such as agreement.
+
+%======================================================================%
+
+
+
 \section{Test for inter-method bias}
 Bias is determinable by examination of the 't-table'. Estimate for both methods are given, and the bias is simply the difference between the two. Because the $R$ implementation does not account for an intercept term, a $p-$value is not given. Should a $p-$value be required specifically for the bias, and simple restructuring of the model is required wherein an intercept term is included. Output from a second implementation will yield a $p-$value.
 
@@ -303,6 +320,32 @@ Limits of agreement are easily computable using the LME framework. While we will
 
 	%=========================================================================================================================================== %
 	
+\section{BA - BXC 2009  Discussion}
+
+\textbf{Discussion}\\
+I have here proposed a simple twist to the results from regression of the differences on the sums in the case of a linear relationship
+between two methods of measurement. It is consistent with the obvious underlying model, and exploits the fact that although
+the parameters of the model cannot be estimated, those functions of the parameters that are needed for creating predictions
+can be estimated.
+%----------------------------------------------------------------------------------------------------------------%
+The prediction limits provided have the attractive property that if the prediction line with limits is drawn in a coordinate
+system, the chart will apply in both ways; hence, both the line and the limits are symmetric. Precisely as the prediction intervals
+derived from the classical LoA are in the case where the difference between methods is constant.
+%----------------------------------------------------------------------------------------------------------------%
+The drawback is that the regression of the differences on the means ignores that the averages are correlated with the residuals
+(i.e. the error terms), and therefore gives biased estimates if the slope linking the two methods is far from 1 or the residual
+variances are very different. However, both of these are rather uncommon in method comparison studies, so the method proposed
+here is widely applicable.
+%----------------------------------------------------------------------------------------------------------------%
+When considering LoA, the only feasible transformation is the log-transform, which gives LoA for the ratio of measurements,
+which is immediately understandable. If, for example, the measurements are fractions where some are close to either 0 or 1 a
+logit transform may be adequate. 
+
+LoA would then be for (log) odds-ratios, not very easily understood. For other more arbitrarily
+chosen transformation the situation may be even worse. But if a plot with conversion lines and limits are constructed, then the
+plot is readily back-transformed to the original scale for practical use.
+%---------------------------------------------------------------------------------
+
 	\section*{Permutation Test, Power Tests and Missing Data }
 	
 	This section explores topics such as dependent variable simulation and power analysis, introduced by Galecki \& Burzykowski (2013), and implementable with their \textbf{\textit{nlmeU}} \texttt{R} package.
@@ -439,84 +482,7 @@ effect.
 
 
 
-\section{Random Effects and MCS}
-The methodology comprises two calculations. The second calculation
-is for the standard deviation of means Before the modified Bland
-and Altman method can be applied for repeated measurement data, a
-check of the assumption that the variance of the repeated
-measurements for each subject by each method is independent of the
-mean of the repeated measures. This can be done by plotting the
-within-subject standard deviation against the mean of each subject
-by each method. Mean Square deviation measures the total deviation
-of a
 
-
-\subsection{Random coefficient growth curve model} (Chincilli
-1996) Random coefficient growth curve model, a special type of
-mixed model have been proposed a single measure of agreement for
-repeated measurements.
-\begin{equation}
-\textbf{d}= \textbf{Xb} + \textbf{Zu} + \textbf{e}
-\end{equation}
-The distributional asummptions also require \textbf{d} to
-\textbf{N}
-
-
-\section{Random effects Model} \citet{Myles} proposes the use of
-Random effects models to address the issue of repeated
-measurement. 
-
-Myles proposes a formulation of the BlandAltman
-plot, using the within-subject variance estimated by the random
-effects model, with the time of the measurement taken as a random
-effect. He states that \emph{random effects models account for the
-	dependent nature of the data, and additional explanatory
-	variables, to provide reliable estimates of agreement in this
-	setting.}
-\\
-Agreement between methods is reflected by the between-subject
-variation.The Random Effects Model takes this into account before
-calculating the within-subject standard deviation.
-
-\subsection{Myers Random Effects Model} The presentation of the
-95\% limits of agreement is for visual judgement of how well two
-methods of measurement agree. The smaller the range between the
-two, the better the agreement is The question of small is small is
-a question of clinical judgement
-
-
-Repeated measurements for each subjects are often used in clinical
-research.
-
-
-
-\subsection{Random Effects Modelling}
-Random effects models are used to examine the within-subject
-variation after adjusting for known and unknown variables, in
-which each subject has a different intercept and slope over a time
-period period.
-
-
-\citet{Myles} remarks that the random effects model is an
-extension of the analysis of variance method, accounting for more
-covariates.
-
-A random effect (in Myles's case, time of measurement) is chosen
-to reflect the different intercept and slope for each subject with
-respect to their change of measurements over the time period.
-
-In Myles's methodology, the standard deviation of difference
-between the means of the repeated measurements can be calculated
-based on the within-subject standard deviation estimates.
-
-A random effects model (also variance components model)is a type
-of hierarchical linear model. Hierarchical linear modelling (HLM)
-is a more advanced form of simple linear regression and multiple
-linear regression. HLM is appropriate for use with nested
-data.\\Faraway comments that the random effects approach is
-\emph{more ambitious than the LME model in that it attempts to say
-	something about the wider population beyond the particular
-	sample}.
 
 \section{Other Approaches : Marginal Modelling}
 (Diggle 2002) proposes the use of marginal models as an
@@ -997,22 +963,6 @@ figure out from that how to write an 'influence' method for an 'lme' object.
 
 
 
-
-
-\section{Outline of Thesis}
-In the first chapter the study of method comparison is introduced, while the second chapter provides a review of current methodologies. The intention of this thesis is to progress the
-study of method comparison studies, using a statistical method known as Linear mixed effects models.
-Chapter three shall describes linear mixed effects models, and how the use of the linear mixed
-effects models have so far extended to method comparison studies. Implementations of important existing work shall be presented, using the \texttt{R} programming language.
-
-Model diagnostics are an integral component of a complete statistical analysis.
-In chapter three model diagnostics shall be described in depth, with particular
-emphasis on linear mixed effects models, further to chapter two.
-
-For the fourth chapter, important linear mixed effects model diagnostic methods shall be extended to method comparison studies, and proposed methods shall be demonstrated on data sets that have become well known in literature on method comparison. The purpose is to both calibrate these methods and to demonstrate applications for them.
-The last chapter shall focus on robust measures of important parameters such as agreement.
-
-%======================================================================%
 
 
 
