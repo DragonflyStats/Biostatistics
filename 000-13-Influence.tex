@@ -605,6 +605,53 @@ An iterative analysis seems like a costly, computationally intensive enterprise.
 		likelihood surface has probably changed drastically, and the reduced-data estimates are moving away
 \end{itemize}
 	from the full-data estimates.
+\newpage
+\section{INFLUENCE DIAGNOSTICS IN THE MIXED PROCEDURE}
+%Key to the implementations of influence diagnostics in the MIXED procedure is the attempt to quantify
+%influence, where possible, by drawing on the basic definitions of the various statistics in the classical linear
+%model. 
+
+On occasion, quantification is not possible. Assume, for example, that a data point is removed
+and the new estimate of the G matrix is not positive definite. This may occur if a variance component
+estimate now falls on the boundary of the parameter space. Thus, it may not be possible to compute certain
+influence statistics comparing the full-data and reduced-data parameter estimates. However, knowing that
+a new singularity was encountered is important qualitative information about the data point’s influence on
+the analysis.
+
+The basic procedure for quantifying influence is simple:
+
+\begin{enumerate}
+	\item Fit the model to the data and obtain estimates of all parameters.
+	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
+	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence
+	of the observations changes the analysis.
+\end{enumerate}
+We use the subscript (U) to denote quantities obtained without the observations in the set U. For example,
+%βb
+(U) denotes the fixed-effects “\textit{\textbf{leave-U-out}}” estimates. Note that the set U can contain multiple observations.
+
+
+%===================================================================================
+If the global measure suggests that the points in U are influential, you should next determine the nature of
+that influence. In particular, the points can affect
+\begin{itemize}
+	\item the estimates of fixed effects
+	\item the estimates of the precision of the fixed effects
+	\item the estimates of the covariance parameters
+	\item the estimates of the precision of the covariance parameters
+	\item fitted and predicted values
+\end{itemize}
+
+It is important to further decompose the initial finding to determine whether data points are actually troublesome.
+Simply because they are influential “somehow”, should not trigger their removal from the analysis or
+a change in the model. For example, if points primarily affect the precision of the covariance parameters
+without exerting much influence on the fixed effects, then their presence in the data may not distort hypothesis
+tests or confidence intervals about $\beta$.
+%They will only do so if your inference depends on an estimate of the
+%precision of the covariance parameter estimates, as is the case for the Satterthwaite and Kenward-Roger
+%degrees of freedom methods and the standard error adjustment associated with the DDFM=KR option.
+
+%------------------------------------------------------------%
 			
 \bibliographystyle{chicago}
 \bibliography{2017bib}

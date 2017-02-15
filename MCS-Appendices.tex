@@ -112,14 +112,6 @@ In particular the development of graphical techniques pertinent to LME models sh
 
 
 
-
-
-
-
-
-
-\newpage
-
 Apropos of the matter of ease-of-use, certain assumptions must be made.
 	
 The user has a reasonable amount of computer literacy. The user would have a reasonable understanding of statistics, consistent with an undergraduate statistics module. That is to say, that the user is acquainted with the idea of $p-$values.
@@ -344,19 +336,7 @@ logit transform may be adequate.
 LoA would then be for (log) odds-ratios, not very easily understood. For other more arbitrarily
 chosen transformation the situation may be even worse. But if a plot with conversion lines and limits are constructed, then the
 plot is readily back-transformed to the original scale for practical use.
-%---------------------------------------------------------------------------------
 
-	\section*{Permutation Test, Power Tests and Missing Data }
-	
-	This section explores topics such as dependent variable simulation and power analysis, introduced by Galecki \& Burzykowski (2013), and implementable with their \textbf{\textit{nlmeU}} \texttt{R} package.
-	
-	Using the \textbf{\textit{predictmeans}} \texttt{R} package, it is possible to perform permutation t-tests for coefficients of (fixed) effects and permutation F-tests.
-	
-	The matter of missing data has not been commonly encountered in either Method Comparison Studies or Linear Mixed Effects Modelling. However ARoy2009 (2009) deals with the relevant assumptions regrading missing data. 
-	
-	Galecki \& Burzykowski (2013) approaches the subject of missing data in LME Modelling. The \textbf{\textit{nlmeU}} package includes the \texttt{patMiss} function, which ``\textit{allows to compactly present pattern of missing data in a given vector/matrix/data
-		frame or combination of thereof}".
-	
 	
 	%================================================%
 	
@@ -526,30 +506,18 @@ Zewotir remarks that $\boldsymbol{D}$ is a block diagonal with the $i-$th block 
 % - http://lme4.r-forge.r-project.org/lMMwR/lrgprt.pdf
 
 %============================================================================%
-
+\section*{SEM}
 A Study of the Bland-Altman Plot and its Associated Methodology
 
 Joseph G. Voelkel Bruce E. Siskowski 
 
 % - https://www.rit.edu/kgcoe/cqas/sites/rit.edu.kgcoe.cqas/files/docs/TR%202005-3.pdf
 
-%============================================================================%
+
 
 % - http://sprouts.aisnet.org/785/1/TAMReview.pdf
 % - http://organizacija.fov.uni-mb.si/index.php/organizacija/article/viewFile/557/999
 
-
-\section*{Objects and Classes}
-
-The main nlme object is an \texttt{nlme} model.
-
-The main lme4 object is called an \texttt{lmer} model
-
-The lattice package is used for graphical methods.
-
-%=============================================================================%
-
-Model Diagnostics with \texttt{nlme}
 
 
 
@@ -610,10 +578,6 @@ PJ Schluter - BMC medical research methodology, 2009 - biomedcentral.com
 
 
 
-
-
-% Diagnostics with nlmeU
-
 \section{Hawkins : Diagnostics for conformity of paired quantitative measurements}
 
 \begin{itemize}
@@ -634,8 +598,8 @@ PJ Schluter - BMC medical research methodology, 2009 - biomedcentral.com
 \section{Hutson et al}
 A multi-Rate nonparametric test of agreement and corresponding agreement plot
 
-- Published in: Computational Statistics and Data Analysis 54(2010)109-119
-- Author: Alan D. Hutson, University of Buffalo
+%- Published in: Computational Statistics and Data Analysis 54(2010)109-119
+%- Author: Alan D. Hutson, University of Buffalo
 
 
 
@@ -720,9 +684,6 @@ The unknown variance elements are referred to as the covariance parameters and c
 
 
 
-\section*{Cook's distance}
-In the study of Linear model diagnostics, Cook proposed a measure that combines the information of leverage and residual of the observation, now known simply as the Cook's Distance. \citet{CPJ} would later adapt the Cook's distance measure for the analysis of LME models.
-
 
 
 
@@ -776,52 +737,6 @@ the range of values.
 
 %--Marginal and Conditional Residuals
 
-%\subsection{INFLUENCE DIAGNOSTICS IN THE MIXED PROCEDURE}
-%Key to the implementations of influence diagnostics in the MIXED procedure is the attempt to quantify
-%influence, where possible, by drawing on the basic definitions of the various statistics in the classical linear
-%model. 
-
-On occasion, quantification is not possible. Assume, for example, that a data point is removed
-and the new estimate of the G matrix is not positive definite. This may occur if a variance component
-estimate now falls on the boundary of the parameter space. Thus, it may not be possible to compute certain
-influence statistics comparing the full-data and reduced-data parameter estimates. However, knowing that
-a new singularity was encountered is important qualitative information about the data point’s influence on
-the analysis.
-
-The basic procedure for quantifying influence is simple:
-
-\begin{enumerate}
-	\item Fit the model to the data and obtain estimates of all parameters.
-	\item Remove one or more data points from the analysis and compute updated estimates of model parameters.
-	\item Based on full- and reduced-data estimates, contrast quantities of interest to determine how the absence
-	of the observations changes the analysis.
-\end{enumerate}
-We use the subscript (U) to denote quantities obtained without the observations in the set U. For example,
-%βb
-(U) denotes the fixed-effects “\textit{\textbf{leave-U-out}}” estimates. Note that the set U can contain multiple observations.
-
-
-%===================================================================================
-If the global measure suggests that the points in U are influential, you should next determine the nature of
-that influence. In particular, the points can affect
-\begin{itemize}
-	\item the estimates of fixed effects
-	\item the estimates of the precision of the fixed effects
-	\item the estimates of the covariance parameters
-	\item the estimates of the precision of the covariance parameters
-	\item fitted and predicted values
-\end{itemize}
-
-It is important to further decompose the initial finding to determine whether data points are actually troublesome.
-Simply because they are influential “somehow”, should not trigger their removal from the analysis or
-a change in the model. For example, if points primarily affect the precision of the covariance parameters
-without exerting much influence on the fixed effects, then their presence in the data may not distort hypothesis
-tests or confidence intervals about $\beta$.
-%They will only do so if your inference depends on an estimate of the
-%precision of the covariance parameter estimates, as is the case for the Satterthwaite and Kenward-Roger
-%degrees of freedom methods and the standard error adjustment associated with the DDFM=KR option.
-
-%------------------------------------------------------------%
 
 \section*{Leave-One-Out Diagnostics with \texttt{lmeU}}
 Galecki et al provide a brief the matter of LME influence diagnostics in their book.
@@ -830,7 +745,7 @@ The command \texttt{lmeU} fits a model with a particular subject removed. The id
 
 A plot ofthe per-observation diagnostics individual subject log-likelihood contributions can be rendered.
 
-\subsubsection*{The addition of an extra factor}
+\section*{The addition of an extra factor}
 
 
 %=========================================================================%
@@ -1012,47 +927,6 @@ proposed in the literature require a homogeneous sample distribution and homosce
 %
 %%---------------------------------------------------------------------------%
 
-\section{Extension of Diagnostic Methods to LME models}
-
-
-When similar notions of statistical influence are applied to mixed models,
-things are more complicated. Removing data points affects fixed effects and covariance parameter estimates.
-Update formulas for “\textit{leave-one-out}” estimates typically fail to account for changes in covariance
-parameters. 
-%
-%
-%In LME models, there are two types of residuals, marginal residuals and conditional residuals. A
-%marginal residual is the difference between the observed data and the estimated marginal mean. A conditional residual is the
-%difference between the observed data and the predicted value of the observation. In a model without random effects, both sets of residuals coincide \citep{schab}.
-
-\citet{Christiansen} noted the case deletion diagnostics techniques have not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{Christiansen} develops these techniques in the context of REML.
-
-\citet{CPJ} noted the case deletion diagnostics techniques had not been applied to linear mixed effects models and seeks to develop methodologies in that respect. \citet{CPJ} develops these techniques in the context of REML.
-
-
-%\citet{CPJ} develops \index{case deletion diagnostics} case deletion diagnostics, in particular the equivalent of \index{Cook's distance} Cook's distance, a well-known metric, for diagnosing influential observations when estimating the fixed effect parameters and variance components. Deletion diagnostics provide a means of assessing the influence of an observation (or groups of observations) on inference on the estimated parameters of LME models. We shall provide a fuller discussion of Cook's distance in due course.
-
-
-\citet{Demi} extends several regression diagnostic techniques commonly used in linear regression, such as leverage, infinitesimal influence, case deletion diagnostics, Cook's distance, and local influence to the linear mixed-effects model. In each case, the proposed new measure has a direct interpretation in terms of the effects on a parameter of interest, and reduces to the familiar linear regression measure when there are no random effects. 
-
-The new measures that are proposed by \citet{Demi} are explicitly defined functions and do not require re-estimation of the model, especially for cluster deletion diagnostics. The basis for both the cluster deletion diagnostics and Cook's distance is a generalization of Miller's simple update formula for case deletion for linear models. Furthermore \citet{Demi} shows how Pregibon's infinitesimal case deletion diagnostics is adapted to the linear mixed-effects model. 
-%A simple compact matrix formula is derived to assess the local influence of the fixed-effects regression coefficients. 
-
-
-%
-%
-%\section{Case Deletion Diagnostics for LME models} %1.6
-%
-%Data from single individuals, or a small group of subjects may influence non-linear mixed effects model selection. Diagnostics routinely applied in model building may identify such individuals, but these methods are not specifically designed for that purpose and are, therefore, not optimal. 
-
-\citet{Demi} proposes two likelihood-based diagnostics for identifying individuals that can influence the choice between two competing models.
-
-
-
-
-
-
-
 
 \section{Regression Of Differences On Averages}
 Further to Carstensen, we can formulate the two measurements
@@ -1073,31 +947,6 @@ For classical linear models, residual diagnostics are typically conducted using 
 %observations on the analysis. For such models, closed-form update expressions allow efficient computations
 %without refitting the model. 
 %
-
-\subsection*{Appendix to Section 4}
-
-
-
-
-As an appendix to section 4, an appraisal of the current state of development (or lack thereof) for current implemenations for LME models, particularly for
-\texttt{nlme} and \texttt{lme4} fitted models.
-
-Crucially, a review of internet resources indicates that almost all of the progress in this regard has been done for \texttt{lme4} fitted models, specifically the \textit{Influence.ME} \texttt{R} package. (Nieuwenhuis et 2012)
-
-Conversely there is very little for \texttt{nlme} models. To delve into this mor, one would immediately investigate the current development workflow for both packages.
-
-As an aside, Douglas Bates was arguably the most prominent \texttt{R} developer working in the LME area. 
-However Bates has now prioritised the development of LME models in another computing environment , i.e Julia. 
-
-
-\subsubsection*{Important Consideration for MCS}
-
-The key issue is that \texttt{nlme} allows for the particular specification of Roy's Model, speciifically direct spefiication of the VC matrices for within subject and between subject residuals.
-The \texttt{lme4} package does not allow for this.
-To advance the ideas that eminate from Roys' paper, one is required to use the \texttt{nlme} context. However, to take advantage of the infrastructure already provided for \texttt{lme4} models, one may change the research question away from that of Roy's paper. 
-To this end, an exploration of what textit{influence.ME} can accomplished is merited.
-As a complement to this, one can also consider how to properly employ the $R^2$ measure, in the context of Methoc Comparison Studies, further to the work by Edwards et al, namely ``An $R^2$ statistic for fixed effects in the linear mixed model".
-%================================================= %
 
 \begin{framed}
 	
@@ -1292,13 +1141,6 @@ Furthermore the nlmeU package includes the \texttt{patMiss} function, which ``al
 frame or combination of thereof".
 
 
-\section{Leave-One-Out Diagnostics with \texttt{lmeU}}
-Galecki et al discuss the matter of LME influence diagnostics in their book, although not into great detail.
-
-
-The command \texttt{lmeU} fits a model with a particular subject removed. The identifier of the subject to be removed is passed as the only argument
-
-A plot ofthe per-observation diagnostics individual subject log-likelihood contributions can be rendered.
 
 
 \begin{framed} 
@@ -1328,6 +1170,47 @@ A plot ofthe per-observation diagnostics individual subject log-likelihood contr
 
 
 
+	\section{LME - Pankaj Choudhury}
+	Consistent with the conventions of mixed models, \citep{pkc}
+	formulates the measurement $y_{ij} $from method $i$ on individual
+	$j$ as follows;
+	\begin{equation}
+	y_{ij} =P_{ij}\theta + W_{ij}v_{i} + X_{ij}b_{j} + Z_{ij}u_{j} +
+	\epsilon_{ij},     (j=1,2, i=1,2....n)
+	\end{equation}
+	The design matrix $P_{ij}$ , with its associated column vector
+	$\theta$, specifies the fixed effects common to both methods. The
+	fixed effect specific to the $j$th method is articulated by the
+	design matrix $W_{ij}$ and its column vector $v_{i}$. The random
+	effects common to both methods is specified in the design matrix
+	$X_{ij}$, with vector $b_{j}$ whereas the random effects specific
+	to the $i$th subject by the $j$th method is expressed by $Z_{ij}$,
+	and vector $u_{j}$. Noticeably this notation is not consistent
+	with that described previously.  The design matrices are specified
+	so as to includes a fixed intercept for each method, and a random
+	intercept for each individual. Additional assumptions must also be
+	specified;
+	\begin{equation}
+	v_{ij} \sim N(0,\Sigma),
+	\end{equation}
+	These vectors are assumed to be independent for different $i$s,
+	and are also mutually independent. All Covariance matrices are
+	positive definite.  In the above model effects can be classed as
+	those common to both methods, and those that vary with method.
+	When considering differences, the effects common to both
+	effectively cancel each other out. The differences of each pair of
+	measurements can be specified as following;
+	\begin{equation}
+	d_{ij} = X_{ij}b_{j} + Z_{ij}u_{j} + \epsilon_{ij},     (j=1,2,
+	i=1,2....n)
+	\end{equation}
+	This formulation has seperate distributional assumption from the
+	model stated previously.
+	
+	This agreement covariate $x$ is the key step in how this approach assesses agreement.
+	
+	\newpage
+	%========================%
 \section{Modelling Agreement with LME Models}
 
 % Carstensen pages 22-23

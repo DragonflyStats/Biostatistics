@@ -1,5 +1,23 @@
 \documentclass[MAIN.tex]{subfiles}
 \begin{document}
+	\section{Unscaled Agreement Indices}
+	\begin{itemize}
+		\item Summary agreement indices based on the absolute difference of readings by observers are
+		grouped here as unscaled agreement indices. 
+		\item They are usually defined as the expectation
+		of a function of the difference, or features of the distribution of the absolute difference.
+		
+		\item
+		These indices include mean squared deviation, repeatability coefficient, repeatability variance,
+		reproducibility variance (ISO), limits of agreement (Bland and Altman, 1999), coverage
+		probability (CP) and total deviation index (TDI) (Lin et al., 2002 Choudhary and Nagaraja,
+		2007; Choudhary, 2007a).
+	\end{itemize}
+	
+	
+	% Assessment of disagreement: a new information-based approach
+	% C Costa-Santos, L Antunes, A Souto, J Bernardes - Annals of epidemiology, 2010 - Elsevier
+	%---------------------------------------------------------------------------------%
 	\section{Alternative agreement indices}
 	As an alternative to limits of agreement, \citet{lin2002} proposes the use of the mean square deviation is assessing agreement. The mean square deviation is defined as the expectation of the squared differences	of two readings. 
 	
@@ -65,6 +83,8 @@
 	percentile of the absolute difference of paired observations.
 	
 	
+The Coverage Probability describes the proportion captured within a pre-specified boundary of the absolute paired-measurement differences from two methods of measurement, i.e., the value of k such that P(|D| <k) = pk.
+
 
 \section{Alternative Agreement Indices}
 
@@ -319,24 +339,7 @@ The method proposed is straightforward since the TDI estimate is derived directl
 
 	
 
-	\section{Unscaled Agreement Indices}
-	\begin{itemize}
-		\item Summary agreement indices based on the absolute difference of readings by observers are
-		grouped here as unscaled agreement indices. 
-		\item They are usually defined as the expectation
-		of a function of the difference, or features of the distribution of the absolute difference.
-		
-		\item
-		These indices include mean squared deviation, repeatability coefficient, repeatability variance,
-		reproducibility variance (ISO), limits of agreement (Bland and Altman, 1999), coverage
-		probability (CP) and total deviation index (TDI) (Lin et al., 2002 Choudhary and Nagaraja,
-		2007; Choudhary, 2007a).
-	\end{itemize}
-	
-	
-	% Assessment of disagreement: a new information-based approach
-	% C Costa-Santos, L Antunes, A Souto, J Bernardes - Annals of epidemiology, 2010 - Elsevier
-	%---------------------------------------------------------------------------------%
+
 	\section{Information Approach}
 	
 	PURPOSE: Disagreement on the interpretation of diagnostic tests and clinical decisions 
@@ -411,47 +414,7 @@ can be achieved by a location shift.
 A high value of F(±0) implies a good agreement between the methods.
 
 	
-	\section{LME - Pankaj Choudhury}
-	Consistent with the conventions of mixed models, \citep{pkc}
-	formulates the measurement $y_{ij} $from method $i$ on individual
-	$j$ as follows;
-	\begin{equation}
-	y_{ij} =P_{ij}\theta + W_{ij}v_{i} + X_{ij}b_{j} + Z_{ij}u_{j} +
-	\epsilon_{ij},     (j=1,2, i=1,2....n)
-	\end{equation}
-	The design matrix $P_{ij}$ , with its associated column vector
-	$\theta$, specifies the fixed effects common to both methods. The
-	fixed effect specific to the $j$th method is articulated by the
-	design matrix $W_{ij}$ and its column vector $v_{i}$. The random
-	effects common to both methods is specified in the design matrix
-	$X_{ij}$, with vector $b_{j}$ whereas the random effects specific
-	to the $i$th subject by the $j$th method is expressed by $Z_{ij}$,
-	and vector $u_{j}$. Noticeably this notation is not consistent
-	with that described previously.  The design matrices are specified
-	so as to includes a fixed intercept for each method, and a random
-	intercept for each individual. Additional assumptions must also be
-	specified;
-	\begin{equation}
-	v_{ij} \sim N(0,\Sigma),
-	\end{equation}
-	These vectors are assumed to be independent for different $i$s,
-	and are also mutually independent. All Covariance matrices are
-	positive definite.  In the above model effects can be classed as
-	those common to both methods, and those that vary with method.
-	When considering differences, the effects common to both
-	effectively cancel each other out. The differences of each pair of
-	measurements can be specified as following;
-	\begin{equation}
-	d_{ij} = X_{ij}b_{j} + Z_{ij}u_{j} + \epsilon_{ij},     (j=1,2,
-	i=1,2....n)
-	\end{equation}
-	This formulation has seperate distributional assumption from the
-	model stated previously.
-	
-This agreement covariate $x$ is the key step in how this approach assesses agreement.
-	
-\newpage
-%========================%
+
 \section{Escaramis}
 % Escaramis et al 2010
 % http://www.biomedcentral.com/1471-2288/10/31/

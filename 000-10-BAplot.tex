@@ -56,7 +56,7 @@ The authors advise the use of scatter plots to identify outliers, and to determi
 
 
 
-\section{Bland-Altman Plots}
+\subsection{Bland-Altman Plots}
 
 
 
@@ -94,7 +94,7 @@ motivation for this plot thusly:
 The case wise-averages capture several aspects of the data, such as expressing the range over which the values were taken, and assessing whether the assumptions of constant variance holds.
 Case-wise averages also allow the case-wise differences to be presented on a two-dimensional plot, with better data visualization qualities than a one dimensional plot. 
 
-\citet{BA86} cautions that it would be the difference against either measurement value instead of their average, as the difference relates to both value. This methodology has proved very popular, and the Bland-Altman plots is widely regarded as powerful graphical methodology for making a visual assessment of the data.
+\citet{BA86} cautions that it would be the difference against either measurement value instead of their average, as the difference relates to both value. This approach has proved very popular, and the Bland-Altman plots is widely regarded as powerful graphical technique for making a visual assessment of the data.
 
 The magnitude of the inter-method bias between the two methods is simply the average of the differences $\bar{d}$. This inter-method bias is represented with a line on the Bland-Altman plot. As the objective of the Bland-Altman plot is to advise on the agreement of two methods, it is the case-wise differences that are also particularly relevant. The variances around this bias is estimated by the standard deviation of these differences $S_{d}$. This inter-method bias is represented with a	line on the Bland-Altman plot. These estimates are only meaningful	if there is uniform inter-bias and variability throughout the range of measurements, which can be checked by visual inspection of the plot. 
 
@@ -103,7 +103,7 @@ The magnitude of the inter-method bias between the two methods is simply the ave
 The Bland-Altman plot is simply a scatterplot of the case-wise
 	averages and differences of two methods of measurement. As the
 	objective of the Bland-Altman plot is to advise on the agreement
-	of two methods, it is the case-wise differences that are particularly. Later it will be shown that case-wise differences are the sole component of the next part of the methodology, the
+	of two methods, it is the case-wise differences that are particularly. Later it will be shown that case-wise differences are the sole component of the next part of the approach, the
 	limits of agreement.
 	
 For creating plots, the case wise-averages fulfil several
@@ -127,10 +127,7 @@ comparison,  is depicted in Figure 1.2, using data from Table 1.3. The presence 
 	by the dashed line.
 
 	
-	%Later it will be shown that case-wise differences are the sole
-	%component of the next part of the methodology, the limits of
-	%agreement.
-	
+
 
 	
 	\begin{table}[h!]
@@ -235,13 +232,12 @@ The dashed line in Figure 2.2 alludes to the inter method bias
 Figures 1.3 1.4 and 1.5 are three Bland-Altman plots derived from
 	simulated data, each for the purpose of demonstrating how the plot
 	would inform an analyst of trends that would adversely affect use
-	of the recommended methodology. Figure 1.3 demonstrates how the
+	of the recommended approach. Figure 1.3 demonstrates how the
 	Bland Altman plot would indicate increasing variance of
-	differences over the measurement range. Figure 1.4 is an example
-	of cases where the inter-method bias changes over the measurement
-	range. This is known as proportional bias \citep{ludbrook97}.
-
-
+	differences over the measurement range. 
+	
+	
+Figure 1.4, is an example of cases where the inter-method bias changes over the measurement range. This is known as proportional bias, and is defined by \citet{ludbrook97} as meaning that `one method gives values that are higher (or lower) than those from the other by an amount that is proportional to the level of the measured variable'.
 	
 	Figure 1.4 demonstrates how the Bland-Altman plot would indicate
 	increasing variance of differences over the measurement range.
@@ -317,7 +313,9 @@ Both of these cases violate the assumptions
 	
 	Estimates for inter-method bias and variance of differences are only meaningful if there is uniform inter-bias and variability throughout the range of measurements. Fulfilment of these assumptions can be checked by visual inspection of the plot. The prototype Bland-Altman plots depicted in Figures 1.4, 1.5 and 1.6 are derived from simulated data, for the purpose of demonstrating how the plot would inform an analyst of features that would adversely affect use of the recommended methodology.
 	
-	Figure 1.4 demonstrates how the Bland-Altman plot would indicate increasing variance of differences over the measurement range. Fitted regression lines, for both the upper and lower half of the plot, has been added to indicate the trend. Figure 1.5 is an example of cases where the inter-method bias changes over the measurement range. This is known as proportional bias, and is defined by \citet{ludbrook97} as meaning that `one method gives	values that are higher (or lower) than those from the other by an amount that is proportional to the level of the measured variable'. In both Figures 1.4 and 1.5, the assumptions necessary for further analysis using the limits of agreement are violated.
+	Figure 1.4 demonstrates how the Bland-Altman plot would indicate increasing variance of differences over the measurement range. Fitted regression lines, for both the upper and lower half of the plot, has been added to indicate the trend. 
+	
+ In both Figures 1.4 and 1.5, the assumptions necessary for further analysis using the limits of agreement are violated.
 	
 
 
