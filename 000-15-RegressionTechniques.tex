@@ -10,21 +10,17 @@
 % 1.B. Inappropriate for MCS
 % 1.C  Calibration and Conversion problems
 
-Simple linear regression is defined as such with the name `Model I regression' by Cornbleet Gochman (1979), in contrast to 'Model II regression'.
 
-On account of the fact that one set of measurements are linearly related to another, one could surmise that Linear Regression is the most suitable approach to analyzing comparisons. This approach is unsuitable on two counts. Firstly one of the assumptions of Regression analysis is that the independent variable values are without error. In method comparison studies one must assume the opposite; that there is error present in the measurements. Secondly a regression of X on Y would yield and entirely different result from Y on X.
 
 
 Simple linear regression calculates a line of best fit for two
 sets of data, n which the independent variable, X, is measured without error, with y as the dependent variable.  
 
 SLR (Model I) regression is considered by many \citet{BA83,CornCoch,ludbrook97} to be wholly unsuitable for
-method comparison studies, although recommended for use in calibration studies [Corncoch]. Even in the case where one
+method comparison studies, although recommended for use in calibration studies \citep{CornCoch}. Even in the case where one
 method is a gold standard , it is disputed as to whether it is a valid approach. Model II regression is more suitable for method comparison studies, but it is more difficult to execute. Both Model I and II regression models are unduly influenced by outliers. Regression Models can not be used to analyze repeated measurements
 
-\subsubsection{Regression Analysis}
-Another inappropriate approach is the regressing one set of measurements against the other. According to this methodology the measurement methods could considered equivalent if the confidence interval for
-the regression coefficient included $1$. Analysts sometimes use least squares (referred to by Ludbrook as Model I) regression analysis to calibrate one method of measurement against another. In this technique, the sum of the squares of the vertical deviations of y values from the line is minimized. This approach is invalid, because both y and x values are attended by random error.
+
 
 
 \subsubsection{The Identity Plot} This is a simple graphical approach, advocated by \citet{BA86}, that yields a cursory examination of how well the measurement methods agree. In the case of good agreement, the co-variates of the plot accord closely with the $X=Y$ line.
@@ -134,12 +130,6 @@ the regression coefficient included $1$. Analysts sometimes use least squares (r
 		\item Russell et al have suggested this method be used in conjunction
 		with a paired t-test , with estimates of slope and intercept.
 	\end{itemize}
-	%subsection{t-test}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%%  Blackwood Bradley Model         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
 	
 	
 \section*{Bartko's Discussion of BB}
@@ -251,7 +241,7 @@ The slope and intercepte are given bu
 	Bland and Altman have stated that regression analysis offers insights into method comparison studies. Regression methods can determine the presence of bias, and the levels of constant bias and proportional bias thereof \cite{ludbrook97,ludbrook02}.
 	While they are informative about inter-method bias, Regression methods offer the analyst no insights into the relative precision of both methods. These methods can be employed in conversion problems, however errors are
 	attended.
-	\emph{\textbf{Lu et al}} used such a technique in their comparison of DXA scanners. They also used the Blackwood Bradley test. However it was shown that, for particular comparisons, agreement between methods was indicated according to one test, but lack of agreement was indicated by the other.
+	\citet{lu2001} used such a technique in their comparison of DXA scanners. They also used the Blackwood Bradley test. However it was shown that, for particular comparisons, agreement between methods was indicated according to one test, but lack of agreement was indicated by the other.
 	
 
 	
@@ -379,22 +369,10 @@ such as *Deming Regression*.
 - This section will highlight several useful characteristics of the data that 
 regression based techniques may highlight, and also the limitations of these techniques.
 
-\subsection*{ Deming Regression}
-Whereas the OLS method assumes that only the Y measurements are associated with 
-random measurement errors, the Deming method takes measurement errors for both methods of measurement into account.
 
 
 
 
-% <magari>
-The presence of bias may impair agreement between the two analytical methods.
-
-types of bias
-
-\begin{itemize}
-	\item constant bais
-	\item proportionl bias
-\end{itemize}
 
 \subsection{Passing and Bablok (1983) }
 Passing \& Bablok have described a linear regression model that are without the usual assumptions regarding the distribution of
