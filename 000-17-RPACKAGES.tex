@@ -1,3 +1,38 @@
+	\section{The MCR R pacakge - Regression Techniques for MCS}
+	
+	The \textbf{\textit{mcr}} packages provides a set of regression techniques to quantify the relation between two measurement methods.
+	
+	In particular, it address regression problems with errors in both variables, but without repeated measurements.
+	The \textbf{\textit{mcr}} package follows the CLSI EP09-A3 recommendations for analytical
+	method comparison and estimation of bias using patient samples.
+	
+	
+	\textit{Methods featured in the \textbf{mcr} package}
+	
+	\begin{itemize}
+		\item Deming Regression
+		\item Weighted Deming Regression
+		\item Passing-Bablock Regression
+	\end{itemize}
+	
+	The \textit{creatinine} gives the blood and serum preoperative creatinine measurements in 110 heart surgery patients.
+	
+	\begin{framed}
+		\begin{verbatim}
+		library("mcr")
+		data("creatinine", package="mcr")
+		tail(creatinine)
+		
+		
+		fit.lr <- mcreg(as.matrix(creatinine), method.reg="LinReg", na.rm=TRUE)
+		fit.wlr <- mcreg(as.matrix(creatinine), method.reg="WLinReg", na.rm=TRUE)
+		compareFit( fit.lr, fit.wlr )
+		\end{verbatim}
+	\end{framed}
+	
+	
+\newpage
+
 	Linear Mixed Effects Models can be implemented by using one of the following R packages.
 	lme4
 	nlme

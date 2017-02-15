@@ -252,39 +252,6 @@ The slope and intercepte are given bu
 		\item Techniques for plotting an ellipse can be found in Douglas Altman's book.
 	\end{itemize}
 	%------------------------------------------------%
-	\section{The MCR R pacakge - Regression Techniques for MCS}
-	
-	The \textbf{\textit{mcr}} packages provides a set of regression techniques to quantify the relation between two measurement methods.
-	
-	In particular, it address regression problems with errors in both variables, but without repeated measurements.
-	The \textbf{\textit{mcr}} package follows the CLSI EP09-A3 recommendations for analytical
-	method comparison and estimation of bias using patient samples.
-	
-	
-	\textit{Methods featured in the \textbf{mcr} package}
-	
-	\begin{itemize}
-		\item Deming Regression
-		\item Weighted Deming Regression
-		\item Passing-Bablock Regression
-	\end{itemize}
-	
-	The \textit{creatinine} gives the blood and serum preoperative creatinine measurements in 110 heart surgery patients.
-	
-	\begin{framed}
-		\begin{verbatim}
-		library("mcr")
-		data("creatinine", package="mcr")
-		tail(creatinine)
-		
-		
-		fit.lr <- mcreg(as.matrix(creatinine), method.reg="LinReg", na.rm=TRUE)
-		fit.wlr <- mcreg(as.matrix(creatinine), method.reg="WLinReg", na.rm=TRUE)
-		compareFit( fit.lr, fit.wlr )
-		\end{verbatim}
-	\end{framed}
-	
-	
 
 	\section{KP}
 	Most residual covariance structures are design for one
@@ -293,32 +260,6 @@ The slope and intercepte are given bu
 	covariance structure using Kronecker product of the underlying
 	within-subject factor specific covariances structure.
 	
-
-\subsection{Ordinary Least Product Regression}
-\citet{ludbrook97} states that the grouping structure can be
-straightforward, but there are more complex data sets that have a
-hierarchical(nested) model.
-\\
-\\
-Observations between groups are independent, but observations
-within each groups are dependent because they belong to the same
-subpopulation. Therefore there are two sources of variation:
-between-group and within-group variance.
-\vspace{5 mm} \noindent Mean correction is a method of reducing
-bias.
-
-
-
-
-
-
-
-\subsection{A regression based approach based on Bland Altman Analysis}
-Lu et al used such a technique in their comparison of DXA
-scanners. They also used the Blackwood Bradley test. However it
-was shown that, for particular comparisons,  agreement between
-methods was indicated according to one test, but lack of agreement
-was indicated by the other.
 
 
 
@@ -338,13 +279,7 @@ It was amended by Bartko to be uses in the Method comparison study.
 
 It is noticeably a simultaneous test for bias and precision. If I It is uninformative about either both of these properties on their own.
 
-\newpage
-How Bland and Altman have extended the Difference Plot (with Limits of agreement) to the case of replicate measurements.
-When replicate measurements are taken with each method on each item, more complex methodologies are required. Bland \& Altman(1999) describe a number of approaches to adopt in such a case. The first approach is to take the average measurement over the replicates measurements on each subject by each method.
-The second approach is to simply treat these replicate measurements as independent measurements in their own right, and use the pre-existing Bland-Altman approach for single measurements.
-The proposed approach shares the same overall structure as their earlier work. However complex calculations are now required to compute the variance of case-wise differences. This is compounded by the fact that different approaches are required depending on whether or not there are equal or unequal numbers of replicates.
-What have they missed? Carstensen et al discuss in depth the shortfalls in this approach.
-Carstensen et al (2008) address the flaws in both approaches, demonstrating how the first approach would lead to an underestimation of the variance of case-wise differences. The second case would also lead to incorrect estimates, although it is pointed out that the second approach is much better than the first.
+
 
 
 \chapter{REGRESSION}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Regression
