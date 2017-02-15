@@ -1,28 +1,13 @@
 \documentclass[Main.tex]{subfiles}
 \begin{document}
 \section{Introduction to Limits of Agreement}
-\textit{\textbf{What is this from?}}
-\begin{itemize}
-		\item Comparing two methods of measurement is normally done by computing limits of agreement (LoA), i.e. prediction limits for
-		a future difference between measurements with the two methods. When the difference is not constant it is not clear what
-		this means, since the difference between the methods depends on the average; hence, unlike the case where the difference is
-		constant, LoA cannot directly be translated into a prediction interval for a measurement by one method given that of another.
-		\item The main point in the paper by Bland and Altman [1] is however different from the outlook in this paper; Bland and Altman
-		mainly discuss whether two methods of measurement can be used interchangeably and how to assess this with the help of
-		proper statistical methods to derive LoA, i.e. prediction limits for differences between two methods.
-		This paper takes as starting point that the classical LoA can be converted to a prediction interval for one method given a
-		measurement by the other (details in the next section). This sort of relationship can be shown in a plot as a line with slope 1
-		and prediction limits as lines also with slope 1; applicable for the prediction both from method 1 to method 2 and vice versa. In
-		the case of non-constant difference it would be desirable to be able to produce a similar plot, usable both ways. Thus, the aim
-		of this paper is to produce a conversion from one method to another that also applies in the case where the difference between
-		methods is not constant.
-		\item In this paper, I set up a proper model for data for method comparison studies which in the case of constant difference between
-		methods leads to the classical LoA, and in the case of linear bias gives a simple formula for the prediction. The paper only
-		addresses the situation where only one measurement by each method is available, although replicate measurements by each
-		method are desirable whenever possible [2]. Moreover, the situation with non-constant variance over the range of measurements
-		is not covered either.
-\end{itemize}
-	\subsection{Limits Of Agreement}
+
+	\citet{BA86} introduces an elaboration of the plot, adding to the
+	plot `limits of agreement' to the plot. These limits are based
+	upon the standard deviation of the differences. The discussion
+	shall be reverted to these limits of agreement in due course.
+	
+	
 	Bland and Altman proposed a pair of \textit{Limits of Agreement}. These
 	limits are intended to demonstrate the range in which 95\% of the
 	sample data should lie. The Limits of agreement centre on the
@@ -148,11 +133,7 @@ lines.
 	
 	
 	
-	\subsection{Limits of Agreement}
-	\citet{BA86} introduces an elaboration of the plot, adding to the
-	plot `limits of agreement' to the plot. These limits are based
-	upon the standard deviation of the differences. The discussion
-	shall be reverted to these limits of agreement in due course.
+
 
 	\subsection{Limits Of Agreement}
 	
@@ -207,18 +188,6 @@ follows
 \end{equation}
 
 %------------------------------------------------%
-\section{Limits of agreement for Carstensen's data}
-
-
-\citet{bxc2008} describes the calculation of the limits of agreement (with the inter-method bias implicit) for both data sets, based on his formulation;
-
-\[\hat{\alpha}_1 - \hat{\alpha}_2 \pm 2\sqrt{2\hat{\tau}^2 +\hat{\sigma}_1^2 +\hat{\sigma}_2^2 }.\]
-
-For the `Fat' data set, the inter-method bias is shown to be $0.045$. The limits of agreement are $(-0.23 , 0.32)$
-
-Carstensen demonstrates the use of the interaction term when computing the limits of agreement for the `Oximetry' data set. When the interaction term is omitted, the limits of agreement are $(-9.97, 14.81)$. Carstensen advises the inclusion of the interaction term for linked replicates, and hence the limits of agreement are recomputed as $(-12.18,17.12)$.
-
-
 
 \section{Limits of Agreement}
 % introduces
@@ -258,7 +227,7 @@ The confidence
 intervals and standard error for the limits of agreement follow from the variance of the limits of agreement, which is shown to be
 
 \[
-\mbox{Var}(LoA) = (\frac{1}{n}+\frac{1.96^{2}}{2(n-1)})s_{d}^{2}.
+\mbox{Var}(LoA) = \bigg(\frac{1}{n}+\frac{1.96^{2}}{2(n-1)}\bigg)s_{d}^{2}.
 \]
 
 If $n$ is sufficiently large this can be following approximation
@@ -286,10 +255,31 @@ A $95\%$ confidence interval can be determined, by means of the
 %For sample size $n=12$ the `t' quantile is 2.2 and the limits of
 %agreement are (-0.074,-1.143).
 
-
+\subsection{BXC1999 /BXC2009}
+\begin{itemize}
+	\item Comparing two methods of measurement is normally done by computing limits of agreement (LoA), i.e. prediction limits for
+	a future difference between measurements with the two methods. When the difference is not constant it is not clear what
+	this means, since the difference between the methods depends on the average; hence, unlike the case where the difference is
+	constant, LoA cannot directly be translated into a prediction interval for a measurement by one method given that of another.
+	\item The main point in the paper by Bland and Altman [1] is however different from the outlook in this paper; Bland and Altman
+	mainly discuss whether two methods of measurement can be used interchangeably and how to assess this with the help of
+	proper statistical methods to derive LoA, i.e. prediction limits for differences between two methods.
+	This paper takes as starting point that the classical LoA can be converted to a prediction interval for one method given a
+	measurement by the other (details in the next section). This sort of relationship can be shown in a plot as a line with slope 1
+	and prediction limits as lines also with slope 1; applicable for the prediction both from method 1 to method 2 and vice versa. In
+	the case of non-constant difference it would be desirable to be able to produce a similar plot, usable both ways. Thus, the aim
+	of this paper is to produce a conversion from one method to another that also applies in the case where the difference between
+	methods is not constant.
+	\item In this paper, I set up a proper model for data for method comparison studies which in the case of constant difference between
+	methods leads to the classical LoA, and in the case of linear bias gives a simple formula for the prediction. The paper only
+	addresses the situation where only one measurement by each method is available, although replicate measurements by each
+	method are desirable whenever possible [2]. Moreover, the situation with non-constant variance over the range of measurements
+	is not covered either.
+\end{itemize}
+\subsection{Limits Of Agreement}
 
 \addcontentsline{toc}{section}{Bibliography}
-\bibliography{DB-txfrbib}		
+\bibliography{2017bib}		
 	
 
 	
