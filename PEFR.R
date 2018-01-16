@@ -15,10 +15,15 @@ Flow = groupedData( resp ~ method | subject ,
         data = data.frame( resp = PEFR, subject = Subject,
         method = meth,
         obs = repl),
-    labels = list(resp = "PEFR", method = "Measurement Device"),
+    labels = list(resp = "PEFR", 
+    method = "Measurement Device"),
     order.groups = FALSE )
 
-H.o = lme(resp ~ method-1, data = Flow,random = list(subject=pdSymm(~ method-1)),weights=varIdent(form=~1|method), correlation = corSymm(form=~1 | subject/obs), method="ML")
+H.o = lme(resp ~ method-1, data = Flow,
+  random = list(subject=pdSymm(~ method-1)),
+  weights=varIdent(form=~1|method), 
+  correlation = corSymm(form=~1 | subject/obs), 
+  method="ML")
 
 ######################################## Flow1
 PEFR1=c(WrightOne,WrightTwo,MiniOne,MiniTwo)
@@ -33,10 +38,19 @@ Flow1 = groupedData( resp ~ method | subject ,
     labels = list(resp = "PEFR", method = "Measurement Device"),
     order.groups = FALSE )
 
-H.oa = lme(resp ~ method-1, data = Flow1,random = list(subject=pdSymm(~ method-1)),weights=varIdent(form=~1|method), correlation = corSymm(form=~1 | subject/obs), method="ML")
+H.oa = lme(resp ~ method-1, data = Flow1,
+  random = list(subject=pdSymm(~ method-1)),
+  weights=varIdent(form=~1|method), 
+  correlation = corSymm(form=~1 | subject/obs), 
+  method="ML")
 ######################################## Flow1(ordered)
 Flow2=orderdata(Flow1)
-H.ob = lme(resp ~ method-1, data = Flow2,random = list(subject=pdSymm(~ method-1)),weights=varIdent(form=~1|method), correlation = corSymm(form=~1 | subject/obs), method="ML")
+
+H.ob = lme(resp ~ method-1, data = Flow2,
+  random = list(subject=pdSymm(~ method-1)),
+  weights=varIdent(form=~1|method), 
+  correlation = corSymm(form=~1 | subject/obs), 
+  method="ML")
 
 ########################################
 getD(H.o)

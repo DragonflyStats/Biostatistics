@@ -4,7 +4,8 @@
 
 #Run the following code only once
 BA99.data<- read.csv(file="BA99.csv",head=FALSE,sep=",")
-  #Run the following code only once - removes the unnecessary indices
+
+#Run the following code only once - removes the unnecessary indices
 BA99.data=BA99.data[,-1]
 
   #510 Observations (85 subjects 2 methods 3 Replicates )

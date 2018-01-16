@@ -25,7 +25,7 @@ ox.roy4 = lme(y ~ meth-1, data = dat,random = list(item=pdCompSymm(~ meth-1)), c
 
 getSigma(ox.roy1)
 getOmega(ox.roy1)
-roy.DV(ox.roy1)
+roy.SDV(ox.roy1)
 
 
 #################################################################
