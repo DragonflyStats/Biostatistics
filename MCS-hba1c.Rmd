@@ -1,0 +1,76 @@
+---
+title: "MethComp Data Sets"
+author: "KevinOBrien"
+date: "18 September 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(MethComp)
+library(nlme)
+library(lme4)
+```
+* Analysis under Bland and Altman
+* Analysis under Roy's Method
+ - Implementation of the four models
+ - Expression of the Matrices
+ - Implementation of the three hypothesis tests        
+* Analysis under BXC
+ - Computation of Limits of Agreement
+
+
+```{r}
+data(hba1c)
+head(hba1c)
+```
+### Load useful packages for analysis
+
+```{r}
+
+library(MethComp)
+library(nlme)
+
+```
+```{r,echo=FALSE}
+
+data(hba1c)
+summary(hba1c)
+hba1c$item <- factor(hba1c$item)
+hba1c$repl <- factor(hba1c$repl)
+dat=hba1c
+
+```
+
+```{r}
+hba1c.roy1 = lme(y ~ meth-1, data = dat,
+              random = list(item=pdSymm(~ meth-1)), 
+              weights=varIdent(form=~1|meth),
+              correlation = corSymm(form=~1 | item/repl), 
+              method="ML")
+hba1c.roy2 = lme(y ~ meth-1, data = dat,
+              random = list(item=pdCompSymm(~ meth-1)), 
+              correlation = corSymm(form=~1 | item/repl), 
+              method="ML")
+hba1c.roy3 = lme(y ~ meth-1, data = dat,
+              random = list(item=pdSymm(~ meth-1)),
+              weights=varIdent(form=~1|meth), 
+              correlation = corCompSymm(form=~1 | item/repl), method="ML")
+hba1c.roy4 = lme(y ~ meth-1, data = dat,
+              random = list(item=pdCompSymm(~ meth-1)), 
+              correlation = corCompSymm(form=~1 | item/repl), 
+              method="ML")
+#getSigma(hba1c.roy1)
+#getOmega(hba1c.roy1)
+#roy.SDV(hba1c.roy1)
+```
+## Analysis using BXC
+```{r}
+hba1c.bxc1 = lme( y ~ meth + item, random = list( item = pdIdent( ~ meth-1 ) ), 
+               weights = varIdent( form = ~1 | meth ), data=dat)
+hba1c.bxc2 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ), 
+               weights = varIdent( form = ~1 | meth ), data=dat )
+hba1c.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ),
+               weights = varIdent( form = ~1 | meth ),
+               correlation = corCompSymm(form=~1 | item/repl ),data=dat)
+
+```
