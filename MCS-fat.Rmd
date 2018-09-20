@@ -15,6 +15,31 @@ library(broom)
 library(dplyr)
 ```
 
+## Fat 
+This data set comprises fat content of human milk determined by measurement of glycerol released by enzymic hydrolysis of triglycerides (Trig) and measurement by the Standard Gerber method (Gerber). 
+Units are (g/100 ml).
+
+### Limits of Agreement
+For the `Fat' data set, the inter-method bias is shown to be $0.045$. The limits of agreement are $(-0.23 , 0.32)$
+
+For Carstensen's `fat' data, the limits of agreement computed using Roy's method are consistent with the estimates given by Carstensen et al (2008); $ = (-0.224,  0.314).$
+
+
+A linear mixed effects model is formulated, and implementation through several software packages is demonstrated.
+All of the necessary terms are presented in the computer output. The limits of agreement are therefore,
+\begin{equation}
+0.0449  \pm 1.96 \times  \sqrt{2 \times 0.0596^2 + 0.0772^2 + 0.0724^2} = (-0.220,  0.309).
+\end{equation}
+
+All of these terms are given or determinable in computer output. The limits of agreement can therefore be evaluated using
+\begin{equation}
+\bar{y_{A}}-\bar{y_{B}} \pm 1.96 \times \sqrt{ \sigma^2_{A} + \sigma^2_{B}  - 2(\sigma_{AB})}.
+\end{equation}
+```{r}
+data(fat)
+head(fat)
+```
+
 ```{r}
 data(fat)
 
@@ -75,10 +100,3 @@ fat.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl =
 
 ```
 
-```{r}
- tidy(fat.roy) # conditional Residuals 
-```
-
-```{r}
-getLOA(fat.roy) 
-```

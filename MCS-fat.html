@@ -129,61 +129,77 @@ $(document).ready(function () {
 </div>
 
 
+<p>For the `Fat’ data set, the inter-method bias is shown to be <span class="math inline">\(0.045\)</span>. The limits of agreement are <span class="math inline">\((-0.23 , 0.32)\)</span></p>
+<p>For Carstensen’s `fat’ data, the limits of agreement computed using Roy’s method are consistent with the estimates given by Carstensen et al (2008); $ = (-0.224, 0.314).$</p>
+A linear mixed effects model is formulated, and implementation through several software packages is demonstrated. All of the necessary terms are presented in the computer output. The limits of agreement are therefore,
+<span class="math display">\[\begin{equation}
+0.0449  \pm 1.96 \times  \sqrt{2 \times 0.0596^2 + 0.0772^2 + 0.0724^2} = (-0.220,  0.309).
+\end{equation}\]</span>
+All of these terms are given or determinable in computer output. The limits of agreement can therefore be evaluated using
+<span class="math display">\[\begin{equation}
+\bar{y_{A}}-\bar{y_{B}} \pm 1.96 \times \sqrt{ \sigma^2_{A} + \sigma^2_{B}  - 2(\sigma_{AB})}.
+\end{equation}\]</span>
+<pre class="r"><code>data(fat)
 
-<p> introduces a second data set; the oximetry study. This study done at the Royal Children’s Hospital in Melbourne to assess the agreement between co-oximetry and pulse oximetry in small babies.</p>
-<p>In most cases, measurements were taken by both method at three different times. In some cases there are either one or two pairs of measurements, hence the data is unbalanced. Carstensen <em>et al</em> (2008) describes many of the children as being very sick, and with very low oxygen saturations levels. Therefore it must be assumed that a biological change can occur in interim periods, and measurements are not true replicates.</p>
-<p>Carstensen <em>et al</em> (2008) demonstrate the necessity of accounting for linked replicated by comparing the limits of agreement from the `oximetry’ data set using a model with the additional term, and one without. When the interaction is accounted for the limits of agreement are (-9.62,14.56). When the interaction is not accounted for, the limts of agreement are (-11.88,16.83). It is shown that the failure to include this additional term results in an over-estimation of the standard deviations of differences.</p>
-<pre class="r"><code>data(ox)
-summary(ox)</code></pre>
-<pre><code>##     meth          item            repl             y        
-##  CO   :177   Min.   : 1.00   Min.   :1.000   Min.   :22.20  
-##  pulse:177   1st Qu.:15.00   1st Qu.:1.000   1st Qu.:70.00  
-##              Median :31.00   Median :2.000   Median :77.00  
-##              Mean   :30.98   Mean   :1.972   Mean   :74.42  
-##              3rd Qu.:46.00   3rd Qu.:3.000   3rd Qu.:82.00  
-##              Max.   :61.00   Max.   :3.000   Max.   :94.00</code></pre>
-<pre class="r"><code>ox$item &lt;- factor(ox$item)
-ox$repl &lt;- factor(ox$repl)
-dat=ox</code></pre>
-<ul>
-<li>Analysis under Bland and Altman</li>
-<li>Analysis under Roy’s Method</li>
-<li>Implementation of the four models</li>
-<li>Expression of the Matrices</li>
-<li>Implementation of the three hypothesis tests<br />
-</li>
-<li>Analysis under BXC</li>
-<li>Computation of Limits of Agreement</li>
-</ul>
-<pre class="r"><code>ox.roy1 = lme(y ~ meth-1, data = dat,
+fat &lt;- fat %&gt;% gather(&quot;Meth&quot;,&quot;y&quot;,Sub:Vic)
+fat &lt;- fat %&gt;% set_colnames(c(&quot;item&quot;,&quot;obs&quot;,&quot;repl&quot;,&quot;meth&quot;,&quot;y&quot;))
+fat %&gt;% filter(item == 1)</code></pre>
+<pre><code>##    item obs repl meth   y
+## 1     1  KL    1  Sub 1.6
+## 2     1  KL    2  Sub 1.7
+## 3     1  KL    3  Sub 1.7
+## 4     1  SL    1  Sub 1.7
+## 5     1  SL    2  Sub 1.6
+## 6     1  SL    3  Sub 1.7
+## 7     1  KL    1  Vic 4.5
+## 8     1  KL    2  Vic 4.4
+## 9     1  KL    3  Vic 4.7
+## 10    1  SL    1  Vic 4.9
+## 11    1  SL    2  Vic 5.0
+## 12    1  SL    3  Vic 4.8</code></pre>
+<pre class="r"><code># Analysis under Bland and Altman
+# Analysis under Roy's Method
+#       - Implementation of the four models
+#       - Expression of the Matrices
+#       - Implementation of the three hypothesis tests        
+# Analysis under BXC
+#       - Computation of Limits of Agreement
+#################################################################
+#
+# Load useful packages for analysis</code></pre>
+<pre class="r"><code>dat=fat
+
+fat.roy1 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)), 
               weights=varIdent(form=~1|meth),
               correlation = corSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-ox.roy2 = lme(y ~ meth-1, data = dat,
+fat.roy2 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-ox.roy3 = lme(y ~ meth-1, data = dat,
+fat.roy3 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)),
               weights=varIdent(form=~1|meth), 
               correlation = corCompSymm(form=~1 | item/repl), method=&quot;ML&quot;)
-ox.roy4 = lme(y ~ meth-1, data = dat,
+fat.roy4 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corCompSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-#getSigma(ox.roy1)
-#getOmega(ox.roy1)
-#roy.SDV(ox.roy1)</code></pre>
+#getSigma(fat.roy1)
+#getOmega(fat.roy1)
+#roy.SDV(fat.roy1)</code></pre>
 <div id="analysis-using-bxc" class="section level2">
 <h2>Analysis using BXC</h2>
-<pre class="r"><code>ox.bxc1 = lme( y ~ meth + item, random = list( item = pdIdent( ~ meth-1 ) ), 
+<pre class="r"><code>fat.bxc1 = lme( y ~ meth + item, random = list( item = pdIdent( ~ meth-1 ) ), 
                weights = varIdent( form = ~1 | meth ), data=dat)
-ox.bxc2 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ), 
+fat.bxc2 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ), 
                weights = varIdent( form = ~1 | meth ), data=dat )
-ox.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ),
+fat.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ),
                weights = varIdent( form = ~1 | meth ),
                correlation = corCompSymm(form=~1 | item/repl ),data=dat)</code></pre>
+<pre class="r"><code> #tidy(fat.roy) # conditional Residuals </code></pre>
+<pre class="r"><code>#getLOA(fat.roy) </code></pre>
 </div>
 
 

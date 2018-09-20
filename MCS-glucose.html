@@ -129,22 +129,29 @@ $(document).ready(function () {
 </div>
 
 
-
-<p> introduces a second data set; the oximetry study. This study done at the Royal Children’s Hospital in Melbourne to assess the agreement between co-oximetry and pulse oximetry in small babies.</p>
-<p>In most cases, measurements were taken by both method at three different times. In some cases there are either one or two pairs of measurements, hence the data is unbalanced. Carstensen <em>et al</em> (2008) describes many of the children as being very sick, and with very low oxygen saturations levels. Therefore it must be assumed that a biological change can occur in interim periods, and measurements are not true replicates.</p>
-<p>Carstensen <em>et al</em> (2008) demonstrate the necessity of accounting for linked replicated by comparing the limits of agreement from the `oximetry’ data set using a model with the additional term, and one without. When the interaction is accounted for the limits of agreement are (-9.62,14.56). When the interaction is not accounted for, the limts of agreement are (-11.88,16.83). It is shown that the failure to include this additional term results in an over-estimation of the standard deviations of differences.</p>
-<pre class="r"><code>data(ox)
-summary(ox)</code></pre>
-<pre><code>##     meth          item            repl             y        
-##  CO   :177   Min.   : 1.00   Min.   :1.000   Min.   :22.20  
-##  pulse:177   1st Qu.:15.00   1st Qu.:1.000   1st Qu.:70.00  
-##              Median :31.00   Median :2.000   Median :77.00  
-##              Mean   :30.98   Mean   :1.972   Mean   :74.42  
-##              3rd Qu.:46.00   3rd Qu.:3.000   3rd Qu.:82.00  
-##              Max.   :61.00   Max.   :3.000   Max.   :94.00</code></pre>
-<pre class="r"><code>ox$item &lt;- factor(ox$item)
-ox$repl &lt;- factor(ox$repl)
-dat=ox</code></pre>
+<div id="glucose-glucose-measurements-by-different-methods" class="section level2">
+<h2><code>glucose</code> Glucose measurements by different methods</h2>
+<div id="description" class="section level3">
+<h3>Description</h3>
+<ul>
+<li>74 persons in 5 centres in Finland had blood glucose measured by 11 different methods, based on 4 different types of blood.</li>
+<li>Each person had blood sampled at 0, 30, 60 and 120 min after a 75g glucose load.</li>
+</ul>
+</div>
+<div id="format" class="section level3">
+<h3>Format</h3>
+<p>A data frame with 1302 observations on the following 6 variables.</p>
+<ul>
+<li><code>meth</code> Method of measurement. A factor with 11 levels: n.plas1 n.plas2 h.cap h.blood h.plas h.serum m.plas m.serum o.cap s.serum k.plas.</li>
+<li><code>type</code> Type of blood sample. A factor with 4 levels: blood plasma serum capil</li>
+<li><code>item</code> Person id.</li>
+<li><code>time</code> Time of blood sampling. Minutes since glucose load.</li>
+<li><code>cent</code> Center of sampling. Except for the two first methods, n.plas1 and n.plas2, samples were analyzed at the centres too</li>
+<li><code>y</code> Glucose measurement in mmol/l.</li>
+</ul>
+</div>
+<div id="load-useful-packages-for-analysis" class="section level3">
+<h3>Load useful packages for analysis</h3>
 <ul>
 <li>Analysis under Bland and Altman</li>
 <li>Analysis under Roy’s Method</li>
@@ -155,33 +162,68 @@ dat=ox</code></pre>
 <li>Analysis under BXC</li>
 <li>Computation of Limits of Agreement</li>
 </ul>
-<pre class="r"><code>ox.roy1 = lme(y ~ meth-1, data = dat,
+<pre class="r"><code>data(glucose)
+head(glucose)</code></pre>
+<pre><code>##      meth   type item time cent    y
+## 1 n.plas1 plasma    1    0    1 6.36
+## 2 n.plas2 plasma    1    0    1 6.11
+## 3   h.cap  capil    1    0    1 5.10
+## 4 h.blood  blood    1    0    1 5.00
+## 5  h.plas plasma    1    0    1 6.50
+## 6 h.serum  serum    1    0    1 6.40</code></pre>
+<pre><code>##       meth         type          item            time       
+##  n.plas2:293   blood : 76   Min.   : 1.00   Min.   :  0.00  
+##  n.plas1:289   plasma:824   1st Qu.:11.00   1st Qu.:  0.00  
+##  h.cap  :123   serum :219   Median :23.00   Median : 30.00  
+##  h.plas :122   capil :183   Mean   :30.05   Mean   : 52.51  
+##  h.blood: 76                3rd Qu.:50.00   3rd Qu.:120.00  
+##  h.serum: 76                Max.   :74.00   Max.   :120.00  
+##  (Other):323                                                
+##       cent             y         
+##  Min.   :1.000   Min.   : 3.700  
+##  1st Qu.:1.000   1st Qu.: 6.300  
+##  Median :2.000   Median : 8.200  
+##  Mean   :2.386   Mean   : 8.334  
+##  3rd Qu.:4.000   3rd Qu.:10.050  
+##  Max.   :5.000   Max.   :19.370  
+## </code></pre>
+<pre><code>## 
+##   0  30  60 120 
+## 328 325 321 328</code></pre>
+<pre><code>glucose$repl &lt;- factor(glucose$repl)
+
+</code></pre>
+<pre class="r"><code>dat &lt;- glucose %&gt;% filter(meth %in% c(&quot;n.plas1&quot;,&quot;n.plas2&quot;))
+
+glucose.roy1 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)), 
               weights=varIdent(form=~1|meth),
               correlation = corSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-ox.roy2 = lme(y ~ meth-1, data = dat,
+glucose.roy2 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-ox.roy3 = lme(y ~ meth-1, data = dat,
+glucose.roy3 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)),
               weights=varIdent(form=~1|meth), 
               correlation = corCompSymm(form=~1 | item/repl), method=&quot;ML&quot;)
-ox.roy4 = lme(y ~ meth-1, data = dat,
+glucose.roy4 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corCompSymm(form=~1 | item/repl), 
               method=&quot;ML&quot;)
-#getSigma(ox.roy1)
-#getOmega(ox.roy1)
-#roy.SDV(ox.roy1)</code></pre>
+#getSigma(glucose.roy1)
+#getOmega(glucose.roy1)
+#roy.SDV(glucose.roy1)</code></pre>
+</div>
+</div>
 <div id="analysis-using-bxc" class="section level2">
 <h2>Analysis using BXC</h2>
-<pre class="r"><code>ox.bxc1 = lme( y ~ meth + item, random = list( item = pdIdent( ~ meth-1 ) ), 
+<pre class="r"><code>glucose.bxc1 = lme( y ~ meth + item, random = list( item = pdIdent( ~ meth-1 ) ), 
                weights = varIdent( form = ~1 | meth ), data=dat)
-ox.bxc2 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ), 
+glucose.bxc2 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ), 
                weights = varIdent( form = ~1 | meth ), data=dat )
-ox.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ),
+glucose.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl = ~1 ),
                weights = varIdent( form = ~1 | meth ),
                correlation = corCompSymm(form=~1 | item/repl ),data=dat)</code></pre>
 </div>

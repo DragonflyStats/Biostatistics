@@ -14,12 +14,34 @@ library(tidyr)
 library(broom)
 library(dplyr)
 ```
+## ``milk``: Measurement of fat content of human milk by two different methods.
+
+### Description
+Fat content of human milk determined by measurement of glycerol released by enzymic hydrolysis
+of triglycerides (Trig) and measurement by the Standard Gerber method (Gerber). Units are (g/100
+          
+### Format
+A data frame with 90 observations on the following 3 variables.
+
+* ``meth`` a factor with levels Gerber Trig
+* ``item`` sample id
+* ``y`` a numeric vector
+
+
+### Examples
+```{r}
+data(milk)
+str(milk)
+milk <- Meth(milk)
+plot(milk)
+abline(0,1)
+```
 
 ```{r}
 data(milk)
 
-milk <- milk %>% gather("Meth","y",Sub:Vic)
-milk <- milk %>% set_colnames(c("item","obs","repl","meth","y"))
+#milk <- milk %>% gather("Meth","y",Sub:Vic)
+#milk <- milk %>% set_colnames(c("item","obs","repl","meth","y"))
 milk %>% filter(item == 1)
 ```
 
@@ -51,6 +73,10 @@ milk.roy2 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corSymm(form=~1 | item/repl), 
               method="ML")
+```
+
+
+```{r}
 milk.roy3 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)),
               weights=varIdent(form=~1|meth), 
@@ -78,7 +104,8 @@ milk.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), repl 
 ```{r}
  tidy(milk.roy) # conditional Residuals 
 ```
-
-```{r}
-getLOA(milk.roy) 
-```
+### Source
+The dataset is adapted from table 3 in: JM Bland and DG Altman: Measuring agreement in method
+comparison studies. Statistical Methods in Medical Research, 8:136-160, 1999. See: Lucas A, Hudson
+GJ, Simpson P, Cole TJ, Baker BA. An automated enzymic micromethod for the measurement
+of fat in human milk. Journal of Dairy Research 1987; 54: 487-92.

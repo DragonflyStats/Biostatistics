@@ -5,6 +5,23 @@ date: "18 September 2018"
 output: html_document
 ---
 
+Enzyme: Enzyme activity data
+================================
+
+### Description
+* Three measurement of enzyme activity on 24 patients. 
+* The measurements is of the enzymes sucrase and alkaline phosphatase. 
+* The interest is to compare the 'homogenate' and 'pellet' methods.
+
+Format
+A data frame with 72 observations on the following 3 variables.
+* ``meth`` a factor with levels SucHom SucPel Alkphos, representing three different measurements, i.e.
+homogenate and pellet values of sucrase, as well as homogenate values of alkaline.
+* ``item`` a numeric vector, the person ID for the 24 patients
+* ``y`` a numeric vector, the measurements on the enzyme activity.
+
+
+
 ```{r setup, include=FALSE}
 library(MethComp)
 library(nlme)
@@ -14,28 +31,26 @@ library(tidyr)
 library(broom)
 library(dplyr)
 ```
-
 ```{r}
 data(Enzyme)
-
-Enzyme <- Enzyme %>% gather("Meth","y",Sub:Vic)
-Enzyme <- Enzyme %>% set_colnames(c("item","obs","repl","meth","y"))
 Enzyme %>% filter(item == 1)
 ```
 
 ```{r}
-# Analysis under Bland and Altman
-# Analysis under Roy's Method
-#       - Implementation of the four models
-#       - Expression of the Matrices
-#       - Implementation of the three hypothesis tests        
-# Analysis under BXC
-#       - Computation of Limits of Agreement
-#################################################################
-#
-# Load useful packages for analysis
+Enzyme <- Meth( Enzyme )
+summary( Enzyme )
 
 ```
+
+
+
+```{r}
+
+summary( Enzyme )
+plot( Enzyme )
+```
+
+
 
 
 ```{r}
@@ -51,6 +66,8 @@ Enzyme.roy2 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corSymm(form=~1 | item/repl), 
               method="ML")
+```
+```{r}
 Enzyme.roy3 = lme(y ~ meth-1, data = dat,
               random = list(item=pdSymm(~ meth-1)),
               weights=varIdent(form=~1|meth), 
@@ -59,9 +76,7 @@ Enzyme.roy4 = lme(y ~ meth-1, data = dat,
               random = list(item=pdCompSymm(~ meth-1)), 
               correlation = corCompSymm(form=~1 | item/repl), 
               method="ML")
-#getSigma(Enzyme.roy1)
-#getOmega(Enzyme.roy1)
-#roy.SDV(Enzyme.roy1)
+
 ```
 ## Analysis using BXC
 ```{r}
@@ -79,6 +94,8 @@ Enzyme.bxc3 = lme( y ~ meth + item, random=list( item = pdIdent( ~ meth-1 ), rep
  tidy(Enzyme.roy) # conditional Residuals 
 ```
 
-```{r}
-getLOA(Enzyme.roy) 
-```
+
+
+### Source
+R. L. Carter; Restricted Maximum Likelihood Estimation of Bias and Reliability in the Comparison
+of Several Measuring Methods; Biometrics, Dec., 1981, Vol. 37, No. 4, pp. 733-741.

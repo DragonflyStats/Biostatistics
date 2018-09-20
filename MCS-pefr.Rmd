@@ -19,3 +19,18 @@ library(dplyr)
 data(PEFR)
 head(PEFR)
 ```
+
+
+```{r}
+PEFR2 <- PEFR  %>% spread(repl,y) %>% set_colnames(c("meth","item","repl1","repl2")) 
+PEFR2 <- data.frame(PEFR2,y.means = (PEFR2 %>% select(starts_with("repl")) %>% rowMeans(na.rm=TRUE) ))
+```
+
+```{r}
+
+var.test(y.means ~ meth,data=PEFR2)
+t.test(y ~ meth,data=PEFR)
+
+
+
+```
