@@ -14,8 +14,9 @@ ggplot(myDF,aes(x=X,y=Y)) + geom_point(cex=2, pch =17,col="red") +
  labs(title= "Comparison of Deming and Linear Regression",
       subtitle = "Zhang et al 1986")  + 
  theme_classic() + 
- geom_abline( intercept = 8.3060,slope = 0.9060,lty=1 ,linetype="OLS") + 
- geom_abline( intercept = -4.1216, slope = 1.0451,lty=2 ,linetype = "Deming")
+ geom_abline( intercept = 8.3060,slope = 0.9060,lty=1 ) + 
+ geom_abline( intercept = -4.1216, slope = 1.0451,lty=2) + 
+ annotate("text", "Deming",c(0,0.8))
 
 ###################
 
@@ -26,7 +27,7 @@ xlim=c(20,160),
 ylim=c(20,160), ylab=expression(bold("Left ventricular stroke volume (SV) ")),
 xlab=expression(bold("Transmitral volumetric flow (MF) ")),
 
-main=c("Comparison of Deming and Linear Regression"),sub=c("Zhang et al 1986"),
+main=c("Comparison of Deming and Linear Regression"),sub=c("Zhang et al. (1986)"),
 )
 
 abline(8.3060,0.9060,lty=1)
@@ -37,4 +38,26 @@ temp <- legend("topleft", legend = c("Linear regression ", "Deming regression"),
                lty = 1:2, xjust = 1, yjust = 1,
               )
 
-ggsave(device="eps","ZhangDeming.eps")
+ggsave(device="eps","ZhangDeming_1.eps")
+
+###################
+
+plot(X,Y, 
+pch =17, 
+col="black",
+xlim=c(20,160),
+ylim=c(20,160), ylab=expression(bold("Left ventricular stroke volume (SV) ")),
+xlab=expression(bold("Transmitral volumetric flow (MF) ")),
+
+main=c("Comparison of Deming and Linear Regression"),sub=c("Zhang et al. (1986)"),
+)
+
+abline(8.3060,0.9060,lty=1,col="red")
+abline( -4.1216, 1.0451,lty=2,col="blue")
+
+temp <- legend("topleft", legend = c("Linear regression ", "Deming regression"), text.font = 2,
+               text.width = strwidth("Limits of agreement  "),
+               lty = 1:2,col=c("red","blue"), xjust = 1, yjust = 1,
+              )
+
+ggsave(device="eps","ZhangDeming_2.eps")
