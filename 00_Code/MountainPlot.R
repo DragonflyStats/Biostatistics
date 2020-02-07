@@ -42,6 +42,6 @@ mountainplot(~y, data=plvol, group=meth,auto.key=list(columns=2),
 mountainplot(~y, data=plvol2, group=meth,auto.key=list(columns=2),
              main="Plasma Volume Data (Adjusted for Bias)", xlab="Plasma Volume (%) ")
 
-mountainplot(~y, data=plvol3, group=meth,auto.key=list(columns=2),
+mountainplot(~y, data=PEFR, group=meth,auto.key=list(columns=2),
              main="Plasma Volume Data (Mean Centred)", xlab="Plasma Volume (%) ") 
 vline(x=0)
