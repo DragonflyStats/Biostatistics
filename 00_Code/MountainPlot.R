@@ -45,3 +45,51 @@ mountainplot(~y, data=plvol2, group=meth,auto.key=list(columns=2),
 mountainplot(~y, data=PEFR, group=meth,auto.key=list(columns=2),
              main="Plasma Volume Data (Mean Centred)", xlab="Plasma Volume (%) ") 
 vline(x=0)
+
+
+
+library(MethComp)
+library(dplyr)
+library(magrittr)
+library(mountainplot)
+
+data(milk)
+milk3 <- milk
+milk3$y[milk3$meth=="Trig"] = milk3$y[milk3$meth=="Trig"]-mean(milk3$y[milk3$meth=="Trig"])
+milk3$y[milk3$meth=="Gerber"] = milk3$y[milk3$meth=="Gerber"]-mean(milk3$y[milk3$meth=="Gerber"])
+
+mountainplot(~y, data=milk3, group=meth,auto.key=list(columns=2),
+             main="Milk data", xlab="Trig vs. Gerber ")
+
+
+
+Trig <- milk %>% filter(meth=="Trig") %>% pull(y)
+Gerber <- milk %>% filter(meth=="Gerber") %>% pull(y)
+Diffs <- Trig - Gerber
+Trig <- Trig - mean(Trig)
+
+Gerber <- Gerber - mean(Gerber)
+Quant <- c(0:50/100,49:0/100)
+Trig <- quantile(Trig,0:100/100)
+Gerber <- quantile(Gerber,0:100/100)
+method <- c(rep("Trig",length(Trig)), rep("Gerber",length(Gerber))) %>% factor()
+myMountainPlot <- data.frame(value=c(Trig,Gerber),quant =c(Quant,Quant),method)
+
+ggplot(data=myMountainPlot,aes(x=value,y=quant,col=method)) + geom_step() + theme_bw() + geom_vline(xintercept=0,col="red",lty=2) + geom_hline(yintercept=0)
+
+differences = quantile(Diffs,0:100/100)
+Diffs <- data.frame(Diffs)
+
+myKMplot <- data.frame(differences = differences, quantiles = c(0:50/100,49:0/100))
+
+ggplot(data=myKMplot,aes(x=differences,y=quantiles)) + 
+  geom_step() + 
+  theme_bw() + 
+  geom_vline(xintercept=0,col="red",lty=2) + 
+  geom_hline(yintercept=0)
+
+
+p <- ggplot(myKMplot) +
+    geom_histogram(aes(x = differences, y = ..density..), bins=15, fill = "grey", color = "black") + 
+    geom_density(aes(x = differences))
+p
