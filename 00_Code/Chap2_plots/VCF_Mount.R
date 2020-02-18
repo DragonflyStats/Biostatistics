@@ -16,4 +16,4 @@ VCF_Mount <- ggplot(data=myMountainPlot,aes(x=value,y=quant,col=method)) +
 
 
 
-ggsave(filename = "VCF_Mount.png", VCF_Mount,      width = 10, height = 8, dpi = 300, units = "in", device='png')
+ggsave(filename = "VCF_Mount.png", VCF_Mount,      width = 6, height = 4.2, dpi = 300, units = "in", device='png')
