@@ -7,8 +7,8 @@ library(readr)
 data(plvol)
 
 plvol3 <- plvol
-Method1 <- plvol3$y[plvol3$meth=="Nadler"] 
-Method2 <- plvol3$y[plvol3$meth=="Hurley"] 
+  Method1 <- plvol3$y[plvol3$meth=="Nadler"] 
+  Method2 <- plvol3$y[plvol3$meth=="Hurley"] 
 
 Method1 <- Method1 - mean(Method1)
 Method2 <- Method2 - mean(Method2)
@@ -24,4 +24,4 @@ NH_Mount <- ggplot(data=myMountainPlot,aes(x=value,y=quant,col=method)) +
 
 
 
-ggsave(filename = "NH_Mount.png", NH_Mount,      width = 10, height = 8, dpi = 300, units = "in", device='png')
+ggsave(filename = "NH_Mount.png", NH_Mount,      width = 6, height = 4.2, dpi = 300, units = "in", device='png')
