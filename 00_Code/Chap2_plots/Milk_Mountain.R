@@ -13,12 +13,14 @@ Method2 <- Method2 - mean(Method2)
 Quant <- c(0:50/100,49:0/100)
 Method1 <- quantile(Method1,0:100/100)
 Method2 <- quantile(Method2,0:100/100)
-method <- c(rep("Method1",length(Method1)), rep("Method2",length(Method2))) %>% factor()
-myMountainPlot <- data.frame(value=c(Method1,Method2),quant =c(Quant,Quant),method)
-Milk_Mount <- ggplot(data=myMountainPlot,aes(x=value,y=quant,col=method)) + 
+method <- c(rep("Trig",length(Method1)), rep("Gerber",length(Method2))) %>% factor()
+myMountainPlot <- data.frame(value=c(Method1,Method2),quant =c(Quant,Quant),Method = method)
+Milk_Mount <- ggplot(data=myMountainPlot,aes(x=value,y=quant,col=Method)) + 
   geom_step(lwd=1.2) + theme_bw() + 
   geom_vline(xintercept=0,col="red",lty=2) + geom_hline(yintercept=0) + 
-  ggtitle("Milk Data: Mountain Plot") + labs(fill = "Method")
+  ggtitle("Milk Data: Mountain Plot") + labs(fill = "Method") +  theme(legend.position="bottom")
+
+
 
 
 
