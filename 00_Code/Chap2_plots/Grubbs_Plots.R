@@ -116,9 +116,6 @@ ggsave(filename = "GrubbsBartko2.png", MCS_plot_3,      width = 10, height = 8, 
 
 
 
-
-
-
 Method1 <- grubbs$Fotobalk
 Method2 <- grubbs$Counter
 
@@ -132,9 +129,9 @@ BA_FC_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25, lty=2) +
   geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25,lty=2) +
   geom_hline(yintercept = 0, colour = "darkgreen", lty=3, lwd=1.25) +
-  geom_point(pch=17,col="red",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="red",alpha = 0.75,size=2.75) +
   ylim(-1.5,1.45) + 
-  xlim(786.5,797.5) +
+  xlim(787.5,796) +
   ylab("Casewise Differences") +
   xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Counter") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
@@ -152,19 +149,19 @@ Dif = Method1-Method2
 Avg = 0.5*(Method1+Method2)
 BAplotDF = data.frame(Method1,Method2,Avg,Dif)
 BA_FT_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="red",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="red",alpha = 0.75,size=2.75) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "#9999CC", lwd=1.25) +
   geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25, lty=2) +
   geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25,lty=2) +
   geom_hline(yintercept = 0, colour = "darkgreen", lty=3, lwd=1.25) +
   geom_point(pch=17,col="red",alpha = 0.75,size=2.5) +
   ylim(-1.5,1.45) + 
-  xlim(786.5,797.5) + 
+  xlim(787.5,796) + 
   ylab("Casewise Differences") +
   xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Terma") +theme(
-    axis.title.y = element_blank(),
+    axis.title.y = element_text(colour="white",size=10,face="bold"), 
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
-    axis.text.y = element_blank(),  
+    axis.text.y = element_text(colour="white",size=10,face="bold"), 
     axis.title.x = element_text(colour="grey20",size=14,face="bold"),
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 14, face = "bold"))
@@ -173,4 +170,3 @@ BA_FT_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
 Combi_MCS <- grid.arrange( BA_FC_plot ,BA_FT_plot , ncol=2)
 
 ggsave(filename = "GrubbsDataTwoBAplots.png", Combi_MCS,      width = 12, height = 6, dpi = 300, units = "in", device='png')
-
