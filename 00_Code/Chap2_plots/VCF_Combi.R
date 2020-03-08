@@ -65,7 +65,8 @@ MCS_plot_3 <- ggplot(data=myMountainPlot,aes(x=value,y=quant,col=Method)) +   yl
 
 
 
-VCF_MCS <- grid.arrange( MCS_plot_1, MCS_plot_2,MCS_plot_3, ncol=1)
+VCF_MCS <- grid.arrange( MCS_plot_1, MCS_plot_2, ncol=1)
 
 
-ggsave(filename = "VCF_MCS.png", VCF_MCS,      width = 14, height = 8, dpi = 300, units = "in", device='png')
+ggsave(filename = "VCF_MCS.png", VCF_MCS,      width = 14, height = 10, dpi = 300, units = "in", device='png')
+ggsave(filename = "VCF_MCS_Mountain.png", MCS_plot_1,      width = 14, height = 6, dpi = 300, units = "in", device='png')
