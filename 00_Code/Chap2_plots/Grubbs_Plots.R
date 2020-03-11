@@ -18,10 +18,10 @@ Avg = 0.5*(Method1+Method2)
 BAplotDF = data.frame(Method1,Method2,Avg,Dif)
 
 MCS_plot_1 <- ggplot(BAplotDF, aes(x = Method1, y = Method2)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_abline(intercept=0,slope=1, colour = "#9999CC", lwd=1,lty=2)+
   #  stat_smooth(method="lm",se=FALSE, colour = "blue", lwd=1,lty=3) + 
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylab("Counter ") +
   xlab("Fotobalk")  + theme_bw() +  ggtitle("Grubbs Artillery Data",
                                             subtitle = "Scatterplot of Fotobalk vs Counter") +theme(
@@ -36,12 +36,12 @@ ggsave(filename = "GrubbsScatter.png", MCS_plot_1,      width = 10, height = 8, 
 
 
 MCS_plot_2 <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   #geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#CC6666", lwd=1.25, lty=2) +
   #geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#CC6666", lwd=1.25,lty=2) +
-    geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylab("Casewise Differences") +
   xlab("Casewise Averages")  + theme_bw()  + ggtitle("Grubbs Artillery Data",
                                                      subtitle = "Bland-Altman Plot: Fotobalk vs Counter") +theme(
@@ -56,12 +56,12 @@ ggsave(filename = "GrubbsBAplot-noLOA.png", MCS_plot_2,      width = 10, height 
 
 
 BA_FC_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25, lty=2) +
   geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25,lty=2) +
-    geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylim(-1.3,0.25) + 
   ylab("Casewise Differences") +
   xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter") +theme(
@@ -76,12 +76,12 @@ ggsave(filename = "GrubbsBAplot-LOA.png", BA_FC_plot,      width = 10, height = 
 
 
 MCS_plot_2 <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   # geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=0.75, lty=2) +
   #  geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=0.75,lty=2) +
-    geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   stat_ellipse(lwd=1.0,colour = "#9999CC") + 
   ylim(-1.3,0.25) + 
   ylab("Casewise Differences") +
@@ -107,7 +107,7 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   #  geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=0.75, lty=2) +
   #  geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=0.75,lty=2) +
-    geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
+  geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   stat_ellipse(lwd=1.0,colour = "#9999CC") + 
   ylim(-1.3,0.25) + 
@@ -137,11 +137,11 @@ Avg = 0.5*(Method1+Method2)
 BAplotDF = data.frame(Method1,Method2,Avg,Dif)
 
 BA_FC_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   # geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25, lty=2) +
   # geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25,lty=2) +
-    geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
+  geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
   geom_point(pch=17,col="black",alpha = 0.75,size=2.75) +
   ylim(-1.5,1.45) + 
   xlim(787.5,796) +
@@ -162,12 +162,12 @@ Dif = Method1-Method2
 Avg = 0.5*(Method1+Method2)
 BAplotDF = data.frame(Method1,Method2,Avg,Dif)
 BA_FT_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.75) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "red", lwd=1.25,lty=2) +
   # geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25, lty=2) +
   # geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#9999CC", lwd=1.25,lty=2) +
   geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
-  geom_point(pch=17,col="black",alpha = 0.75,size=2.5) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylim(-1.5,1.45) + 
   xlim(787.5,796) + 
   ylab("Casewise Differences") +
