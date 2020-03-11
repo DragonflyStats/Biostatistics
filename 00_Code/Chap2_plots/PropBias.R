@@ -1,8 +1,5 @@
 
 
-Figure~/ref{bloodnlme-ResidPlot} depicts residual plot for the Systolic Blood Pressure example, panelled by the various measurement methods, confirming agreement between methods J and R. Lack of agreement between those two methods and method S is also indicated. However, little insight can be gained as to what actually causes this lack of agreement.
-
-
 library(MethComp)
 data(plvol)
 library(dplyr)
