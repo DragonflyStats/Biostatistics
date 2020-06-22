@@ -42,8 +42,8 @@ MCS_plot_2 <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   #geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#CC6666", lwd=1.25,lty=2) +
   geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw()  + ggtitle("Grubbs Artillery Data",
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw()  + ggtitle("Grubbs Artillery Data",
                                                      subtitle = "Bland-Altman Plot: Fotobalk vs Counter") +theme(
                                                        axis.title.y = element_text(colour="grey20",size=14,face="bold"),
                                                        axis.text.x = element_text(colour="grey20",size=14,face="bold"),
@@ -63,8 +63,8 @@ BA_FC_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   geom_hline(yintercept = 0, lwd=0.75,colour = "black") +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylim(-1.3,0.25) + 
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
@@ -84,8 +84,8 @@ MCS_plot_2 <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   stat_ellipse(lwd=1.0,colour = "#9999CC") + 
   ylim(-1.3,0.25) + 
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
@@ -111,8 +111,8 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   stat_ellipse(lwd=1.0,colour = "#9999CC") + 
   ylim(-1.3,0.25) + 
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
@@ -145,8 +145,8 @@ BA_FC_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="black",alpha = 0.75,size=2.75) +
   ylim(-1.5,1.45) + 
   xlim(787.5,796) +
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Counter") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Counter") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
@@ -170,8 +170,8 @@ BA_FT_plot <-  ggplot(BAplotDF, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
   ylim(-1.5,1.45) + 
   xlim(787.5,796) + 
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Terma") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Fotobalk vs Terma") +theme(
     axis.title.y = element_text(colour="white",size=10,face="bold"), 
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="white",size=10,face="bold"), 
