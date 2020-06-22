@@ -22,14 +22,11 @@ BAplotDF3 <- data.frame(  Method1 = 782, Method2 =782,    Avg  =786,Dif= -0.6083
 MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="red",alpha = 0.75,size=3.2) +
   geom_hline(yintercept = mean(BAplotDF$Dif), colour = "#9999CC", lwd=1.25) +
-  geom_hline(yintercept = mean(BAplotDF$Dif) - (1.96 * sd(BAplotDF$Dif)), colour = "#CC6666", lwd=0.75, lty=2) +
-  geom_hline(yintercept = mean(BAplotDF$Dif) + (1.96 * sd(BAplotDF$Dif)), colour = "#CC6666", lwd=0.75,lty=2) +
   geom_hline(yintercept = 0, colour = "black", lty=3, lwd=1.25) +
   geom_point(pch=17,col="red",alpha = 0.75,size=3.2) +
-  stat_ellipse(lwd=1.0,colour = "#CC6666") + 
   ylim(-1.3,0.25) + 
   ylab("Case-wise Differences") +
-  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Detecting Outliers with the Bland-Altman Plot",subtitle = "(Artificial Data)") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
@@ -38,4 +35,4 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
     plot.subtitle = element_text(size = 14, face = "bold")) + 
   geom_point(data=BAplotDF3,aes(x = Avg, y = Dif),pch=17,col="black",alpha = 0.75,size=3.2)
 
-ggsave(filename = "GrubbsBartko2.png", MCS_plot_3,      width = 10, height = 8, dpi = 300, units = "in", device='png')
+ggsave(filename = "BAoutliers.png", MCS_plot_3,      width = 10, height = 8, dpi = 300, units = "in", device='png')
