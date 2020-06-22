@@ -19,9 +19,11 @@ Avg = sample(7910:7965/10,24,replace=T)
 Dif = sample(-15:3/10,24,replace=T)
 BAplotDF = data.frame(Avg,Dif)
 
-BAplotDF2 <- BAplotDF %>% bind_rows( 
-     data.frame(  Method1 = 792, Method2 =792,    Avg  =792,Dif= 1.95))
-BAplotDF3 <- data.frame(  Method1 = 782, Method2 =782,    Avg  =785,Dif= -1.6)
+
+BAplotDF3 <- data.frame(  Method1 = c(782,792), Method2 =c(782,792),    Avg  =c(785,792),
+                          Dif= c(-1.6,1.95))
+BAplotDF2 <- BAplotDF %>% bind_rows(BAplotDF3)
+
 
 MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
@@ -37,7 +39,7 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
     axis.title.x = element_text(colour="grey20",size=14,face="bold"),
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 14, face = "bold")) + 
-  geom_point(data=BAplotDF3,aes(x = Avg, y = Dif),pch=17,col="black",alpha = 0.75,size=3.2)
+  geom_point(data=BAplotDF3,aes(x = Avg, y = Dif),pch=1,col="red",alpha = 0.75,size=5.2)
 
 ggsave(filename = "BAoutliers.png", MCS_plot_3,      width = 10, height = 8, dpi = 300, units = "in", device='png')
 
