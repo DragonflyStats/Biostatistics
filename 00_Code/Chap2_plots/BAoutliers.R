@@ -9,22 +9,26 @@ Terma <- c(793.2, 793.3, 792.6, 793.8, 791.6, 791.6, 791.6, 792.4, 788.5,  794.7
 grubbs <- data.frame(Round, Fotobalk,Counter, Terma)
 
 
-Method1 <- grubbs$Fotobalk
-Method2 <- grubbs$Counter
+Method1 <- c(grubbs$Counter,grubbs$Counter) + sample(-30:-10/10,24,replace=T)
+Method2 <- c(grubbs$Fotobalk,grubbs$Fotobalk) + sample(-30:-10/10,24,replace=T)
 
 Dif = Method1-Method2 
 Avg = 0.5*(Method1+Method2)
-BAplotDF = data.frame(Method1,Method2,Avg,Dif)
 
-BAplotDF2 <- BAplotDF %>% bind_rows( data.frame(  Method1 = 782, Method2 =782,    Avg  =786,Dif= -0.6083333))
-BAplotDF3 <- data.frame(  Method1 = 782, Method2 =782,    Avg  =786,Dif= -0.6083333)
+Avg = sample(7910:7965/10,24,replace=T)
+Dif = sample(-15:3/10,24,replace=T)
+BAplotDF = data.frame(Avg,Dif)
+
+BAplotDF2 <- BAplotDF %>% bind_rows( 
+     data.frame(  Method1 = 792, Method2 =792,    Avg  =792,Dif= 1.95))
+BAplotDF3 <- data.frame(  Method1 = 782, Method2 =782,    Avg  =785,Dif= -1.6)
 
 MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
-  geom_point(pch=17,col="red",alpha = 0.75,size=3.2) +
-  geom_hline(yintercept = mean(BAplotDF$Dif), colour = "#9999CC", lwd=1.25) +
-  geom_hline(yintercept = 0, colour = "black", lty=3, lwd=1.25) +
-  geom_point(pch=17,col="red",alpha = 0.75,size=3.2) +
-  ylim(-1.3,0.25) + 
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
+  geom_hline(yintercept = mean(BAplotDF$Dif), lty=2, colour = "#9999CC", lwd=1.25) +
+  geom_hline(yintercept = 0, colour = "black",  lwd=0.75) +
+  geom_point(pch=17,col="black",alpha = 0.75,size=3.2) +
+  ylim(-2.1,2.1) + 
   ylab("Case-wise Differences") +
   xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Detecting Outliers with the Bland-Altman Plot",subtitle = "(Artificial Data)") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
@@ -36,3 +40,5 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_point(data=BAplotDF3,aes(x = Avg, y = Dif),pch=17,col="black",alpha = 0.75,size=3.2)
 
 ggsave(filename = "BAoutliers.png", MCS_plot_3,      width = 10, height = 8, dpi = 300, units = "in", device='png')
+
+MCS_plot_3
