@@ -1,3 +1,6 @@
+library(magrittr)
+library(dplyr)
+
 Round <- 1:12
 Fotobalk <- c(793.8, 793.1, 792.4, 794, 791.4, 792.4, 791.7, 792.3, 789.6,   794.4, 790.9, 793.5)
 Counter <- c(794.6, 793.9, 793.2, 794, 792.2, 793.1, 792.4, 792.8, 790.2,  795, 791.6, 793.8)
@@ -25,8 +28,8 @@ MCS_plot_3 <-  ggplot(BAplotDF2, aes(x = Avg, y = Dif)) +
   geom_point(pch=17,col="red",alpha = 0.75,size=3.2) +
   stat_ellipse(lwd=1.0,colour = "#CC6666") + 
   ylim(-1.3,0.25) + 
-  ylab("Casewise Differences") +
-  xlab("Casewise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
+  ylab("Case-wise Differences") +
+  xlab("Case-wise Averages")  + theme_bw() + theme_bw() + ggtitle("Grubbs Artillery Data",subtitle = "Bland-Altman Plot: Fotobalk vs Counter - with Ellipse") +theme(
     axis.title.y = element_text(colour="grey20",size=14,face="bold"),
     axis.text.x = element_text(colour="grey20",size=14,face="bold"),
     axis.text.y = element_text(colour="grey20",size=14,face="bold"),  
